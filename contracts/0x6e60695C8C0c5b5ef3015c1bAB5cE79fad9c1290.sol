@@ -1,0 +1,732 @@
+contract main {
+
+
+
+
+// =====================  Runtime code  =====================
+
+
+#
+#  - reinvest()
+#
+const decimals = 18
+
+const DOMAIN_TYPEHASH = 0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f
+
+const PERMIT_TYPEHASH = 0x6e71edae12b1b97f4d1f60370fef10105fa2faae0126114a169c64845d6126c9
+
+const VERSION_HASH = 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6
+
+
+array of uint256 name;
+array of uint256 symbol;
+uint256 totalSupply;
+mapping of uint256 allowance;
+mapping of uint256 balanceOf;
+mapping of uint256 nonces;
+address owner;
+uint256 totalDeposits;
+address routerAddress;
+address lpTokenAddress;
+address rewardTokenAddress;
+address stakingContractAddress;
+uint256 MIN_TOKENS_TO_REINVEST;
+uint16 REINVEST_REWARD_BIPS;
+uint16 ADMIN_FEE_BIPS; offset 16
+uint16 stor15; offset 32
+
+function name() payable {
+    return name[0 len name.length].field_0
+}
+
+function ADMIN_FEE_BIPS() payable {
+    return ADMIN_FEE_BIPS
+}
+
+function totalSupply() payable {
+    return totalSupply
+}
+
+function lpToken() payable {
+    return lpTokenAddress
+}
+
+function balanceOf(address arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    return balanceOf[address(arg1)]
+}
+
+function totalDeposits() payable {
+    return totalDeposits
+}
+
+function nonces(address arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    return nonces[arg1]
+}
+
+function REINVEST_REWARD_BIPS() payable {
+    return REINVEST_REWARD_BIPS
+}
+
+function owner() payable {
+    return owner
+}
+
+function symbol() payable {
+    return symbol[0 len symbol.length]
+}
+
+function MIN_TOKENS_TO_REINVEST() payable {
+    return MIN_TOKENS_TO_REINVEST
+}
+
+function allowance(address arg1, address arg2) payable {
+    require calldata.size - 4 >= 64
+    require arg1 == arg1
+    require arg2 == arg2
+    return allowance[address(arg1)][address(arg2)]
+}
+
+function stakingContract() payable {
+    return stakingContractAddress
+}
+
+function rewardToken() payable {
+    return rewardTokenAddress
+}
+
+function router() payable {
+    return routerAddress
+}
+
+function _fallback() payable {
+    revert
+}
+
+function renounceOwnership() payable {
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    emit OwnershipTransferred(owner, 0);
+    owner = 0
+}
+
+function updateMinTokensToReinvest(uint256 arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    MIN_TOKENS_TO_REINVEST = arg1
+    emit UpdateMinTokensToReinvest(MIN_TOKENS_TO_REINVEST, arg1);
+}
+
+function emergencyWithdraw() payable {
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ext_code.size(stakingContractAddress)
+    call stakingContractAddress.exit() with:
+         gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+}
+
+function approve(address arg1, uint256 arg2) payable {
+    require calldata.size - 4 >= 64
+    require arg1 == arg1
+    require arg2 == arg2
+    if not msg.sender:
+        revert with 0, '_approve::owner zero address'
+    if not arg1:
+        revert with 0, '_approve::spender zero address'
+    allowance[address(msg.sender)][address(arg1)] = arg2
+    emit Approval(arg2, msg.sender, arg1);
+    return 1
+}
+
+function transferOwnership(address arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'Ownable: new owner is the zero address'
+    emit OwnershipTransferred(owner, arg1);
+    owner = arg1
+}
+
+function checkReward() payable {
+    require ext_code.size(stakingContractAddress)
+    staticcall stakingContractAddress.earned(address rg1) with:
+            gas gas_remaining wei
+           args this.address
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    return ext_call.return_data[0]
+}
+
+function sub_17e4711c(?) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == uint16(arg1)
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if uint16(arg1) + ADMIN_FEE_BIPS < uint16(arg1):
+        revert with 0, 'SafeMath: addition overflow'
+    if uint16(arg1) + ADMIN_FEE_BIPS > stor15:
+        revert with 0, 'reinvest fee too high'
+    REINVEST_REWARD_BIPS = uint16(arg1)
+    emit 0x228b78f2: REINVEST_REWARD_BIPS, uint16(arg1)
+}
+
+function sub_1c6caf41(?) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == uint16(arg1)
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if uint16(arg1) + REINVEST_REWARD_BIPS < uint16(arg1):
+        revert with 0, 'SafeMath: addition overflow'
+    if uint16(arg1) + REINVEST_REWARD_BIPS > stor15:
+        revert with 0, 'admin fee too high'
+    ADMIN_FEE_BIPS = uint16(arg1)
+    emit 0x228b78f2: REINVEST_REWARD_BIPS, uint16(arg1)
+}
+
+function recoverERC20(address arg1, uint256 arg2) payable {
+    require calldata.size - 4 >= 64
+    require arg1 == arg1
+    require arg2 == arg2
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ext_code.size(arg1)
+    call arg1.0xa9059cbb with:
+         gas gas_remaining wei
+        args msg.sender, arg2
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+    emit Recovered(address(arg1), arg2);
+}
+
+function transfer(address arg1, uint256 arg2) payable {
+    require calldata.size - 4 >= 64
+    require arg1 == arg1
+    require arg2 == arg2
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    '_transferTokens: cannot transfer to the zero address'
+    if arg2 > balanceOf[address(msg.sender)]:
+        revert with 0, 
+                    32,
+                    46,
+                    0x655f7472616e73666572546f6b656e733a207472616e7366657220657863656564732066726f6d2062616c616e63, mem[174 len 18] >> 112,
+                    0
+    balanceOf[address(msg.sender)] -= arg2
+    if balanceOf[address(arg1)] + arg2 < balanceOf[address(arg1)]:
+        revert with 0, 'SafeMath: addition overflow'
+    balanceOf[address(arg1)] += arg2
+    emit Transfer(arg2, msg.sender, arg1);
+    return 1
+}
+
+function getDomainSeparator() payable {
+    if not bool(name.length):
+        mem[96] = Mask(248, 8, name.length)
+        return sha3(0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f, sha3(mem[96 len name.length.field_1]), 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6, chainid, this.address)
+    if bool(name.length) != 1:
+        return sha3(0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f, sha3(mem[96 len -96]), 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6, chainid, this.address)
+    idx = 0
+    s = 0
+    while idx < name.length.field_1:
+        mem[idx + 96] = name[s].field_0
+        idx = idx + 32
+        s = s + 1
+        continue 
+    return sha3(0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f, sha3(mem[96 len name.length.field_1]), 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6, chainid, this.address)
+}
+
+function getLPTokensForShares(uint256 arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if not totalSupply:
+        return 0
+    require totalSupply
+    if totalSupply * totalDeposits / totalSupply != totalDeposits:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'SafeMath: multiplication overflow'
+    if not totalSupply * totalDeposits:
+        return 0
+    if not arg1:
+        if totalSupply <= 0:
+            revert with 0, 'SafeMath: division by zero', 0
+        if totalSupply:
+            return (0 / totalSupply)
+    else:
+        if arg1:
+            if arg1 * totalDeposits / arg1 != totalDeposits:
+                revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'SafeMath: multiplication overflow'
+            if totalSupply <= 0:
+                revert with 0, 'SafeMath: division by zero', 0
+            if totalSupply:
+                return (arg1 * totalDeposits / totalSupply)
+    revert
+}
+
+function getSharesForLPTokens(uint256 arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if not totalSupply:
+        return arg1
+    require totalSupply
+    if totalSupply * totalDeposits / totalSupply != totalDeposits:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'SafeMath: multiplication overflow'
+    if not totalSupply * totalDeposits:
+        return arg1
+    if not arg1:
+        if totalDeposits <= 0:
+            revert with 0, 'SafeMath: division by zero', 0
+        if totalDeposits:
+            return (0 / totalDeposits)
+    else:
+        if arg1:
+            if arg1 * totalSupply / arg1 != totalSupply:
+                revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'SafeMath: multiplication overflow'
+            if totalDeposits <= 0:
+                revert with 0, 'SafeMath: division by zero', 0
+            if totalDeposits:
+                return (arg1 * totalSupply / totalDeposits)
+    revert
+}
+
+function estimateReinvestReward() payable {
+    require ext_code.size(stakingContractAddress)
+    staticcall stakingContractAddress.earned(address rg1) with:
+            gas gas_remaining wei
+           args this.address
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    if ext_call.return_data[0] < MIN_TOKENS_TO_REINVEST:
+        return 0
+    if not ext_call.return_data[0]:
+        if stor15 <= 0:
+            revert with 0, 'SafeMath: division by zero', 0
+        if stor15:
+            return (0 / stor15)
+    else:
+        if ext_call.return_data[0]:
+            if ext_call.return_data[0] * REINVEST_REWARD_BIPS / ext_call.return_data[0] != REINVEST_REWARD_BIPS:
+                revert with 0, 'SafeMath: multiplication overflow'
+            if stor15 <= 0:
+                revert with 0, 'SafeMath: division by zero', 0
+            if stor15:
+                return (ext_call.return_data[0] * REINVEST_REWARD_BIPS / stor15)
+    revert
+}
+
+function permit(address arg1, address arg2, uint256 arg3, uint256 arg4, uint8 arg5, bytes32 arg6, bytes32 arg7) payable {
+    require calldata.size - 4 >= 224
+    require arg1 == arg1
+    require arg2 == arg2
+    require arg3 == arg3
+    require arg4 == arg4
+    require arg5 == arg5
+    require arg6 == arg6
+    require arg7 == arg7
+    if arg4 < block.timestamp:
+        revert with 0, 'permit::expired'
+    nonces[address(arg1)]++
+    if not bool(name.length):
+        mem[320] = Mask(248, 8, name.length)
+        signer = erecover(sha3(0, sha3(0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f, sha3(mem[320 len name.length.field_1]), 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6, chainid, this.address), sha3(0x6e71edae12b1b97f4d1f60370fef10105fa2faae0126114a169c64845d6126c9, address(arg1), address(arg2), arg3, nonces[address(arg1)], arg4)), arg5 << 248, arg6, arg7) 
+    else:
+        if bool(name.length) != 1:
+            signer = erecover(sha3(0, sha3(0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f, sha3(mem[320 len -320]), 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6, chainid, this.address), sha3(0x6e71edae12b1b97f4d1f60370fef10105fa2faae0126114a169c64845d6126c9, address(arg1), address(arg2), arg3, nonces[address(arg1)], arg4)), arg5 << 248, arg6, arg7) 
+        else:
+            idx = 0
+            s = 0
+            while idx < name.length.field_1:
+                mem[idx + 320] = name[s].field_0
+                idx = idx + 32
+                s = s + 1
+                continue 
+            signer = erecover(sha3(0, sha3(0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f, sha3(mem[320 len name.length.field_1]), 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6, chainid, this.address), sha3(0x6e71edae12b1b97f4d1f60370fef10105fa2faae0126114a169c64845d6126c9, address(arg1), address(arg2), arg3, nonces[address(arg1)], arg4)), arg5 << 248, arg6, arg7) 
+    if not erecover.result:
+        revert with ext_call.return_data[0 len return_data.size]
+    if not address(signer):
+        revert with 0, 'Arch::validateSig: invalid signature'
+    if address(signer) != arg1:
+        revert with 0, 'Arch::validateSig: invalid signature'
+    if not arg1:
+        revert with 0, '_approve::owner zero address'
+    if not arg2:
+        revert with 0, '_approve::spender zero address'
+    allowance[address(arg1)][address(arg2)] = arg3
+    emit Approval(arg3, arg1, arg2);
+}
+
+function transferFrom(address arg1, address arg2, uint256 arg3) payable {
+    require calldata.size - 4 >= 96
+    require arg1 == arg1
+    require arg2 == arg2
+    require arg3 == arg3
+    if msg.sender == arg1:
+        if not arg2:
+            revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                        '_transferTokens: cannot transfer to the zero address'
+        if arg3 > balanceOf[address(arg1)]:
+            revert with 0, 
+                        32,
+                        46,
+                        0x655f7472616e73666572546f6b656e733a207472616e7366657220657863656564732066726f6d2062616c616e63, mem[174 len 18] >> 112,
+                        0
+    else:
+        if allowance[address(arg1)][address(msg.sender)] == -1:
+            if not arg2:
+                revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                            '_transferTokens: cannot transfer to the zero address'
+            if arg3 > balanceOf[address(arg1)]:
+                revert with 0, 
+                            32,
+                            46,
+                            0x655f7472616e73666572546f6b656e733a207472616e7366657220657863656564732066726f6d2062616c616e63, mem[174 len 18] >> 112,
+                            0
+        else:
+            if arg3 > allowance[address(arg1)][address(msg.sender)]:
+                revert with 0, 
+                            32,
+                            47,
+                            0x797472616e7366657246726f6d3a207472616e7366657220616d6f756e74206578636565647320616c6c6f77616e63, mem[175 len 17] >> 120,
+                            0
+            allowance[address(arg1)][address(msg.sender)] -= arg3
+            emit Approval((allowance[address(arg1)][address(msg.sender)] - arg3), arg1, msg.sender);
+            if not arg2:
+                revert with 0, '_transferTokens: cannot transfer to the zero address'
+            if arg3 > balanceOf[address(arg1)]:
+                revert with 0, 
+                            32,
+                            46,
+                            0x655f7472616e73666572546f6b656e733a207472616e7366657220657863656564732066726f6d2062616c616e63, mem[270 len 18] >> 112,
+                            0
+    ('le', ('param', 'arg3'), ('stor', ('map', ('mask_shl', 160, 0, 0, ('param', 'arg1')), ('name', 'balanceOf', 4))))
+    balanceOf[address(arg1)] -= arg3
+    if balanceOf[address(arg2)] + arg3 < balanceOf[address(arg2)]:
+        revert with 0, 'SafeMath: addition overflow'
+    balanceOf[address(arg2)] += arg3
+    emit Transfer(arg3, arg1, arg2);
+    return 1
+}
+
+function deposit(uint256 arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    require ext_code.size(lpTokenAddress)
+    staticcall lpTokenAddress.0xdd62ed3e with:
+            gas gas_remaining wei
+           args msg.sender, this.address
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    if ext_call.return_data[0] < arg1:
+        revert with 0, 'deposit::allowance'
+    require ext_code.size(lpTokenAddress)
+    call lpTokenAddress.0x23b872dd with:
+         gas gas_remaining wei
+        args msg.sender, address(this.address), arg1
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+    if not ext_call.return_data[0]:
+        revert with 0, 'deposit::transferFrom'
+    if arg1:
+        if arg1 <= 0:
+            revert with 0, '_stakeLpTokens'
+        if totalDeposits + arg1 < totalDeposits:
+            revert with 0, 'SafeMath: addition overflow'
+        totalDeposits += arg1
+        require ext_code.size(stakingContractAddress)
+        call stakingContractAddress.stake(uint256 rg1) with:
+             gas gas_remaining wei
+            args arg1
+    else:
+        require ext_code.size(lpTokenAddress)
+        staticcall lpTokenAddress.0x70a08231 with:
+                gas gas_remaining wei
+               args this.address
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        require return_data.size >= 32
+        require ext_call.return_data[0] == ext_call.return_data[0]
+        if ext_call.return_data[0] <= 0:
+            revert with 0, '_stakeLpTokens'
+        if totalDeposits + ext_call.return_data[0] < totalDeposits:
+            revert with 0, 'SafeMath: addition overflow'
+        totalDeposits += ext_call.return_data[0]
+        require ext_code.size(stakingContractAddress)
+        call stakingContractAddress.stake(uint256 rg1) with:
+             gas gas_remaining wei
+            args ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    if not totalSupply:
+        if totalSupply + arg1 < totalSupply:
+            revert with 0, 'SafeMath: addition overflow'
+        totalSupply += arg1
+        if balanceOf[address(msg.sender)] + arg1 < balanceOf[address(msg.sender)]:
+            revert with 0, 'SafeMath: addition overflow'
+        balanceOf[address(msg.sender)] += arg1
+        emit Transfer(arg1, 0, msg.sender);
+    else:
+        require totalSupply
+        if totalSupply * totalDeposits / totalSupply != totalDeposits:
+            revert with 0, 'SafeMath: multiplication overflow'
+        if not totalSupply * totalDeposits:
+            if totalSupply + arg1 < totalSupply:
+                revert with 0, 'SafeMath: addition overflow'
+            totalSupply += arg1
+            if balanceOf[address(msg.sender)] + arg1 < balanceOf[address(msg.sender)]:
+                revert with 0, 'SafeMath: addition overflow'
+            balanceOf[address(msg.sender)] += arg1
+            emit Transfer(arg1, 0, msg.sender);
+        else:
+            if not arg1:
+                if totalDeposits <= 0:
+                    revert with 0, 'SafeMath: division by zero', 0
+                require totalDeposits
+                if totalSupply + (0 / totalDeposits) < totalSupply:
+                    revert with 0, 'SafeMath: addition overflow'
+                totalSupply += 0 / totalDeposits
+                if balanceOf[address(msg.sender)] + (0 / totalDeposits) < balanceOf[address(msg.sender)]:
+                    revert with 0, 'SafeMath: addition overflow'
+                balanceOf[address(msg.sender)] += 0 / totalDeposits
+                emit Transfer((0 / totalDeposits), 0, msg.sender);
+            else:
+                require arg1
+                if arg1 * totalSupply / arg1 != totalSupply:
+                    revert with 0, 'SafeMath: multiplication overflow'
+                if totalDeposits <= 0:
+                    revert with 0, 'SafeMath: division by zero', 0
+                require totalDeposits
+                if totalSupply + (arg1 * totalSupply / totalDeposits) < totalSupply:
+                    revert with 0, 'SafeMath: addition overflow'
+                totalSupply += arg1 * totalSupply / totalDeposits
+                if balanceOf[address(msg.sender)] + (arg1 * totalSupply / totalDeposits) < balanceOf[address(msg.sender)]:
+                    revert with 0, 'SafeMath: addition overflow'
+                balanceOf[address(msg.sender)] += arg1 * totalSupply / totalDeposits
+                emit Transfer((arg1 * totalSupply / totalDeposits), 0, msg.sender);
+    emit Deposit(msg.sender, arg1);
+}
+
+function withdraw(uint256 arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if totalSupply:
+        require totalSupply
+        if totalSupply * totalDeposits / totalSupply != totalDeposits:
+            revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'SafeMath: multiplication overflow'
+        if totalSupply * totalDeposits:
+            if not arg1:
+                if totalSupply <= 0:
+                    revert with 0, 'SafeMath: division by zero', 0
+                require totalSupply
+                if 0 / totalSupply > 0:
+                    if 0 / totalSupply > totalDeposits:
+                        revert with 0, 'SafeMath: subtraction underflow', 0
+                    totalDeposits -= 0 / totalSupply
+                    require ext_code.size(stakingContractAddress)
+                    call stakingContractAddress.0x2e1a7d4d with:
+                         gas gas_remaining wei
+                        args (0 / totalSupply)
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    require ext_code.size(lpTokenAddress)
+                    call lpTokenAddress.0xa9059cbb with:
+                         gas gas_remaining wei
+                        args msg.sender, 0 / totalSupply
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    require return_data.size >= 32
+                    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+                    if not ext_call.return_data[0]:
+                        revert with 0, 'withdraw::transfer failed'
+                    if arg1 > balanceOf[address(msg.sender)]:
+                        revert with 0, 
+                                    32,
+                                    39,
+                                    0x655f6275726e3a206275726e20616d6f756e7420657863656564732066726f6d2062616c616e63, mem[ceil32(return_data.size) + 295 len 25] >> 56,
+                                    0
+                    balanceOf[address(msg.sender)] -= arg1
+                    if arg1 > totalSupply:
+                        revert with 0, 
+                                    32,
+                                    39,
+                                    0xfe5f6275726e3a206275726e20616d6f756e74206578636565647320746f74616c20737570706c, mem[ceil32(return_data.size) + 391 len 25] >> 56,
+                                    0
+                    totalSupply -= arg1
+                    emit Transfer(arg1, msg.sender, 0);
+                    emit Withdraw(msg.sender, 0 / totalSupply);
+            else:
+                require arg1
+                if arg1 * totalDeposits / arg1 != totalDeposits:
+                    revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'SafeMath: multiplication overflow'
+                if totalSupply <= 0:
+                    revert with 0, 'SafeMath: division by zero', 0
+                require totalSupply
+                if arg1 * totalDeposits / totalSupply > 0:
+                    if arg1 * totalDeposits / totalSupply > totalDeposits:
+                        revert with 0, 'SafeMath: subtraction underflow', 0
+                    totalDeposits -= arg1 * totalDeposits / totalSupply
+                    require ext_code.size(stakingContractAddress)
+                    call stakingContractAddress.0x2e1a7d4d with:
+                         gas gas_remaining wei
+                        args (arg1 * totalDeposits / totalSupply)
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    require ext_code.size(lpTokenAddress)
+                    call lpTokenAddress.0xa9059cbb with:
+                         gas gas_remaining wei
+                        args msg.sender, arg1 * totalDeposits / totalSupply
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    require return_data.size >= 32
+                    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+                    if not ext_call.return_data[0]:
+                        revert with 0, 'withdraw::transfer failed'
+                    if arg1 > balanceOf[address(msg.sender)]:
+                        revert with 0, 
+                                    32,
+                                    39,
+                                    0x655f6275726e3a206275726e20616d6f756e7420657863656564732066726f6d2062616c616e63, mem[ceil32(return_data.size) + 295 len 25] >> 56,
+                                    0
+                    balanceOf[address(msg.sender)] -= arg1
+                    if arg1 > totalSupply:
+                        revert with 0, 
+                                    32,
+                                    39,
+                                    0xfe5f6275726e3a206275726e20616d6f756e74206578636565647320746f74616c20737570706c, mem[ceil32(return_data.size) + 391 len 25] >> 56,
+                                    0
+                    totalSupply -= arg1
+                    emit Transfer(arg1, msg.sender, 0);
+                    emit Withdraw(msg.sender, arg1 * totalDeposits / totalSupply);
+}
+
+function depositWithPermit(uint256 arg1, uint256 arg2, uint8 arg3, bytes32 arg4, bytes32 arg5) payable {
+    require calldata.size - 4 >= 160
+    require arg1 == arg1
+    require arg2 == arg2
+    require arg3 == arg3
+    require arg4 == arg4
+    require arg5 == arg5
+    require ext_code.size(lpTokenAddress)
+    call lpTokenAddress.0xd505accf with:
+         gas gas_remaining wei
+        args 0, uint32(msg.sender), address(this.address), arg1, arg2, arg3 << 248, arg4, arg5
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require ext_code.size(lpTokenAddress)
+    staticcall lpTokenAddress.0xdd62ed3e with:
+            gas gas_remaining wei
+           args msg.sender, this.address
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    if ext_call.return_data[0] < arg1:
+        revert with 0, 'deposit::allowance'
+    require ext_code.size(lpTokenAddress)
+    call lpTokenAddress.0x23b872dd with:
+         gas gas_remaining wei
+        args msg.sender, address(this.address), arg1
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+    if not ext_call.return_data[0]:
+        revert with 0, 'deposit::transferFrom'
+    if arg1:
+        if arg1 <= 0:
+            revert with 0, '_stakeLpTokens'
+        if totalDeposits + arg1 < totalDeposits:
+            revert with 0, 'SafeMath: addition overflow'
+        totalDeposits += arg1
+        require ext_code.size(stakingContractAddress)
+        call stakingContractAddress.stake(uint256 rg1) with:
+             gas gas_remaining wei
+            args arg1
+    else:
+        require ext_code.size(lpTokenAddress)
+        staticcall lpTokenAddress.0x70a08231 with:
+                gas gas_remaining wei
+               args this.address
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        require return_data.size >= 32
+        require ext_call.return_data[0] == ext_call.return_data[0]
+        if ext_call.return_data[0] <= 0:
+            revert with 0, '_stakeLpTokens'
+        if totalDeposits + ext_call.return_data[0] < totalDeposits:
+            revert with 0, 'SafeMath: addition overflow'
+        totalDeposits += ext_call.return_data[0]
+        require ext_code.size(stakingContractAddress)
+        call stakingContractAddress.stake(uint256 rg1) with:
+             gas gas_remaining wei
+            args ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    if not totalSupply:
+        if totalSupply + arg1 < totalSupply:
+            revert with 0, 'SafeMath: addition overflow'
+        totalSupply += arg1
+        if balanceOf[address(msg.sender)] + arg1 < balanceOf[address(msg.sender)]:
+            revert with 0, 'SafeMath: addition overflow'
+        balanceOf[address(msg.sender)] += arg1
+        emit Transfer(arg1, 0, msg.sender);
+    else:
+        require totalSupply
+        if totalSupply * totalDeposits / totalSupply != totalDeposits:
+            revert with 0, 'SafeMath: multiplication overflow'
+        if not totalSupply * totalDeposits:
+            if totalSupply + arg1 < totalSupply:
+                revert with 0, 'SafeMath: addition overflow'
+            totalSupply += arg1
+            if balanceOf[address(msg.sender)] + arg1 < balanceOf[address(msg.sender)]:
+                revert with 0, 'SafeMath: addition overflow'
+            balanceOf[address(msg.sender)] += arg1
+            emit Transfer(arg1, 0, msg.sender);
+        else:
+            if not arg1:
+                if totalDeposits <= 0:
+                    revert with 0, 'SafeMath: division by zero', 0
+                require totalDeposits
+                if totalSupply + (0 / totalDeposits) < totalSupply:
+                    revert with 0, 'SafeMath: addition overflow'
+                totalSupply += 0 / totalDeposits
+                if balanceOf[address(msg.sender)] + (0 / totalDeposits) < balanceOf[address(msg.sender)]:
+                    revert with 0, 'SafeMath: addition overflow'
+                balanceOf[address(msg.sender)] += 0 / totalDeposits
+                emit Transfer((0 / totalDeposits), 0, msg.sender);
+            else:
+                require arg1
+                if arg1 * totalSupply / arg1 != totalSupply:
+                    revert with 0, 'SafeMath: multiplication overflow'
+                if totalDeposits <= 0:
+                    revert with 0, 'SafeMath: division by zero', 0
+                require totalDeposits
+                if totalSupply + (arg1 * totalSupply / totalDeposits) < totalSupply:
+                    revert with 0, 'SafeMath: addition overflow'
+                totalSupply += arg1 * totalSupply / totalDeposits
+                if balanceOf[address(msg.sender)] + (arg1 * totalSupply / totalDeposits) < balanceOf[address(msg.sender)]:
+                    revert with 0, 'SafeMath: addition overflow'
+                balanceOf[address(msg.sender)] += arg1 * totalSupply / totalDeposits
+                emit Transfer((arg1 * totalSupply / totalDeposits), 0, msg.sender);
+    emit Deposit(msg.sender, arg1);
+}
+
+
+
+}
