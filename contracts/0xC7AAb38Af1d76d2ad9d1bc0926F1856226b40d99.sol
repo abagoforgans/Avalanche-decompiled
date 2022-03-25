@@ -187,7 +187,9 @@ function sub_fa31eaa4(?) payable {
         require mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + 32 <= return_data.size
         require mem[mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * arg1.length) + 128] <= 4294967296 and mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * mem[mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * arg1.length) + 128]) + 32 <= return_data.size
         mem[(32 * arg1.length) + ceil32(return_data.size) + 128] = mem[mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * arg1.length) + 128]
+        _130 = mem[_124 + (32 * arg1.length) + 128]
         mem[(32 * arg1.length) + ceil32(return_data.size) + 160 len floor32(mem[_124 + (32 * arg1.length) + 128])] = mem[_124 + (32 * arg1.length) + 160 len floor32(mem[_124 + (32 * arg1.length) + 128])]
+        mem[64] = (32 * _130) + (32 * arg1.length) + ceil32(return_data.size) + 160
     else:
         require 0 < arg1.length
         require ext_code.size(mem[140 len 20])
@@ -218,7 +220,9 @@ function sub_fa31eaa4(?) payable {
         require mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + 32 <= return_data.size
         require mem[mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * arg1.length) + 128] <= 4294967296 and mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * mem[mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * arg1.length) + 128]) + 32 <= return_data.size
         mem[(32 * arg1.length) + ceil32(return_data.size) + 128] = mem[mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * arg1.length) + 128]
+        _131 = mem[_126 + (32 * arg1.length) + 128]
         mem[(32 * arg1.length) + ceil32(return_data.size) + 160 len floor32(mem[_126 + (32 * arg1.length) + 128])] = mem[_126 + (32 * arg1.length) + 160 len floor32(mem[_126 + (32 * arg1.length) + 128])]
+        mem[64] = (32 * _131) + (32 * arg1.length) + ceil32(return_data.size) + 160
     require 0 < arg1.length
     if mem[140 len 20] == sub_e09966a8Address:
         require arg1.length - 1 < arg1.length
@@ -284,7 +288,9 @@ function sub_a7bd2945(?) payable {
         require mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + 32 <= return_data.size
         require mem[mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * arg1.length) + 128] <= 4294967296 and mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * mem[mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * arg1.length) + 128]) + 32 <= return_data.size
         mem[(32 * arg1.length) + ceil32(return_data.size) + 128] = mem[mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * arg1.length) + 128]
+        _186 = mem[_180 + (32 * arg1.length) + 128]
         mem[(32 * arg1.length) + ceil32(return_data.size) + 160 len floor32(mem[_180 + (32 * arg1.length) + 128])] = mem[_180 + (32 * arg1.length) + 160 len floor32(mem[_180 + (32 * arg1.length) + 128])]
+        mem[64] = (32 * _186) + (32 * arg1.length) + ceil32(return_data.size) + 160
     else:
         require 0 < arg1.length
         require ext_code.size(mem[140 len 20])
@@ -315,7 +321,9 @@ function sub_a7bd2945(?) payable {
         require mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + 32 <= return_data.size
         require mem[mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * arg1.length) + 128] <= 4294967296 and mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * mem[mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * arg1.length) + 128]) + 32 <= return_data.size
         mem[(32 * arg1.length) + ceil32(return_data.size) + 128] = mem[mem[(32 * arg1.length) + 128 len 4], ext_call.return_data[0 len 28] + (32 * arg1.length) + 128]
+        _187 = mem[_182 + (32 * arg1.length) + 128]
         mem[(32 * arg1.length) + ceil32(return_data.size) + 160 len floor32(mem[_182 + (32 * arg1.length) + 128])] = mem[_182 + (32 * arg1.length) + 160 len floor32(mem[_182 + (32 * arg1.length) + 128])]
+        mem[64] = (32 * _187) + (32 * arg1.length) + ceil32(return_data.size) + 160
     require 0 < arg1.length
     if mem[140 len 20] == sub_e09966a8Address:
         require arg1.length - 1 < arg1.length
