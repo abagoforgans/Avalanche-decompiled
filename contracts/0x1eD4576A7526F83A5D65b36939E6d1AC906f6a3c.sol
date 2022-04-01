@@ -1,0 +1,663 @@
+contract main {
+
+
+
+
+// =====================  Runtime code  =====================
+
+
+#
+#  - depositFor(address arg1, uint256 arg2)
+#  - depositWithPermit(uint256 arg1, uint256 arg2, uint8 arg3, bytes32 arg4, bytes32 arg5)
+#  - deposit(uint256 arg1)
+#  - reinvest()
+#
+const decimals = 18
+
+const DOMAIN_TYPEHASH = 0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f
+
+const PERMIT_TYPEHASH = 0x6e71edae12b1b97f4d1f60370fef10105fa2faae0126114a169c64845d6126c9
+
+const VERSION_HASH = 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6
+
+
+array of uint256 name;
+array of uint256 symbol;
+uint256 totalSupply;
+mapping of uint256 allowance;
+mapping of uint256 balanceOf;
+mapping of uint256 nonces;
+address owner;
+uint256 numberOfAllowedDepositors;
+mapping of uint8 stor8;
+uint256 totalDeposits;
+address depositTokenAddress;
+address rewardTokenAddress;
+address devAddr;
+uint256 MIN_TOKENS_TO_REINVEST;
+uint256 MAX_TOKENS_TO_DEPOSIT_WITHOUT_REINVEST;
+uint8 DEPOSITS_ENABLED;
+uint256 REINVEST_REWARD_BIPS;
+address stakingContractAddress;
+
+function name() payable {
+    return name[0 len name.length].field_0
+}
+
+function totalSupply() payable {
+    return totalSupply
+}
+
+function numberOfAllowedDepositors() payable {
+    return numberOfAllowedDepositors
+}
+
+function allowedDepositors(address arg1) payable {
+    require calldata.size - 4 >= 32
+    return bool(stor8[arg1])
+}
+
+function balanceOf(address arg1) payable {
+    require calldata.size - 4 >= 32
+    return balanceOf[address(arg1)]
+}
+
+function MAX_TOKENS_TO_DEPOSIT_WITHOUT_REINVEST() payable {
+    return MAX_TOKENS_TO_DEPOSIT_WITHOUT_REINVEST
+}
+
+function totalDeposits() payable {
+    return totalDeposits
+}
+
+function nonces(address arg1) payable {
+    require calldata.size - 4 >= 32
+    return nonces[arg1]
+}
+
+function REINVEST_REWARD_BIPS() payable {
+    return REINVEST_REWARD_BIPS
+}
+
+function owner() payable {
+    return owner
+}
+
+function symbol() payable {
+    return symbol[0 len symbol.length]
+}
+
+function DEPOSITS_ENABLED() payable {
+    return bool(DEPOSITS_ENABLED)
+}
+
+function MIN_TOKENS_TO_REINVEST() payable {
+    return MIN_TOKENS_TO_REINVEST
+}
+
+function depositToken() payable {
+    return depositTokenAddress
+}
+
+function devAddr() payable {
+    return devAddr
+}
+
+function allowance(address arg1, address arg2) payable {
+    require calldata.size - 4 >= 64
+    return allowance[address(arg1)][address(arg2)]
+}
+
+function stakingContract() payable {
+    return stakingContractAddress
+}
+
+function rewardToken() payable {
+    return rewardTokenAddress
+}
+
+function _fallback() payable {
+    revert
+}
+
+function renounceOwnership() payable {
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    emit OwnershipTransferred(owner, 0);
+    owner = 0
+}
+
+function updateDevAddr(address arg1) payable {
+    require calldata.size - 4 >= 32
+    if devAddr != msg.sender:
+        revert with 0, 'HmbStrategy::onlyDev'
+    emit 0xa8e91499: devAddr, arg1
+    devAddr = arg1
+}
+
+function updateMinTokensToReinvest(uint256 arg1) payable {
+    require calldata.size - 4 >= 32
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    emit UpdateMinTokensToReinvest(MIN_TOKENS_TO_REINVEST, arg1);
+    MIN_TOKENS_TO_REINVEST = arg1
+}
+
+function updateDepositsEnabled(bool arg1) payable {
+    require calldata.size - 4 >= 32
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require bool(DEPOSITS_ENABLED) != arg1
+    DEPOSITS_ENABLED = uint8(arg1)
+    emit DepositsEnabled(arg1);
+}
+
+function updateReinvestReward(uint256 arg1) payable {
+    require calldata.size - 4 >= 32
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require arg1 <= 10000
+    emit UpdateReinvestReward(REINVEST_REWARD_BIPS, arg1);
+    REINVEST_REWARD_BIPS = arg1
+}
+
+function updateMaxTokensToDepositWithoutReinvest(uint256 arg1) payable {
+    require calldata.size - 4 >= 32
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    emit 0xa5dae505: MAX_TOKENS_TO_DEPOSIT_WITHOUT_REINVEST, arg1
+    MAX_TOKENS_TO_DEPOSIT_WITHOUT_REINVEST = arg1
+}
+
+function approve(address arg1, uint256 arg2) payable {
+    require calldata.size - 4 >= 64
+    if not msg.sender:
+        revert with 0, '_approve::owner zero address'
+    if not arg1:
+        revert with 0, '_approve::spender zero address'
+    allowance[address(msg.sender)][address(arg1)] = arg2
+    emit Approval(arg2, msg.sender, arg1);
+    return 1
+}
+
+function checkReward() payable {
+    require ext_code.size(stakingContractAddress)
+    staticcall stakingContractAddress.earned(address rg1) with:
+            gas gas_remaining wei
+           args this.address
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    return ext_call.return_data[0]
+}
+
+function estimateDeployedBalance() payable {
+    require ext_code.size(stakingContractAddress)
+    staticcall stakingContractAddress.0x70a08231 with:
+            gas gas_remaining wei
+           args this.address
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    return ext_call.return_data[0]
+}
+
+function recoverAVAX(uint256 arg1) payable {
+    require calldata.size - 4 >= 32
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require arg1 > 0
+    call msg.sender with:
+       value arg1 wei
+         gas 2300 * is_zero(value) wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    emit Recovered(0, arg1);
+}
+
+function setAllowances() payable {
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ext_code.size(depositTokenAddress)
+    call depositTokenAddress.approve(address rg1, uint256 rg2) with:
+         gas gas_remaining wei
+        args stakingContractAddress, -1
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+}
+
+function allowDepositor(address arg1) payable {
+    require calldata.size - 4 >= 32
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if stor8[address(arg1)]:
+        revert with 0, 'Permissioned::allowDepositor'
+    stor8[address(arg1)] = 1
+    if numberOfAllowedDepositors + 1 < numberOfAllowedDepositors:
+        revert with 0, 'SafeMath: addition overflow'
+    numberOfAllowedDepositors++
+    emit 0xc0a1035c: arg1
+}
+
+function revokeAllowance(address arg1, address arg2) payable {
+    require calldata.size - 4 >= 64
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ext_code.size(arg1)
+    call arg1.approve(address rg1, uint256 rg2) with:
+         gas gas_remaining wei
+        args address(arg2), 0
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0]
+}
+
+function transferOwnership(address arg1) payable {
+    require calldata.size - 4 >= 32
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    32,
+                    38,
+                    0xfe4f776e61626c653a206e6577206f776e657220697320746865207a65726f20616464726573,
+                    mem[202 len 26]
+    emit OwnershipTransferred(owner, arg1);
+    owner = arg1
+}
+
+function recoverERC20(address arg1, uint256 arg2) payable {
+    require calldata.size - 4 >= 64
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require arg2 > 0
+    require ext_code.size(arg1)
+    call arg1.0xa9059cbb with:
+         gas gas_remaining wei
+        args msg.sender, arg2
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0]
+    emit Recovered(address(arg1), arg2);
+}
+
+function transfer(address arg1, uint256 arg2) payable {
+    require calldata.size - 4 >= 64
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    '_transferTokens: cannot transfer to the zero address'
+    if arg2 > balanceOf[address(msg.sender)]:
+        revert with 0, 
+                    32,
+                    46,
+                    0x445f7472616e73666572546f6b656e733a207472616e7366657220657863656564732066726f6d2062616c616e63,
+                    mem[174 len 18],
+                    mem[210 len 14]
+    balanceOf[address(msg.sender)] -= arg2
+    if balanceOf[address(arg1)] + arg2 < balanceOf[address(arg1)]:
+        revert with 0, 'SafeMath: addition overflow'
+    balanceOf[address(arg1)] += arg2
+    emit Transfer(arg2, msg.sender, arg1);
+    return 1
+}
+
+function getDomainSeparator() payable {
+    if not bool(name.length):
+        mem[96] = Mask(248, 8, name.length)
+        return sha3(0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f, sha3(mem[96 len name.length.field_1]), 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6, chainid, this.address)
+    if bool(name.length) != 1:
+        return sha3(0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f, sha3(mem[96 len -96]), 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6, chainid, this.address)
+    idx = 0
+    s = 0
+    while idx < name.length.field_1:
+        mem[idx + 96] = name[s].field_0
+        idx = idx + 32
+        s = s + 1
+        continue 
+    return sha3(0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f, sha3(mem[96 len name.length.field_1]), 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6, chainid, this.address)
+}
+
+function estimateReinvestReward() payable {
+    require ext_code.size(stakingContractAddress)
+    staticcall stakingContractAddress.earned(address rg1) with:
+            gas gas_remaining wei
+           args this.address
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    if ext_call.return_data[0] < MIN_TOKENS_TO_REINVEST:
+        return 0
+    if not ext_call.return_data[0]:
+        return 0
+    require ext_call.return_data[0]
+    if ext_call.return_data[0] * REINVEST_REWARD_BIPS / ext_call.return_data[0] != REINVEST_REWARD_BIPS:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    32,
+                    33,
+                    0x79536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                    mem[197 len 31]
+    return (ext_call.return_data[0] * REINVEST_REWARD_BIPS / 10000)
+}
+
+function removeDepositor(address arg1) payable {
+    require calldata.size - 4 >= 32
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if numberOfAllowedDepositors <= 0:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    32,
+                    52,
+                    0x645065726d697373696f6e65643a3a72656d6f76654465706f7369746f722c206e6f20616c6c6f776564206465706f7369746f72,
+                    mem[216 len 12]
+    if bool(stor8[address(arg1)]) != 1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    32,
+                    42,
+                    0x735065726d697373696f6e65643a3a72656d6f76654465706f7369746f722c206e6f7420616c6c6f7765,
+                    mem[206 len 22]
+    stor8[address(arg1)] = 0
+    if 1 > numberOfAllowedDepositors:
+        revert with 0, 'SafeMath: subtraction underflow'
+    numberOfAllowedDepositors--
+    emit 0xe86f6608: arg1
+}
+
+function getDepositTokensForShares(uint256 arg1) payable {
+    require calldata.size - 4 >= 32
+    if not totalSupply:
+        return 0
+    require totalSupply
+    if totalSupply * totalDeposits / totalSupply != totalDeposits:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    32,
+                    33,
+                    0x79536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                    mem[197 len 31]
+    if not totalSupply * totalDeposits:
+        return 0
+    if not arg1:
+        if totalSupply <= 0:
+            revert with 0, 'SafeMath: division by zero'
+        if totalSupply:
+            return (0 / totalSupply)
+    else:
+        if arg1:
+            if arg1 * totalDeposits / arg1 != totalDeposits:
+                revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                            32,
+                            33,
+                            0x79536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                            mem[197 len 31]
+            if totalSupply <= 0:
+                revert with 0, 'SafeMath: division by zero'
+            if totalSupply:
+                return (arg1 * totalDeposits / totalSupply)
+    revert
+}
+
+function getSharesForDepositTokens(uint256 arg1) payable {
+    require calldata.size - 4 >= 32
+    if not totalSupply:
+        return arg1
+    require totalSupply
+    if totalSupply * totalDeposits / totalSupply != totalDeposits:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    32,
+                    33,
+                    0x79536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                    mem[197 len 31]
+    if not totalSupply * totalDeposits:
+        return arg1
+    if not arg1:
+        if totalDeposits <= 0:
+            revert with 0, 'SafeMath: division by zero'
+        if totalDeposits:
+            return (0 / totalDeposits)
+    else:
+        if arg1:
+            if arg1 * totalSupply / arg1 != totalSupply:
+                revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                            32,
+                            33,
+                            0x79536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                            mem[197 len 31]
+            if totalDeposits <= 0:
+                revert with 0, 'SafeMath: division by zero'
+            if totalDeposits:
+                return (arg1 * totalSupply / totalDeposits)
+    revert
+}
+
+function rescueDeployedFunds(uint256 arg1, bool arg2) payable {
+    require calldata.size - 4 >= 64
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ext_code.size(depositTokenAddress)
+    staticcall depositTokenAddress.0x70a08231 with:
+            gas gas_remaining wei
+           args this.address
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_code.size(stakingContractAddress)
+    call stakingContractAddress.exit() with:
+         gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require ext_code.size(depositTokenAddress)
+    staticcall depositTokenAddress.0x70a08231 with:
+            gas gas_remaining wei
+           args this.address
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    if ext_call.return_data[0] > ext_call.return_data[0]:
+        revert with 0, 'SafeMath: subtraction underflow'
+    if 0 < arg1:
+        revert with 0, 32, 34, 0x73446578537472617465677956353a3a7265736375654465706c6f79656446756e64, mem[262 len 30]
+    totalDeposits = ext_call.return_data[0]
+    emit Reinvest(totalDeposits, totalSupply);
+    if bool(DEPOSITS_ENABLED) == 1:
+        if arg2 == 1:
+            if owner != msg.sender:
+                revert with 0, 'Ownable: caller is not the owner'
+            require DEPOSITS_ENABLED
+            DEPOSITS_ENABLED = 0
+            emit DepositsEnabled(0);
+}
+
+function permit(address arg1, address arg2, uint256 arg3, uint256 arg4, uint8 arg5, bytes32 arg6, bytes32 arg7) payable {
+    require calldata.size - 4 >= 224
+    if arg4 < block.timestamp:
+        revert with 0, 'permit::expired'
+    nonces[address(arg1)]++
+    if not bool(name.length):
+        mem[320] = Mask(248, 8, name.length)
+        signer = erecover(sha3(0, sha3(0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f, sha3(mem[320 len name.length.field_1]), 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6, chainid, this.address), sha3(0x6e71edae12b1b97f4d1f60370fef10105fa2faae0126114a169c64845d6126c9, address(arg1), address(arg2), arg3, nonces[address(arg1)], arg4)), arg5 << 248, arg6, arg7) 
+    else:
+        if bool(name.length) != 1:
+            signer = erecover(sha3(0, sha3(0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f, sha3(mem[320 len -320]), 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6, chainid, this.address), sha3(0x6e71edae12b1b97f4d1f60370fef10105fa2faae0126114a169c64845d6126c9, address(arg1), address(arg2), arg3, nonces[address(arg1)], arg4)), arg5 << 248, arg6, arg7) 
+        else:
+            idx = 0
+            s = 0
+            while idx < name.length.field_1:
+                mem[idx + 320] = name[s].field_0
+                idx = idx + 32
+                s = s + 1
+                continue 
+            signer = erecover(sha3(0, sha3(0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f, sha3(mem[320 len name.length.field_1]), 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6, chainid, this.address), sha3(0x6e71edae12b1b97f4d1f60370fef10105fa2faae0126114a169c64845d6126c9, address(arg1), address(arg2), arg3, nonces[address(arg1)], arg4)), arg5 << 248, arg6, arg7) 
+    if not erecover.result:
+        revert with ext_call.return_data[0 len return_data.size]
+    if not address(signer):
+        revert with 0, 'Arch::validateSig: invalid signature'
+    if address(signer) != arg1:
+        revert with 0, 'Arch::validateSig: invalid signature'
+    if not arg1:
+        revert with 0, '_approve::owner zero address'
+    if not arg2:
+        revert with 0, '_approve::spender zero address'
+    allowance[address(arg1)][address(arg2)] = arg3
+    emit Approval(arg3, arg1, arg2);
+}
+
+function transferFrom(address arg1, address arg2, uint256 arg3) payable {
+    require calldata.size - 4 >= 96
+    if msg.sender == arg1:
+        if not arg2:
+            revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                        '_transferTokens: cannot transfer to the zero address'
+        if arg3 > balanceOf[address(arg1)]:
+            revert with 0, 
+                        32,
+                        46,
+                        0x445f7472616e73666572546f6b656e733a207472616e7366657220657863656564732066726f6d2062616c616e63,
+                        mem[174 len 18],
+                        mem[210 len 14]
+    else:
+        if allowance[address(arg1)][address(msg.sender)] == -1:
+            if not arg2:
+                revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                            '_transferTokens: cannot transfer to the zero address'
+            if arg3 > balanceOf[address(arg1)]:
+                revert with 0, 
+                            32,
+                            46,
+                            0x445f7472616e73666572546f6b656e733a207472616e7366657220657863656564732066726f6d2062616c616e63,
+                            mem[174 len 18],
+                            mem[210 len 14]
+        else:
+            if arg3 > allowance[address(arg1)][address(msg.sender)]:
+                revert with 0, 
+                            32,
+                            47,
+                            0x737472616e7366657246726f6d3a207472616e7366657220616d6f756e74206578636565647320616c6c6f77616e63,
+                            mem[175 len 17],
+                            mem[209 len 15]
+            allowance[address(arg1)][address(msg.sender)] -= arg3
+            emit Approval((allowance[address(arg1)][address(msg.sender)] - arg3), arg1, msg.sender);
+            if not arg2:
+                revert with 0, '_transferTokens: cannot transfer to the zero address'
+            if arg3 > balanceOf[address(arg1)]:
+                revert with 0, 
+                            32,
+                            46,
+                            0x445f7472616e73666572546f6b656e733a207472616e7366657220657863656564732066726f6d2062616c616e63,
+                            mem[270 len 18],
+                            mem[306 len 14]
+    ('le', ('param', 'arg3'), ('stor', ('map', ('mask_shl', 160, 0, 0, ('param', 'arg1')), ('name', 'balanceOf', 4))))
+    balanceOf[address(arg1)] -= arg3
+    if balanceOf[address(arg2)] + arg3 < balanceOf[address(arg2)]:
+        revert with 0, 'SafeMath: addition overflow'
+    balanceOf[address(arg2)] += arg3
+    emit Transfer(arg3, arg1, arg2);
+    return 1
+}
+
+function withdraw(uint256 arg1) payable {
+    require calldata.size - 4 >= 32
+    if totalSupply:
+        require totalSupply
+        if totalSupply * totalDeposits / totalSupply != totalDeposits:
+            revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                        32,
+                        33,
+                        0x79536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                        mem[197 len 31]
+        if totalSupply * totalDeposits:
+            if not arg1:
+                if totalSupply <= 0:
+                    revert with 0, 'SafeMath: division by zero'
+                require totalSupply
+                if 0 / totalSupply > 0:
+                    require ext_code.size(stakingContractAddress)
+                    call stakingContractAddress.0x2e1a7d4d with:
+                         gas gas_remaining wei
+                        args (0 / totalSupply)
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    require ext_code.size(depositTokenAddress)
+                    call depositTokenAddress.0xa9059cbb with:
+                         gas gas_remaining wei
+                        args msg.sender, 0 / totalSupply
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    require return_data.size >= 32
+                    if not ext_call.return_data[0]:
+                        revert with 0, 32, 36, 0x655472616e7366657248656c7065723a205452414e534645525f46524f4d5f4641494c45, mem[264 len 28]
+                    if arg1 > balanceOf[address(msg.sender)]:
+                        revert with 0, 
+                                    32,
+                                    39,
+                                    0x655f6275726e3a206275726e20616d6f756e7420657863656564732066726f6d2062616c616e63,
+                                    mem[231 len 25],
+                                    mem[281 len 7]
+                    balanceOf[address(msg.sender)] -= arg1
+                    if arg1 > totalSupply:
+                        revert with 0, 
+                                    32,
+                                    39,
+                                    0x645f6275726e3a206275726e20616d6f756e74206578636565647320746f74616c20737570706c,
+                                    mem[327 len 25],
+                                    mem[377 len 7]
+                    totalSupply -= arg1
+                    emit Transfer(arg1, msg.sender, 0);
+                    if 0 / totalSupply > totalDeposits:
+                        revert with 0, 'SafeMath: subtraction underflow'
+                    totalDeposits -= 0 / totalSupply
+                    emit Withdraw((0 / totalSupply), msg.sender);
+            else:
+                require arg1
+                if arg1 * totalDeposits / arg1 != totalDeposits:
+                    revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                                32,
+                                33,
+                                0x79536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                mem[197 len 31]
+                if totalSupply <= 0:
+                    revert with 0, 'SafeMath: division by zero'
+                require totalSupply
+                if arg1 * totalDeposits / totalSupply > 0:
+                    require ext_code.size(stakingContractAddress)
+                    call stakingContractAddress.0x2e1a7d4d with:
+                         gas gas_remaining wei
+                        args (arg1 * totalDeposits / totalSupply)
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    require ext_code.size(depositTokenAddress)
+                    call depositTokenAddress.0xa9059cbb with:
+                         gas gas_remaining wei
+                        args msg.sender, arg1 * totalDeposits / totalSupply
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    require return_data.size >= 32
+                    if not ext_call.return_data[0]:
+                        revert with 0, 32, 36, 0x655472616e7366657248656c7065723a205452414e534645525f46524f4d5f4641494c45, mem[264 len 28]
+                    if arg1 > balanceOf[address(msg.sender)]:
+                        revert with 0, 
+                                    32,
+                                    39,
+                                    0x655f6275726e3a206275726e20616d6f756e7420657863656564732066726f6d2062616c616e63,
+                                    mem[231 len 25],
+                                    mem[281 len 7]
+                    balanceOf[address(msg.sender)] -= arg1
+                    if arg1 > totalSupply:
+                        revert with 0, 
+                                    32,
+                                    39,
+                                    0x645f6275726e3a206275726e20616d6f756e74206578636565647320746f74616c20737570706c,
+                                    mem[327 len 25],
+                                    mem[377 len 7]
+                    totalSupply -= arg1
+                    emit Transfer(arg1, msg.sender, 0);
+                    if arg1 * totalDeposits / totalSupply > totalDeposits:
+                        revert with 0, 'SafeMath: subtraction underflow'
+                    totalDeposits -= arg1 * totalDeposits / totalSupply
+                    emit Withdraw((arg1 * totalDeposits / totalSupply), msg.sender);
+}
+
+
+
+}
