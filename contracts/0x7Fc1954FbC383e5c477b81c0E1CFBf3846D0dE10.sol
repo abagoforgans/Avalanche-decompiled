@@ -275,6 +275,7 @@ function harvest(address arg1, uint256 arg2) payable {
     if not ext_code.size(arg1):
         revert with 0, 'Address: call to non-contract'
     mem[260 len 64] = unknown_0xa9059cbb(?????), Mask(224, 0, stor9), uint32(stor9), Mask(224, 32, arg2) >> 32
+    mem[324 len 0] = 0
     call arg1 with:
        funct uint32(stor9)
          gas gas_remaining wei
@@ -350,35 +351,7 @@ function earn() payable {
     if not ext_call.success:
         revert with ext_call.return_data[0 len return_data.size]
     require return_data.size >= 32
-    if not ext_call.return_data[0]:
-        if not ext_code.size(tokenAddress):
-            revert with 0, 'Address: call to non-contract'
-        mem[324 len 64] = unknown_0xa9059cbb(?????), Mask(224, 0, stor9), uint32(stor9), 0
-        call tokenAddress with:
-           funct uint32(stor9)
-             gas gas_remaining wei
-            args 0, mem[388 len 4]
-        if not return_data.size:
-            require not ext_call.success
-            revert with 'SafeMath: division by zero'
-        mem[356 len return_data.size] = ext_call.return_data[0 len return_data.size]
-        if not ext_call.success:
-            if return_data.size:
-                revert with ext_call.return_data[0 len return_data.size]
-            revert with 0, 'SafeERC20: low-level call failed'
-        if return_data.size:
-            require return_data.size >= 32
-            if not mem[356]:
-                revert with 0, 
-                            32,
-                            42,
-                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                            mem[ceil32(return_data.size) + 435 len 22]
-        require ext_code.size(address(controllerAddress))
-        call address(controllerAddress).earn(address rg1, uint256 rg2) with:
-             gas gas_remaining wei
-            args stor5, 0
-    else:
+    if ext_call.return_data[0]:
         if min * ext_call.return_data[0] / ext_call.return_data[0] != min:
             revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
                         32,
@@ -412,6 +385,35 @@ function earn() payable {
         call address(controllerAddress).earn(address rg1, uint256 rg2) with:
              gas gas_remaining wei
             args stor5, min * ext_call.return_data[0] / 10000
+    else:
+        if not ext_code.size(tokenAddress):
+            revert with 0, 'Address: call to non-contract'
+        mem[324 len 64] = unknown_0xa9059cbb(?????), Mask(224, 0, stor9), uint32(stor9), 0
+        mem[388 len 0] = 0
+        call tokenAddress with:
+           funct uint32(stor9)
+             gas gas_remaining wei
+            args Mask(480, -256, unknown_0xa9059cbb(?????), Mask(224, 0, stor9), uint32(stor9), 0) << 256, mem[388 len 4]
+        if not return_data.size:
+            require not ext_call.success
+            revert with 'SafeMath: division by zero'
+        mem[356 len return_data.size] = ext_call.return_data[0 len return_data.size]
+        if not ext_call.success:
+            if return_data.size:
+                revert with ext_call.return_data[0 len return_data.size]
+            revert with 0, 'SafeERC20: low-level call failed'
+        if return_data.size:
+            require return_data.size >= 32
+            if not mem[356]:
+                revert with 0, 
+                            32,
+                            42,
+                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                            mem[ceil32(return_data.size) + 435 len 22]
+        require ext_code.size(address(controllerAddress))
+        call address(controllerAddress).earn(address rg1, uint256 rg2) with:
+             gas gas_remaining wei
+            args stor5, 0
     if not ext_call.success:
         revert with ext_call.return_data[0 len return_data.size]
 }
@@ -616,7 +618,110 @@ function withdraw(uint256 arg1) payable {
     require return_data.size >= 32
     if 2 * ext_call.return_data[0] < ext_call.return_data[0]:
         revert with 0, 'SafeMath: addition overflow'
-    if not 2 * ext_call.return_data[0]:
+    if 2 * ext_call.return_data[0]:
+        if (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / 2 * ext_call.return_data[0] != arg1:
+            revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                        32,
+                        33,
+                        0x65536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                        mem[197 len 31]
+        if not totalSupply:
+            revert with 0, 'SafeMath: division by zero'
+        if not msg.sender:
+            revert with 0, 32, 33, 0x6545524332303a206275726e2066726f6d20746865207a65726f20616464726573, mem[261 len 31]
+        if arg1 > balanceOf[address(msg.sender)]:
+            revert with 0, 32, 34, 0x7345524332303a206275726e20616d6f756e7420657863656564732062616c616e63, mem[226 len 30], mem[286 len 2]
+        balanceOf[address(msg.sender)] -= arg1
+        if arg1 > totalSupply:
+            revert with 0, 'SafeMath: subtraction overflow'
+        totalSupply -= arg1
+        emit Transfer(arg1, msg.sender, 0);
+        require ext_code.size(tokenAddress)
+        staticcall tokenAddress.0x70a08231 with:
+                gas gas_remaining wei
+               args this.address
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        require return_data.size >= 32
+        if ext_call.return_data[0] >= (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply:
+            if not ext_code.size(tokenAddress):
+                revert with 0, 'Address: call to non-contract'
+            mem[484 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply) >> 32
+            mem[548 len 0] = 0
+            call tokenAddress with:
+               funct uint32(msg.sender)
+                 gas gas_remaining wei
+                args Mask(224, 32, (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply) << 224, mem[548 len 4]
+            if not return_data.size:
+                require not ext_call.success
+                revert with 'SafeMath: division by zero'
+            mem[516 len return_data.size] = ext_call.return_data[0 len return_data.size]
+            if not ext_call.success:
+                if return_data.size:
+                    revert with ext_call.return_data[0 len return_data.size]
+                revert with 0, 'SafeERC20: low-level call failed'
+            if return_data.size:
+                require return_data.size >= 32
+                if not mem[516]:
+                    revert with 0, 
+                                32,
+                                42,
+                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                mem[ceil32(return_data.size) + 595 len 22]
+        else:
+            if ext_call.return_data[0] > (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply:
+                revert with 0, 'SafeMath: subtraction overflow'
+            require ext_code.size(address(controllerAddress))
+            call address(controllerAddress).withdraw(address rg1, uint256 rg2) with:
+                 gas gas_remaining wei
+                args stor5, ((ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply) - ext_call.return_data[0]
+            if not ext_call.success:
+                revert with ext_call.return_data[0 len return_data.size]
+            require ext_code.size(tokenAddress)
+            staticcall tokenAddress.0x70a08231 with:
+                    gas gas_remaining wei
+                   args this.address
+            if not ext_call.success:
+                revert with ext_call.return_data[0 len return_data.size]
+            require return_data.size >= 32
+            if ext_call.return_data[0] > ext_call.return_data[0]:
+                revert with 0, 'SafeMath: subtraction overflow'
+            if ext_call.return_data[0] >= (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply:
+                if not ext_code.size(tokenAddress):
+                    revert with 0, 'Address: call to non-contract'
+                mem[612 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply) >> 32
+                mem[676 len 0] = 0
+                call tokenAddress with:
+                   funct uint32(msg.sender)
+                     gas gas_remaining wei
+                    args Mask(224, 32, (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply) << 224, mem[676 len 4]
+            else:
+                if ext_call.return_data[0] < ext_call.return_data[0]:
+                    revert with 0, 'SafeMath: addition overflow'
+                if not ext_code.size(tokenAddress):
+                    revert with 0, 'Address: call to non-contract'
+                mem[612 len 64] = unknown_0xa9059cbb(?????), msg.sender, ext_call.return_data[0 len 28]
+                call tokenAddress with:
+                   funct uint32(msg.sender)
+                     gas gas_remaining wei
+                    args Mask(480, -256, ext_call.return_data[0 len 28]) << 256, mem[676 len 4]
+            if not return_data.size:
+                require not ext_call.success
+                revert with 'SafeMath: division by zero'
+            mem[644 len return_data.size] = ext_call.return_data[0 len return_data.size]
+            if not ext_call.success:
+                if return_data.size:
+                    revert with ext_call.return_data[0 len return_data.size]
+                revert with 0, 'SafeERC20: low-level call failed'
+            if return_data.size:
+                require return_data.size >= 32
+                if not mem[644]:
+                    revert with 0, 
+                                32,
+                                42,
+                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                mem[ceil32(return_data.size) + 723 len 22]
+    else:
         if not totalSupply:
             revert with 0, 'SafeMath: division by zero'
         if not msg.sender:
@@ -639,6 +744,7 @@ function withdraw(uint256 arg1) payable {
             if not ext_code.size(tokenAddress):
                 revert with 0, 'Address: call to non-contract'
             mem[484 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, 0 / totalSupply) >> 32
+            mem[548 len 0] = 0
             call tokenAddress with:
                funct uint32(msg.sender)
                  gas gas_remaining wei
@@ -691,107 +797,7 @@ function withdraw(uint256 arg1) payable {
                 if not ext_code.size(tokenAddress):
                     revert with 0, 'Address: call to non-contract'
                 mem[612 len 64] = unknown_0xa9059cbb(?????), msg.sender, ext_call.return_data[0 len 28]
-                call tokenAddress with:
-                   funct uint32(msg.sender)
-                     gas gas_remaining wei
-                    args Mask(480, -256, ext_call.return_data[0 len 28]) << 256, mem[676 len 4]
-            if not return_data.size:
-                require not ext_call.success
-                revert with 'SafeMath: division by zero'
-            mem[644 len return_data.size] = ext_call.return_data[0 len return_data.size]
-            if not ext_call.success:
-                if return_data.size:
-                    revert with ext_call.return_data[0 len return_data.size]
-                revert with 0, 'SafeERC20: low-level call failed'
-            if return_data.size:
-                require return_data.size >= 32
-                if not mem[644]:
-                    revert with 0, 
-                                32,
-                                42,
-                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                mem[ceil32(return_data.size) + 723 len 22]
-    else:
-        if (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / 2 * ext_call.return_data[0] != arg1:
-            revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
-                        32,
-                        33,
-                        0x65536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
-                        mem[197 len 31]
-        if not totalSupply:
-            revert with 0, 'SafeMath: division by zero'
-        if not msg.sender:
-            revert with 0, 32, 33, 0x6545524332303a206275726e2066726f6d20746865207a65726f20616464726573, mem[261 len 31]
-        if arg1 > balanceOf[address(msg.sender)]:
-            revert with 0, 32, 34, 0x7345524332303a206275726e20616d6f756e7420657863656564732062616c616e63, mem[226 len 30], mem[286 len 2]
-        balanceOf[address(msg.sender)] -= arg1
-        if arg1 > totalSupply:
-            revert with 0, 'SafeMath: subtraction overflow'
-        totalSupply -= arg1
-        emit Transfer(arg1, msg.sender, 0);
-        require ext_code.size(tokenAddress)
-        staticcall tokenAddress.0x70a08231 with:
-                gas gas_remaining wei
-               args this.address
-        if not ext_call.success:
-            revert with ext_call.return_data[0 len return_data.size]
-        require return_data.size >= 32
-        if ext_call.return_data[0] >= (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply:
-            if not ext_code.size(tokenAddress):
-                revert with 0, 'Address: call to non-contract'
-            mem[484 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply) >> 32
-            call tokenAddress with:
-               funct uint32(msg.sender)
-                 gas gas_remaining wei
-                args Mask(224, 32, (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply) << 224, mem[548 len 4]
-            if not return_data.size:
-                require not ext_call.success
-                revert with 'SafeMath: division by zero'
-            mem[516 len return_data.size] = ext_call.return_data[0 len return_data.size]
-            if not ext_call.success:
-                if return_data.size:
-                    revert with ext_call.return_data[0 len return_data.size]
-                revert with 0, 'SafeERC20: low-level call failed'
-            if return_data.size:
-                require return_data.size >= 32
-                if not mem[516]:
-                    revert with 0, 
-                                32,
-                                42,
-                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                mem[ceil32(return_data.size) + 595 len 22]
-        else:
-            if ext_call.return_data[0] > (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply:
-                revert with 0, 'SafeMath: subtraction overflow'
-            require ext_code.size(address(controllerAddress))
-            call address(controllerAddress).withdraw(address rg1, uint256 rg2) with:
-                 gas gas_remaining wei
-                args stor5, ((ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply) - ext_call.return_data[0]
-            if not ext_call.success:
-                revert with ext_call.return_data[0 len return_data.size]
-            require ext_code.size(tokenAddress)
-            staticcall tokenAddress.0x70a08231 with:
-                    gas gas_remaining wei
-                   args this.address
-            if not ext_call.success:
-                revert with ext_call.return_data[0 len return_data.size]
-            require return_data.size >= 32
-            if ext_call.return_data[0] > ext_call.return_data[0]:
-                revert with 0, 'SafeMath: subtraction overflow'
-            if ext_call.return_data[0] >= (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply:
-                if not ext_code.size(tokenAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[612 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply) >> 32
-                call tokenAddress with:
-                   funct uint32(msg.sender)
-                     gas gas_remaining wei
-                    args Mask(224, 32, (ext_call.return_data[0] * arg1) + (ext_call.return_data[0] * arg1) / totalSupply) << 224, mem[676 len 4]
-            else:
-                if ext_call.return_data[0] < ext_call.return_data[0]:
-                    revert with 0, 'SafeMath: addition overflow'
-                if not ext_code.size(tokenAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[612 len 64] = unknown_0xa9059cbb(?????), msg.sender, ext_call.return_data[0 len 28]
+                mem[676 len 0] = 0
                 call tokenAddress with:
                    funct uint32(msg.sender)
                      gas gas_remaining wei
@@ -854,6 +860,7 @@ function withdrawAll() payable {
             if not ext_code.size(tokenAddress):
                 revert with 0, 'Address: call to non-contract'
             mem[484 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, 0 / totalSupply) >> 32
+            mem[548 len 0] = 0
             call tokenAddress with:
                funct uint32(msg.sender)
                  gas gas_remaining wei
@@ -955,6 +962,7 @@ function withdrawAll() payable {
             if not ext_code.size(tokenAddress):
                 revert with 0, 'Address: call to non-contract'
             mem[484 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, (ext_call.return_data[0] * balanceOf[address(msg.sender)]) + (ext_call.return_data[0] * balanceOf[address(msg.sender)]) / totalSupply) >> 32
+            mem[548 len 0] = 0
             call tokenAddress with:
                funct uint32(msg.sender)
                  gas gas_remaining wei
@@ -997,6 +1005,7 @@ function withdrawAll() payable {
                 if not ext_code.size(tokenAddress):
                     revert with 0, 'Address: call to non-contract'
                 mem[612 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, (ext_call.return_data[0] * balanceOf[address(msg.sender)]) + (ext_call.return_data[0] * balanceOf[address(msg.sender)]) / totalSupply) >> 32
+                mem[676 len 0] = 0
                 call tokenAddress with:
                    funct uint32(msg.sender)
                      gas gas_remaining wei
@@ -1007,6 +1016,7 @@ function withdrawAll() payable {
                 if not ext_code.size(tokenAddress):
                     revert with 0, 'Address: call to non-contract'
                 mem[612 len 64] = unknown_0xa9059cbb(?????), msg.sender, ext_call.return_data[0 len 28]
+                mem[676 len 0] = 0
                 call tokenAddress with:
                    funct uint32(msg.sender)
                      gas gas_remaining wei

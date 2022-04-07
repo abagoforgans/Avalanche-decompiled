@@ -7,6 +7,7 @@ contract main {
 
 
 #
+#  - withdraw(uint256 arg1)
 #  - harvest()
 #
 const wavax = 0xb31f66aa3c1e785363f0875a1b74e27b85fd66
@@ -286,6 +287,7 @@ function withdraw(address arg1) {
     if not ext_code.size(arg1):
         revert with 0, 'Address: call to non-contract'
     mem[260 len 64] = unknown_0xa9059cbb(?????), Mask(224, 0, stor7), uint32(stor7), ext_call.return_data[0 len 28]
+    mem[324 len 0] = 0
     call arg1 with:
        funct uint32(stor7)
          gas gas_remaining wei
@@ -440,10 +442,11 @@ function deposit() {
         if not ext_code.size(wantAddress):
             revert with 0, 'Address: call to non-contract'
         mem[260 len 64] = approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), 0
+        mem[324 len 0] = 0
         call wantAddress with:
            funct uint32(stor11)
              gas gas_remaining wei
-            args 0, mem[324 len 4]
+            args Mask(480, -256, approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), 0) << 256, mem[324 len 4]
         if not return_data.size:
             if not ext_call.success:
                 revert with approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), 0
@@ -465,11 +468,11 @@ function deposit() {
                                 mem[382 len 10]
             if not ext_code.size(wantAddress):
                 revert with 0, 'Address: call to non-contract'
-            mem[424 len 64] = approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), ext_call.return_data[0 len 28]
+            mem[424 len 64] = 0, address(rewardsAddress), ext_call.return_data[0 len 28]
             call wantAddress with:
                funct uint32(stor11)
                  gas gas_remaining wei
-                args Mask(480, -256, ext_call.return_data[0 len 28]) << 256, mem[488 len 4]
+                args ext_call.return_data[0], mem[360 len 28], mem[488 len 4]
             if not return_data.size:
                 if not ext_call.success:
                     revert with approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), 0
@@ -489,10 +492,6 @@ function deposit() {
                                     42,
                                     0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
                                     mem[ceil32(return_data.size) + 535 len 22]
-            require ext_code.size(address(rewardsAddress))
-            call address(rewardsAddress).stake(uint256 rg1) with:
-                 gas gas_remaining wei
-                args ext_call.return_data[0]
         else:
             mem[292 len return_data.size] = ext_call.return_data[0 len return_data.size]
             if not ext_call.success:
@@ -523,12 +522,11 @@ function deposit() {
                                 mem[ceil32(return_data.size) + 383 len 10]
             if not ext_code.size(wantAddress):
                 revert with 0, 'Address: call to non-contract'
-            mem[ceil32(return_data.size) + 425 len 64] = approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), ext_call.return_data[0 len 28]
-            mem[ceil32(return_data.size) + 517 len 4] = 0
+            mem[ceil32(return_data.size) + 425 len 64] = 0, address(rewardsAddress), ext_call.return_data[0 len 28]
             call wantAddress with:
                funct uint32(stor11)
                  gas gas_remaining wei
-                args Mask(480, -256, ext_call.return_data[0 len 28]) << 256, mem[ceil32(return_data.size) + 489 len 4]
+                args ext_call.return_data[0], mem[ceil32(return_data.size) + 361 len 28], mem[ceil32(return_data.size) + 489 len 4]
             if not return_data.size:
                 if not ext_call.success:
                     revert with approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), 0
@@ -538,10 +536,6 @@ function deposit() {
                                 42,
                                 0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
                                 mem[ceil32(return_data.size) + 535 len 22]
-                require ext_code.size(address(rewardsAddress))
-                call address(rewardsAddress).stake(uint256 rg1) with:
-                     gas gas_remaining wei
-                    args ext_call.return_data[0]
             else:
                 mem[ceil32(return_data.size) + 457 len return_data.size] = ext_call.return_data[0 len return_data.size]
                 if not ext_call.success:
@@ -558,657 +552,12 @@ function deposit() {
                                     42,
                                     0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
                                     mem[(2 * ceil32(return_data.size)) + 536 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 22]
-                require ext_code.size(address(rewardsAddress))
-                call address(rewardsAddress).stake(uint256 rg1) with:
-                     gas gas_remaining wei
-                    args ext_call.return_data[0], mem[(2 * ceil32(return_data.size)) + 462 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-        if not ext_call.success:
-            revert with ext_call.return_data[0 len return_data.size]
-}
-
-function withdraw(uint256 arg1) {
-    require calldata.size - 4 >= 32
-    if address(controllerAddress) != msg.sender:
-        revert with 0, '!controller'
-    require ext_code.size(wantAddress)
-    staticcall wantAddress.0x70a08231 with:
-            gas gas_remaining wei
-           args this.address
-    if not ext_call.success:
-        revert with ext_call.return_data[0 len return_data.size]
-    require return_data.size >= 32
-    if ext_call.return_data[0] >= arg1:
-        if not arg1:
-            require ext_code.size(address(controllerAddress))
-            staticcall address(controllerAddress).devfund() with:
-                    gas gas_remaining wei
-            if not ext_call.success:
-                revert with ext_call.return_data[0 len return_data.size]
-            require return_data.size >= 32
-            mem[196] = ext_call.return_data[12 len 20]
-            if not ext_code.size(wantAddress):
-                revert with 0, 'Address: call to non-contract'
-            mem[324 len 64] = 0, ext_call.return_data[12 len 20], 0
-            call wantAddress.mem[224 len 4] with:
-                 gas gas_remaining wei
-                args 0, 0, mem[388 len 4]
-            if not return_data.size:
-                require not ext_call.success
-                revert with 'SafeMath: division by zero'
-            mem[356 len return_data.size] = ext_call.return_data[0 len return_data.size]
-            if not ext_call.success:
-                if return_data.size:
-                    revert with ext_call.return_data[0 len return_data.size]
-                revert with 0, 'SafeERC20: low-level call failed'
-            if return_data.size:
-                require return_data.size >= 32
-                if not mem[356]:
-                    revert with 0, 
-                                32,
-                                42,
-                                0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                mem[ceil32(return_data.size) + 435 len 22]
-            if not arg1:
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).treasury() with:
-                        gas gas_remaining wei
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                mem[ceil32(return_data.size) + 425] = ext_call.return_data[12 len 20]
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[ceil32(return_data.size) + 553 len 64] = 0, ext_call.return_data[12 len 20], 0
-                mem[ceil32(return_data.size) + 645 len 4] = 0
-                call wantAddress.mem[ceil32(return_data.size) + 453 len 4] with:
-                     gas gas_remaining wei
-                    args 0, 0, mem[ceil32(return_data.size) + 617 len 4]
-                if not return_data.size:
-                    require not ext_call.success
-                    revert with 'SafeMath: division by zero'
-                mem[ceil32(return_data.size) + 585 len return_data.size] = ext_call.return_data[0 len return_data.size]
-                if not ext_call.success:
-                    if return_data.size:
-                        revert with ext_call.return_data[0 len return_data.size]
-                    revert with 0, 
-                                'SafeERC20: low-level call failed',
-                                mem[(2 * ceil32(return_data.size)) + 654 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if return_data.size:
-                    require return_data.size >= 32
-                    if not mem[ceil32(return_data.size) + 585]:
-                        revert with 0, 
-                                    32,
-                                    42,
-                                    0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                    mem[(2 * ceil32(return_data.size)) + 664 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 22]
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).0x6d1b4bde with:
-                        gas gas_remaining wei
-                       args wantAddress, mem[(2 * ceil32(return_data.size)) + 590 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                if not ext_call.return_data[12 len 20]:
-                    revert with 0, 
-                                '!globe',
-                                mem[(2 * ceil32(return_data.size)) + 654 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if 0 > arg1:
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[(2 * ceil32(return_data.size)) + 846 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)] = unknown_0xa9059cbb(?????), address(ext_call.return_data[0]) << 64, 0, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256
-                call wantAddress with:
-                   funct Mask(8 * -floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 68, 224, 0) >> 224, mem[(2 * ceil32(return_data.size)) + 750 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 64]
-                     gas gas_remaining wei
-                    args Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 4, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) + 256, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256) << (8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) - 256, mem[(2 * ceil32(return_data.size)) + floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 846 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + -floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 68]
-            else:
-                if withdrawalTreasuryFee * arg1 / arg1 != withdrawalTreasuryFee:
-                    revert with 0, 
-                                32,
-                                33,
-                                0xfe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
-                                mem[ceil32(return_data.size) + 426 len 31]
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).treasury() with:
-                        gas gas_remaining wei
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                mem[ceil32(return_data.size) + 425] = ext_call.return_data[12 len 20]
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[ceil32(return_data.size) + 553 len 64] = 0, ext_call.return_data[12 len 20], Mask(224, 32, withdrawalTreasuryFee * arg1 / 100000) >> 32
-                mem[ceil32(return_data.size) + 645 len 4] = 0
-                call wantAddress.mem[ceil32(return_data.size) + 453 len 4] with:
-                     gas gas_remaining wei
-                    args withdrawalTreasuryFee * arg1 / 100000, 0, mem[ceil32(return_data.size) + 617 len 4]
-                if not return_data.size:
-                    require not ext_call.success
-                    revert with 'SafeMath: division by zero'
-                mem[ceil32(return_data.size) + 585 len return_data.size] = ext_call.return_data[0 len return_data.size]
-                if not ext_call.success:
-                    if return_data.size:
-                        revert with ext_call.return_data[0 len return_data.size]
-                    revert with 0, 
-                                'SafeERC20: low-level call failed',
-                                mem[(2 * ceil32(return_data.size)) + 654 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if return_data.size:
-                    require return_data.size >= 32
-                    if not mem[ceil32(return_data.size) + 585]:
-                        revert with 0, 
-                                    32,
-                                    42,
-                                    0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                    mem[(2 * ceil32(return_data.size)) + 664 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 22]
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).0x6d1b4bde with:
-                        gas gas_remaining wei
-                       args wantAddress, mem[(2 * ceil32(return_data.size)) + 590 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                if not ext_call.return_data[12 len 20]:
-                    revert with 0, 
-                                '!globe',
-                                mem[(2 * ceil32(return_data.size)) + 654 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if 0 > arg1:
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if withdrawalTreasuryFee * arg1 / 100000 > arg1:
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[(2 * ceil32(return_data.size)) + 846 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)] = unknown_0xa9059cbb(?????), address(ext_call.return_data[0]) << 64, 0, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1 - (withdrawalTreasuryFee * arg1 / 100000)) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256
-                call wantAddress with:
-                   funct Mask(8 * -floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 68, 224, 0) >> 224, mem[(2 * ceil32(return_data.size)) + 750 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 64]
-                     gas gas_remaining wei
-                    args Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 4, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) + 256, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1 - (withdrawalTreasuryFee * arg1 / 100000)) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256) << (8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) - 256, mem[(2 * ceil32(return_data.size)) + floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 846 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + -floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 68]
-        else:
-            if withdrawalDevFundFee * arg1 / arg1 != withdrawalDevFundFee:
-                revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
-                            32,
-                            33,
-                            0xfe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
-                            mem[197 len 31]
-            require ext_code.size(address(controllerAddress))
-            staticcall address(controllerAddress).devfund() with:
-                    gas gas_remaining wei
-            if not ext_call.success:
-                revert with ext_call.return_data[0 len return_data.size]
-            require return_data.size >= 32
-            mem[196] = ext_call.return_data[12 len 20]
-            if not ext_code.size(wantAddress):
-                revert with 0, 'Address: call to non-contract'
-            mem[324 len 64] = 0, ext_call.return_data[12 len 20], Mask(224, 32, withdrawalDevFundFee * arg1 / 100000) >> 32
-            call wantAddress.mem[224 len 4] with:
-                 gas gas_remaining wei
-                args withdrawalDevFundFee * arg1 / 100000, 0, mem[388 len 4]
-            if not return_data.size:
-                require not ext_call.success
-                revert with 'SafeMath: division by zero'
-            mem[356 len return_data.size] = ext_call.return_data[0 len return_data.size]
-            if not ext_call.success:
-                if return_data.size:
-                    revert with ext_call.return_data[0 len return_data.size]
-                revert with 0, 'SafeERC20: low-level call failed'
-            if return_data.size:
-                require return_data.size >= 32
-                if not mem[356]:
-                    revert with 0, 
-                                32,
-                                42,
-                                0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                mem[ceil32(return_data.size) + 435 len 22]
-            if not arg1:
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).treasury() with:
-                        gas gas_remaining wei
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                mem[ceil32(return_data.size) + 425] = ext_call.return_data[12 len 20]
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[ceil32(return_data.size) + 553 len 64] = 0, ext_call.return_data[12 len 20], 0
-                mem[ceil32(return_data.size) + 645 len 4] = 0
-                call wantAddress.mem[ceil32(return_data.size) + 453 len 4] with:
-                     gas gas_remaining wei
-                    args 0, 0, mem[ceil32(return_data.size) + 617 len 4]
-                if not return_data.size:
-                    require not ext_call.success
-                    revert with 'SafeMath: division by zero'
-                mem[ceil32(return_data.size) + 585 len return_data.size] = ext_call.return_data[0 len return_data.size]
-                if not ext_call.success:
-                    if return_data.size:
-                        revert with ext_call.return_data[0 len return_data.size]
-                    revert with 0, 
-                                'SafeERC20: low-level call failed',
-                                mem[(2 * ceil32(return_data.size)) + 654 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if return_data.size:
-                    require return_data.size >= 32
-                    if not mem[ceil32(return_data.size) + 585]:
-                        revert with 0, 
-                                    32,
-                                    42,
-                                    0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                    mem[(2 * ceil32(return_data.size)) + 664 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 22]
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).0x6d1b4bde with:
-                        gas gas_remaining wei
-                       args wantAddress, mem[(2 * ceil32(return_data.size)) + 590 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                if not ext_call.return_data[12 len 20]:
-                    revert with 0, 
-                                '!globe',
-                                mem[(2 * ceil32(return_data.size)) + 654 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if withdrawalDevFundFee * arg1 / 100000 > arg1:
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if 0 > arg1 - (withdrawalDevFundFee * arg1 / 100000):
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[(2 * ceil32(return_data.size)) + 846 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)] = unknown_0xa9059cbb(?????), address(ext_call.return_data[0]) << 64, 0, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1 - (withdrawalDevFundFee * arg1 / 100000)) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256
-                call wantAddress with:
-                   funct Mask(8 * -floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 68, 224, 0) >> 224, mem[(2 * ceil32(return_data.size)) + 750 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 64]
-                     gas gas_remaining wei
-                    args Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 4, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) + 256, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1 - (withdrawalDevFundFee * arg1 / 100000)) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256) << (8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) - 256, mem[(2 * ceil32(return_data.size)) + floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 846 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + -floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 68]
-            else:
-                if withdrawalTreasuryFee * arg1 / arg1 != withdrawalTreasuryFee:
-                    revert with 0, 
-                                32,
-                                33,
-                                0xfe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
-                                mem[ceil32(return_data.size) + 426 len 31]
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).treasury() with:
-                        gas gas_remaining wei
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                mem[ceil32(return_data.size) + 425] = ext_call.return_data[12 len 20]
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[ceil32(return_data.size) + 553 len 64] = 0, ext_call.return_data[12 len 20], Mask(224, 32, withdrawalTreasuryFee * arg1 / 100000) >> 32
-                mem[ceil32(return_data.size) + 645 len 4] = 0
-                call wantAddress.mem[ceil32(return_data.size) + 453 len 4] with:
-                     gas gas_remaining wei
-                    args withdrawalTreasuryFee * arg1 / 100000, 0, mem[ceil32(return_data.size) + 617 len 4]
-                if not return_data.size:
-                    require not ext_call.success
-                    revert with 'SafeMath: division by zero'
-                mem[ceil32(return_data.size) + 585 len return_data.size] = ext_call.return_data[0 len return_data.size]
-                if not ext_call.success:
-                    if return_data.size:
-                        revert with ext_call.return_data[0 len return_data.size]
-                    revert with 0, 
-                                'SafeERC20: low-level call failed',
-                                mem[(2 * ceil32(return_data.size)) + 654 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if return_data.size:
-                    require return_data.size >= 32
-                    if not mem[ceil32(return_data.size) + 585]:
-                        revert with 0, 
-                                    32,
-                                    42,
-                                    0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                    mem[(2 * ceil32(return_data.size)) + 664 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 22]
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).0x6d1b4bde with:
-                        gas gas_remaining wei
-                       args wantAddress, mem[(2 * ceil32(return_data.size)) + 590 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                if not ext_call.return_data[12 len 20]:
-                    revert with 0, 
-                                '!globe',
-                                mem[(2 * ceil32(return_data.size)) + 654 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if withdrawalDevFundFee * arg1 / 100000 > arg1:
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if withdrawalTreasuryFee * arg1 / 100000 > arg1 - (withdrawalDevFundFee * arg1 / 100000):
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[(2 * ceil32(return_data.size)) + 846 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)] = unknown_0xa9059cbb(?????), address(ext_call.return_data[0]) << 64, 0, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1 - (withdrawalDevFundFee * arg1 / 100000) - (withdrawalTreasuryFee * arg1 / 100000)) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256
-                call wantAddress with:
-                   funct Mask(8 * -floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 68, 224, 0) >> 224, mem[(2 * ceil32(return_data.size)) + 750 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 64]
-                     gas gas_remaining wei
-                    args Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 4, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) + 256, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1 - (withdrawalDevFundFee * arg1 / 100000) - (withdrawalTreasuryFee * arg1 / 100000)) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256) << (8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) - 256, mem[(2 * ceil32(return_data.size)) + floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 846 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + -floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 68]
-        if not return_data.size:
-            require not ext_call.success
-            revert with 'SafeMath: division by zero'
-        mem[(2 * ceil32(return_data.size)) + 878 len return_data.size] = ext_call.return_data[0 len return_data.size]
-        if not ext_call.success:
-            if return_data.size:
-                revert with ext_call.return_data[0 len return_data.size]
-            revert with 0, 'SafeERC20: low-level call failed'
-        if return_data.size:
-            require return_data.size >= 32
-            if not mem[(2 * ceil32(return_data.size)) + 878]:
-                revert with 0, 
-                            32,
-                            42,
-                            0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                            mem[(2 * ceil32(return_data.size)) + ceil32(return_data.size) + 957 len 22]
-    else:
-        if ext_call.return_data[0] > arg1:
-            revert with 0, 'SafeMath: subtraction overflow'
         require ext_code.size(address(rewardsAddress))
-        call address(rewardsAddress).0x2e1a7d4d with:
+        call address(rewardsAddress).stake(uint256 rg1) with:
              gas gas_remaining wei
-            args (arg1 - ext_call.return_data[0])
+            args ext_call.return_data[0]
         if not ext_call.success:
             revert with ext_call.return_data[0 len return_data.size]
-        if arg1 < arg1 - ext_call.return_data[0]:
-            revert with 0, 'SafeMath: addition overflow'
-        if not arg1:
-            require ext_code.size(address(controllerAddress))
-            staticcall address(controllerAddress).devfund() with:
-                    gas gas_remaining wei
-            if not ext_call.success:
-                revert with ext_call.return_data[0 len return_data.size]
-            require return_data.size >= 32
-            mem[260] = ext_call.return_data[12 len 20]
-            if not ext_code.size(wantAddress):
-                revert with 0, 'Address: call to non-contract'
-            mem[388 len 64] = 0, ext_call.return_data[12 len 20], 0
-            call wantAddress.mem[288 len 4] with:
-                 gas gas_remaining wei
-                args 0, 0, mem[452 len 4]
-            if not return_data.size:
-                require not ext_call.success
-                revert with 'SafeMath: subtraction overflow'
-            mem[420 len return_data.size] = ext_call.return_data[0 len return_data.size]
-            if not ext_call.success:
-                if return_data.size:
-                    revert with ext_call.return_data[0 len return_data.size]
-                revert with 0, 'SafeERC20: low-level call failed'
-            if return_data.size:
-                require return_data.size >= 32
-                if not mem[420]:
-                    revert with 0, 
-                                32,
-                                42,
-                                0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                mem[ceil32(return_data.size) + 499 len 22]
-            if not arg1:
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).treasury() with:
-                        gas gas_remaining wei
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                mem[ceil32(return_data.size) + 489] = ext_call.return_data[12 len 20]
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[ceil32(return_data.size) + 617 len 64] = 0, ext_call.return_data[12 len 20], 0
-                mem[ceil32(return_data.size) + 709 len 4] = 0
-                call wantAddress.mem[ceil32(return_data.size) + 517 len 4] with:
-                     gas gas_remaining wei
-                    args 0, 0, mem[ceil32(return_data.size) + 681 len 4]
-                if not return_data.size:
-                    require not ext_call.success
-                    revert with 'SafeMath: subtraction overflow'
-                mem[ceil32(return_data.size) + 649 len return_data.size] = ext_call.return_data[0 len return_data.size]
-                if not ext_call.success:
-                    if return_data.size:
-                        revert with ext_call.return_data[0 len return_data.size]
-                    revert with 0, 
-                                'SafeERC20: low-level call failed',
-                                mem[(2 * ceil32(return_data.size)) + 718 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if return_data.size:
-                    require return_data.size >= 32
-                    if not mem[ceil32(return_data.size) + 649]:
-                        revert with 0, 
-                                    32,
-                                    42,
-                                    0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                    mem[(2 * ceil32(return_data.size)) + 728 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 22]
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).0x6d1b4bde with:
-                        gas gas_remaining wei
-                       args wantAddress, mem[(2 * ceil32(return_data.size)) + 654 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                if not ext_call.return_data[12 len 20]:
-                    revert with 0, 
-                                '!globe',
-                                mem[(2 * ceil32(return_data.size)) + 718 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if 0 > arg1:
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[(2 * ceil32(return_data.size)) + 910 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)] = unknown_0xa9059cbb(?????), address(ext_call.return_data[0]) << 64, 0, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256
-                call wantAddress with:
-                   funct 0, mem[(2 * ceil32(return_data.size)) + 814 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 64]
-                     gas gas_remaining wei
-                    args Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 4, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) + 256, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256) << (8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) - 256, mem[(2 * ceil32(return_data.size)) + floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 910 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + -floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 68]
-            else:
-                if withdrawalTreasuryFee * arg1 / arg1 != withdrawalTreasuryFee:
-                    revert with 0, 
-                                32,
-                                33,
-                                0xfe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
-                                mem[ceil32(return_data.size) + 490 len 31]
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).treasury() with:
-                        gas gas_remaining wei
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                mem[ceil32(return_data.size) + 489] = ext_call.return_data[12 len 20]
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[ceil32(return_data.size) + 617 len 64] = 0, ext_call.return_data[12 len 20], Mask(224, 32, withdrawalTreasuryFee * arg1 / 100000) >> 32
-                mem[ceil32(return_data.size) + 709 len 4] = 0
-                call wantAddress.mem[ceil32(return_data.size) + 517 len 4] with:
-                     gas gas_remaining wei
-                    args withdrawalTreasuryFee * arg1 / 100000, 0, mem[ceil32(return_data.size) + 681 len 4]
-                if not return_data.size:
-                    require not ext_call.success
-                    revert with 'SafeMath: subtraction overflow'
-                mem[ceil32(return_data.size) + 649 len return_data.size] = ext_call.return_data[0 len return_data.size]
-                if not ext_call.success:
-                    if return_data.size:
-                        revert with ext_call.return_data[0 len return_data.size]
-                    revert with 0, 
-                                'SafeERC20: low-level call failed',
-                                mem[(2 * ceil32(return_data.size)) + 718 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if return_data.size:
-                    require return_data.size >= 32
-                    if not mem[ceil32(return_data.size) + 649]:
-                        revert with 0, 
-                                    32,
-                                    42,
-                                    0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                    mem[(2 * ceil32(return_data.size)) + 728 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 22]
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).0x6d1b4bde with:
-                        gas gas_remaining wei
-                       args wantAddress, mem[(2 * ceil32(return_data.size)) + 654 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                if not ext_call.return_data[12 len 20]:
-                    revert with 0, 
-                                '!globe',
-                                mem[(2 * ceil32(return_data.size)) + 718 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if 0 > arg1:
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if withdrawalTreasuryFee * arg1 / 100000 > arg1:
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[(2 * ceil32(return_data.size)) + 910 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)] = unknown_0xa9059cbb(?????), address(ext_call.return_data[0]) << 64, 0, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1 - (withdrawalTreasuryFee * arg1 / 100000)) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256
-                call wantAddress with:
-                   funct 0, mem[(2 * ceil32(return_data.size)) + 814 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 64]
-                     gas gas_remaining wei
-                    args Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 4, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) + 256, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1 - (withdrawalTreasuryFee * arg1 / 100000)) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256) << (8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) - 256, mem[(2 * ceil32(return_data.size)) + floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 910 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + -floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 68]
-        else:
-            if withdrawalDevFundFee * arg1 / arg1 != withdrawalDevFundFee:
-                revert with 0, 32, 33, 0xfe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[261 len 31]
-            require ext_code.size(address(controllerAddress))
-            staticcall address(controllerAddress).devfund() with:
-                    gas gas_remaining wei
-            if not ext_call.success:
-                revert with ext_call.return_data[0 len return_data.size]
-            require return_data.size >= 32
-            mem[260] = ext_call.return_data[12 len 20]
-            if not ext_code.size(wantAddress):
-                revert with 0, 'Address: call to non-contract'
-            mem[388 len 64] = 0, ext_call.return_data[12 len 20], Mask(224, 32, withdrawalDevFundFee * arg1 / 100000) >> 32
-            call wantAddress.mem[288 len 4] with:
-                 gas gas_remaining wei
-                args withdrawalDevFundFee * arg1 / 100000, 0, mem[452 len 4]
-            if not return_data.size:
-                require not ext_call.success
-                revert with 'SafeMath: subtraction overflow'
-            mem[420 len return_data.size] = ext_call.return_data[0 len return_data.size]
-            if not ext_call.success:
-                if return_data.size:
-                    revert with ext_call.return_data[0 len return_data.size]
-                revert with 0, 'SafeERC20: low-level call failed'
-            if return_data.size:
-                require return_data.size >= 32
-                if not mem[420]:
-                    revert with 0, 
-                                32,
-                                42,
-                                0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                mem[ceil32(return_data.size) + 499 len 22]
-            if not arg1:
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).treasury() with:
-                        gas gas_remaining wei
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                mem[ceil32(return_data.size) + 489] = ext_call.return_data[12 len 20]
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[ceil32(return_data.size) + 617 len 64] = 0, ext_call.return_data[12 len 20], 0
-                mem[ceil32(return_data.size) + 709 len 4] = 0
-                call wantAddress.mem[ceil32(return_data.size) + 517 len 4] with:
-                     gas gas_remaining wei
-                    args 0, 0, mem[ceil32(return_data.size) + 681 len 4]
-                if not return_data.size:
-                    require not ext_call.success
-                    revert with 'SafeMath: subtraction overflow'
-                mem[ceil32(return_data.size) + 649 len return_data.size] = ext_call.return_data[0 len return_data.size]
-                if not ext_call.success:
-                    if return_data.size:
-                        revert with ext_call.return_data[0 len return_data.size]
-                    revert with 0, 
-                                'SafeERC20: low-level call failed',
-                                mem[(2 * ceil32(return_data.size)) + 718 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if return_data.size:
-                    require return_data.size >= 32
-                    if not mem[ceil32(return_data.size) + 649]:
-                        revert with 0, 
-                                    32,
-                                    42,
-                                    0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                    mem[(2 * ceil32(return_data.size)) + 728 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 22]
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).0x6d1b4bde with:
-                        gas gas_remaining wei
-                       args wantAddress, mem[(2 * ceil32(return_data.size)) + 654 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                if not ext_call.return_data[12 len 20]:
-                    revert with 0, 
-                                '!globe',
-                                mem[(2 * ceil32(return_data.size)) + 718 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if withdrawalDevFundFee * arg1 / 100000 > arg1:
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if 0 > arg1 - (withdrawalDevFundFee * arg1 / 100000):
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[(2 * ceil32(return_data.size)) + 910 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)] = unknown_0xa9059cbb(?????), address(ext_call.return_data[0]) << 64, 0, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1 - (withdrawalDevFundFee * arg1 / 100000)) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256
-                call wantAddress with:
-                   funct 0, mem[(2 * ceil32(return_data.size)) + 814 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 64]
-                     gas gas_remaining wei
-                    args Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 4, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) + 256, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1 - (withdrawalDevFundFee * arg1 / 100000)) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256) << (8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) - 256, mem[(2 * ceil32(return_data.size)) + floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 910 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + -floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 68]
-            else:
-                if withdrawalTreasuryFee * arg1 / arg1 != withdrawalTreasuryFee:
-                    revert with 0, 
-                                32,
-                                33,
-                                0xfe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
-                                mem[ceil32(return_data.size) + 490 len 31]
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).treasury() with:
-                        gas gas_remaining wei
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                mem[ceil32(return_data.size) + 489] = ext_call.return_data[12 len 20]
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[ceil32(return_data.size) + 617 len 64] = 0, ext_call.return_data[12 len 20], Mask(224, 32, withdrawalTreasuryFee * arg1 / 100000) >> 32
-                mem[ceil32(return_data.size) + 709 len 4] = 0
-                call wantAddress.mem[ceil32(return_data.size) + 517 len 4] with:
-                     gas gas_remaining wei
-                    args withdrawalTreasuryFee * arg1 / 100000, 0, mem[ceil32(return_data.size) + 681 len 4]
-                if not return_data.size:
-                    require not ext_call.success
-                    revert with 'SafeMath: subtraction overflow'
-                mem[ceil32(return_data.size) + 649 len return_data.size] = ext_call.return_data[0 len return_data.size]
-                if not ext_call.success:
-                    if return_data.size:
-                        revert with ext_call.return_data[0 len return_data.size]
-                    revert with 0, 
-                                'SafeERC20: low-level call failed',
-                                mem[(2 * ceil32(return_data.size)) + 718 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if return_data.size:
-                    require return_data.size >= 32
-                    if not mem[ceil32(return_data.size) + 649]:
-                        revert with 0, 
-                                    32,
-                                    42,
-                                    0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                    mem[(2 * ceil32(return_data.size)) + 728 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 22]
-                require ext_code.size(address(controllerAddress))
-                staticcall address(controllerAddress).0x6d1b4bde with:
-                        gas gas_remaining wei
-                       args wantAddress, mem[(2 * ceil32(return_data.size)) + 654 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                if not ext_call.return_data[12 len 20]:
-                    revert with 0, 
-                                '!globe',
-                                mem[(2 * ceil32(return_data.size)) + 718 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                if withdrawalDevFundFee * arg1 / 100000 > arg1:
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if withdrawalTreasuryFee * arg1 / 100000 > arg1 - (withdrawalDevFundFee * arg1 / 100000):
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if not ext_code.size(wantAddress):
-                    revert with 0, 'Address: call to non-contract'
-                mem[(2 * ceil32(return_data.size)) + 910 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)] = unknown_0xa9059cbb(?????), address(ext_call.return_data[0]) << 64, 0, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1 - (withdrawalDevFundFee * arg1 / 100000) - (withdrawalTreasuryFee * arg1 / 100000)) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256
-                call wantAddress with:
-                   funct 0, mem[(2 * ceil32(return_data.size)) + 814 len floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 64]
-                     gas gas_remaining wei
-                    args Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 4, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) + 256, Mask(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36, -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256, arg1 - (withdrawalDevFundFee * arg1 / 100000) - (withdrawalTreasuryFee * arg1 / 100000)) >> -(8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) - 36) + 256) << (8 * floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68)) - 256, mem[(2 * ceil32(return_data.size)) + floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 910 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + -floor32((2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 68) + 68]
-        if not return_data.size:
-            require not ext_call.success
-            revert with 'SafeMath: subtraction overflow'
-        mem[(2 * ceil32(return_data.size)) + 942 len return_data.size] = ext_call.return_data[0 len return_data.size]
-        if not ext_call.success:
-            if return_data.size:
-                revert with ext_call.return_data[0 len return_data.size]
-            revert with 0, 'SafeERC20: low-level call failed'
-        if return_data.size:
-            require return_data.size >= 32
-            if not mem[(2 * ceil32(return_data.size)) + 942]:
-                revert with 0, 
-                            32,
-                            42,
-                            0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                            mem[(2 * ceil32(return_data.size)) + ceil32(return_data.size) + 1021 len 22]
 }
 
 

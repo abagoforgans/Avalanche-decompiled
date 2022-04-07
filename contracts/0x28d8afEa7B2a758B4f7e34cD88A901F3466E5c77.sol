@@ -1203,153 +1203,6 @@ function withdraw(uint256 arg1, uint256 arg2) payable {
                 require return_data.size >= 32
                 if not ext_call.return_data[0]:
                     revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[327 len 29]
-        else:
-            require userInfo[arg1][address(msg.sender)].field_0
-            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
-                revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
-                            32,
-                            33,
-                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
-                            mem[197 len 31]
-            if userInfo[arg1][address(msg.sender)].field_256 > userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18:
-                revert with 0, 'SafeMath: subtraction overflow'
-            if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 > 0:
-                require ext_code.size(trifleAddress)
-                staticcall trifleAddress.0x70a08231 with:
-                        gas gas_remaining wei
-                       args this.address
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                require ext_code.size(trifleAddress)
-                if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
-                    call trifleAddress.0xa9059cbb with:
-                         gas gas_remaining wei
-                        args msg.sender, (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256
-                else:
-                    call trifleAddress.0xa9059cbb with:
-                         gas gas_remaining wei
-                        args msg.sender, ext_call.return_data[0]
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                if not ext_call.return_data[0]:
-                    revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[327 len 29]
-        if arg2 <= 0:
-            if not userInfo[arg1][address(msg.sender)].field_0:
-                userInfo[arg1][address(msg.sender)].field_256 = 0
-            else:
-                require userInfo[arg1][address(msg.sender)].field_0
-                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
-                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[325 len 31]
-                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
-        else:
-            if arg2 > userInfo[arg1][address(msg.sender)].field_0:
-                revert with 0, 'SafeMath: subtraction overflow'
-            userInfo[arg1][address(msg.sender)].field_0 -= arg2
-            if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
-                revert with 0, 'Address: call to non-contract'
-            if not ext_code.hash(poolInfo[arg1].field_0):
-                revert with 0, 'Address: call to non-contract'
-            mem[452 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
-            call poolInfo[arg1].field_0 with:
-               funct uint32(msg.sender)
-                 gas gas_remaining wei
-                args Mask(224, 32, arg2) << 224, mem[516 len 4]
-            if not return_data.size:
-                require not ext_call.success
-                revert with 'SafeMath: division by zero'
-            mem[484 len return_data.size] = ext_call.return_data[0 len return_data.size]
-            if not ext_call.success:
-                if return_data.size > 0:
-                    revert with ext_call.return_data[0 len return_data.size]
-                revert with 0, 'SafeERC20: low-level call failed'
-            if return_data.size > 0:
-                require return_data.size >= 32
-                if not mem[484]:
-                    revert with 0, 
-                                32,
-                                42,
-                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                mem[ceil32(return_data.size) + 563 len 22]
-            if not userInfo[arg1][address(msg.sender)].field_0:
-                userInfo[arg1][address(msg.sender)].field_256 = 0
-            else:
-                require userInfo[arg1][address(msg.sender)].field_0
-                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
-                    revert with 0, 
-                                32,
-                                33,
-                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
-                                mem[ceil32(return_data.size) + 554 len 31]
-                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
-    else:
-        require ext_code.size(poolInfo[arg1].field_0)
-        staticcall poolInfo[arg1].field_0.0x70a08231 with:
-                gas gas_remaining wei
-               args this.address
-        if not ext_call.success:
-            revert with ext_call.return_data[0 len return_data.size]
-        require return_data.size >= 32
-        if not ext_call.return_data[0]:
-            poolInfo[arg1].field_512 = block.number
-            if not userInfo[arg1][address(msg.sender)].field_0:
-                if userInfo[arg1][address(msg.sender)].field_256 > 0:
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if -userInfo[arg1][address(msg.sender)].field_256 > 0:
-                    require ext_code.size(trifleAddress)
-                    staticcall trifleAddress.0x70a08231 with:
-                            gas gas_remaining wei
-                           args this.address
-                    if not ext_call.success:
-                        revert with ext_call.return_data[0 len return_data.size]
-                    require return_data.size >= 32
-                    require ext_code.size(trifleAddress)
-                    if -userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
-                        call trifleAddress.0xa9059cbb with:
-                             gas gas_remaining wei
-                            args msg.sender, -userInfo[arg1][address(msg.sender)].field_256
-                    else:
-                        call trifleAddress.0xa9059cbb with:
-                             gas gas_remaining wei
-                            args msg.sender, ext_call.return_data[0]
-                    if not ext_call.success:
-                        revert with ext_call.return_data[0 len return_data.size]
-                    require return_data.size >= 32
-                    if not ext_call.return_data[0]:
-                        revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[327 len 29]
-            else:
-                require userInfo[arg1][address(msg.sender)].field_0
-                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
-                    revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
-                                32,
-                                33,
-                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
-                                mem[197 len 31]
-                if userInfo[arg1][address(msg.sender)].field_256 > userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18:
-                    revert with 0, 'SafeMath: subtraction overflow'
-                if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 > 0:
-                    require ext_code.size(trifleAddress)
-                    staticcall trifleAddress.0x70a08231 with:
-                            gas gas_remaining wei
-                           args this.address
-                    if not ext_call.success:
-                        revert with ext_call.return_data[0 len return_data.size]
-                    require return_data.size >= 32
-                    require ext_code.size(trifleAddress)
-                    if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
-                        call trifleAddress.0xa9059cbb with:
-                             gas gas_remaining wei
-                            args msg.sender, (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256
-                    else:
-                        call trifleAddress.0xa9059cbb with:
-                             gas gas_remaining wei
-                            args msg.sender, ext_call.return_data[0]
-                    if not ext_call.success:
-                        revert with ext_call.return_data[0 len return_data.size]
-                    require return_data.size >= 32
-                    if not ext_call.return_data[0]:
-                        revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[327 len 29]
             if arg2 <= 0:
                 if not userInfo[arg1][address(msg.sender)].field_0:
                     userInfo[arg1][address(msg.sender)].field_256 = 0
@@ -1399,65 +1252,305 @@ function withdraw(uint256 arg1, uint256 arg2) payable {
                                     mem[ceil32(return_data.size) + 554 len 31]
                     userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
         else:
-            if not poolInfo[arg1].field_256:
-                poolInfo[arg1].field_512 = block.number
+            require userInfo[arg1][address(msg.sender)].field_0
+            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                            32,
+                            33,
+                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                            mem[197 len 31]
+            if userInfo[arg1][address(msg.sender)].field_256 > userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18:
+                revert with 0, 'SafeMath: subtraction overflow'
+            if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 > 0:
+                require ext_code.size(trifleAddress)
+                staticcall trifleAddress.0x70a08231 with:
+                        gas gas_remaining wei
+                       args this.address
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                require return_data.size >= 32
+                require ext_code.size(trifleAddress)
+                if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                    call trifleAddress.0xa9059cbb with:
+                         gas gas_remaining wei
+                        args msg.sender, (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256
+                else:
+                    call trifleAddress.0xa9059cbb with:
+                         gas gas_remaining wei
+                        args msg.sender, ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                require return_data.size >= 32
+                if not ext_call.return_data[0]:
+                    revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[327 len 29]
+            if arg2 <= 0:
                 if not userInfo[arg1][address(msg.sender)].field_0:
-                    if userInfo[arg1][address(msg.sender)].field_256 > 0:
-                        revert with 0, 'SafeMath: subtraction overflow'
-                    if -userInfo[arg1][address(msg.sender)].field_256 > 0:
-                        require ext_code.size(trifleAddress)
-                        staticcall trifleAddress.0x70a08231 with:
-                                gas gas_remaining wei
-                               args this.address
-                        if not ext_call.success:
-                            revert with ext_call.return_data[0 len return_data.size]
-                        require return_data.size >= 32
-                        require ext_code.size(trifleAddress)
-                        if -userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
-                            call trifleAddress.0xa9059cbb with:
-                                 gas gas_remaining wei
-                                args msg.sender, -userInfo[arg1][address(msg.sender)].field_256
-                        else:
-                            call trifleAddress.0xa9059cbb with:
-                                 gas gas_remaining wei
-                                args msg.sender, ext_call.return_data[0]
-                        if not ext_call.success:
-                            revert with ext_call.return_data[0 len return_data.size]
-                        require return_data.size >= 32
-                        if not ext_call.return_data[0]:
-                            revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[327 len 29]
+                    userInfo[arg1][address(msg.sender)].field_256 = 0
                 else:
                     require userInfo[arg1][address(msg.sender)].field_0
                     if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
-                        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                        revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[325 len 31]
+                    userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+            else:
+                if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                    revert with 0, 'SafeMath: subtraction overflow'
+                userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                    revert with 0, 'Address: call to non-contract'
+                if not ext_code.hash(poolInfo[arg1].field_0):
+                    revert with 0, 'Address: call to non-contract'
+                mem[452 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                mem[516 len 0] = 0
+                call poolInfo[arg1].field_0 with:
+                   funct uint32(msg.sender)
+                     gas gas_remaining wei
+                    args Mask(224, 32, arg2) << 224, mem[516 len 4]
+                if not return_data.size:
+                    require not ext_call.success
+                    revert with 'SafeMath: division by zero'
+                mem[484 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                if not ext_call.success:
+                    if return_data.size > 0:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    revert with 0, 'SafeERC20: low-level call failed'
+                if return_data.size > 0:
+                    require return_data.size >= 32
+                    if not mem[484]:
+                        revert with 0, 
+                                    32,
+                                    42,
+                                    0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                    mem[ceil32(return_data.size) + 563 len 22]
+                if not userInfo[arg1][address(msg.sender)].field_0:
+                    userInfo[arg1][address(msg.sender)].field_256 = 0
+                else:
+                    require userInfo[arg1][address(msg.sender)].field_0
+                    if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                        revert with 0, 
                                     32,
                                     33,
                                     0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
-                                    mem[197 len 31]
-                    if userInfo[arg1][address(msg.sender)].field_256 > userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18:
-                        revert with 0, 'SafeMath: subtraction overflow'
-                    if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 > 0:
-                        require ext_code.size(trifleAddress)
-                        staticcall trifleAddress.0x70a08231 with:
-                                gas gas_remaining wei
-                               args this.address
-                        if not ext_call.success:
-                            revert with ext_call.return_data[0 len return_data.size]
-                        require return_data.size >= 32
-                        require ext_code.size(trifleAddress)
-                        if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
-                            call trifleAddress.0xa9059cbb with:
-                                 gas gas_remaining wei
-                                args msg.sender, (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256
+                                    mem[ceil32(return_data.size) + 554 len 31]
+                    userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+    else:
+        require ext_code.size(poolInfo[arg1].field_0)
+        staticcall poolInfo[arg1].field_0.0x70a08231 with:
+                gas gas_remaining wei
+               args this.address
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        require return_data.size >= 32
+        if not ext_call.return_data[0]:
+            poolInfo[arg1].field_512 = block.number
+            if not userInfo[arg1][address(msg.sender)].field_0:
+                if userInfo[arg1][address(msg.sender)].field_256 > 0:
+                    revert with 0, 'SafeMath: subtraction overflow'
+                if -userInfo[arg1][address(msg.sender)].field_256 <= 0:
+                    if arg2 <= 0:
+                        if not userInfo[arg1][address(msg.sender)].field_0:
+                            userInfo[arg1][address(msg.sender)].field_256 = 0
                         else:
-                            call trifleAddress.0xa9059cbb with:
-                                 gas gas_remaining wei
-                                args msg.sender, ext_call.return_data[0]
+                            require userInfo[arg1][address(msg.sender)].field_0
+                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[325 len 31]
+                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                    else:
+                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                            revert with 0, 'SafeMath: subtraction overflow'
+                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                            revert with 0, 'Address: call to non-contract'
+                        if not ext_code.hash(poolInfo[arg1].field_0):
+                            revert with 0, 'Address: call to non-contract'
+                        mem[452 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                        mem[516 len 0] = 0
+                        call poolInfo[arg1].field_0 with:
+                           funct uint32(msg.sender)
+                             gas gas_remaining wei
+                            args Mask(224, 32, arg2) << 224, mem[516 len 4]
+                        if not return_data.size:
+                            require not ext_call.success
+                            revert with 'SafeMath: division by zero'
+                        mem[484 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                        if not ext_call.success:
+                            if return_data.size > 0:
+                                revert with ext_call.return_data[0 len return_data.size]
+                            revert with 0, 'SafeERC20: low-level call failed'
+                        if return_data.size > 0:
+                            require return_data.size >= 32
+                            if not mem[484]:
+                                revert with 0, 
+                                            32,
+                                            42,
+                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                            mem[ceil32(return_data.size) + 563 len 22]
+                        if not userInfo[arg1][address(msg.sender)].field_0:
+                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                        else:
+                            require userInfo[arg1][address(msg.sender)].field_0
+                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                revert with 0, 
+                                            32,
+                                            33,
+                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                            mem[ceil32(return_data.size) + 554 len 31]
+                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                else:
+                    require ext_code.size(trifleAddress)
+                    staticcall trifleAddress.0x70a08231 with:
+                            gas gas_remaining wei
+                           args this.address
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    require return_data.size >= 32
+                    require ext_code.size(trifleAddress)
+                    if -userInfo[arg1][address(msg.sender)].field_256 > ext_call.return_data[0]:
+                        call trifleAddress.0xa9059cbb with:
+                             gas gas_remaining wei
+                            args msg.sender, ext_call.return_data[0]
                         if not ext_call.success:
                             revert with ext_call.return_data[0 len return_data.size]
                         require return_data.size >= 32
                         if not ext_call.return_data[0]:
                             revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[327 len 29]
+                        if arg2 <= 0:
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[325 len 31]
+                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                        else:
+                            if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                revert with 0, 'SafeMath: subtraction overflow'
+                            userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                            if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                revert with 0, 'Address: call to non-contract'
+                            if not ext_code.hash(poolInfo[arg1].field_0):
+                                revert with 0, 'Address: call to non-contract'
+                            mem[452 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                            call poolInfo[arg1].field_0 with:
+                               funct uint32(msg.sender)
+                                 gas gas_remaining wei
+                                args Mask(224, 32, arg2) << 224, mem[516 len 4]
+                            if not return_data.size:
+                                require not ext_call.success
+                                revert with 'SafeMath: division by zero'
+                            mem[484 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                            if not ext_call.success:
+                                if return_data.size > 0:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                revert with 0, 'SafeERC20: low-level call failed'
+                            if return_data.size > 0:
+                                require return_data.size >= 32
+                                if not mem[484]:
+                                    revert with 0, 
+                                                32,
+                                                42,
+                                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                mem[ceil32(return_data.size) + 563 len 22]
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 
+                                                32,
+                                                33,
+                                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                mem[ceil32(return_data.size) + 554 len 31]
+                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                    else:
+                        call trifleAddress.0xa9059cbb with:
+                             gas gas_remaining wei
+                            args msg.sender, -userInfo[arg1][address(msg.sender)].field_256
+                        if not ext_call.success:
+                            revert with ext_call.return_data[0 len return_data.size]
+                        require return_data.size >= 32
+                        if not ext_call.return_data[0]:
+                            revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[327 len 29]
+                        if arg2 <= 0:
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[325 len 31]
+                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                        else:
+                            if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                revert with 0, 'SafeMath: subtraction overflow'
+                            userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                            if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                revert with 0, 'Address: call to non-contract'
+                            if not ext_code.hash(poolInfo[arg1].field_0):
+                                revert with 0, 'Address: call to non-contract'
+                            mem[452 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                            mem[516 len 0] = 0
+                            call poolInfo[arg1].field_0 with:
+                               funct uint32(msg.sender)
+                                 gas gas_remaining wei
+                                args Mask(224, 32, arg2) << 224, mem[516 len 4]
+                            if not return_data.size:
+                                require not ext_call.success
+                                revert with 'SafeMath: division by zero'
+                            mem[484 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                            if not ext_call.success:
+                                if return_data.size > 0:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                revert with 0, 'SafeERC20: low-level call failed'
+                            if return_data.size > 0:
+                                require return_data.size >= 32
+                                if not mem[484]:
+                                    revert with 0, 
+                                                32,
+                                                42,
+                                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                mem[ceil32(return_data.size) + 563 len 22]
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 
+                                                32,
+                                                33,
+                                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                mem[ceil32(return_data.size) + 554 len 31]
+                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+            else:
+                require userInfo[arg1][address(msg.sender)].field_0
+                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                    revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                                32,
+                                33,
+                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                mem[197 len 31]
+                if userInfo[arg1][address(msg.sender)].field_256 > userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18:
+                    revert with 0, 'SafeMath: subtraction overflow'
+                if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 > 0:
+                    require ext_code.size(trifleAddress)
+                    staticcall trifleAddress.0x70a08231 with:
+                            gas gas_remaining wei
+                           args this.address
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    require return_data.size >= 32
+                    require ext_code.size(trifleAddress)
+                    if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                        call trifleAddress.0xa9059cbb with:
+                             gas gas_remaining wei
+                            args msg.sender, (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256
+                    else:
+                        call trifleAddress.0xa9059cbb with:
+                             gas gas_remaining wei
+                            args msg.sender, ext_call.return_data[0]
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    require return_data.size >= 32
+                    if not ext_call.return_data[0]:
+                        revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[327 len 29]
                 if arg2 <= 0:
                     if not userInfo[arg1][address(msg.sender)].field_0:
                         userInfo[arg1][address(msg.sender)].field_256 = 0
@@ -1475,6 +1568,7 @@ function withdraw(uint256 arg1, uint256 arg2) payable {
                     if not ext_code.hash(poolInfo[arg1].field_0):
                         revert with 0, 'Address: call to non-contract'
                     mem[452 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                    mem[516 len 0] = 0
                     call poolInfo[arg1].field_0 with:
                        funct uint32(msg.sender)
                          gas gas_remaining wei
@@ -1506,6 +1600,316 @@ function withdraw(uint256 arg1, uint256 arg2) payable {
                                         0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
                                         mem[ceil32(return_data.size) + 554 len 31]
                         userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+        else:
+            if not poolInfo[arg1].field_256:
+                poolInfo[arg1].field_512 = block.number
+                if not userInfo[arg1][address(msg.sender)].field_0:
+                    if userInfo[arg1][address(msg.sender)].field_256 > 0:
+                        revert with 0, 'SafeMath: subtraction overflow'
+                    if -userInfo[arg1][address(msg.sender)].field_256 <= 0:
+                        if arg2 <= 0:
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[325 len 31]
+                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                        else:
+                            if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                revert with 0, 'SafeMath: subtraction overflow'
+                            userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                            if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                revert with 0, 'Address: call to non-contract'
+                            if not ext_code.hash(poolInfo[arg1].field_0):
+                                revert with 0, 'Address: call to non-contract'
+                            mem[452 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                            mem[516 len 0] = 0
+                            call poolInfo[arg1].field_0 with:
+                               funct uint32(msg.sender)
+                                 gas gas_remaining wei
+                                args Mask(224, 32, arg2) << 224, mem[516 len 4]
+                            if not return_data.size:
+                                require not ext_call.success
+                                revert with 'SafeMath: division by zero'
+                            mem[484 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                            if not ext_call.success:
+                                if return_data.size > 0:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                revert with 0, 'SafeERC20: low-level call failed'
+                            if return_data.size > 0:
+                                require return_data.size >= 32
+                                if not mem[484]:
+                                    revert with 0, 
+                                                32,
+                                                42,
+                                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                mem[ceil32(return_data.size) + 563 len 22]
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 
+                                                32,
+                                                33,
+                                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                mem[ceil32(return_data.size) + 554 len 31]
+                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                    else:
+                        require ext_code.size(trifleAddress)
+                        staticcall trifleAddress.0x70a08231 with:
+                                gas gas_remaining wei
+                               args this.address
+                        if not ext_call.success:
+                            revert with ext_call.return_data[0 len return_data.size]
+                        require return_data.size >= 32
+                        require ext_code.size(trifleAddress)
+                        if -userInfo[arg1][address(msg.sender)].field_256 > ext_call.return_data[0]:
+                            call trifleAddress.0xa9059cbb with:
+                                 gas gas_remaining wei
+                                args msg.sender, ext_call.return_data[0]
+                            if not ext_call.success:
+                                revert with ext_call.return_data[0 len return_data.size]
+                            require return_data.size >= 32
+                            if not ext_call.return_data[0]:
+                                revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[327 len 29]
+                            if arg2 <= 0:
+                                if not userInfo[arg1][address(msg.sender)].field_0:
+                                    userInfo[arg1][address(msg.sender)].field_256 = 0
+                                else:
+                                    require userInfo[arg1][address(msg.sender)].field_0
+                                    if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                        revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[325 len 31]
+                                    userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                            else:
+                                if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                    revert with 0, 'SafeMath: subtraction overflow'
+                                userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                    revert with 0, 'Address: call to non-contract'
+                                if not ext_code.hash(poolInfo[arg1].field_0):
+                                    revert with 0, 'Address: call to non-contract'
+                                mem[452 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                call poolInfo[arg1].field_0 with:
+                                   funct uint32(msg.sender)
+                                     gas gas_remaining wei
+                                    args Mask(224, 32, arg2) << 224, mem[516 len 4]
+                                if not return_data.size:
+                                    require not ext_call.success
+                                    revert with 'SafeMath: division by zero'
+                                mem[484 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                if not ext_call.success:
+                                    if return_data.size > 0:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    revert with 0, 'SafeERC20: low-level call failed'
+                                if return_data.size > 0:
+                                    require return_data.size >= 32
+                                    if not mem[484]:
+                                        revert with 0, 
+                                                    32,
+                                                    42,
+                                                    0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                    mem[ceil32(return_data.size) + 563 len 22]
+                                if not userInfo[arg1][address(msg.sender)].field_0:
+                                    userInfo[arg1][address(msg.sender)].field_256 = 0
+                                else:
+                                    require userInfo[arg1][address(msg.sender)].field_0
+                                    if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                        revert with 0, 
+                                                    32,
+                                                    33,
+                                                    0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                    mem[ceil32(return_data.size) + 554 len 31]
+                                    userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                        else:
+                            call trifleAddress.0xa9059cbb with:
+                                 gas gas_remaining wei
+                                args msg.sender, -userInfo[arg1][address(msg.sender)].field_256
+                            if not ext_call.success:
+                                revert with ext_call.return_data[0 len return_data.size]
+                            require return_data.size >= 32
+                            if not ext_call.return_data[0]:
+                                revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[327 len 29]
+                            if arg2 <= 0:
+                                if not userInfo[arg1][address(msg.sender)].field_0:
+                                    userInfo[arg1][address(msg.sender)].field_256 = 0
+                                else:
+                                    require userInfo[arg1][address(msg.sender)].field_0
+                                    if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                        revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[325 len 31]
+                                    userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                            else:
+                                if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                    revert with 0, 'SafeMath: subtraction overflow'
+                                userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                    revert with 0, 'Address: call to non-contract'
+                                if not ext_code.hash(poolInfo[arg1].field_0):
+                                    revert with 0, 'Address: call to non-contract'
+                                mem[452 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                mem[516 len 0] = 0
+                                call poolInfo[arg1].field_0 with:
+                                   funct uint32(msg.sender)
+                                     gas gas_remaining wei
+                                    args Mask(224, 32, arg2) << 224, mem[516 len 4]
+                                if not return_data.size:
+                                    require not ext_call.success
+                                    revert with 'SafeMath: division by zero'
+                                mem[484 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                if not ext_call.success:
+                                    if return_data.size > 0:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    revert with 0, 'SafeERC20: low-level call failed'
+                                if return_data.size > 0:
+                                    require return_data.size >= 32
+                                    if not mem[484]:
+                                        revert with 0, 
+                                                    32,
+                                                    42,
+                                                    0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                    mem[ceil32(return_data.size) + 563 len 22]
+                                if not userInfo[arg1][address(msg.sender)].field_0:
+                                    userInfo[arg1][address(msg.sender)].field_256 = 0
+                                else:
+                                    require userInfo[arg1][address(msg.sender)].field_0
+                                    if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                        revert with 0, 
+                                                    32,
+                                                    33,
+                                                    0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                    mem[ceil32(return_data.size) + 554 len 31]
+                                    userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                else:
+                    require userInfo[arg1][address(msg.sender)].field_0
+                    if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                                    32,
+                                    33,
+                                    0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                    mem[197 len 31]
+                    if userInfo[arg1][address(msg.sender)].field_256 > userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18:
+                        revert with 0, 'SafeMath: subtraction overflow'
+                    if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= 0:
+                        if arg2 <= 0:
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[325 len 31]
+                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                        else:
+                            if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                revert with 0, 'SafeMath: subtraction overflow'
+                            userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                            if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                revert with 0, 'Address: call to non-contract'
+                            if not ext_code.hash(poolInfo[arg1].field_0):
+                                revert with 0, 'Address: call to non-contract'
+                            mem[452 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                            call poolInfo[arg1].field_0 with:
+                               funct uint32(msg.sender)
+                                 gas gas_remaining wei
+                                args Mask(224, 32, arg2) << 224, mem[516 len 4]
+                            if not return_data.size:
+                                require not ext_call.success
+                                revert with 'SafeMath: division by zero'
+                            mem[484 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                            if not ext_call.success:
+                                if return_data.size > 0:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                revert with 0, 'SafeERC20: low-level call failed'
+                            if return_data.size > 0:
+                                require return_data.size >= 32
+                                if not mem[484]:
+                                    revert with 0, 
+                                                32,
+                                                42,
+                                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                mem[ceil32(return_data.size) + 563 len 22]
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 
+                                                32,
+                                                33,
+                                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                mem[ceil32(return_data.size) + 554 len 31]
+                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                    else:
+                        require ext_code.size(trifleAddress)
+                        staticcall trifleAddress.0x70a08231 with:
+                                gas gas_remaining wei
+                               args this.address
+                        if not ext_call.success:
+                            revert with ext_call.return_data[0 len return_data.size]
+                        require return_data.size >= 32
+                        require ext_code.size(trifleAddress)
+                        if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                            call trifleAddress.0xa9059cbb with:
+                                 gas gas_remaining wei
+                                args msg.sender, (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256
+                        else:
+                            call trifleAddress.0xa9059cbb with:
+                                 gas gas_remaining wei
+                                args msg.sender, ext_call.return_data[0]
+                        if not ext_call.success:
+                            revert with ext_call.return_data[0 len return_data.size]
+                        require return_data.size >= 32
+                        if not ext_call.return_data[0]:
+                            revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[327 len 29]
+                        if arg2 <= 0:
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[325 len 31]
+                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                        else:
+                            if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                revert with 0, 'SafeMath: subtraction overflow'
+                            userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                            if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                revert with 0, 'Address: call to non-contract'
+                            if not ext_code.hash(poolInfo[arg1].field_0):
+                                revert with 0, 'Address: call to non-contract'
+                            mem[452 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                            mem[516 len 0] = 0
+                            call poolInfo[arg1].field_0 with:
+                               funct uint32(msg.sender)
+                                 gas gas_remaining wei
+                                args Mask(224, 32, arg2) << 224, mem[516 len 4]
+                            if not return_data.size:
+                                require not ext_call.success
+                                revert with 'SafeMath: division by zero'
+                            mem[484 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                            if not ext_call.success:
+                                if return_data.size > 0:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                revert with 0, 'SafeERC20: low-level call failed'
+                            if return_data.size > 0:
+                                require return_data.size >= 32
+                                if not mem[484]:
+                                    revert with 0, 
+                                                32,
+                                                42,
+                                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                mem[ceil32(return_data.size) + 563 len 22]
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 
+                                                32,
+                                                33,
+                                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                mem[ceil32(return_data.size) + 554 len 31]
+                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
             else:
                 if poolInfo[arg1].field_512 > block.number:
                     revert with 0, 'SafeMath: subtraction overflow'
@@ -1532,6 +1936,109 @@ function withdraw(uint256 arg1, uint256 arg2) payable {
                         if poolInfo[arg1].field_768 + (0 / ext_call.return_data[0]) < poolInfo[arg1].field_768:
                             revert with 0, 'SafeMath: addition overflow'
                         poolInfo[arg1].field_768 += 0 / ext_call.return_data[0]
+                        poolInfo[arg1].field_512 = block.number
+                        if not userInfo[arg1][address(msg.sender)].field_0:
+                            if userInfo[arg1][address(msg.sender)].field_256 > 0:
+                                revert with 0, 'SafeMath: subtraction overflow'
+                            if -userInfo[arg1][address(msg.sender)].field_256 > 0:
+                                require ext_code.size(trifleAddress)
+                                staticcall trifleAddress.0x70a08231 with:
+                                        gas gas_remaining wei
+                                       args this.address
+                                if not ext_call.success:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                require return_data.size >= 32
+                                require ext_code.size(trifleAddress)
+                                if -userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                                    call trifleAddress.0xa9059cbb with:
+                                         gas gas_remaining wei
+                                        args msg.sender, -userInfo[arg1][address(msg.sender)].field_256
+                                else:
+                                    call trifleAddress.0xa9059cbb with:
+                                         gas gas_remaining wei
+                                        args msg.sender, ext_call.return_data[0]
+                                if not ext_call.success:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                require return_data.size >= 32
+                                if not ext_call.return_data[0]:
+                                    revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                        else:
+                            require userInfo[arg1][address(msg.sender)].field_0
+                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[453 len 31]
+                            if userInfo[arg1][address(msg.sender)].field_256 > userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18:
+                                revert with 0, 'SafeMath: subtraction overflow'
+                            if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 > 0:
+                                require ext_code.size(trifleAddress)
+                                staticcall trifleAddress.0x70a08231 with:
+                                        gas gas_remaining wei
+                                       args this.address
+                                if not ext_call.success:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                require return_data.size >= 32
+                                require ext_code.size(trifleAddress)
+                                if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                                    call trifleAddress.0xa9059cbb with:
+                                         gas gas_remaining wei
+                                        args msg.sender, (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256
+                                else:
+                                    call trifleAddress.0xa9059cbb with:
+                                         gas gas_remaining wei
+                                        args msg.sender, ext_call.return_data[0]
+                                if not ext_call.success:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                require return_data.size >= 32
+                                if not ext_call.return_data[0]:
+                                    revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                        if arg2 <= 0:
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                        else:
+                            if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                revert with 0, 'SafeMath: subtraction overflow'
+                            userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                            if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                revert with 0, 'Address: call to non-contract'
+                            if not ext_code.hash(poolInfo[arg1].field_0):
+                                revert with 0, 'Address: call to non-contract'
+                            mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                            mem[772 len 0] = 0
+                            call poolInfo[arg1].field_0 with:
+                               funct uint32(msg.sender)
+                                 gas gas_remaining wei
+                                args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                            if not return_data.size:
+                                require not ext_call.success
+                                revert with 'SafeMath: subtraction overflow'
+                            mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                            if not ext_call.success:
+                                if return_data.size > 0:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                revert with 0, 'SafeERC20: low-level call failed'
+                            if return_data.size > 0:
+                                require return_data.size >= 32
+                                if not mem[740]:
+                                    revert with 0, 
+                                                32,
+                                                42,
+                                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                mem[ceil32(return_data.size) + 819 len 22]
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 
+                                                32,
+                                                33,
+                                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                mem[ceil32(return_data.size) + 810 len 31]
+                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
                     else:
                         require 0 / totalAllocPoint
                         if 10^18 * 0 / totalAllocPoint / 0 / totalAllocPoint != 10^18:
@@ -1542,6 +2049,363 @@ function withdraw(uint256 arg1, uint256 arg2) payable {
                         if poolInfo[arg1].field_768 + (10^18 * 0 / totalAllocPoint / ext_call.return_data[0]) < poolInfo[arg1].field_768:
                             revert with 0, 'SafeMath: addition overflow'
                         poolInfo[arg1].field_768 += 10^18 * 0 / totalAllocPoint / ext_call.return_data[0]
+                        poolInfo[arg1].field_512 = block.number
+                        if not userInfo[arg1][address(msg.sender)].field_0:
+                            if userInfo[arg1][address(msg.sender)].field_256 > 0:
+                                revert with 0, 'SafeMath: subtraction overflow'
+                            if -userInfo[arg1][address(msg.sender)].field_256 <= 0:
+                                if arg2 <= 0:
+                                    if not userInfo[arg1][address(msg.sender)].field_0:
+                                        userInfo[arg1][address(msg.sender)].field_256 = 0
+                                    else:
+                                        require userInfo[arg1][address(msg.sender)].field_0
+                                        if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                            revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                        userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                else:
+                                    if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                        revert with 0, 'SafeMath: subtraction overflow'
+                                    userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                    if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                        revert with 0, 'Address: call to non-contract'
+                                    if not ext_code.hash(poolInfo[arg1].field_0):
+                                        revert with 0, 'Address: call to non-contract'
+                                    mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                    mem[772 len 0] = 0
+                                    call poolInfo[arg1].field_0 with:
+                                       funct uint32(msg.sender)
+                                         gas gas_remaining wei
+                                        args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                    if not return_data.size:
+                                        require not ext_call.success
+                                        revert with 'SafeMath: subtraction overflow'
+                                    mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                    if not ext_call.success:
+                                        if return_data.size > 0:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        revert with 0, 'SafeERC20: low-level call failed'
+                                    if return_data.size > 0:
+                                        require return_data.size >= 32
+                                        if not mem[740]:
+                                            revert with 0, 
+                                                        32,
+                                                        42,
+                                                        0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                        mem[ceil32(return_data.size) + 819 len 22]
+                                    if not userInfo[arg1][address(msg.sender)].field_0:
+                                        userInfo[arg1][address(msg.sender)].field_256 = 0
+                                    else:
+                                        require userInfo[arg1][address(msg.sender)].field_0
+                                        if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                            revert with 0, 
+                                                        32,
+                                                        33,
+                                                        0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                        mem[ceil32(return_data.size) + 810 len 31]
+                                        userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                            else:
+                                require ext_code.size(trifleAddress)
+                                staticcall trifleAddress.0x70a08231 with:
+                                        gas gas_remaining wei
+                                       args this.address
+                                if not ext_call.success:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                require return_data.size >= 32
+                                require ext_code.size(trifleAddress)
+                                if -userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                                    call trifleAddress.0xa9059cbb with:
+                                         gas gas_remaining wei
+                                        args msg.sender, -userInfo[arg1][address(msg.sender)].field_256
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    if not ext_call.return_data[0]:
+                                        revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                    if arg2 <= 0:
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                            revert with 0, 'SafeMath: subtraction overflow'
+                                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                            revert with 0, 'Address: call to non-contract'
+                                        if not ext_code.hash(poolInfo[arg1].field_0):
+                                            revert with 0, 'Address: call to non-contract'
+                                        mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                        call poolInfo[arg1].field_0 with:
+                                           funct uint32(msg.sender)
+                                             gas gas_remaining wei
+                                            args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                        if not return_data.size:
+                                            require not ext_call.success
+                                            revert with 'SafeMath: subtraction overflow'
+                                        mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                        if not ext_call.success:
+                                            if return_data.size > 0:
+                                                revert with ext_call.return_data[0 len return_data.size]
+                                            revert with 0, 'SafeERC20: low-level call failed'
+                                        if return_data.size > 0:
+                                            require return_data.size >= 32
+                                            if not mem[740]:
+                                                revert with 0, 
+                                                            32,
+                                                            42,
+                                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                            mem[ceil32(return_data.size) + 819 len 22]
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 
+                                                            32,
+                                                            33,
+                                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                            mem[ceil32(return_data.size) + 810 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                else:
+                                    call trifleAddress.0xa9059cbb with:
+                                         gas gas_remaining wei
+                                        args msg.sender, ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    if not ext_call.return_data[0]:
+                                        revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                    if arg2 <= 0:
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                            revert with 0, 'SafeMath: subtraction overflow'
+                                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                            revert with 0, 'Address: call to non-contract'
+                                        if not ext_code.hash(poolInfo[arg1].field_0):
+                                            revert with 0, 'Address: call to non-contract'
+                                        mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                        mem[772 len 0] = 0
+                                        call poolInfo[arg1].field_0 with:
+                                           funct uint32(msg.sender)
+                                             gas gas_remaining wei
+                                            args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                        if not return_data.size:
+                                            require not ext_call.success
+                                            revert with 'SafeMath: subtraction overflow'
+                                        mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                        if not ext_call.success:
+                                            if return_data.size > 0:
+                                                revert with ext_call.return_data[0 len return_data.size]
+                                            revert with 0, 'SafeERC20: low-level call failed'
+                                        if return_data.size > 0:
+                                            require return_data.size >= 32
+                                            if not mem[740]:
+                                                revert with 0, 
+                                                            32,
+                                                            42,
+                                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                            mem[ceil32(return_data.size) + 819 len 22]
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 
+                                                            32,
+                                                            33,
+                                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                            mem[ceil32(return_data.size) + 810 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                        else:
+                            require userInfo[arg1][address(msg.sender)].field_0
+                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[453 len 31]
+                            if userInfo[arg1][address(msg.sender)].field_256 > userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18:
+                                revert with 0, 'SafeMath: subtraction overflow'
+                            if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= 0:
+                                if arg2 <= 0:
+                                    if not userInfo[arg1][address(msg.sender)].field_0:
+                                        userInfo[arg1][address(msg.sender)].field_256 = 0
+                                    else:
+                                        require userInfo[arg1][address(msg.sender)].field_0
+                                        if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                            revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                        userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                else:
+                                    if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                        revert with 0, 'SafeMath: subtraction overflow'
+                                    userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                    if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                        revert with 0, 'Address: call to non-contract'
+                                    if not ext_code.hash(poolInfo[arg1].field_0):
+                                        revert with 0, 'Address: call to non-contract'
+                                    mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                    call poolInfo[arg1].field_0 with:
+                                       funct uint32(msg.sender)
+                                         gas gas_remaining wei
+                                        args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                    if not return_data.size:
+                                        require not ext_call.success
+                                        revert with 'SafeMath: subtraction overflow'
+                                    mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                    if not ext_call.success:
+                                        if return_data.size > 0:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        revert with 0, 'SafeERC20: low-level call failed'
+                                    if return_data.size > 0:
+                                        require return_data.size >= 32
+                                        if not mem[740]:
+                                            revert with 0, 
+                                                        32,
+                                                        42,
+                                                        0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                        mem[ceil32(return_data.size) + 819 len 22]
+                                    if not userInfo[arg1][address(msg.sender)].field_0:
+                                        userInfo[arg1][address(msg.sender)].field_256 = 0
+                                    else:
+                                        require userInfo[arg1][address(msg.sender)].field_0
+                                        if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                            revert with 0, 
+                                                        32,
+                                                        33,
+                                                        0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                        mem[ceil32(return_data.size) + 810 len 31]
+                                        userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                            else:
+                                require ext_code.size(trifleAddress)
+                                staticcall trifleAddress.0x70a08231 with:
+                                        gas gas_remaining wei
+                                       args this.address
+                                if not ext_call.success:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                require return_data.size >= 32
+                                require ext_code.size(trifleAddress)
+                                if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                                    call trifleAddress.0xa9059cbb with:
+                                         gas gas_remaining wei
+                                        args msg.sender, (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    if not ext_call.return_data[0]:
+                                        revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                    if arg2 <= 0:
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                            revert with 0, 'SafeMath: subtraction overflow'
+                                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                            revert with 0, 'Address: call to non-contract'
+                                        if not ext_code.hash(poolInfo[arg1].field_0):
+                                            revert with 0, 'Address: call to non-contract'
+                                        mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                        call poolInfo[arg1].field_0 with:
+                                           funct uint32(msg.sender)
+                                             gas gas_remaining wei
+                                            args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                        if not return_data.size:
+                                            require not ext_call.success
+                                            revert with 'SafeMath: subtraction overflow'
+                                        mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                        if not ext_call.success:
+                                            if return_data.size > 0:
+                                                revert with ext_call.return_data[0 len return_data.size]
+                                            revert with 0, 'SafeERC20: low-level call failed'
+                                        if return_data.size > 0:
+                                            require return_data.size >= 32
+                                            if not mem[740]:
+                                                revert with 0, 
+                                                            32,
+                                                            42,
+                                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                            mem[ceil32(return_data.size) + 819 len 22]
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 
+                                                            32,
+                                                            33,
+                                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                            mem[ceil32(return_data.size) + 810 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                else:
+                                    call trifleAddress.0xa9059cbb with:
+                                         gas gas_remaining wei
+                                        args msg.sender, ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    if not ext_call.return_data[0]:
+                                        revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                    if arg2 <= 0:
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                            revert with 0, 'SafeMath: subtraction overflow'
+                                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                            revert with 0, 'Address: call to non-contract'
+                                        if not ext_code.hash(poolInfo[arg1].field_0):
+                                            revert with 0, 'Address: call to non-contract'
+                                        mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                        mem[772 len 0] = 0
+                                        call poolInfo[arg1].field_0 with:
+                                           funct uint32(msg.sender)
+                                             gas gas_remaining wei
+                                            args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                        if not return_data.size:
+                                            require not ext_call.success
+                                            revert with 'SafeMath: subtraction overflow'
+                                        mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                        if not ext_call.success:
+                                            if return_data.size > 0:
+                                                revert with ext_call.return_data[0 len return_data.size]
+                                            revert with 0, 'SafeERC20: low-level call failed'
+                                        if return_data.size > 0:
+                                            require return_data.size >= 32
+                                            if not mem[740]:
+                                                revert with 0, 
+                                                            32,
+                                                            42,
+                                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                            mem[ceil32(return_data.size) + 819 len 22]
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 
+                                                            32,
+                                                            33,
+                                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                            mem[ceil32(return_data.size) + 810 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
                 else:
                     require block.number - poolInfo[arg1].field_512
                     if (block.number * triflePerBlock) - (poolInfo[arg1].field_512 * triflePerBlock) / block.number - poolInfo[arg1].field_512 != triflePerBlock:
@@ -1569,6 +2433,309 @@ function withdraw(uint256 arg1, uint256 arg2) payable {
                             if poolInfo[arg1].field_768 + (0 / ext_call.return_data[0]) < poolInfo[arg1].field_768:
                                 revert with 0, 'SafeMath: addition overflow'
                             poolInfo[arg1].field_768 += 0 / ext_call.return_data[0]
+                            poolInfo[arg1].field_512 = block.number
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                if userInfo[arg1][address(msg.sender)].field_256 > 0:
+                                    revert with 0, 'SafeMath: subtraction overflow'
+                                if -userInfo[arg1][address(msg.sender)].field_256 <= 0:
+                                    if arg2 <= 0:
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                            revert with 0, 'SafeMath: subtraction overflow'
+                                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                            revert with 0, 'Address: call to non-contract'
+                                        if not ext_code.hash(poolInfo[arg1].field_0):
+                                            revert with 0, 'Address: call to non-contract'
+                                        mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                        call poolInfo[arg1].field_0 with:
+                                           funct uint32(msg.sender)
+                                             gas gas_remaining wei
+                                            args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                        if not return_data.size:
+                                            require not ext_call.success
+                                            revert with 'SafeMath: subtraction overflow'
+                                        mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                        if not ext_call.success:
+                                            if return_data.size > 0:
+                                                revert with ext_call.return_data[0 len return_data.size]
+                                            revert with 0, 'SafeERC20: low-level call failed'
+                                        if return_data.size > 0:
+                                            require return_data.size >= 32
+                                            if not mem[740]:
+                                                revert with 0, 
+                                                            32,
+                                                            42,
+                                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                            mem[ceil32(return_data.size) + 819 len 22]
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 
+                                                            32,
+                                                            33,
+                                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                            mem[ceil32(return_data.size) + 810 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                else:
+                                    require ext_code.size(trifleAddress)
+                                    staticcall trifleAddress.0x70a08231 with:
+                                            gas gas_remaining wei
+                                           args this.address
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    require ext_code.size(trifleAddress)
+                                    if -userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, -userInfo[arg1][address(msg.sender)].field_256
+                                    else:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    if not ext_call.return_data[0]:
+                                        revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                    if arg2 <= 0:
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                            revert with 0, 'SafeMath: subtraction overflow'
+                                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                            revert with 0, 'Address: call to non-contract'
+                                        if not ext_code.hash(poolInfo[arg1].field_0):
+                                            revert with 0, 'Address: call to non-contract'
+                                        mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                        mem[772 len 0] = 0
+                                        call poolInfo[arg1].field_0 with:
+                                           funct uint32(msg.sender)
+                                             gas gas_remaining wei
+                                            args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                        if not return_data.size:
+                                            require not ext_call.success
+                                            revert with 'SafeMath: subtraction overflow'
+                                        mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                        if not ext_call.success:
+                                            if return_data.size > 0:
+                                                revert with ext_call.return_data[0 len return_data.size]
+                                            revert with 0, 'SafeERC20: low-level call failed'
+                                        if return_data.size > 0:
+                                            require return_data.size >= 32
+                                            if not mem[740]:
+                                                revert with 0, 
+                                                            32,
+                                                            42,
+                                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                            mem[ceil32(return_data.size) + 819 len 22]
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 
+                                                            32,
+                                                            33,
+                                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                            mem[ceil32(return_data.size) + 810 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[453 len 31]
+                                if userInfo[arg1][address(msg.sender)].field_256 > userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18:
+                                    revert with 0, 'SafeMath: subtraction overflow'
+                                if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= 0:
+                                    if arg2 <= 0:
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                            revert with 0, 'SafeMath: subtraction overflow'
+                                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                            revert with 0, 'Address: call to non-contract'
+                                        if not ext_code.hash(poolInfo[arg1].field_0):
+                                            revert with 0, 'Address: call to non-contract'
+                                        mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                        call poolInfo[arg1].field_0 with:
+                                           funct uint32(msg.sender)
+                                             gas gas_remaining wei
+                                            args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                        if not return_data.size:
+                                            require not ext_call.success
+                                            revert with 'SafeMath: subtraction overflow'
+                                        mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                        if not ext_call.success:
+                                            if return_data.size > 0:
+                                                revert with ext_call.return_data[0 len return_data.size]
+                                            revert with 0, 'SafeERC20: low-level call failed'
+                                        if return_data.size > 0:
+                                            require return_data.size >= 32
+                                            if not mem[740]:
+                                                revert with 0, 
+                                                            32,
+                                                            42,
+                                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                            mem[ceil32(return_data.size) + 819 len 22]
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 
+                                                            32,
+                                                            33,
+                                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                            mem[ceil32(return_data.size) + 810 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                else:
+                                    require ext_code.size(trifleAddress)
+                                    staticcall trifleAddress.0x70a08231 with:
+                                            gas gas_remaining wei
+                                           args this.address
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    require ext_code.size(trifleAddress)
+                                    if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        require return_data.size >= 32
+                                        if not ext_call.return_data[0]:
+                                            revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                        if arg2 <= 0:
+                                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                                            else:
+                                                require userInfo[arg1][address(msg.sender)].field_0
+                                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                        else:
+                                            if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                                revert with 0, 'SafeMath: subtraction overflow'
+                                            userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                            if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                                revert with 0, 'Address: call to non-contract'
+                                            if not ext_code.hash(poolInfo[arg1].field_0):
+                                                revert with 0, 'Address: call to non-contract'
+                                            mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                            call poolInfo[arg1].field_0 with:
+                                               funct uint32(msg.sender)
+                                                 gas gas_remaining wei
+                                                args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                            if not return_data.size:
+                                                require not ext_call.success
+                                                revert with 'SafeMath: subtraction overflow'
+                                            mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                            if not ext_call.success:
+                                                if return_data.size > 0:
+                                                    revert with ext_call.return_data[0 len return_data.size]
+                                                revert with 0, 'SafeERC20: low-level call failed'
+                                            if return_data.size > 0:
+                                                require return_data.size >= 32
+                                                if not mem[740]:
+                                                    revert with 0, 
+                                                                32,
+                                                                42,
+                                                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                                mem[ceil32(return_data.size) + 819 len 22]
+                                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                                            else:
+                                                require userInfo[arg1][address(msg.sender)].field_0
+                                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                    revert with 0, 
+                                                                32,
+                                                                33,
+                                                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                                mem[ceil32(return_data.size) + 810 len 31]
+                                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        require return_data.size >= 32
+                                        if not ext_call.return_data[0]:
+                                            revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                        if arg2 <= 0:
+                                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                                            else:
+                                                require userInfo[arg1][address(msg.sender)].field_0
+                                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                        else:
+                                            if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                                revert with 0, 'SafeMath: subtraction overflow'
+                                            userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                            if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                                revert with 0, 'Address: call to non-contract'
+                                            if not ext_code.hash(poolInfo[arg1].field_0):
+                                                revert with 0, 'Address: call to non-contract'
+                                            mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                            mem[772 len 0] = 0
+                                            call poolInfo[arg1].field_0 with:
+                                               funct uint32(msg.sender)
+                                                 gas gas_remaining wei
+                                                args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                            if not return_data.size:
+                                                require not ext_call.success
+                                                revert with 'SafeMath: subtraction overflow'
+                                            mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                            if not ext_call.success:
+                                                if return_data.size > 0:
+                                                    revert with ext_call.return_data[0 len return_data.size]
+                                                revert with 0, 'SafeERC20: low-level call failed'
+                                            if return_data.size > 0:
+                                                require return_data.size >= 32
+                                                if not mem[740]:
+                                                    revert with 0, 
+                                                                32,
+                                                                42,
+                                                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                                mem[ceil32(return_data.size) + 819 len 22]
+                                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                                            else:
+                                                require userInfo[arg1][address(msg.sender)].field_0
+                                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                    revert with 0, 
+                                                                32,
+                                                                33,
+                                                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                                mem[ceil32(return_data.size) + 810 len 31]
+                                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
                         else:
                             require 0 / totalAllocPoint
                             if 10^18 * 0 / totalAllocPoint / 0 / totalAllocPoint != 10^18:
@@ -1579,6 +2746,260 @@ function withdraw(uint256 arg1, uint256 arg2) payable {
                             if poolInfo[arg1].field_768 + (10^18 * 0 / totalAllocPoint / ext_call.return_data[0]) < poolInfo[arg1].field_768:
                                 revert with 0, 'SafeMath: addition overflow'
                             poolInfo[arg1].field_768 += 10^18 * 0 / totalAllocPoint / ext_call.return_data[0]
+                            poolInfo[arg1].field_512 = block.number
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                if userInfo[arg1][address(msg.sender)].field_256 > 0:
+                                    revert with 0, 'SafeMath: subtraction overflow'
+                                if -userInfo[arg1][address(msg.sender)].field_256 <= 0:
+                                    if arg2 <= 0:
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                            revert with 0, 'SafeMath: subtraction overflow'
+                                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                            revert with 0, 'Address: call to non-contract'
+                                        if not ext_code.hash(poolInfo[arg1].field_0):
+                                            revert with 0, 'Address: call to non-contract'
+                                        mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                        call poolInfo[arg1].field_0 with:
+                                           funct uint32(msg.sender)
+                                             gas gas_remaining wei
+                                            args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                        if not return_data.size:
+                                            require not ext_call.success
+                                            revert with 'SafeMath: subtraction overflow'
+                                        mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                        if not ext_call.success:
+                                            if return_data.size > 0:
+                                                revert with ext_call.return_data[0 len return_data.size]
+                                            revert with 0, 'SafeERC20: low-level call failed'
+                                        if return_data.size > 0:
+                                            require return_data.size >= 32
+                                            if not mem[740]:
+                                                revert with 0, 
+                                                            32,
+                                                            42,
+                                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                            mem[ceil32(return_data.size) + 819 len 22]
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 
+                                                            32,
+                                                            33,
+                                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                            mem[ceil32(return_data.size) + 810 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                else:
+                                    require ext_code.size(trifleAddress)
+                                    staticcall trifleAddress.0x70a08231 with:
+                                            gas gas_remaining wei
+                                           args this.address
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    require ext_code.size(trifleAddress)
+                                    if -userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, -userInfo[arg1][address(msg.sender)].field_256
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        require return_data.size >= 32
+                                        if not ext_call.return_data[0]:
+                                            revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                        if arg2 <= 0:
+                                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                                            else:
+                                                require userInfo[arg1][address(msg.sender)].field_0
+                                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                        else:
+                                            if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                                revert with 0, 'SafeMath: subtraction overflow'
+                                            userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                            if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                                revert with 0, 'Address: call to non-contract'
+                                            if not ext_code.hash(poolInfo[arg1].field_0):
+                                                revert with 0, 'Address: call to non-contract'
+                                            mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                            call poolInfo[arg1].field_0 with:
+                                               funct uint32(msg.sender)
+                                                 gas gas_remaining wei
+                                                args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                            if not return_data.size:
+                                                require not ext_call.success
+                                                revert with 'SafeMath: subtraction overflow'
+                                            mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                            if not ext_call.success:
+                                                if return_data.size > 0:
+                                                    revert with ext_call.return_data[0 len return_data.size]
+                                                revert with 0, 'SafeERC20: low-level call failed'
+                                            if return_data.size > 0:
+                                                require return_data.size >= 32
+                                                if not mem[740]:
+                                                    revert with 0, 
+                                                                32,
+                                                                42,
+                                                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                                mem[ceil32(return_data.size) + 819 len 22]
+                                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                                            else:
+                                                require userInfo[arg1][address(msg.sender)].field_0
+                                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                    revert with 0, 
+                                                                32,
+                                                                33,
+                                                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                                mem[ceil32(return_data.size) + 810 len 31]
+                                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        require return_data.size >= 32
+                                        if not ext_call.return_data[0]:
+                                            revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                        if arg2 <= 0:
+                                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                                            else:
+                                                require userInfo[arg1][address(msg.sender)].field_0
+                                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                        else:
+                                            if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                                revert with 0, 'SafeMath: subtraction overflow'
+                                            userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                            if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                                revert with 0, 'Address: call to non-contract'
+                                            if not ext_code.hash(poolInfo[arg1].field_0):
+                                                revert with 0, 'Address: call to non-contract'
+                                            mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                            mem[772 len 0] = 0
+                                            call poolInfo[arg1].field_0 with:
+                                               funct uint32(msg.sender)
+                                                 gas gas_remaining wei
+                                                args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                            if not return_data.size:
+                                                require not ext_call.success
+                                                revert with 'SafeMath: subtraction overflow'
+                                            mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                            if not ext_call.success:
+                                                if return_data.size > 0:
+                                                    revert with ext_call.return_data[0 len return_data.size]
+                                                revert with 0, 'SafeERC20: low-level call failed'
+                                            if return_data.size > 0:
+                                                require return_data.size >= 32
+                                                if not mem[740]:
+                                                    revert with 0, 
+                                                                32,
+                                                                42,
+                                                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                                mem[ceil32(return_data.size) + 819 len 22]
+                                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                                            else:
+                                                require userInfo[arg1][address(msg.sender)].field_0
+                                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                    revert with 0, 
+                                                                32,
+                                                                33,
+                                                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                                mem[ceil32(return_data.size) + 810 len 31]
+                                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[453 len 31]
+                                if userInfo[arg1][address(msg.sender)].field_256 > userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18:
+                                    revert with 0, 'SafeMath: subtraction overflow'
+                                if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 > 0:
+                                    require ext_code.size(trifleAddress)
+                                    staticcall trifleAddress.0x70a08231 with:
+                                            gas gas_remaining wei
+                                           args this.address
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    require ext_code.size(trifleAddress)
+                                    if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256
+                                    else:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    if not ext_call.return_data[0]:
+                                        revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                if arg2 <= 0:
+                                    if not userInfo[arg1][address(msg.sender)].field_0:
+                                        userInfo[arg1][address(msg.sender)].field_256 = 0
+                                    else:
+                                        require userInfo[arg1][address(msg.sender)].field_0
+                                        if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                            revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                        userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                else:
+                                    if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                        revert with 0, 'SafeMath: subtraction overflow'
+                                    userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                    if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                        revert with 0, 'Address: call to non-contract'
+                                    if not ext_code.hash(poolInfo[arg1].field_0):
+                                        revert with 0, 'Address: call to non-contract'
+                                    mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                    mem[772 len 0] = 0
+                                    call poolInfo[arg1].field_0 with:
+                                       funct uint32(msg.sender)
+                                         gas gas_remaining wei
+                                        args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                    if not return_data.size:
+                                        require not ext_call.success
+                                        revert with 'SafeMath: subtraction overflow'
+                                    mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                    if not ext_call.success:
+                                        if return_data.size > 0:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        revert with 0, 'SafeERC20: low-level call failed'
+                                    if return_data.size > 0:
+                                        require return_data.size >= 32
+                                        if not mem[740]:
+                                            revert with 0, 
+                                                        32,
+                                                        42,
+                                                        0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                        mem[ceil32(return_data.size) + 819 len 22]
+                                    if not userInfo[arg1][address(msg.sender)].field_0:
+                                        userInfo[arg1][address(msg.sender)].field_256 = 0
+                                    else:
+                                        require userInfo[arg1][address(msg.sender)].field_0
+                                        if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                            revert with 0, 
+                                                        32,
+                                                        33,
+                                                        0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                        mem[ceil32(return_data.size) + 810 len 31]
+                                        userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
                     else:
                         require (block.number * triflePerBlock) - (poolInfo[arg1].field_512 * triflePerBlock)
                         if (block.number * triflePerBlock * poolInfo[arg1].field_256) - (poolInfo[arg1].field_512 * triflePerBlock * poolInfo[arg1].field_256) / (block.number * triflePerBlock) - (poolInfo[arg1].field_512 * triflePerBlock) != poolInfo[arg1].field_256:
@@ -1605,6 +3026,261 @@ function withdraw(uint256 arg1, uint256 arg2) payable {
                             if poolInfo[arg1].field_768 + (0 / ext_call.return_data[0]) < poolInfo[arg1].field_768:
                                 revert with 0, 'SafeMath: addition overflow'
                             poolInfo[arg1].field_768 += 0 / ext_call.return_data[0]
+                            poolInfo[arg1].field_512 = block.number
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                if userInfo[arg1][address(msg.sender)].field_256 > 0:
+                                    revert with 0, 'SafeMath: subtraction overflow'
+                                if -userInfo[arg1][address(msg.sender)].field_256 > 0:
+                                    require ext_code.size(trifleAddress)
+                                    staticcall trifleAddress.0x70a08231 with:
+                                            gas gas_remaining wei
+                                           args this.address
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    require ext_code.size(trifleAddress)
+                                    if -userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, -userInfo[arg1][address(msg.sender)].field_256
+                                    else:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    if not ext_call.return_data[0]:
+                                        revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                if arg2 <= 0:
+                                    if not userInfo[arg1][address(msg.sender)].field_0:
+                                        userInfo[arg1][address(msg.sender)].field_256 = 0
+                                    else:
+                                        require userInfo[arg1][address(msg.sender)].field_0
+                                        if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                            revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                        userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                else:
+                                    if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                        revert with 0, 'SafeMath: subtraction overflow'
+                                    userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                    if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                        revert with 0, 'Address: call to non-contract'
+                                    if not ext_code.hash(poolInfo[arg1].field_0):
+                                        revert with 0, 'Address: call to non-contract'
+                                    mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                    mem[772 len 0] = 0
+                                    call poolInfo[arg1].field_0 with:
+                                       funct uint32(msg.sender)
+                                         gas gas_remaining wei
+                                        args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                    if not return_data.size:
+                                        require not ext_call.success
+                                        revert with 'SafeMath: subtraction overflow'
+                                    mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                    if not ext_call.success:
+                                        if return_data.size > 0:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        revert with 0, 'SafeERC20: low-level call failed'
+                                    if return_data.size > 0:
+                                        require return_data.size >= 32
+                                        if not mem[740]:
+                                            revert with 0, 
+                                                        32,
+                                                        42,
+                                                        0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                        mem[ceil32(return_data.size) + 819 len 22]
+                                    if not userInfo[arg1][address(msg.sender)].field_0:
+                                        userInfo[arg1][address(msg.sender)].field_256 = 0
+                                    else:
+                                        require userInfo[arg1][address(msg.sender)].field_0
+                                        if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                            revert with 0, 
+                                                        32,
+                                                        33,
+                                                        0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                        mem[ceil32(return_data.size) + 810 len 31]
+                                        userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[453 len 31]
+                                if userInfo[arg1][address(msg.sender)].field_256 > userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18:
+                                    revert with 0, 'SafeMath: subtraction overflow'
+                                if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= 0:
+                                    if arg2 <= 0:
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                            revert with 0, 'SafeMath: subtraction overflow'
+                                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                            revert with 0, 'Address: call to non-contract'
+                                        if not ext_code.hash(poolInfo[arg1].field_0):
+                                            revert with 0, 'Address: call to non-contract'
+                                        mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                        mem[772 len 0] = 0
+                                        call poolInfo[arg1].field_0 with:
+                                           funct uint32(msg.sender)
+                                             gas gas_remaining wei
+                                            args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                        if not return_data.size:
+                                            require not ext_call.success
+                                            revert with 'SafeMath: subtraction overflow'
+                                        mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                        if not ext_call.success:
+                                            if return_data.size > 0:
+                                                revert with ext_call.return_data[0 len return_data.size]
+                                            revert with 0, 'SafeERC20: low-level call failed'
+                                        if return_data.size > 0:
+                                            require return_data.size >= 32
+                                            if not mem[740]:
+                                                revert with 0, 
+                                                            32,
+                                                            42,
+                                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                            mem[ceil32(return_data.size) + 819 len 22]
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 
+                                                            32,
+                                                            33,
+                                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                            mem[ceil32(return_data.size) + 810 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                else:
+                                    require ext_code.size(trifleAddress)
+                                    staticcall trifleAddress.0x70a08231 with:
+                                            gas gas_remaining wei
+                                           args this.address
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    require ext_code.size(trifleAddress)
+                                    if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 > ext_call.return_data[0]:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        require return_data.size >= 32
+                                        if not ext_call.return_data[0]:
+                                            revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                        if arg2 <= 0:
+                                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                                            else:
+                                                require userInfo[arg1][address(msg.sender)].field_0
+                                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                        else:
+                                            if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                                revert with 0, 'SafeMath: subtraction overflow'
+                                            userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                            if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                                revert with 0, 'Address: call to non-contract'
+                                            if not ext_code.hash(poolInfo[arg1].field_0):
+                                                revert with 0, 'Address: call to non-contract'
+                                            mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                            call poolInfo[arg1].field_0 with:
+                                               funct uint32(msg.sender)
+                                                 gas gas_remaining wei
+                                                args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                            if not return_data.size:
+                                                require not ext_call.success
+                                                revert with 'SafeMath: subtraction overflow'
+                                            mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                            if not ext_call.success:
+                                                if return_data.size > 0:
+                                                    revert with ext_call.return_data[0 len return_data.size]
+                                                revert with 0, 'SafeERC20: low-level call failed'
+                                            if return_data.size > 0:
+                                                require return_data.size >= 32
+                                                if not mem[740]:
+                                                    revert with 0, 
+                                                                32,
+                                                                42,
+                                                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                                mem[ceil32(return_data.size) + 819 len 22]
+                                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                                            else:
+                                                require userInfo[arg1][address(msg.sender)].field_0
+                                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                    revert with 0, 
+                                                                32,
+                                                                33,
+                                                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                                mem[ceil32(return_data.size) + 810 len 31]
+                                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        require return_data.size >= 32
+                                        if not ext_call.return_data[0]:
+                                            revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                        if arg2 <= 0:
+                                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                                            else:
+                                                require userInfo[arg1][address(msg.sender)].field_0
+                                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                        else:
+                                            if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                                revert with 0, 'SafeMath: subtraction overflow'
+                                            userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                            if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                                revert with 0, 'Address: call to non-contract'
+                                            if not ext_code.hash(poolInfo[arg1].field_0):
+                                                revert with 0, 'Address: call to non-contract'
+                                            mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                            mem[772 len 0] = 0
+                                            call poolInfo[arg1].field_0 with:
+                                               funct uint32(msg.sender)
+                                                 gas gas_remaining wei
+                                                args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                            if not return_data.size:
+                                                require not ext_call.success
+                                                revert with 'SafeMath: subtraction overflow'
+                                            mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                            if not ext_call.success:
+                                                if return_data.size > 0:
+                                                    revert with ext_call.return_data[0 len return_data.size]
+                                                revert with 0, 'SafeERC20: low-level call failed'
+                                            if return_data.size > 0:
+                                                require return_data.size >= 32
+                                                if not mem[740]:
+                                                    revert with 0, 
+                                                                32,
+                                                                42,
+                                                                0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                                mem[ceil32(return_data.size) + 819 len 22]
+                                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                                userInfo[arg1][address(msg.sender)].field_256 = 0
+                                            else:
+                                                require userInfo[arg1][address(msg.sender)].field_0
+                                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                    revert with 0, 
+                                                                32,
+                                                                33,
+                                                                0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                                mem[ceil32(return_data.size) + 810 len 31]
+                                                userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
                         else:
                             require (block.number * triflePerBlock * poolInfo[arg1].field_256) - (poolInfo[arg1].field_512 * triflePerBlock * poolInfo[arg1].field_256) / totalAllocPoint
                             if 10^18 * (block.number * triflePerBlock * poolInfo[arg1].field_256) - (poolInfo[arg1].field_512 * triflePerBlock * poolInfo[arg1].field_256) / totalAllocPoint / (block.number * triflePerBlock * poolInfo[arg1].field_256) - (poolInfo[arg1].field_512 * triflePerBlock * poolInfo[arg1].field_256) / totalAllocPoint != 10^18:
@@ -1615,108 +3291,256 @@ function withdraw(uint256 arg1, uint256 arg2) payable {
                             if poolInfo[arg1].field_768 + (10^18 * (block.number * triflePerBlock * poolInfo[arg1].field_256) - (poolInfo[arg1].field_512 * triflePerBlock * poolInfo[arg1].field_256) / totalAllocPoint / ext_call.return_data[0]) < poolInfo[arg1].field_768:
                                 revert with 0, 'SafeMath: addition overflow'
                             poolInfo[arg1].field_768 += 10^18 * (block.number * triflePerBlock * poolInfo[arg1].field_256) - (poolInfo[arg1].field_512 * triflePerBlock * poolInfo[arg1].field_256) / totalAllocPoint / ext_call.return_data[0]
-                poolInfo[arg1].field_512 = block.number
-                if not userInfo[arg1][address(msg.sender)].field_0:
-                    if userInfo[arg1][address(msg.sender)].field_256 > 0:
-                        revert with 0, 'SafeMath: subtraction overflow'
-                    if -userInfo[arg1][address(msg.sender)].field_256 > 0:
-                        require ext_code.size(trifleAddress)
-                        staticcall trifleAddress.0x70a08231 with:
-                                gas gas_remaining wei
-                               args this.address
-                        if not ext_call.success:
-                            revert with ext_call.return_data[0 len return_data.size]
-                        require return_data.size >= 32
-                        require ext_code.size(trifleAddress)
-                        if -userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
-                            call trifleAddress.0xa9059cbb with:
-                                 gas gas_remaining wei
-                                args msg.sender, -userInfo[arg1][address(msg.sender)].field_256
-                        else:
-                            call trifleAddress.0xa9059cbb with:
-                                 gas gas_remaining wei
-                                args msg.sender, ext_call.return_data[0]
-                        if not ext_call.success:
-                            revert with ext_call.return_data[0 len return_data.size]
-                        require return_data.size >= 32
-                        if not ext_call.return_data[0]:
-                            revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
-                else:
-                    require userInfo[arg1][address(msg.sender)].field_0
-                    if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
-                        revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[453 len 31]
-                    if userInfo[arg1][address(msg.sender)].field_256 > userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18:
-                        revert with 0, 'SafeMath: subtraction overflow'
-                    if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 > 0:
-                        require ext_code.size(trifleAddress)
-                        staticcall trifleAddress.0x70a08231 with:
-                                gas gas_remaining wei
-                               args this.address
-                        if not ext_call.success:
-                            revert with ext_call.return_data[0 len return_data.size]
-                        require return_data.size >= 32
-                        require ext_code.size(trifleAddress)
-                        if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
-                            call trifleAddress.0xa9059cbb with:
-                                 gas gas_remaining wei
-                                args msg.sender, (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256
-                        else:
-                            call trifleAddress.0xa9059cbb with:
-                                 gas gas_remaining wei
-                                args msg.sender, ext_call.return_data[0]
-                        if not ext_call.success:
-                            revert with ext_call.return_data[0 len return_data.size]
-                        require return_data.size >= 32
-                        if not ext_call.return_data[0]:
-                            revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
-                if arg2 <= 0:
-                    if not userInfo[arg1][address(msg.sender)].field_0:
-                        userInfo[arg1][address(msg.sender)].field_256 = 0
-                    else:
-                        require userInfo[arg1][address(msg.sender)].field_0
-                        if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
-                            revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
-                        userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
-                else:
-                    if arg2 > userInfo[arg1][address(msg.sender)].field_0:
-                        revert with 0, 'SafeMath: subtraction overflow'
-                    userInfo[arg1][address(msg.sender)].field_0 -= arg2
-                    if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
-                        revert with 0, 'Address: call to non-contract'
-                    if not ext_code.hash(poolInfo[arg1].field_0):
-                        revert with 0, 'Address: call to non-contract'
-                    mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
-                    call poolInfo[arg1].field_0 with:
-                       funct uint32(msg.sender)
-                         gas gas_remaining wei
-                        args Mask(224, 32, arg2) << 224, mem[772 len 4]
-                    if not return_data.size:
-                        require not ext_call.success
-                        revert with 'SafeMath: subtraction overflow'
-                    mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
-                    if not ext_call.success:
-                        if return_data.size > 0:
-                            revert with ext_call.return_data[0 len return_data.size]
-                        revert with 0, 'SafeERC20: low-level call failed'
-                    if return_data.size > 0:
-                        require return_data.size >= 32
-                        if not mem[740]:
-                            revert with 0, 
-                                        32,
-                                        42,
-                                        0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                        mem[ceil32(return_data.size) + 819 len 22]
-                    if not userInfo[arg1][address(msg.sender)].field_0:
-                        userInfo[arg1][address(msg.sender)].field_256 = 0
-                    else:
-                        require userInfo[arg1][address(msg.sender)].field_0
-                        if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
-                            revert with 0, 
-                                        32,
-                                        33,
-                                        0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
-                                        mem[ceil32(return_data.size) + 810 len 31]
-                        userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                            poolInfo[arg1].field_512 = block.number
+                            if not userInfo[arg1][address(msg.sender)].field_0:
+                                if userInfo[arg1][address(msg.sender)].field_256 > 0:
+                                    revert with 0, 'SafeMath: subtraction overflow'
+                                if -userInfo[arg1][address(msg.sender)].field_256 <= 0:
+                                    if arg2 <= 0:
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                            revert with 0, 'SafeMath: subtraction overflow'
+                                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                            revert with 0, 'Address: call to non-contract'
+                                        if not ext_code.hash(poolInfo[arg1].field_0):
+                                            revert with 0, 'Address: call to non-contract'
+                                        mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                        call poolInfo[arg1].field_0 with:
+                                           funct uint32(msg.sender)
+                                             gas gas_remaining wei
+                                            args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                        if not return_data.size:
+                                            require not ext_call.success
+                                            revert with 'SafeMath: subtraction overflow'
+                                        mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                        if not ext_call.success:
+                                            if return_data.size > 0:
+                                                revert with ext_call.return_data[0 len return_data.size]
+                                            revert with 0, 'SafeERC20: low-level call failed'
+                                        if return_data.size > 0:
+                                            require return_data.size >= 32
+                                            if not mem[740]:
+                                                revert with 0, 
+                                                            32,
+                                                            42,
+                                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                            mem[ceil32(return_data.size) + 819 len 22]
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 
+                                                            32,
+                                                            33,
+                                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                            mem[ceil32(return_data.size) + 810 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                else:
+                                    require ext_code.size(trifleAddress)
+                                    staticcall trifleAddress.0x70a08231 with:
+                                            gas gas_remaining wei
+                                           args this.address
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    require ext_code.size(trifleAddress)
+                                    if -userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, -userInfo[arg1][address(msg.sender)].field_256
+                                    else:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    if not ext_call.return_data[0]:
+                                        revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                    if arg2 <= 0:
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                            revert with 0, 'SafeMath: subtraction overflow'
+                                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                            revert with 0, 'Address: call to non-contract'
+                                        if not ext_code.hash(poolInfo[arg1].field_0):
+                                            revert with 0, 'Address: call to non-contract'
+                                        mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                        mem[772 len 0] = 0
+                                        call poolInfo[arg1].field_0 with:
+                                           funct uint32(msg.sender)
+                                             gas gas_remaining wei
+                                            args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                        if not return_data.size:
+                                            require not ext_call.success
+                                            revert with 'SafeMath: subtraction overflow'
+                                        mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                        if not ext_call.success:
+                                            if return_data.size > 0:
+                                                revert with ext_call.return_data[0 len return_data.size]
+                                            revert with 0, 'SafeERC20: low-level call failed'
+                                        if return_data.size > 0:
+                                            require return_data.size >= 32
+                                            if not mem[740]:
+                                                revert with 0, 
+                                                            32,
+                                                            42,
+                                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                            mem[ceil32(return_data.size) + 819 len 22]
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 
+                                                            32,
+                                                            33,
+                                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                            mem[ceil32(return_data.size) + 810 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                            else:
+                                require userInfo[arg1][address(msg.sender)].field_0
+                                if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                    revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[453 len 31]
+                                if userInfo[arg1][address(msg.sender)].field_256 > userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18:
+                                    revert with 0, 'SafeMath: subtraction overflow'
+                                if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= 0:
+                                    if arg2 <= 0:
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                            revert with 0, 'SafeMath: subtraction overflow'
+                                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                            revert with 0, 'Address: call to non-contract'
+                                        if not ext_code.hash(poolInfo[arg1].field_0):
+                                            revert with 0, 'Address: call to non-contract'
+                                        mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                        call poolInfo[arg1].field_0 with:
+                                           funct uint32(msg.sender)
+                                             gas gas_remaining wei
+                                            args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                        if not return_data.size:
+                                            require not ext_call.success
+                                            revert with 'SafeMath: subtraction overflow'
+                                        mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                        if not ext_call.success:
+                                            if return_data.size > 0:
+                                                revert with ext_call.return_data[0 len return_data.size]
+                                            revert with 0, 'SafeERC20: low-level call failed'
+                                        if return_data.size > 0:
+                                            require return_data.size >= 32
+                                            if not mem[740]:
+                                                revert with 0, 
+                                                            32,
+                                                            42,
+                                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                            mem[ceil32(return_data.size) + 819 len 22]
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 
+                                                            32,
+                                                            33,
+                                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                            mem[ceil32(return_data.size) + 810 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                else:
+                                    require ext_code.size(trifleAddress)
+                                    staticcall trifleAddress.0x70a08231 with:
+                                            gas gas_remaining wei
+                                           args this.address
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    require ext_code.size(trifleAddress)
+                                    if (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256 <= ext_call.return_data[0]:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, (userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18) - userInfo[arg1][address(msg.sender)].field_256
+                                    else:
+                                        call trifleAddress.0xa9059cbb with:
+                                             gas gas_remaining wei
+                                            args msg.sender, ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 32
+                                    if not ext_call.return_data[0]:
+                                        revert with 0, 32, 35, 0x7773616665547269666c655472616e736665723a205472616e73666572206661696c65, mem[583 len 29]
+                                    if arg2 <= 0:
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 32, 33, 0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f, mem[581 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
+                                    else:
+                                        if arg2 > userInfo[arg1][address(msg.sender)].field_0:
+                                            revert with 0, 'SafeMath: subtraction overflow'
+                                        userInfo[arg1][address(msg.sender)].field_0 -= arg2
+                                        if ext_code.hash(poolInfo[arg1].field_0) == 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470:
+                                            revert with 0, 'Address: call to non-contract'
+                                        if not ext_code.hash(poolInfo[arg1].field_0):
+                                            revert with 0, 'Address: call to non-contract'
+                                        mem[708 len 64] = unknown_0xa9059cbb(?????), msg.sender, Mask(224, 32, arg2) >> 32
+                                        mem[772 len 0] = 0
+                                        call poolInfo[arg1].field_0 with:
+                                           funct uint32(msg.sender)
+                                             gas gas_remaining wei
+                                            args Mask(224, 32, arg2) << 224, mem[772 len 4]
+                                        if not return_data.size:
+                                            require not ext_call.success
+                                            revert with 'SafeMath: subtraction overflow'
+                                        mem[740 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                                        if not ext_call.success:
+                                            if return_data.size > 0:
+                                                revert with ext_call.return_data[0 len return_data.size]
+                                            revert with 0, 'SafeERC20: low-level call failed'
+                                        if return_data.size > 0:
+                                            require return_data.size >= 32
+                                            if not mem[740]:
+                                                revert with 0, 
+                                                            32,
+                                                            42,
+                                                            0x735361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                                            mem[ceil32(return_data.size) + 819 len 22]
+                                        if not userInfo[arg1][address(msg.sender)].field_0:
+                                            userInfo[arg1][address(msg.sender)].field_256 = 0
+                                        else:
+                                            require userInfo[arg1][address(msg.sender)].field_0
+                                            if userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / userInfo[arg1][address(msg.sender)].field_0 != poolInfo[arg1].field_768:
+                                                revert with 0, 
+                                                            32,
+                                                            33,
+                                                            0x73536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f,
+                                                            mem[ceil32(return_data.size) + 810 len 31]
+                                            userInfo[arg1][address(msg.sender)].field_256 = userInfo[arg1][address(msg.sender)].field_0 * poolInfo[arg1].field_768 / 10^18
     emit Withdraw(arg2, msg.sender, arg1);
     stor1 = 1
 }

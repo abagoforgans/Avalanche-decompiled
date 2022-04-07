@@ -287,6 +287,7 @@ function withdraw(address arg1) {
     if not ext_code.size(arg1):
         revert with 0, 'Address: call to non-contract'
     mem[260 len 64] = unknown_0xa9059cbb(?????), Mask(224, 0, stor7), uint32(stor7), ext_call.return_data[0 len 28]
+    mem[324 len 0] = 0
     call arg1 with:
        funct uint32(stor7)
          gas gas_remaining wei
@@ -441,10 +442,11 @@ function deposit() {
         if not ext_code.size(wantAddress):
             revert with 0, 'Address: call to non-contract'
         mem[260 len 64] = approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), 0
+        mem[324 len 0] = 0
         call wantAddress with:
            funct uint32(stor11)
              gas gas_remaining wei
-            args 0, mem[324 len 4]
+            args Mask(480, -256, approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), 0) << 256, mem[324 len 4]
         if not return_data.size:
             if not ext_call.success:
                 revert with approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), 0
@@ -466,11 +468,11 @@ function deposit() {
                                 mem[382 len 10]
             if not ext_code.size(wantAddress):
                 revert with 0, 'Address: call to non-contract'
-            mem[424 len 64] = approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), ext_call.return_data[0 len 28]
+            mem[424 len 64] = 0, address(rewardsAddress), ext_call.return_data[0 len 28]
             call wantAddress with:
                funct uint32(stor11)
                  gas gas_remaining wei
-                args Mask(480, -256, ext_call.return_data[0 len 28]) << 256, mem[488 len 4]
+                args ext_call.return_data[0], mem[360 len 28], mem[488 len 4]
             if not return_data.size:
                 if not ext_call.success:
                     revert with approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), 0
@@ -490,10 +492,6 @@ function deposit() {
                                     42,
                                     0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
                                     mem[ceil32(return_data.size) + 535 len 22]
-            require ext_code.size(address(rewardsAddress))
-            call address(rewardsAddress).stake(uint256 rg1) with:
-                 gas gas_remaining wei
-                args ext_call.return_data[0]
         else:
             mem[292 len return_data.size] = ext_call.return_data[0 len return_data.size]
             if not ext_call.success:
@@ -524,12 +522,11 @@ function deposit() {
                                 mem[ceil32(return_data.size) + 383 len 10]
             if not ext_code.size(wantAddress):
                 revert with 0, 'Address: call to non-contract'
-            mem[ceil32(return_data.size) + 425 len 64] = approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), ext_call.return_data[0 len 28]
-            mem[ceil32(return_data.size) + 517 len 4] = 0
+            mem[ceil32(return_data.size) + 425 len 64] = 0, address(rewardsAddress), ext_call.return_data[0 len 28]
             call wantAddress with:
                funct uint32(stor11)
                  gas gas_remaining wei
-                args Mask(480, -256, ext_call.return_data[0 len 28]) << 256, mem[ceil32(return_data.size) + 489 len 4]
+                args ext_call.return_data[0], mem[ceil32(return_data.size) + 361 len 28], mem[ceil32(return_data.size) + 489 len 4]
             if not return_data.size:
                 if not ext_call.success:
                     revert with approve(address rg1, uint256 rg2), Mask(224, 0, stor11), uint32(stor11), 0
@@ -539,10 +536,6 @@ function deposit() {
                                 42,
                                 0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
                                 mem[ceil32(return_data.size) + 535 len 22]
-                require ext_code.size(address(rewardsAddress))
-                call address(rewardsAddress).stake(uint256 rg1) with:
-                     gas gas_remaining wei
-                    args ext_call.return_data[0]
             else:
                 mem[ceil32(return_data.size) + 457 len return_data.size] = ext_call.return_data[0 len return_data.size]
                 if not ext_call.success:
@@ -559,10 +552,10 @@ function deposit() {
                                     42,
                                     0xc75361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
                                     mem[(2 * ceil32(return_data.size)) + 536 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 22]
-                require ext_code.size(address(rewardsAddress))
-                call address(rewardsAddress).stake(uint256 rg1) with:
-                     gas gas_remaining wei
-                    args ext_call.return_data[0], mem[(2 * ceil32(return_data.size)) + 462 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
+        require ext_code.size(address(rewardsAddress))
+        call address(rewardsAddress).stake(uint256 rg1) with:
+             gas gas_remaining wei
+            args ext_call.return_data[0]
         if not ext_call.success:
             revert with ext_call.return_data[0 len return_data.size]
 }
