@@ -1,0 +1,87 @@
+contract main {
+
+
+
+
+// =====================  Runtime code  =====================
+
+
+address stormAddress;
+address wavaxAddress;
+array of address sub_e87796b8;
+
+function wavax() {
+    return wavaxAddress
+}
+
+function storm() {
+    return stormAddress
+}
+
+function sub_e87796b8(?) {
+    require calldata.size - 4 >= 32
+    require arg1 < sub_e87796b8.length
+    return sub_e87796b8[arg1]
+}
+
+function harvest() {
+  stop
+}
+
+function _fallback() payable {
+    revert
+}
+
+function add(address arg1) {
+    require calldata.size - 4 >= 32
+    sub_e87796b8.length++
+    sub_e87796b8[sub_e87796b8.length] = arg1
+}
+
+function sub_063215ba(?) payable {
+    idx = 0
+    while idx < sub_e87796b8.length:
+        mem[0] = 2
+        mem[96] = 0x4641257d00000000000000000000000000000000000000000000000000000000
+        require ext_code.size(sub_e87796b8[idx])
+        call sub_e87796b8[idx].0x4641257d with:
+             gas gas_remaining wei
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        idx = idx + 1
+        continue 
+    require ext_code.size(stormAddress)
+    staticcall stormAddress.0x70a08231 with:
+            gas gas_remaining wei
+           args this.address
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_code.size(wavaxAddress)
+    staticcall wavaxAddress.0x70a08231 with:
+            gas gas_remaining wei
+           args this.address
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    if ext_call.return_data[0] > 0:
+        require ext_code.size(stormAddress)
+        staticcall stormAddress.0x23b872dd with:
+                gas gas_remaining wei
+               args address(this.address), msg.sender, ext_call.return_data[0]
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        require return_data.size >= 32
+    if ext_call.return_data[0] > 0:
+        require ext_code.size(wavaxAddress)
+        staticcall wavaxAddress.0x23b872dd with:
+                gas gas_remaining wei
+               args address(this.address), msg.sender, ext_call.return_data[0]
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        require return_data.size >= 32
+}
+
+
+
+}
