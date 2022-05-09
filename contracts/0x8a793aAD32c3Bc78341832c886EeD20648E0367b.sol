@@ -97,7 +97,7 @@ function buyAll() {
     if (2 * ceil32(return_data.size)) + floor32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, eth.balance(this.address)) >> 32 + 192]) + 193 > test266151307() or floor32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, eth.balance(this.address)) >> 32 + 192]) + 1 < 0:
         revert with 'NH{q', 65
     mem[64] = (2 * ceil32(return_data.size)) + floor32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, eth.balance(this.address)) >> 32 + 192]) + 193
-    mem[(2 * ceil32(return_data.size)) + 192] = _39
+    mem[(2 * ceil32(return_data.size)) + 192] = mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, eth.balance(this.address)) >> 32 + 192]
     require _38 + (32 * _39) + 32 <= return_data.size
     idx = ceil32(return_data.size) + _38 + 224
     s = (2 * ceil32(return_data.size)) + 224

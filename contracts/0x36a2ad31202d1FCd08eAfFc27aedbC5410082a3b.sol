@@ -155,6 +155,7 @@ function check() {
             continue 
         if 0 >= mem[96]:
             revert with 'NH{q', 50
+        _83 = mem[64]
         mem[mem[64]] = mem[140 len 20]
         mem[mem[64] + 32] = _41
         mem[mem[64] + 64] = 96
@@ -169,8 +170,9 @@ function check() {
             s = s + 32
             t = t + 32
             continue 
-        return mem[mem[64]], _41, 96, mem[mem[64] + 96 len (32 * _84) + 32]
-    _34 = mem[64]
+        return memory
+          from mem[64]
+           len _83 + (32 * _84) + -mem[64] + 128
     mem[mem[64]] = 0
     mem[mem[64] + 32] = 0
     mem[mem[64] + 64] = 96
@@ -185,9 +187,7 @@ function check() {
         s = s + 32
         t = t + 32
         continue 
-    return memory
-      from mem[64]
-       len _34 + (32 * _40) + -mem[64] + 128
+    return 0, 0, 96, mem[mem[64] + 96 len (32 * _40) + 32]
 }
 
 function sub_347a1312(?) payable {

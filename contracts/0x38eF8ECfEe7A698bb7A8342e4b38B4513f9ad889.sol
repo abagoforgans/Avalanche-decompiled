@@ -1921,350 +1921,8 @@ function getAmountsIn(address arg1, uint256 arg2, address[] arg3) payable {
         idx = arg3.length - 1
         while idx:
             require idx - 1 < arg3.length
-            _529 = mem[(32 * idx - 1) + 128]
             require idx < arg3.length
             _536 = mem[(32 * idx) + 128]
-            if mem[(32 * idx - 1) + 140 len 20] == mem[(32 * idx) + 140 len 20]:
-                revert with 0, 
-                            32,
-                            37,
-                            0x54556e697377617056324c6962726172793a204944454e544943414c5f4144445245535345,
-                            mem[(64 * arg3.length) + 265 len 27]
-            if mem[(32 * idx - 1) + 140 len 20] < mem[(32 * idx) + 140 len 20]:
-                if not mem[(32 * idx - 1) + 140 len 20]:
-                    revert with 0, 'UniswapV2Library: ZERO_ADDRESS'
-                mem[(64 * arg3.length) + 164] = mem[(32 * idx - 1) + 140 len 20]
-                require ext_code.size(arg1)
-                staticcall arg1.0xe6a43905 with:
-                        gas gas_remaining wei
-                       args mem[(64 * arg3.length) + 164], address(_536)
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                require ext_code.size(address(ext_call.return_data[0]))
-                staticcall address(ext_call.return_data[0]).getReserves() with:
-                        gas gas_remaining wei
-                mem[(64 * arg3.length) + 160 len 96] = ext_call.return_data[0 len 96]
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 96
-                require ext_code.size(address(ext_call.return_data[0]))
-                staticcall address(ext_call.return_data[0]).0x3f8bfb0 with:
-                        gas gas_remaining wei
-                mem[(64 * arg3.length) + 160] = ext_call.return_data[0]
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                require idx < mem[(32 * arg3.length) + 128]
-                if mem[(32 * idx) + (32 * arg3.length) + 160] <= 0:
-                    revert with 0, 
-                                32,
-                                44,
-                                0xfe556e697377617056324c6962726172793a20494e53554646494349454e545f4f55545055545f414d4f554e,
-                                mem[(64 * arg3.length) + 272 len 20]
-                if address(_529) == address(_529):
-                    if Mask(112, 0, ext_call.return_data[0]) <= 0:
-                        revert with 0, 
-                                    32,
-                                    40,
-                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
-                                    mem[(64 * arg3.length) + 268 len 24]
-                    if Mask(112, 0, ext_call.return_data[32]) <= 0:
-                        revert with 0, 
-                                    32,
-                                    40,
-                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
-                                    mem[(64 * arg3.length) + 268 len 24]
-                    if ext_call.return_data[0]:
-                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
-                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (0 / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                        else:
-                            require mem[(32 * idx) + (32 * arg3.length) + 160]
-                            if Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[0]):
-                                revert with 0, 'ds-math-mul-overflow'
-                            if 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                    else:
-                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
-                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (0 / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                        else:
-                            require mem[(32 * idx) + (32 * arg3.length) + 160]
-                            if Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[0]):
-                                revert with 0, 'ds-math-mul-overflow'
-                            if 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                else:
-                    if Mask(112, 0, ext_call.return_data[32]) <= 0:
-                        revert with 0, 
-                                    32,
-                                    40,
-                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
-                                    mem[(64 * arg3.length) + 268 len 24]
-                    if Mask(112, 0, ext_call.return_data[0]) <= 0:
-                        revert with 0, 
-                                    32,
-                                    40,
-                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
-                                    mem[(64 * arg3.length) + 268 len 24]
-                    if ext_call.return_data[0]:
-                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
-                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (0 / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                        else:
-                            require mem[(32 * idx) + (32 * arg3.length) + 160]
-                            if Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[32]):
-                                revert with 0, 'ds-math-mul-overflow'
-                            if 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                    else:
-                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
-                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (0 / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                        else:
-                            require mem[(32 * idx) + (32 * arg3.length) + 160]
-                            if Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[32]):
-                                revert with 0, 'ds-math-mul-overflow'
-                            if 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-            else:
-                if not mem[(32 * idx) + 140 len 20]:
-                    revert with 0, 'UniswapV2Library: ZERO_ADDRESS'
-                mem[(64 * arg3.length) + 164] = mem[(32 * idx - 1) + 140 len 20]
-                require ext_code.size(arg1)
-                staticcall arg1.0xe6a43905 with:
-                        gas gas_remaining wei
-                       args mem[(64 * arg3.length) + 164], address(_536)
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                require ext_code.size(address(ext_call.return_data[0]))
-                staticcall address(ext_call.return_data[0]).getReserves() with:
-                        gas gas_remaining wei
-                mem[(64 * arg3.length) + 160 len 96] = ext_call.return_data[0 len 96]
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 96
-                require ext_code.size(address(ext_call.return_data[0]))
-                staticcall address(ext_call.return_data[0]).0x3f8bfb0 with:
-                        gas gas_remaining wei
-                mem[(64 * arg3.length) + 160] = ext_call.return_data[0]
-                if not ext_call.success:
-                    revert with ext_call.return_data[0 len return_data.size]
-                require return_data.size >= 32
-                require idx < mem[(32 * arg3.length) + 128]
-                if mem[(32 * idx) + (32 * arg3.length) + 160] <= 0:
-                    revert with 0, 
-                                32,
-                                44,
-                                0xfe556e697377617056324c6962726172793a20494e53554646494349454e545f4f55545055545f414d4f554e,
-                                mem[(64 * arg3.length) + 272 len 20]
-                if address(_536) == address(_529):
-                    if Mask(112, 0, ext_call.return_data[0]) <= 0:
-                        revert with 0, 
-                                    32,
-                                    40,
-                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
-                                    mem[(64 * arg3.length) + 268 len 24]
-                    if Mask(112, 0, ext_call.return_data[32]) <= 0:
-                        revert with 0, 
-                                    32,
-                                    40,
-                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
-                                    mem[(64 * arg3.length) + 268 len 24]
-                    if ext_call.return_data[0]:
-                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
-                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (0 / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                        else:
-                            require mem[(32 * idx) + (32 * arg3.length) + 160]
-                            if Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[0]):
-                                revert with 0, 'ds-math-mul-overflow'
-                            if 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                    else:
-                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
-                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (0 / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                        else:
-                            require mem[(32 * idx) + (32 * arg3.length) + 160]
-                            if Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[0]):
-                                revert with 0, 'ds-math-mul-overflow'
-                            if 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                else:
-                    if Mask(112, 0, ext_call.return_data[32]) <= 0:
-                        revert with 0, 
-                                    32,
-                                    40,
-                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
-                                    mem[(64 * arg3.length) + 268 len 24]
-                    if Mask(112, 0, ext_call.return_data[0]) <= 0:
-                        revert with 0, 
-                                    32,
-                                    40,
-                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
-                                    mem[(64 * arg3.length) + 268 len 24]
-                    if ext_call.return_data[0]:
-                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
-                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (0 / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                        else:
-                            require mem[(32 * idx) + (32 * arg3.length) + 160]
-                            if Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[32]):
-                                revert with 0, 'ds-math-mul-overflow'
-                            if 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                    else:
-                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
-                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (0 / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-                        else:
-                            require mem[(32 * idx) + (32 * arg3.length) + 160]
-                            if Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[32]):
-                                revert with 0, 'ds-math-mul-overflow'
-                            if 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
-                                revert with 0, 'ds-math-sub-underflow'
-                            if (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
-                                revert with 0, 'ds-math-mul-overflow'
-                            require (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
-                            if (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
-                                revert with 0, 'ds-math-add-overflow'
-                            require idx - 1 < mem[(32 * arg3.length) + 128]
-                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
-            idx = idx - 1
-            continue 
-    else:
-        mem[(32 * arg3.length) + 160 len 32 * arg3.length] = call.data[calldata.size len 32 * arg3.length]
-        require arg3.length - 1 < arg3.length
-        mem[(32 * arg3.length - 1) + (32 * arg3.length) + 160] = arg2
-        idx = arg3.length - 1
-        while idx:
-            require idx - 1 < arg3.length
-            require idx < arg3.length
-            _540 = mem[(32 * idx) + 128]
             if mem[(32 * idx - 1) + 140 len 20] == mem[(32 * idx) + 140 len 20]:
                 revert with 0, 
                             32,
@@ -2279,7 +1937,7 @@ function getAmountsIn(address arg1, uint256 arg2, address[] arg3) payable {
                 require ext_code.size(arg1)
                 staticcall arg1.0xe6a43905 with:
                         gas gas_remaining wei
-                       args mem[(64 * arg3.length) + 164], address(_540)
+                       args mem[(64 * arg3.length) + 164], address(_536)
                 if not ext_call.success:
                     revert with ext_call.return_data[0 len return_data.size]
                 require return_data.size >= 32
@@ -2442,6 +2100,186 @@ function getAmountsIn(address arg1, uint256 arg2, address[] arg3) payable {
                 require ext_code.size(arg1)
                 staticcall arg1.0xe6a43905 with:
                         gas gas_remaining wei
+                       args mem[(64 * arg3.length) + 164], address(_536)
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                require return_data.size >= 32
+                require ext_code.size(address(ext_call.return_data[0]))
+                staticcall address(ext_call.return_data[0]).getReserves() with:
+                        gas gas_remaining wei
+                mem[(64 * arg3.length) + 160 len 96] = ext_call.return_data[0 len 96]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                require return_data.size >= 96
+                require ext_code.size(address(ext_call.return_data[0]))
+                staticcall address(ext_call.return_data[0]).0x3f8bfb0 with:
+                        gas gas_remaining wei
+                mem[(64 * arg3.length) + 160] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                require return_data.size >= 32
+                require idx < mem[(32 * arg3.length) + 128]
+                if mem[(32 * idx) + (32 * arg3.length) + 160] <= 0:
+                    revert with 0, 
+                                32,
+                                44,
+                                0xfe556e697377617056324c6962726172793a20494e53554646494349454e545f4f55545055545f414d4f554e,
+                                mem[(64 * arg3.length) + 272 len 20]
+                if address(_536) == mem[(32 * idx - 1) + 140 len 20]:
+                    if Mask(112, 0, ext_call.return_data[0]) <= 0:
+                        revert with 0, 
+                                    32,
+                                    40,
+                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
+                                    mem[(64 * arg3.length) + 268 len 24]
+                    if Mask(112, 0, ext_call.return_data[32]) <= 0:
+                        revert with 0, 
+                                    32,
+                                    40,
+                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
+                                    mem[(64 * arg3.length) + 268 len 24]
+                    if ext_call.return_data[0]:
+                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
+                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (0 / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                        else:
+                            require mem[(32 * idx) + (32 * arg3.length) + 160]
+                            if Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[0]):
+                                revert with 0, 'ds-math-mul-overflow'
+                            if 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                    else:
+                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
+                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (0 / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                        else:
+                            require mem[(32 * idx) + (32 * arg3.length) + 160]
+                            if Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[0]):
+                                revert with 0, 'ds-math-mul-overflow'
+                            if 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                else:
+                    if Mask(112, 0, ext_call.return_data[32]) <= 0:
+                        revert with 0, 
+                                    32,
+                                    40,
+                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
+                                    mem[(64 * arg3.length) + 268 len 24]
+                    if Mask(112, 0, ext_call.return_data[0]) <= 0:
+                        revert with 0, 
+                                    32,
+                                    40,
+                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
+                                    mem[(64 * arg3.length) + 268 len 24]
+                    if ext_call.return_data[0]:
+                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
+                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (0 / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                        else:
+                            require mem[(32 * idx) + (32 * arg3.length) + 160]
+                            if Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[32]):
+                                revert with 0, 'ds-math-mul-overflow'
+                            if 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                    else:
+                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
+                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (0 / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                        else:
+                            require mem[(32 * idx) + (32 * arg3.length) + 160]
+                            if Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[32]):
+                                revert with 0, 'ds-math-mul-overflow'
+                            if 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+            idx = idx - 1
+            continue 
+    else:
+        mem[(32 * arg3.length) + 160 len 32 * arg3.length] = call.data[calldata.size len 32 * arg3.length]
+        require arg3.length - 1 < arg3.length
+        mem[(32 * arg3.length - 1) + (32 * arg3.length) + 160] = arg2
+        idx = arg3.length - 1
+        while idx:
+            require idx - 1 < arg3.length
+            _531 = mem[(32 * idx - 1) + 128]
+            require idx < arg3.length
+            _540 = mem[(32 * idx) + 128]
+            if mem[(32 * idx - 1) + 140 len 20] == mem[(32 * idx) + 140 len 20]:
+                revert with 0, 
+                            32,
+                            37,
+                            0x54556e697377617056324c6962726172793a204944454e544943414c5f4144445245535345,
+                            mem[(64 * arg3.length) + 265 len 27]
+            if mem[(32 * idx - 1) + 140 len 20] < mem[(32 * idx) + 140 len 20]:
+                if not mem[(32 * idx - 1) + 140 len 20]:
+                    revert with 0, 'UniswapV2Library: ZERO_ADDRESS'
+                mem[(64 * arg3.length) + 164] = mem[(32 * idx - 1) + 140 len 20]
+                require ext_code.size(arg1)
+                staticcall arg1.0xe6a43905 with:
+                        gas gas_remaining wei
                        args mem[(64 * arg3.length) + 164], address(_540)
                 if not ext_call.success:
                     revert with ext_call.return_data[0 len return_data.size]
@@ -2467,7 +2305,169 @@ function getAmountsIn(address arg1, uint256 arg2, address[] arg3) payable {
                                 44,
                                 0xfe556e697377617056324c6962726172793a20494e53554646494349454e545f4f55545055545f414d4f554e,
                                 mem[(64 * arg3.length) + 272 len 20]
-                if address(_540) == mem[(32 * idx - 1) + 140 len 20]:
+                if address(_531) == address(_531):
+                    if Mask(112, 0, ext_call.return_data[0]) <= 0:
+                        revert with 0, 
+                                    32,
+                                    40,
+                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
+                                    mem[(64 * arg3.length) + 268 len 24]
+                    if Mask(112, 0, ext_call.return_data[32]) <= 0:
+                        revert with 0, 
+                                    32,
+                                    40,
+                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
+                                    mem[(64 * arg3.length) + 268 len 24]
+                    if ext_call.return_data[0]:
+                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
+                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (0 / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                        else:
+                            require mem[(32 * idx) + (32 * arg3.length) + 160]
+                            if Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[0]):
+                                revert with 0, 'ds-math-mul-overflow'
+                            if 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[32])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                    else:
+                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
+                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (0 / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                        else:
+                            require mem[(32 * idx) + (32 * arg3.length) + 160]
+                            if Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[0]):
+                                revert with 0, 'ds-math-mul-overflow'
+                            if 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            if Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[32]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[32]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[0]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[32])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                else:
+                    if Mask(112, 0, ext_call.return_data[32]) <= 0:
+                        revert with 0, 
+                                    32,
+                                    40,
+                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
+                                    mem[(64 * arg3.length) + 268 len 24]
+                    if Mask(112, 0, ext_call.return_data[0]) <= 0:
+                        revert with 0, 
+                                    32,
+                                    40,
+                                    0x53556e697377617056324c6962726172793a20494e53554646494349454e545f4c49515549444954,
+                                    mem[(64 * arg3.length) + 268 len 24]
+                    if ext_call.return_data[0]:
+                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
+                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (0 / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                        else:
+                            require mem[(32 * idx) + (32 * arg3.length) + 160]
+                            if Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[32]):
+                                revert with 0, 'ds-math-mul-overflow'
+                            if 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 995 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (995 * Mask(112, 0, ext_call.return_data[0])) - (995 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                    else:
+                        if not mem[(32 * idx) + (32 * arg3.length) + 160]:
+                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (0 / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 0 / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (0 / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+                        else:
+                            require mem[(32 * idx) + (32 * arg3.length) + 160]
+                            if Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / mem[(32 * idx) + (32 * arg3.length) + 160] != Mask(112, 0, ext_call.return_data[32]):
+                                revert with 0, 'ds-math-mul-overflow'
+                            if 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / 1000 != Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            if Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160] > Mask(112, 0, ext_call.return_data[0]):
+                                revert with 0, 'ds-math-sub-underflow'
+                            if (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]) / 997 != Mask(112, 0, ext_call.return_data[0]) - mem[(32 * idx) + (32 * arg3.length) + 160]:
+                                revert with 0, 'ds-math-mul-overflow'
+                            require (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])
+                            if (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1 < 1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160]):
+                                revert with 0, 'ds-math-add-overflow'
+                            require idx - 1 < mem[(32 * arg3.length) + 128]
+                            mem[(32 * idx - 1) + (32 * arg3.length) + 160] = (1000 * Mask(112, 0, ext_call.return_data[32]) * mem[(32 * idx) + (32 * arg3.length) + 160] / (997 * Mask(112, 0, ext_call.return_data[0])) - (997 * mem[(32 * idx) + (32 * arg3.length) + 160])) + 1
+            else:
+                if not mem[(32 * idx) + 140 len 20]:
+                    revert with 0, 'UniswapV2Library: ZERO_ADDRESS'
+                mem[(64 * arg3.length) + 164] = mem[(32 * idx - 1) + 140 len 20]
+                require ext_code.size(arg1)
+                staticcall arg1.0xe6a43905 with:
+                        gas gas_remaining wei
+                       args mem[(64 * arg3.length) + 164], address(_540)
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                require return_data.size >= 32
+                require ext_code.size(address(ext_call.return_data[0]))
+                staticcall address(ext_call.return_data[0]).getReserves() with:
+                        gas gas_remaining wei
+                mem[(64 * arg3.length) + 160 len 96] = ext_call.return_data[0 len 96]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                require return_data.size >= 96
+                require ext_code.size(address(ext_call.return_data[0]))
+                staticcall address(ext_call.return_data[0]).0x3f8bfb0 with:
+                        gas gas_remaining wei
+                mem[(64 * arg3.length) + 160] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                require return_data.size >= 32
+                require idx < mem[(32 * arg3.length) + 128]
+                if mem[(32 * idx) + (32 * arg3.length) + 160] <= 0:
+                    revert with 0, 
+                                32,
+                                44,
+                                0xfe556e697377617056324c6962726172793a20494e53554646494349454e545f4f55545055545f414d4f554e,
+                                mem[(64 * arg3.length) + 272 len 20]
+                if address(_540) == address(_531):
                     if Mask(112, 0, ext_call.return_data[0]) <= 0:
                         revert with 0, 
                                     32,

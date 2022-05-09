@@ -504,26 +504,29 @@ function swap() {
             if ceil32(32 * mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]) + 1 < 0 or (32 * stor3.length) + (4 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]) + 129 > test266151307():
                 revert with 0, 65
             mem[64] = (32 * stor3.length) + (4 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]) + 129
-            mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 128] = mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]
+            mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 128] = _79
             require _77 + (32 * _79) + 32 <= return_data.size
             mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160 len ceil32(32 * _79)] = mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + _77 + 160 len ceil32(32 * _79)]
             if _79 < 1:
                 revert with 0, 17
             if _79 - 1 >= _79:
                 revert with 0, 50
-            _116 = mem[(32 * _79 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 160]
             if 0 >= stor3.length:
                 revert with 0, 50
             if stor3.length < 1:
                 revert with 0, 17
             if stor3.length - 1 >= stor3.length:
                 revert with 0, 50
-            _133 = mem[(32 * stor3.length - 1) + 128]
             mem[mem[64]] = mem[140 len 20]
+            mem[mem[64] + 32] = mem[(32 * stor3.length - 1) + 140 len 20]
             mem[mem[64] + 64] = uint256(stor4.field_0)
-            mem[mem[64] + 96] = _116
-            emit Swap(mem[mem[64]], address(_133), uint256(stor4.field_0), _116, stor6);
-            if _116:
+            mem[mem[64] + 96] = mem[(32 * _79 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 160]
+            emit Swap(address arg1, address arg2, uint256 arg3, uint256 arg4, address arg5):
+                      mem[mem[64] len 64],
+                      uint256(stor4.field_0),
+                      mem[(32 * _79 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 160],
+                      stor6,
+            if mem[(32 * _79 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 160]:
                 uint8(stor2.field_0) = 1
         else:
             mem[(32 * stor3.length) + ceil32(return_data.size) + 132] = address(stor2.field_8)
@@ -584,28 +587,32 @@ function swap() {
             if ceil32(32 * mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]) + 1 < 0 or (32 * stor3.length) + (6 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]) + 129 > test266151307():
                 revert with 0, 65
             mem[64] = (32 * stor3.length) + (6 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]) + 129
-            mem[(32 * stor3.length) + (6 * ceil32(return_data.size)) + 128] = mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]
+            mem[(32 * stor3.length) + (6 * ceil32(return_data.size)) + 128] = _80
             require _78 + (32 * _80) + 32 <= return_data.size
             mem[(32 * stor3.length) + (6 * ceil32(return_data.size)) + 160 len ceil32(32 * _80)] = mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + _78 + 160 len ceil32(32 * _80)]
             if _80 < 1:
                 revert with 0, 17
             if _80 - 1 >= _80:
                 revert with 0, 50
-            _118 = mem[(32 * _80 - 1) + (32 * stor3.length) + (6 * ceil32(return_data.size)) + 160]
             if 0 >= stor3.length:
                 revert with 0, 50
             if stor3.length < 1:
                 revert with 0, 17
             if stor3.length - 1 >= stor3.length:
                 revert with 0, 50
-            _135 = mem[(32 * stor3.length - 1) + 128]
             mem[mem[64]] = mem[140 len 20]
+            mem[mem[64] + 32] = mem[(32 * stor3.length - 1) + 140 len 20]
             mem[mem[64] + 64] = uint256(stor4.field_0)
-            mem[mem[64] + 96] = _118
-            emit Swap(mem[mem[64]], address(_135), uint256(stor4.field_0), _118, stor6);
-            if _118:
+            mem[mem[64] + 96] = mem[(32 * _80 - 1) + (32 * stor3.length) + (6 * ceil32(return_data.size)) + 160]
+            emit Swap(address arg1, address arg2, uint256 arg3, uint256 arg4, address arg5):
+                      mem[mem[64] len 64],
+                      uint256(stor4.field_0),
+                      mem[(32 * _80 - 1) + (32 * stor3.length) + (6 * ceil32(return_data.size)) + 160],
+                      stor6,
+            if mem[(32 * _80 - 1) + (32 * stor3.length) + (6 * ceil32(return_data.size)) + 160]:
                 uint8(stor2.field_0) = 1
     else:
+        mem[0] = 3
         mem[128] = address(stor3.field_0)
         idx = 128
         s = 0
@@ -675,26 +682,24 @@ function swap() {
             if ceil32(32 * mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]) + 1 < 0 or (32 * stor3.length) + (4 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]) + 129 > test266151307():
                 revert with 0, 65
             mem[64] = (32 * stor3.length) + (4 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]) + 129
-            mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 128] = mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]
+            mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 128] = _195
             require _193 + (32 * _195) + 32 <= return_data.size
             mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160 len ceil32(32 * _195)] = mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + _193 + 160 len ceil32(32 * _195)]
             if _195 < 1:
                 revert with 0, 17
             if _195 - 1 >= _195:
                 revert with 0, 50
-            _227 = mem[(32 * _195 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 160]
             if 0 >= stor3.length:
                 revert with 0, 50
             if stor3.length < 1:
                 revert with 0, 17
             if stor3.length - 1 >= stor3.length:
                 revert with 0, 50
-            _237 = mem[(32 * stor3.length - 1) + 128]
             mem[mem[64]] = mem[140 len 20]
             mem[mem[64] + 64] = uint256(stor4.field_0)
-            mem[mem[64] + 96] = _227
-            emit Swap(mem[mem[64]], address(_237), uint256(stor4.field_0), _227, stor6);
-            if _227:
+            mem[mem[64] + 96] = mem[(32 * _195 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 160]
+            emit Swap(mem[mem[64]], address(mem[(32 * stor3.length - 1) + 128]), uint256(stor4.field_0), mem[(32 * _195 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 160], stor6);
+            if mem[(32 * _195 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 160]:
                 uint8(stor2.field_0) = 1
         else:
             mem[(32 * stor3.length) + ceil32(return_data.size) + 132] = address(stor2.field_8)
@@ -755,7 +760,7 @@ function swap() {
             if ceil32(32 * mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]) + 1 < 0 or (32 * stor3.length) + (6 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]) + 129 > test266151307():
                 revert with 0, 65
             mem[64] = (32 * stor3.length) + (6 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]) + 129
-            mem[(32 * stor3.length) + (6 * ceil32(return_data.size)) + 128] = mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 128 len 4], Mask(224, 0, stor4.field_32) + 128]
+            mem[(32 * stor3.length) + (6 * ceil32(return_data.size)) + 128] = _196
             require _194 + (32 * _196) + 32 <= return_data.size
             mem[(32 * stor3.length) + (6 * ceil32(return_data.size)) + 160 len ceil32(32 * _196)] = mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + _194 + 160 len ceil32(32 * _196)]
             if _196 < 1:
@@ -769,11 +774,10 @@ function swap() {
                 revert with 0, 17
             if stor3.length - 1 >= stor3.length:
                 revert with 0, 50
-            _239 = mem[(32 * stor3.length - 1) + 128]
             mem[mem[64]] = mem[140 len 20]
             mem[mem[64] + 64] = uint256(stor4.field_0)
             mem[mem[64] + 96] = _229
-            emit Swap(mem[mem[64]], address(_239), uint256(stor4.field_0), _229, stor6);
+            emit Swap(mem[mem[64]], address(mem[(32 * stor3.length - 1) + 128]), uint256(stor4.field_0), _229, stor6);
             if _229:
                 uint8(stor2.field_0) = 1
 }
@@ -1261,26 +1265,29 @@ function _fallback() payable {
                             if ceil32(32 * mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]) + 1 < 0 or (32 * stor3.length) + (4 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]) + 161 > test266151307():
                                 revert with 0, 65
                             mem[64] = (32 * stor3.length) + (4 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]) + 161
-                            mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160] = _253
+                            mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160] = mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]
                             require _250 + (32 * _253) + 32 <= return_data.size
                             mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 192 len ceil32(32 * _253)] = mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + _250 + 192 len ceil32(32 * _253)]
                             if _253 < 1:
                                 revert with 0, 17
                             if _253 - 1 >= _253:
                                 revert with 0, 50
-                            _332 = mem[(32 * _253 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 192]
                             if 0 >= stor3.length:
                                 revert with 0, 50
                             if stor3.length < 1:
                                 revert with 0, 17
                             if stor3.length - 1 >= stor3.length:
                                 revert with 0, 50
-                            _362 = mem[(32 * stor3.length - 1) + 160]
                             mem[mem[64]] = mem[172 len 20]
+                            mem[mem[64] + 32] = mem[(32 * stor3.length - 1) + 172 len 20]
                             mem[mem[64] + 64] = uint256(stor4.field_0)
-                            mem[mem[64] + 96] = _332
-                            emit Swap(mem[mem[64]], address(_362), uint256(stor4.field_0), _332, stor6);
-                            if _332:
+                            mem[mem[64] + 96] = mem[(32 * _253 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 192]
+                            emit Swap(address arg1, address arg2, uint256 arg3, uint256 arg4, address arg5):
+                                      mem[mem[64] len 64],
+                                      uint256(stor4.field_0),
+                                      mem[(32 * _253 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 192],
+                                      stor6,
+                            if mem[(32 * _253 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 192]:
                                 uint8(stor2.field_0) = 1
                         else:
                             mem[(32 * stor3.length) + ceil32(return_data.size) + 164] = address(stor2.field_8)
@@ -1341,26 +1348,29 @@ function _fallback() payable {
                             if ceil32(32 * mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]) + 1 < 0 or (32 * stor3.length) + (6 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]) + 161 > test266151307():
                                 revert with 0, 65
                             mem[64] = (32 * stor3.length) + (6 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]) + 161
-                            mem[(32 * stor3.length) + (6 * ceil32(return_data.size)) + 160] = mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]
+                            mem[(32 * stor3.length) + (6 * ceil32(return_data.size)) + 160] = _254
                             require _251 + (32 * _254) + 32 <= return_data.size
                             mem[(32 * stor3.length) + (6 * ceil32(return_data.size)) + 192 len ceil32(32 * _254)] = mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + _251 + 192 len ceil32(32 * _254)]
                             if _254 < 1:
                                 revert with 0, 17
                             if _254 - 1 >= _254:
                                 revert with 0, 50
-                            _334 = mem[(32 * _254 - 1) + (32 * stor3.length) + (6 * ceil32(return_data.size)) + 192]
                             if 0 >= stor3.length:
                                 revert with 0, 50
                             if stor3.length < 1:
                                 revert with 0, 17
                             if stor3.length - 1 >= stor3.length:
                                 revert with 0, 50
-                            _364 = mem[(32 * stor3.length - 1) + 160]
                             mem[mem[64]] = mem[172 len 20]
+                            mem[mem[64] + 32] = mem[(32 * stor3.length - 1) + 172 len 20]
                             mem[mem[64] + 64] = uint256(stor4.field_0)
-                            mem[mem[64] + 96] = _334
-                            emit Swap(mem[mem[64]], address(_364), uint256(stor4.field_0), _334, stor6);
-                            if _334:
+                            mem[mem[64] + 96] = mem[(32 * _254 - 1) + (32 * stor3.length) + (6 * ceil32(return_data.size)) + 192]
+                            emit Swap(address arg1, address arg2, uint256 arg3, uint256 arg4, address arg5):
+                                      mem[mem[64] len 64],
+                                      uint256(stor4.field_0),
+                                      mem[(32 * _254 - 1) + (32 * stor3.length) + (6 * ceil32(return_data.size)) + 192],
+                                      stor6,
+                            if mem[(32 * _254 - 1) + (32 * stor3.length) + (6 * ceil32(return_data.size)) + 192]:
                                 uint8(stor2.field_0) = 1
                     else:
                         mem[0] = 3
@@ -1433,26 +1443,24 @@ function _fallback() payable {
                             if ceil32(32 * mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]) + 1 < 0 or (32 * stor3.length) + (4 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]) + 161 > test266151307():
                                 revert with 0, 65
                             mem[64] = (32 * stor3.length) + (4 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]) + 161
-                            mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160] = _509
+                            mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160] = mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]
                             require _504 + (32 * _509) + 32 <= return_data.size
                             mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 192 len ceil32(32 * _509)] = mem[(32 * stor3.length) + (2 * ceil32(return_data.size)) + _504 + 192 len ceil32(32 * _509)]
                             if _509 < 1:
                                 revert with 0, 17
                             if _509 - 1 >= _509:
                                 revert with 0, 50
-                            _627 = mem[(32 * _509 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 192]
                             if 0 >= stor3.length:
                                 revert with 0, 50
                             if stor3.length < 1:
                                 revert with 0, 17
                             if stor3.length - 1 >= stor3.length:
                                 revert with 0, 50
-                            _655 = mem[(32 * stor3.length - 1) + 160]
                             mem[mem[64]] = mem[172 len 20]
                             mem[mem[64] + 64] = uint256(stor4.field_0)
-                            mem[mem[64] + 96] = _627
-                            emit Swap(mem[mem[64]], address(_655), uint256(stor4.field_0), _627, stor6);
-                            if _627:
+                            mem[mem[64] + 96] = mem[(32 * _509 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 192]
+                            emit Swap(mem[mem[64]], address(mem[(32 * stor3.length - 1) + 160]), uint256(stor4.field_0), mem[(32 * _509 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 192], stor6);
+                            if mem[(32 * _509 - 1) + (32 * stor3.length) + (4 * ceil32(return_data.size)) + 192]:
                                 uint8(stor2.field_0) = 1
                         else:
                             mem[(32 * stor3.length) + ceil32(return_data.size) + 164] = address(stor2.field_8)
@@ -1513,26 +1521,24 @@ function _fallback() payable {
                             if ceil32(32 * mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]) + 1 < 0 or (32 * stor3.length) + (6 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]) + 161 > test266151307():
                                 revert with 0, 65
                             mem[64] = (32 * stor3.length) + (6 * ceil32(return_data.size)) + ceil32(32 * mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]) + 161
-                            mem[(32 * stor3.length) + (6 * ceil32(return_data.size)) + 160] = mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + 160 len 4], Mask(224, 0, stor4.field_32) + 160]
+                            mem[(32 * stor3.length) + (6 * ceil32(return_data.size)) + 160] = _510
                             require _505 + (32 * _510) + 32 <= return_data.size
                             mem[(32 * stor3.length) + (6 * ceil32(return_data.size)) + 192 len ceil32(32 * _510)] = mem[(32 * stor3.length) + (4 * ceil32(return_data.size)) + _505 + 192 len ceil32(32 * _510)]
                             if _510 < 1:
                                 revert with 0, 17
                             if _510 - 1 >= _510:
                                 revert with 0, 50
-                            _629 = mem[(32 * _510 - 1) + (32 * stor3.length) + (6 * ceil32(return_data.size)) + 192]
                             if 0 >= stor3.length:
                                 revert with 0, 50
                             if stor3.length < 1:
                                 revert with 0, 17
                             if stor3.length - 1 >= stor3.length:
                                 revert with 0, 50
-                            _657 = mem[(32 * stor3.length - 1) + 160]
                             mem[mem[64]] = mem[172 len 20]
                             mem[mem[64] + 64] = uint256(stor4.field_0)
-                            mem[mem[64] + 96] = _629
-                            emit Swap(mem[mem[64]], address(_657), uint256(stor4.field_0), _629, stor6);
-                            if _629:
+                            mem[mem[64] + 96] = mem[(32 * _510 - 1) + (32 * stor3.length) + (6 * ceil32(return_data.size)) + 192]
+                            emit Swap(mem[mem[64]], address(mem[(32 * stor3.length - 1) + 160]), uint256(stor4.field_0), mem[(32 * _510 - 1) + (32 * stor3.length) + (6 * ceil32(return_data.size)) + 192], stor6);
+                            if mem[(32 * _510 - 1) + (32 * stor3.length) + (6 * ceil32(return_data.size)) + 192]:
                                 uint8(stor2.field_0) = 1
 }
 

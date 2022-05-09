@@ -367,10 +367,9 @@ function withdrawForSwap(uint256 arg1) {
     if not ext_code.size(wantAddress):
         revert with 0, 'Address: call to non-contract'
     mem[260 len 64] = 0, ext_call.return_data[12 len 20], ext_call.return_data[0 len 28]
-    mem[324 len 0] = 0
     call wantAddress.mem[160 len 4] with:
          gas gas_remaining wei
-        args Mask(480, -256, ext_call.return_data[0 len 28]) << 256, mem[324 len 4]
+        args ext_call.return_data[0], mem[196 len 28], mem[324 len 4]
     if not return_data.size:
         if not ext_call.success:
             revert with 0, ext_call.return_data[12 len 20], ext_call.return_data[0]
@@ -466,16 +465,20 @@ function deposit() {
         if not ext_code.size(wantAddress):
             revert with 0, 'Address: call to non-contract'
         mem[260 len 64] = approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279, 0, 0
-        mem[324 len 0] = 0
         call wantAddress.0x3798e928 with:
              gas gas_remaining wei
-            args Mask(480, -256, approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279, 0, 0) << 256, mem[324 len 4]
+            args 0, mem[324 len 4]
         if not return_data.size:
             if not ext_call.success:
                 revert with approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279, 0, 0
             if not approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279:
                 revert with 0, 32, 42, 0x825361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565, mem[370 len 22]
-            if ext_call.return_data[0]:
+            if not ext_call.return_data[0]:
+                if not ext_code.size(wantAddress):
+                    revert with 0, 'Address: call to non-contract'
+                mem[424 len 64] = approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279, 0, ext_call.return_data[0 len 28]
+                mem[488 len 0] = 0
+            else:
                 require ext_code.size(wantAddress)
                 staticcall wantAddress.0xdd62ed3e with:
                         gas gas_remaining wei
@@ -489,12 +492,12 @@ function deposit() {
                                 54,
                                 0x645361666545524332303a20617070726f76652066726f6d206e6f6e2d7a65726f20746f206e6f6e2d7a65726f20616c6c6f77616e63,
                                 mem[382 len 10]
-            if not ext_code.size(wantAddress):
-                revert with 0, 'Address: call to non-contract'
-            mem[424 len 64] = 0, 0x1f806f7c8ded893fd3cae279191ad7aa3798e928, ext_call.return_data[0 len 28]
+                if not ext_code.size(wantAddress):
+                    revert with 0, 'Address: call to non-contract'
+                mem[424 len 64] = approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279, 932768040, ext_call.return_data[0 len 28]
             call wantAddress.0x3798e928 with:
                  gas gas_remaining wei
-                args ext_call.return_data[0], mem[360 len 28], mem[488 len 4]
+                args Mask(480, -256, ext_call.return_data[0 len 28]) << 256, mem[488 len 4]
             if not return_data.size:
                 if not ext_call.success:
                     revert with approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279, 0, 0
@@ -528,10 +531,58 @@ function deposit() {
                 if not ext_call.return_data[0]:
                     if not ext_code.size(wantAddress):
                         revert with 0, 'Address: call to non-contract'
-                    mem[ceil32(return_data.size) + 425 len 64] = 0, 0x1f806f7c8ded893fd3cae279191ad7aa3798e928, ext_call.return_data[0 len 28]
+                    mem[ceil32(return_data.size) + 425 len 64] = approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279, 0, ext_call.return_data[0 len 28]
+                    mem[ceil32(return_data.size) + 489 len 0] = 0
                     call wantAddress.0x3798e928 with:
                          gas gas_remaining wei
-                        args ext_call.return_data[0], mem[ceil32(return_data.size) + 361 len 28], mem[ceil32(return_data.size) + 489 len 4]
+                        args Mask(480, -256, ext_call.return_data[0 len 28]) << 256, mem[ceil32(return_data.size) + 489 len 4]
+                    if not return_data.size:
+                        if not ext_call.success:
+                            revert with approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279, 0, 0
+                        if not approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279:
+                            revert with 0, 
+                                        32,
+                                        42,
+                                        0x825361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                        mem[ceil32(return_data.size) + 535 len 22]
+                    else:
+                        mem[ceil32(return_data.size) + 457 len return_data.size] = ext_call.return_data[0 len return_data.size]
+                        if not ext_call.success:
+                            if return_data.size:
+                                revert with ext_call.return_data[0 len return_data.size]
+                            revert with 0, 'SafeERC20: low-level call failed'
+                        if return_data.size:
+                            require return_data.size >= 32
+                            if not mem[ceil32(return_data.size) + 457]:
+                                revert with 0, 
+                                            32,
+                                            42,
+                                            0x825361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                            mem[(2 * ceil32(return_data.size)) + 536 len 22]
+                    require ext_code.size(0x1f806f7c8ded893fd3cae279191ad7aa3798e928)
+                    call 0x1f806f7c8ded893fd3cae279191ad7aa3798e928.deposit(uint256 arg1, uint256 arg2, address arg3) with:
+                         gas gas_remaining wei
+                        args poolId, ext_call.return_data[0], this.address
+                else:
+                    require ext_code.size(wantAddress)
+                    staticcall wantAddress.0xdd62ed3e with:
+                            gas gas_remaining wei
+                           args this.address, 0x1f806f7c8ded893fd3cae279191ad7aa3798e928
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    require return_data.size >= 32
+                    if ext_call.return_data[0]:
+                        revert with 0, 
+                                    32,
+                                    54,
+                                    0x645361666545524332303a20617070726f76652066726f6d206e6f6e2d7a65726f20746f206e6f6e2d7a65726f20616c6c6f77616e63,
+                                    mem[ceil32(return_data.size) + 383 len 10]
+                    if not ext_code.size(wantAddress):
+                        revert with 0, 'Address: call to non-contract'
+                    mem[ceil32(return_data.size) + 425 len 64] = approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279, 932768040, ext_call.return_data[0 len 28]
+                    call wantAddress.0x3798e928 with:
+                         gas gas_remaining wei
+                        args Mask(480, -256, ext_call.return_data[0 len 28]) << 256, mem[ceil32(return_data.size) + 489 len 4]
                     if not return_data.size:
                         if not ext_call.success:
                             revert with approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279, 0, 0
@@ -565,53 +616,6 @@ function deposit() {
                         call 0x1f806f7c8ded893fd3cae279191ad7aa3798e928.deposit(uint256 arg1, uint256 arg2, address arg3) with:
                              gas gas_remaining wei
                             args poolId, ext_call.return_data[0], this.address, mem[(2 * ceil32(return_data.size)) + 526 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
-                else:
-                    require ext_code.size(wantAddress)
-                    staticcall wantAddress.0xdd62ed3e with:
-                            gas gas_remaining wei
-                           args this.address, 0x1f806f7c8ded893fd3cae279191ad7aa3798e928
-                    if not ext_call.success:
-                        revert with ext_call.return_data[0 len return_data.size]
-                    require return_data.size >= 32
-                    if ext_call.return_data[0]:
-                        revert with 0, 
-                                    32,
-                                    54,
-                                    0x645361666545524332303a20617070726f76652066726f6d206e6f6e2d7a65726f20746f206e6f6e2d7a65726f20616c6c6f77616e63,
-                                    mem[ceil32(return_data.size) + 383 len 10]
-                    if not ext_code.size(wantAddress):
-                        revert with 0, 'Address: call to non-contract'
-                    mem[ceil32(return_data.size) + 425 len 64] = 0, 0x1f806f7c8ded893fd3cae279191ad7aa3798e928, ext_call.return_data[0 len 28]
-                    call wantAddress.0x3798e928 with:
-                         gas gas_remaining wei
-                        args ext_call.return_data[0], mem[ceil32(return_data.size) + 361 len 28], mem[ceil32(return_data.size) + 489 len 4]
-                    if not return_data.size:
-                        if not ext_call.success:
-                            revert with approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279, 0, 0
-                        if not approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279:
-                            revert with 0, 
-                                        32,
-                                        42,
-                                        0x825361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                        mem[ceil32(return_data.size) + 535 len 22]
-                    else:
-                        mem[ceil32(return_data.size) + 457 len return_data.size] = ext_call.return_data[0 len return_data.size]
-                        if not ext_call.success:
-                            if return_data.size:
-                                revert with ext_call.return_data[0 len return_data.size]
-                            revert with 0, 'SafeERC20: low-level call failed'
-                        if return_data.size:
-                            require return_data.size >= 32
-                            if not mem[ceil32(return_data.size) + 457]:
-                                revert with 0, 
-                                            32,
-                                            42,
-                                            0x825361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                            mem[(2 * ceil32(return_data.size)) + 536 len 22]
-                    require ext_code.size(0x1f806f7c8ded893fd3cae279191ad7aa3798e928)
-                    call 0x1f806f7c8ded893fd3cae279191ad7aa3798e928.deposit(uint256 arg1, uint256 arg2, address arg3) with:
-                         gas gas_remaining wei
-                        args poolId, ext_call.return_data[0], this.address
             else:
                 require return_data.size >= 32
                 if not mem[292]:
@@ -636,10 +640,11 @@ function deposit() {
                                     mem[ceil32(return_data.size) + 383 len 10]
                 if not ext_code.size(wantAddress):
                     revert with 0, 'Address: call to non-contract'
-                mem[ceil32(return_data.size) + 425 len 64] = 0, 0x1f806f7c8ded893fd3cae279191ad7aa3798e928, ext_call.return_data[0 len 28]
+                mem[ceil32(return_data.size) + 425 len 64] = approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279, 0, ext_call.return_data[0 len 28]
+                mem[ceil32(return_data.size) + 489 len 0] = 0
                 call wantAddress.0x3798e928 with:
                      gas gas_remaining wei
-                    args ext_call.return_data[0], mem[ceil32(return_data.size) + 361 len 28], mem[ceil32(return_data.size) + 489 len 4]
+                    args Mask(480, -256, ext_call.return_data[0 len 28]) << 256, mem[ceil32(return_data.size) + 489 len 4]
                 if not return_data.size:
                     if not ext_call.success:
                         revert with approve(address arg1, uint256 arg2), 0x1f806f7c8ded893fd3cae279, 0, 0
@@ -649,18 +654,12 @@ function deposit() {
                                     42,
                                     0x825361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
                                     mem[ceil32(return_data.size) + 535 len 22]
-                    require ext_code.size(0x1f806f7c8ded893fd3cae279191ad7aa3798e928)
-                    call 0x1f806f7c8ded893fd3cae279191ad7aa3798e928.deposit(uint256 arg1, uint256 arg2, address arg3) with:
-                         gas gas_remaining wei
-                        args poolId, ext_call.return_data[0], this.address
                 else:
                     mem[ceil32(return_data.size) + 457 len return_data.size] = ext_call.return_data[0 len return_data.size]
                     if not ext_call.success:
                         if return_data.size:
                             revert with ext_call.return_data[0 len return_data.size]
-                        revert with 0, 
-                                    'SafeERC20: low-level call failed',
-                                    mem[(2 * ceil32(return_data.size)) + 526 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
+                        revert with 0, 'SafeERC20: low-level call failed'
                     if return_data.size:
                         require return_data.size >= 32
                         if not mem[ceil32(return_data.size) + 457]:
@@ -668,11 +667,11 @@ function deposit() {
                                         32,
                                         42,
                                         0x825361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
-                                        mem[(2 * ceil32(return_data.size)) + 536 len (2 * ceil32(return_data.size)) + (-2 * ceil32(return_data.size)) + 22]
-                    require ext_code.size(0x1f806f7c8ded893fd3cae279191ad7aa3798e928)
-                    call 0x1f806f7c8ded893fd3cae279191ad7aa3798e928.deposit(uint256 arg1, uint256 arg2, address arg3) with:
-                         gas gas_remaining wei
-                        args poolId, ext_call.return_data[0], this.address, mem[(2 * ceil32(return_data.size)) + 526 len (2 * ceil32(return_data.size)) - (2 * ceil32(return_data.size))]
+                                        mem[(2 * ceil32(return_data.size)) + 536 len 22]
+                require ext_code.size(0x1f806f7c8ded893fd3cae279191ad7aa3798e928)
+                call 0x1f806f7c8ded893fd3cae279191ad7aa3798e928.deposit(uint256 arg1, uint256 arg2, address arg3) with:
+                     gas gas_remaining wei
+                    args poolId, ext_call.return_data[0], this.address
         if not ext_call.success:
             revert with ext_call.return_data[0 len return_data.size]
 }
