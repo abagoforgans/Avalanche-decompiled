@@ -1,0 +1,325 @@
+contract main {
+
+
+
+
+// =====================  Runtime code  =====================
+
+
+address owner;
+address ADDRESSES_PROVIDER;
+address LENDING_POOLAddress;
+address cEtherAddress;
+address curveAddress;
+uint32 stor5;
+address curvePoolAddress;
+address sub_ada58d14Address;
+address sub_feaa524dAddress;
+address USDCAddress;
+address sub_085684a2Address;
+address WAVAXAddress;
+array of address sub_4fbc2a03;
+mapping of uint256 stor14;
+
+function ADDRESSES_PROVIDER() payable {
+    return ADDRESSES_PROVIDER
+}
+
+function sub_085684a2(?) payable {
+    return sub_085684a2Address
+}
+
+function curvePool() payable {
+    return address(curvePoolAddress)
+}
+
+function sub_4fbc2a03(?) payable {
+    require calldata.size - 4 >= 64
+    require arg2 < uint256(sub_4fbc2a03[arg1])
+    return address(sub_4fbc2a03[arg1][arg2])
+}
+
+function CEther() payable {
+    return cEtherAddress
+}
+
+function curve() payable {
+    return curveAddress
+}
+
+function WAVAX() payable {
+    return WAVAXAddress
+}
+
+function USDC() payable {
+    return USDCAddress
+}
+
+function owner() payable {
+    return owner
+}
+
+function sub_ada58d14(?) payable {
+    return sub_ada58d14Address
+}
+
+function LENDING_POOL() payable {
+    return LENDING_POOLAddress
+}
+
+function sub_feaa524d(?) payable {
+    return sub_feaa524dAddress
+}
+
+function _fallback() payable {
+    revert
+}
+
+function renounceOwnership() payable {
+    if owner != msg.sender:
+        revert with 0, 'sOwnable: caller is not the owne'
+    owner = 0
+    emit OwnershipTransferred(owner, 0);
+}
+
+function sub_4d2e3d92(?) payable {
+    require calldata.size - 4 >= 64
+    if owner != msg.sender:
+        revert with 0, 'sOwnable: caller is not the owne'
+    stor14[address(arg1)] = arg2
+}
+
+function sub_10e4912e(?) payable {
+    require calldata.size - 4 >= 32
+    if owner != msg.sender:
+        revert with 0, 'sOwnable: caller is not the owne'
+    require ext_code.size(curveAddress)
+    call curveAddress.0x7981c43e with:
+         gas gas_remaining wei
+        args 0, uint32(stor5), 2, 0, arg1, 95 * 10^10 * arg1
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+}
+
+function transferOwnership(address arg1) payable {
+    require calldata.size - 4 >= 32
+    if owner != msg.sender:
+        revert with 0, 'sOwnable: caller is not the owne'
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    32,
+                    38,
+                    0xfe4f776e61626c653a206e6577206f776e657220697320746865207a65726f20616464726573,
+                    mem[202 len 26]
+    owner = arg1
+    emit OwnershipTransferred(owner, arg1);
+}
+
+function sub_73342b1b(?) payable {
+    require calldata.size - 4 >= 64
+    mem[804 len 0] = None
+    mem[868 len 0] = None
+    mem[932 len 0] = None
+    require ext_code.size(LENDING_POOLAddress)
+    call LENDING_POOLAddress.flashLoan(address arg1, address[] arg2, uint256[] arg3, uint256[] arg4, address arg5, bytes arg6, uint16 arg7) with:
+         gas gas_remaining wei
+        args address(this.address), 224, 288, 352, this.address, 608, 0, 1, mem[804], 1, mem[868], 7, mem[932 len 224], 0
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+}
+
+function executeOperation(address[] arg1, uint256[] arg2, uint256[] arg3, address arg4, bytes arg5) payable {
+    require calldata.size - 4 >= 160
+    require arg1 <= 4294967296
+    require arg1 + 36 <= calldata.size
+    require arg1.length <= 4294967296 and arg1 + (32 * arg1.length) + 36 <= calldata.size
+    require arg2 <= 4294967296
+    require arg2 + 36 <= calldata.size
+    require arg2.length <= 4294967296 and arg2 + (32 * arg2.length) + 36 <= calldata.size
+    require arg3 <= 4294967296
+    require arg3 + 36 <= calldata.size
+    require arg3.length <= 4294967296 and arg3 + (32 * arg3.length) + 36 <= calldata.size
+    require arg5 <= 4294967296
+    require arg5 + 36 <= calldata.size
+    require arg5.length <= 4294967296 and arg5 + arg5.length + 36 <= calldata.size
+    return 1
+}
+
+function sub_8912dc0a(?) payable {
+    require calldata.size - 4 >= 64
+    require cd[36] <= 4294967296
+    require cd[36] + 36 <= calldata.size
+    require ('cd', 36).length <= 4294967296 and cd[36] + (32 * ('cd', 36).length) + 36 <= calldata.size
+    if owner != msg.sender:
+        revert with 0, 'sOwnable: caller is not the owne'
+    uint256(sub_4fbc2a03[address(cd[4])]) = ('cd', 36).length
+    if not ('cd', 36).length:
+        idx = 0
+        while uint256(sub_4fbc2a03[address(cd[4])]) > idx:
+            address(sub_4fbc2a03[address(cd[4])][idx]) = 0
+            idx = idx + 1
+            continue 
+    else:
+        s = 0
+        idx = cd[36] + 36
+        while cd[36] + (32 * ('cd', 36).length) + 36 > idx:
+            address(sub_4fbc2a03[address(cd[4])][s]) = address(cd[idx])
+            s = s + 1
+            idx = idx + 32
+            continue 
+        idx = Mask(251, 0, (32 * ('cd', 36).length) + 31) >> 5
+        while uint256(sub_4fbc2a03[address(cd[4])]) > idx:
+            address(sub_4fbc2a03[address(cd[4])][idx]) = 0
+            idx = idx + 1
+            continue 
+}
+
+function approveToken(address arg1, address arg2) payable {
+    require calldata.size - 4 >= 64
+    if owner != msg.sender:
+        revert with 0, 'sOwnable: caller is not the owne'
+    require ext_code.size(arg1)
+    staticcall arg1.0xdd62ed3e with:
+            gas gas_remaining wei
+           args this.address, arg2
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    if ext_call.return_data[0]:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    32,
+                    54,
+                    0x645361666545524332303a20617070726f76652066726f6d206e6f6e2d7a65726f20746f206e6f6e2d7a65726f20616c6c6f77616e63,
+                    mem[218 len 10]
+    if 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470 == ext_code.hash(arg1):
+        revert with 0, 'SafeERC20: call to non-contract'
+    if not ext_code.hash(arg1):
+        revert with 0, 'SafeERC20: call to non-contract'
+    mem[196 len 64] = approve(address arg1, uint256 arg2), address(arg2) << 64, 0, 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    call arg1 with:
+         gas gas_remaining wei
+        args Mask(480, -256, approve(address arg1, uint256 arg2), address(arg2) << 64, 0, 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffff) << 256, mem[260 len 4]
+    if not return_data.size:
+        if not ext_call.success:
+            revert with 0, 'SafeERC20: low-level call failed'
+        if not approve(address arg1, uint256 arg2), address(arg2) << 64:
+            revert with 0, 32, 42, 0x725361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565, mem[306 len 22]
+    else:
+        mem[228 len return_data.size] = ext_call.return_data[0 len return_data.size]
+        if not ext_call.success:
+            revert with 0, 'SafeERC20: low-level call failed'
+        if return_data.size:
+            require return_data.size >= 32
+            if not mem[228]:
+                revert with 0, 
+                            32,
+                            42,
+                            0x725361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                            mem[ceil32(return_data.size) + 307 len 22]
+}
+
+function withdraw(address arg1) payable {
+    require calldata.size - 4 >= 32
+    if owner != msg.sender:
+        revert with 0, 'sOwnable: caller is not the owne'
+    if not arg1:
+        call msg.sender with:
+           value eth.balance(this.address) wei
+             gas 2300 * is_zero(value) wei
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        emit LogWithdraw(eth.balance(this.address), msg.sender, arg1);
+    else:
+        require ext_code.size(arg1)
+        staticcall arg1.0x70a08231 with:
+                gas gas_remaining wei
+               args this.address
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        require return_data.size >= 32
+        if 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470 == ext_code.hash(arg1):
+            revert with 0, 'SafeERC20: call to non-contract'
+        if not ext_code.hash(arg1):
+            revert with 0, 'SafeERC20: call to non-contract'
+        mem[196 len 64] = unknown_0xa9059cbb(?????), msg.sender, ext_call.return_data[0 len 28]
+        call arg1 with:
+           funct uint32(msg.sender)
+             gas gas_remaining wei
+            args Mask(480, -256, ext_call.return_data[0 len 28]) << 256, mem[260 len 4]
+        if not return_data.size:
+            if not ext_call.success:
+                revert with 0, 'SafeERC20: low-level call failed'
+            if not unknown_0xa9059cbb(?????), Mask(224, 32, msg.sender) >> 32:
+                revert with 0, 32, 42, 0x725361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565, mem[306 len 22]
+        else:
+            mem[228 len return_data.size] = ext_call.return_data[0 len return_data.size]
+            if not ext_call.success:
+                revert with 0, 'SafeERC20: low-level call failed'
+            if return_data.size:
+                require return_data.size >= 32
+                if not mem[228]:
+                    revert with 0, 
+                                32,
+                                42,
+                                0x725361666545524332303a204552433230206f7065726174696f6e20646964206e6f7420737563636565,
+                                mem[ceil32(return_data.size) + 307 len 22]
+        emit LogWithdraw(ext_call.return_data[0], msg.sender, arg1);
+}
+
+function sub_b3ee123d(?) payable {
+    require calldata.size - 4 >= 64
+    require cd[4] <= 4294967296
+    require cd[4] + 36 <= calldata.size
+    require ('cd', 4).length <= 4294967296 and cd[4] + (32 * ('cd', 4).length) + 36 <= calldata.size
+    require cd[36] <= 4294967296
+    require cd[36] + 36 <= calldata.size
+    require ('cd', 36).length <= 4294967296 and cd[36] + (32 * ('cd', 36).length) + 36 <= calldata.size
+    require ('cd', 4).length <= test266151307()
+    if ('cd', 4).length:
+        mem[128 len 32 * ('cd', 4).length] = call.data[calldata.size len 32 * ('cd', 4).length]
+    require ('cd', 4).length <= test266151307()
+    mem[(32 * ('cd', 4).length) + 128] = ('cd', 4).length
+    if ('cd', 4).length:
+        mem[(32 * ('cd', 4).length) + 160 len 32 * ('cd', 4).length] = call.data[calldata.size len 32 * ('cd', 4).length]
+    idx = 0
+    while idx < ('cd', 4).length:
+        require idx < ('cd', 36).length
+        require idx < ('cd', 4).length
+        require ext_code.size(address(cd[((32 * idx) + cd[36] + 36)]))
+        staticcall address(cd[((32 * idx) + cd[36] + 36)]).0x29bc969d with:
+                gas gas_remaining wei
+               args address(cd[((32 * idx) + cd[4] + 36)])
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        require return_data.size >= 32
+        require idx < ('cd', 4).length
+        mem[(32 * idx) + 128] = ext_call.return_data[0]
+        require idx < ('cd', 36).length
+        require idx < ('cd', 4).length
+        mem[(64 * ('cd', 4).length) + 164] = address(cd[((32 * idx) + cd[4] + 36)])
+        require ext_code.size(address(cd[((32 * idx) + cd[36] + 36)]))
+        staticcall address(cd[((32 * idx) + cd[36] + 36)]).getCollateralLeft(address arg1) with:
+                gas gas_remaining wei
+               args address(cd[((32 * idx) + cd[4] + 36)])
+        mem[(64 * ('cd', 4).length) + 160] = ext_call.return_data[0]
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        require return_data.size >= 32
+        require idx < mem[(32 * ('cd', 4).length) + 128]
+        mem[(32 * idx) + (32 * ('cd', 4).length) + 160] = ext_call.return_data[0]
+        idx = idx + 1
+        continue 
+    mem[(64 * ('cd', 4).length) + 160] = 64
+    mem[(64 * ('cd', 4).length) + 224] = ('cd', 4).length
+    mem[(64 * ('cd', 4).length) + 256 len floor32(('cd', 4).length)] = mem[128 len floor32(('cd', 4).length)]
+    mem[(64 * ('cd', 4).length) + 192] = (32 * ('cd', 4).length) + 96
+    mem[(98 * ('cd', 4).length) + 256] = mem[(32 * ('cd', 4).length) + 128]
+    mem[(98 * ('cd', 4).length) + 288 len floor32(mem[(32 * ('cd', 4).length) + 128])] = mem[(32 * ('cd', 4).length) + 160 len floor32(mem[(32 * ('cd', 4).length) + 128])]
+    return memory
+      from (64 * ('cd', 4).length) + 160
+       len (32 * mem[(32 * ('cd', 4).length) + 128]) + (32 * ('cd', 4).length) + 128
+}
+
+
+
+}
