@@ -1,0 +1,4832 @@
+contract main {
+
+
+
+
+// =====================  Runtime code  =====================
+
+
+const decimals = 18
+
+
+mapping of uint256 balanceOf;
+mapping of struct allowance;
+uint256 totalSupply;
+array of struct stor3;
+array of struct stor4;
+address owner;
+uint256 totalShares;
+uint256 totalReleased;
+mapping of uint256 shares;
+mapping of uint256 released;
+array of address payee;
+mapping of uint256 totalReleased;
+mapping of uint256 released;
+address nodeRewardManagerAddress;
+address uniswapV2RouterAddress;
+address uniswapV2PairAddress;
+address futurUsePoolAddress;
+address distributionPoolAddress;
+address deadWalletAddress;
+uint256 rewardsFee;
+uint256 liquidityPoolFee;
+uint256 futurFee;
+uint256 totalFees;
+uint256 cashoutFee;
+uint256 stor24;
+uint8 stor25;
+uint8 stor25; offset 8
+uint256 stor25; offset 8
+uint256 swapTokensAmount;
+mapping of uint8 stor27;
+mapping of uint8 stor28;
+
+function totalFees() {
+    return totalFees
+}
+
+function uniswapV2Router() {
+    return uniswapV2RouterAddress
+}
+
+function totalSupply() {
+    return totalSupply
+}
+
+function _isBlacklisted(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    return bool(stor27[arg1])
+}
+
+function rewardsFee() {
+    return rewardsFee
+}
+
+function totalShares() {
+    return totalShares
+}
+
+function released(address arg1, address arg2) {
+    require calldata.size - 4 >= 64
+    require arg1 == arg1
+    require arg2 == arg2
+    return released[address(arg1)][address(arg2)]
+}
+
+function uniswapV2Pair() {
+    return uniswapV2PairAddress
+}
+
+function liquidityPoolFee() {
+    return liquidityPoolFee
+}
+
+function swapTokensAmount() {
+    return swapTokensAmount
+}
+
+function cashoutFee() {
+    return cashoutFee
+}
+
+function balanceOf(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    return balanceOf[address(arg1)]
+}
+
+function nodeRewardManager() {
+    return nodeRewardManagerAddress
+}
+
+function deadWallet() {
+    return deadWalletAddress
+}
+
+function payee(uint256 arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if arg1 >= payee.length:
+        revert with 'NH{q', 50
+    return payee[arg1]
+}
+
+function owner() {
+    return owner
+}
+
+function released(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    return released[address(arg1)]
+}
+
+function futurUsePool() {
+    return futurUsePoolAddress
+}
+
+function futurFee() {
+    return futurFee
+}
+
+function automatedMarketMakerPairs(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    return bool(stor28[arg1])
+}
+
+function distributionPool() {
+    return distributionPoolAddress
+}
+
+function shares(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    return shares[address(arg1)]
+}
+
+function totalReleased(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    return totalReleased[address(arg1)]
+}
+
+function allowance(address arg1, address arg2) {
+    require calldata.size - 4 >= 64
+    require arg1 == arg1
+    require arg2 == arg2
+    return allowance[address(arg1)][address(arg2)].field_0
+}
+
+function totalReleased() {
+    return totalReleased
+}
+
+function _fallback() payable {
+    revert
+}
+
+function renounceOwnership() {
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    emit OwnershipTransferred(owner, 0);
+    owner = 0
+}
+
+function updateRwSwapFee(uint256 arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    stor24 = arg1
+}
+
+function updateCashoutFee(uint256 arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    cashoutFee = arg1
+}
+
+function updateFuturWall(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    futurUsePoolAddress = arg1
+}
+
+function updateSwapTokensAmount(uint256 arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    swapTokensAmount = arg1
+}
+
+function updateRewardsWall(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    distributionPoolAddress = arg1
+}
+
+function setNodeManagement(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    nodeRewardManagerAddress = arg1
+}
+
+function changeSwapLiquify(bool arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    Mask(248, 0, stor25.field_8) = Mask(248, 0, arg1)
+}
+
+function blacklistMalicious(address arg1, bool arg2) {
+    require calldata.size - 4 >= 64
+    require arg1 == arg1
+    require arg2 == arg2
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    stor27[address(arg1)] = uint8(arg2)
+}
+
+function transferOwnership(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'Ownable: new owner is the zero address'
+    emit OwnershipTransferred(owner, arg1);
+    owner = arg1
+}
+
+function getNodePrice() {
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress.nodePrice() with:
+            gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    return ext_call.return_data[0]
+}
+
+function getClaimTime() {
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress.claimTime() with:
+            gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    return ext_call.return_data[0]
+}
+
+function getRewardPerNode() {
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress.rewardPerNode() with:
+            gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    return ext_call.return_data[0]
+}
+
+function getGasDistri() {
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress.gasForDistribution() with:
+            gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    return ext_call.return_data[0]
+}
+
+function getDistriCount() {
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress.lastDistributionCount() with:
+            gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    return ext_call.return_data[0]
+}
+
+function getAutoDistri() {
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress.autoDistri() with:
+            gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+    return bool(ext_call.return_data[0])
+}
+
+function getTotalStakedReward() {
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress.totalRewardStaked() with:
+            gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    return ext_call.return_data[0]
+}
+
+function getTotalCreatedNodes() {
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress.totalNodesCreated() with:
+            gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    return ext_call.return_data[0]
+}
+
+function changeAutoDistri(bool arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ext_code.size(nodeRewardManagerAddress)
+    call nodeRewardManagerAddress._changeAutoDistri(bool arg1) with:
+         gas gas_remaining wei
+        args arg1
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+}
+
+function changeGasDistri(uint256 arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ext_code.size(nodeRewardManagerAddress)
+    call nodeRewardManagerAddress._changeGasDistri(uint256 arg1) with:
+         gas gas_remaining wei
+        args arg1
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+}
+
+function changeNodePrice(uint256 arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ext_code.size(nodeRewardManagerAddress)
+    call nodeRewardManagerAddress._changeNodePrice(uint256 arg1) with:
+         gas gas_remaining wei
+        args arg1
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+}
+
+function changeClaimTime(uint256 arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ext_code.size(nodeRewardManagerAddress)
+    call nodeRewardManagerAddress._changeClaimTime(uint256 arg1) with:
+         gas gas_remaining wei
+        args arg1
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+}
+
+function changeRewardPerNode(uint256 arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ext_code.size(nodeRewardManagerAddress)
+    call nodeRewardManagerAddress._changeRewardPerNode(uint256 arg1) with:
+         gas gas_remaining wei
+        args arg1
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+}
+
+function publiDistriRewards() {
+    require ext_code.size(nodeRewardManagerAddress)
+    call nodeRewardManagerAddress._distributeRewards() with:
+         gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 96
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    require ext_call.return_data[32] == ext_call.return_data[32]
+    require ext_call.return_data[64] == ext_call.return_data[64]
+}
+
+function getNodeNumberOf(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._getNodeNumberOf(address arg1) with:
+            gas gas_remaining wei
+           args arg1
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    return ext_call.return_data[0]
+}
+
+function boostReward(uint256 arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if arg1 <= eth.balance(this.address):
+        call owner with:
+           value arg1 wei
+             gas 2300 * is_zero(value) wei
+    else:
+        call owner with:
+           value eth.balance(this.address) wei
+             gas 2300 * is_zero(value) wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+}
+
+function approve(address arg1, uint256 arg2) {
+    require calldata.size - 4 >= 64
+    require arg1 == arg1
+    require arg2 == arg2
+    if not msg.sender:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'ERC20: approve from the zero address'
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'ERC20: approve to the zero address'
+    allowance[address(msg.sender)][address(arg1)].field_0 = arg2
+    emit Approval(arg2, msg.sender, arg1);
+    return 1
+}
+
+function updateFuturFee(uint256 arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    futurFee = arg1
+    if rewardsFee > -liquidityPoolFee - 1:
+        revert with 'NH{q', 17
+    if rewardsFee + liquidityPoolFee < rewardsFee:
+        revert with 0, 'SafeMath: addition overflow'
+    if rewardsFee + liquidityPoolFee > -futurFee - 1:
+        revert with 'NH{q', 17
+    if futurFee < 0:
+        revert with 0, 'SafeMath: addition overflow'
+    totalFees = rewardsFee + liquidityPoolFee + futurFee
+}
+
+function getRewardAmountOf(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._getRewardAmountOf(address arg1) with:
+            gas gas_remaining wei
+           args arg1
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    return ext_call.return_data[0]
+}
+
+function updateRewardsFee(uint256 arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    rewardsFee = arg1
+    if rewardsFee > -liquidityPoolFee - 1:
+        revert with 'NH{q', 17
+    if rewardsFee + liquidityPoolFee < rewardsFee:
+        revert with 0, 'SafeMath: addition overflow'
+    if rewardsFee + liquidityPoolFee > -futurFee - 1:
+        revert with 'NH{q', 17
+    if futurFee < 0:
+        revert with 0, 'SafeMath: addition overflow'
+    totalFees = rewardsFee + liquidityPoolFee + futurFee
+}
+
+function updateLiquiditFee(uint256 arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    liquidityPoolFee = arg1
+    if rewardsFee > -liquidityPoolFee - 1:
+        revert with 'NH{q', 17
+    if rewardsFee + liquidityPoolFee < rewardsFee:
+        revert with 0, 'SafeMath: addition overflow'
+    if rewardsFee + liquidityPoolFee > -futurFee - 1:
+        revert with 'NH{q', 17
+    if futurFee < 0:
+        revert with 0, 'SafeMath: addition overflow'
+    totalFees = rewardsFee + liquidityPoolFee + futurFee
+}
+
+function distributeRewards() {
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ext_code.size(nodeRewardManagerAddress)
+    call nodeRewardManagerAddress._distributeRewards() with:
+         gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 96
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    require ext_call.return_data[32] == ext_call.return_data[32]
+    require ext_call.return_data[64] == ext_call.return_data[64]
+    return ext_call.return_data[0], ext_call.return_data[32], ext_call.return_data[64]
+}
+
+function setAutomatedMarketMakerPair(address arg1, bool arg2) {
+    require calldata.size - 4 >= 64
+    require arg1 == arg1
+    require arg2 == arg2
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if arg1 == uniswapV2PairAddress:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    'TKN: The PancakeSwap pair cannot be removed from automatedMarketMakerPairs'
+    if bool(stor28[address(arg1)]) == arg2:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    'TKN: Automated market maker pair is already set to that value'
+    stor28[address(arg1)] = uint8(arg2)
+    emit SetAutomatedMarketMakerPair(arg1, arg2);
+}
+
+function decreaseAllowance(address arg1, uint256 arg2) {
+    require calldata.size - 4 >= 64
+    require arg1 == arg1
+    require arg2 == arg2
+    if arg2 > allowance[address(msg.sender)][address(arg1)].field_0:
+        revert with 0, 32, 37, 0x6545524332303a2064656372656173656420616c6c6f77616e63652062656c6f77207a6572, mem[165 len 27] >> 40, 0
+    if allowance[address(msg.sender)][address(arg1)].field_0 < arg2:
+        revert with 'NH{q', 17
+    if not msg.sender:
+        revert with 0, 'ERC20: approve from the zero address'
+    if not arg1:
+        revert with 0, 'ERC20: approve to the zero address'
+    allowance[address(msg.sender)][address(arg1)].field_0 -= arg2
+    emit Approval((allowance[address(msg.sender)][address(arg1)].field_0 - arg2), msg.sender, arg1);
+    return 1
+}
+
+function increaseAllowance(address arg1, uint256 arg2) {
+    require calldata.size - 4 >= 64
+    require arg1 == arg1
+    require arg2 == arg2
+    if allowance[address(msg.sender)][address(arg1)].field_0 > -arg2 - 1:
+        revert with 'NH{q', 17
+    if allowance[address(msg.sender)][address(arg1)].field_0 + arg2 < allowance[address(msg.sender)][address(arg1)].field_0:
+        revert with 0, 'SafeMath: addition overflow'
+    if not msg.sender:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'ERC20: approve from the zero address'
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'ERC20: approve to the zero address'
+    allowance[address(msg.sender)][address(arg1)].field_0 += arg2
+    emit Approval((allowance[address(msg.sender)][address(arg1)].field_0 + arg2), msg.sender, arg1);
+    return 1
+}
+
+function getRewardAmount() {
+    if not msg.sender:
+        revert with 0, 'SENDER CAN'T BE ZERO'
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._isNodeOwner(address arg1) with:
+            gas gas_remaining wei
+           args msg.sender
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+    if not ext_call.return_data[0]:
+        revert with 0, 'NO NODE OWNER'
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._getRewardAmountOf(address arg1) with:
+            gas gas_remaining wei
+           args msg.sender
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    return ext_call.return_data[0]
+}
+
+function transfer(address arg1, uint256 arg2) {
+    require calldata.size - 4 >= 64
+    require arg1 == arg1
+    require arg2 == arg2
+    if not msg.sender:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'ERC20: transfer from the zero address'
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'ERC20: transfer to the zero address'
+    if stor27[address(msg.sender)]:
+        revert with 0, 'Blacklisted address'
+    if stor27[address(arg1)]:
+        revert with 0, 'Blacklisted address'
+    if not msg.sender:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'ERC20: transfer from the zero address'
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'ERC20: transfer to the zero address'
+    if arg2 > balanceOf[address(msg.sender)]:
+        revert with 0, 32, 38, 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[166 len 26] >> 48, 0
+    if balanceOf[address(msg.sender)] < arg2:
+        revert with 'NH{q', 17
+    balanceOf[address(msg.sender)] -= arg2
+    if balanceOf[address(arg1)] > -arg2 - 1:
+        revert with 'NH{q', 17
+    if balanceOf[address(arg1)] + arg2 < balanceOf[address(arg1)]:
+        revert with 0, 'SafeMath: addition overflow'
+    balanceOf[address(arg1)] += arg2
+    emit Transfer(arg2, msg.sender, arg1);
+    return 1
+}
+
+function updateUniswapV2Router(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if arg1 == uniswapV2RouterAddress:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'TKN: The router already has that address'
+    emit UpdateUniswapV2Router(arg1, uniswapV2RouterAddress);
+    uniswapV2RouterAddress = arg1
+    require ext_code.size(uniswapV2RouterAddress)
+    staticcall uniswapV2RouterAddress.factory() with:
+            gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+    require ext_code.size(uniswapV2RouterAddress)
+    staticcall uniswapV2RouterAddress.WAVAX() with:
+            gas gas_remaining wei
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+    require ext_code.size(address(ext_call.return_data[0]))
+    call address(ext_call.return_data[0]).createPair(address arg1, address arg2) with:
+         gas gas_remaining wei
+        args address(this.address), address(ext_call.return_data[0])
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+    uniswapV2PairAddress = ext_call.return_data[12 len 20]
+}
+
+function transferFrom(address arg1, address arg2, uint256 arg3) {
+    require calldata.size - 4 >= 96
+    require arg1 == arg1
+    require arg2 == arg2
+    require arg3 == arg3
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'ERC20: transfer from the zero address'
+    if not arg2:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'ERC20: transfer to the zero address'
+    if stor27[address(arg1)]:
+        revert with 0, 'Blacklisted address'
+    if stor27[address(arg2)]:
+        revert with 0, 'Blacklisted address'
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'ERC20: transfer from the zero address'
+    if not arg2:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'ERC20: transfer to the zero address'
+    if arg3 > balanceOf[address(arg1)]:
+        revert with 0, 32, 38, 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[166 len 26] >> 48, 0
+    if balanceOf[address(arg1)] < arg3:
+        revert with 'NH{q', 17
+    balanceOf[address(arg1)] -= arg3
+    if balanceOf[address(arg2)] > -arg3 - 1:
+        revert with 'NH{q', 17
+    if balanceOf[address(arg2)] + arg3 < balanceOf[address(arg2)]:
+        revert with 0, 'SafeMath: addition overflow'
+    balanceOf[address(arg2)] += arg3
+    emit Transfer(arg3, arg1, arg2);
+    if arg3 > allowance[address(arg1)][address(msg.sender)].field_0:
+        revert with 0, 32, 40, 0x6545524332303a207472616e7366657220616d6f756e74206578636565647320616c6c6f77616e63, mem[264 len 24] >> 64, 0
+    if allowance[address(arg1)][address(msg.sender)].field_0 < arg3:
+        revert with 'NH{q', 17
+    if not arg1:
+        revert with 0, 'ERC20: approve from the zero address'
+    if not msg.sender:
+        revert with 0, 'ERC20: approve to the zero address'
+    allowance[address(arg1)][address(msg.sender)].field_0 -= arg3
+    emit Approval((allowance[address(arg1)][address(msg.sender)].field_0 - arg3), arg1, msg.sender);
+    return 1
+}
+
+function release(address arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if shares[address(arg1)] <= 0:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'PaymentSplitter: account has no shares'
+    if eth.balance(this.address) > -totalReleased - 1:
+        revert with 'NH{q', 17
+    if eth.balance(this.address) + totalReleased and shares[address(arg1)] > -1 / eth.balance(this.address) + totalReleased:
+        revert with 'NH{q', 17
+    if not totalShares:
+        revert with 'NH{q', 18
+    if (eth.balance(this.address) * shares[address(arg1)]) + (totalReleased * shares[address(arg1)]) / totalShares < released[address(arg1)]:
+        revert with 'NH{q', 17
+    if not ((eth.balance(this.address) * shares[address(arg1)]) + (totalReleased * shares[address(arg1)]) / totalShares) - released[address(arg1)]:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'PaymentSplitter: account is not due payment'
+    if released[address(arg1)] > -((eth.balance(this.address) * shares[address(arg1)]) + (totalReleased * shares[address(arg1)]) / totalShares) + released[address(arg1)] - 1:
+        revert with 'NH{q', 17
+    released[address(arg1)] = (eth.balance(this.address) * shares[address(arg1)]) + (totalReleased * shares[address(arg1)]) / totalShares
+    if totalReleased > -((eth.balance(this.address) * shares[address(arg1)]) + (totalReleased * shares[address(arg1)]) / totalShares) + released[address(arg1)] - 1:
+        revert with 'NH{q', 17
+    totalReleased = totalReleased + ((eth.balance(this.address) * shares[address(arg1)]) + (totalReleased * shares[address(arg1)]) / totalShares) - released[address(arg1)]
+    if eth.balance(this.address) < ((eth.balance(this.address) * shares[address(arg1)]) + (totalReleased * shares[address(arg1)]) / totalShares) - released[address(arg1)]:
+        revert with 0, 'Address: insufficient balance'
+    call arg1 with:
+       value ((eth.balance(this.address) * shares[address(arg1)]) + (totalReleased * shares[address(arg1)]) / totalShares) - released[address(arg1)] wei
+         gas gas_remaining wei
+    if not return_data.size:
+        if not ext_call.success:
+            revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                        'Address: unable to send value, recipient may have reverted'
+    else:
+        if not ext_call.success:
+            revert with 0, 'Address: unable to send value, recipient may have reverted'
+    ('bool', 'ext_call.success')
+    emit PaymentReleased(address(arg1), ((eth.balance(this.address) * shares[address(arg1)]) + (totalReleased * shares[address(arg1)]) / totalShares) - released[address(arg1)]);
+}
+
+function getNodesNames() {
+    if not msg.sender:
+        revert with 0, 'SENDER CAN'T BE ZERO'
+    mem[100] = msg.sender
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._isNodeOwner(address arg1) with:
+            gas gas_remaining wei
+           args msg.sender
+    mem[96] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+    if not ext_call.return_data[0]:
+        revert with 0, 'NO NODE OWNER'
+    mem[ceil32(return_data.size) + 96] = 0x334de3a200000000000000000000000000000000000000000000000000000000
+    mem[ceil32(return_data.size) + 100] = msg.sender
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._getNodesNames(address arg1) with:
+            gas gas_remaining wei
+           args msg.sender
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    mem[ceil32(return_data.size) + 96 len return_data.size] = ext_call.return_data[0 len return_data.size]
+    mem[64] = (2 * ceil32(return_data.size)) + 96
+    require return_data.size >= 32
+    _12 = mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32
+    require mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 <= test266151307()
+    require ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 127 < ceil32(return_data.size) + return_data.size + 96
+    _13 = mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96]
+    if mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96] > test266151307():
+        revert with 'NH{q', 65
+    if (2 * ceil32(return_data.size)) + ceil32(ceil32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96])) + 97 > test266151307() or ceil32(ceil32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96])) + 1 < 0:
+        revert with 'NH{q', 65
+    mem[64] = (2 * ceil32(return_data.size)) + ceil32(ceil32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96])) + 97
+    mem[(2 * ceil32(return_data.size)) + 96] = _13
+    require _12 + _13 + 32 <= return_data.size
+    mem[(2 * ceil32(return_data.size)) + 128 len ceil32(_13)] = mem[ceil32(return_data.size) + _12 + 128 len ceil32(_13)]
+    if ceil32(_13) > _13:
+        mem[(2 * ceil32(return_data.size)) + _13 + 128] = 0
+    mem[mem[64]] = 32
+    mem[mem[64] + 32] = _13
+    mem[mem[64] + 64 len ceil32(_13)] = mem[(2 * ceil32(return_data.size)) + 128 len ceil32(_13)]
+    if ceil32(_13) > _13:
+        mem[mem[64] + _13 + 64] = 0
+    return Array(len=_13, data=mem[mem[64] + 64 len ceil32(_13)])
+}
+
+function getNodesCreatime() {
+    if not msg.sender:
+        revert with 0, 'SENDER CAN'T BE ZERO'
+    mem[100] = msg.sender
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._isNodeOwner(address arg1) with:
+            gas gas_remaining wei
+           args msg.sender
+    mem[96] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+    if not ext_call.return_data[0]:
+        revert with 0, 'NO NODE OWNER'
+    mem[ceil32(return_data.size) + 96] = 0xc92819ce00000000000000000000000000000000000000000000000000000000
+    mem[ceil32(return_data.size) + 100] = msg.sender
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._getNodesCreationTime(address arg1) with:
+            gas gas_remaining wei
+           args msg.sender
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    mem[ceil32(return_data.size) + 96 len return_data.size] = ext_call.return_data[0 len return_data.size]
+    mem[64] = (2 * ceil32(return_data.size)) + 96
+    require return_data.size >= 32
+    _12 = mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32
+    require mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 <= test266151307()
+    require ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 127 < ceil32(return_data.size) + return_data.size + 96
+    _13 = mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96]
+    if mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96] > test266151307():
+        revert with 'NH{q', 65
+    if (2 * ceil32(return_data.size)) + ceil32(ceil32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96])) + 97 > test266151307() or ceil32(ceil32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96])) + 1 < 0:
+        revert with 'NH{q', 65
+    mem[64] = (2 * ceil32(return_data.size)) + ceil32(ceil32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96])) + 97
+    mem[(2 * ceil32(return_data.size)) + 96] = _13
+    require _12 + _13 + 32 <= return_data.size
+    mem[(2 * ceil32(return_data.size)) + 128 len ceil32(_13)] = mem[ceil32(return_data.size) + _12 + 128 len ceil32(_13)]
+    if ceil32(_13) > _13:
+        mem[(2 * ceil32(return_data.size)) + _13 + 128] = 0
+    mem[mem[64]] = 32
+    mem[mem[64] + 32] = _13
+    mem[mem[64] + 64 len ceil32(_13)] = mem[(2 * ceil32(return_data.size)) + 128 len ceil32(_13)]
+    if ceil32(_13) > _13:
+        mem[mem[64] + _13 + 64] = 0
+    return Array(len=_13, data=mem[mem[64] + 64 len ceil32(_13)])
+}
+
+function getNodesRewards() {
+    if not msg.sender:
+        revert with 0, 'SENDER CAN'T BE ZERO'
+    mem[100] = msg.sender
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._isNodeOwner(address arg1) with:
+            gas gas_remaining wei
+           args msg.sender
+    mem[96] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+    if not ext_call.return_data[0]:
+        revert with 0, 'NO NODE OWNER'
+    mem[ceil32(return_data.size) + 96] = 0x4a389fae00000000000000000000000000000000000000000000000000000000
+    mem[ceil32(return_data.size) + 100] = msg.sender
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._getNodesRewardAvailable(address arg1) with:
+            gas gas_remaining wei
+           args msg.sender
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    mem[ceil32(return_data.size) + 96 len return_data.size] = ext_call.return_data[0 len return_data.size]
+    mem[64] = (2 * ceil32(return_data.size)) + 96
+    require return_data.size >= 32
+    _12 = mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32
+    require mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 <= test266151307()
+    require ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 127 < ceil32(return_data.size) + return_data.size + 96
+    _13 = mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96]
+    if mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96] > test266151307():
+        revert with 'NH{q', 65
+    if (2 * ceil32(return_data.size)) + ceil32(ceil32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96])) + 97 > test266151307() or ceil32(ceil32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96])) + 1 < 0:
+        revert with 'NH{q', 65
+    mem[64] = (2 * ceil32(return_data.size)) + ceil32(ceil32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96])) + 97
+    mem[(2 * ceil32(return_data.size)) + 96] = _13
+    require _12 + _13 + 32 <= return_data.size
+    mem[(2 * ceil32(return_data.size)) + 128 len ceil32(_13)] = mem[ceil32(return_data.size) + _12 + 128 len ceil32(_13)]
+    if ceil32(_13) > _13:
+        mem[(2 * ceil32(return_data.size)) + _13 + 128] = 0
+    mem[mem[64]] = 32
+    mem[mem[64] + 32] = _13
+    mem[mem[64] + 64 len ceil32(_13)] = mem[(2 * ceil32(return_data.size)) + 128 len ceil32(_13)]
+    if ceil32(_13) > _13:
+        mem[mem[64] + _13 + 64] = 0
+    return Array(len=_13, data=mem[mem[64] + 64 len ceil32(_13)])
+}
+
+function getNodesLastClaims() {
+    if not msg.sender:
+        revert with 0, 'SENDER CAN'T BE ZERO'
+    mem[100] = msg.sender
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._isNodeOwner(address arg1) with:
+            gas gas_remaining wei
+           args msg.sender
+    mem[96] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+    if not ext_call.return_data[0]:
+        revert with 0, 'NO NODE OWNER'
+    mem[ceil32(return_data.size) + 96] = 0x5759fb0200000000000000000000000000000000000000000000000000000000
+    mem[ceil32(return_data.size) + 100] = msg.sender
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._getNodesLastClaimTime(address arg1) with:
+            gas gas_remaining wei
+           args msg.sender
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    mem[ceil32(return_data.size) + 96 len return_data.size] = ext_call.return_data[0 len return_data.size]
+    mem[64] = (2 * ceil32(return_data.size)) + 96
+    require return_data.size >= 32
+    _12 = mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32
+    require mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 <= test266151307()
+    require ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 127 < ceil32(return_data.size) + return_data.size + 96
+    _13 = mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96]
+    if mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96] > test266151307():
+        revert with 'NH{q', 65
+    if (2 * ceil32(return_data.size)) + ceil32(ceil32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96])) + 97 > test266151307() or ceil32(ceil32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96])) + 1 < 0:
+        revert with 'NH{q', 65
+    mem[64] = (2 * ceil32(return_data.size)) + ceil32(ceil32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 96 len 4], Mask(224, 32, msg.sender) >> 32 + 96])) + 97
+    mem[(2 * ceil32(return_data.size)) + 96] = _13
+    require _12 + _13 + 32 <= return_data.size
+    mem[(2 * ceil32(return_data.size)) + 128 len ceil32(_13)] = mem[ceil32(return_data.size) + _12 + 128 len ceil32(_13)]
+    if ceil32(_13) > _13:
+        mem[(2 * ceil32(return_data.size)) + _13 + 128] = 0
+    mem[mem[64]] = 32
+    mem[mem[64] + 32] = _13
+    mem[mem[64] + 64 len ceil32(_13)] = mem[(2 * ceil32(return_data.size)) + 128 len ceil32(_13)]
+    if ceil32(_13) > _13:
+        mem[mem[64] + _13 + 64] = 0
+    return Array(len=_13, data=mem[mem[64] + 64 len ceil32(_13)])
+}
+
+function name() {
+    if bool(stor3.length):
+        if bool(stor3.length) == stor3.length.field_1 < 32:
+            revert with 'NH{q', 34
+        if bool(stor3.length):
+            if bool(stor3.length) == stor3.length.field_1 < 32:
+                revert with 'NH{q', 34
+            if stor3.length.field_1:
+                if 31 < stor3.length.field_1:
+                    mem[128] = uint256(stor3.field_0)
+                    idx = 128
+                    s = 0
+                    while stor3.length.field_1 + 96 > idx:
+                        mem[idx + 32] = stor3[s].field_256
+                        idx = idx + 32
+                        s = s + 1
+                        continue 
+                    return Array(len=2 * Mask(256, -1, stor3.length.field_1), data=mem[128 len ceil32(stor3.length.field_1)])
+                mem[128] = 256 * stor3.length.field_8
+        else:
+            if bool(stor3.length) == stor3.length.field_1 < 32:
+                revert with 'NH{q', 34
+            if stor3.length.field_1:
+                if 31 < stor3.length.field_1:
+                    mem[128] = uint256(stor3.field_0)
+                    idx = 128
+                    s = 0
+                    while stor3.length.field_1 + 96 > idx:
+                        mem[idx + 32] = stor3[s].field_256
+                        idx = idx + 32
+                        s = s + 1
+                        continue 
+                    return Array(len=2 * Mask(256, -1, stor3.length.field_1), data=mem[128 len ceil32(stor3.length.field_1)])
+                mem[128] = 256 * stor3.length.field_8
+        mem[ceil32(stor3.length.field_1) + 192 len ceil32(stor3.length.field_1)] = mem[128 len ceil32(stor3.length.field_1)]
+        if ceil32(stor3.length.field_1) > stor3.length.field_1:
+            mem[ceil32(stor3.length.field_1) + stor3.length.field_1 + 192] = 0
+        return Array(len=2 * Mask(256, -1, stor3.length.field_1), data=mem[128 len ceil32(stor3.length.field_1)], mem[(2 * ceil32(stor3.length.field_1)) + 192 len 2 * ceil32(stor3.length.field_1)]), 
+    if bool(stor3.length) == stor3.length.field_1 < 32:
+        revert with 'NH{q', 34
+    if bool(stor3.length):
+        if bool(stor3.length) == stor3.length.field_1 < 32:
+            revert with 'NH{q', 34
+        if stor3.length.field_1:
+            if 31 < stor3.length.field_1:
+                mem[128] = uint256(stor3.field_0)
+                idx = 128
+                s = 0
+                while stor3.length.field_1 + 96 > idx:
+                    mem[idx + 32] = stor3[s].field_256
+                    idx = idx + 32
+                    s = s + 1
+                    continue 
+                return Array(len=stor3.length % 128, data=mem[128 len ceil32(stor3.length.field_1)])
+            mem[128] = 256 * stor3.length.field_8
+    else:
+        if bool(stor3.length) == stor3.length.field_1 < 32:
+            revert with 'NH{q', 34
+        if stor3.length.field_1:
+            if 31 < stor3.length.field_1:
+                mem[128] = uint256(stor3.field_0)
+                idx = 128
+                s = 0
+                while stor3.length.field_1 + 96 > idx:
+                    mem[idx + 32] = stor3[s].field_256
+                    idx = idx + 32
+                    s = s + 1
+                    continue 
+                return Array(len=stor3.length % 128, data=mem[128 len ceil32(stor3.length.field_1)])
+            mem[128] = 256 * stor3.length.field_8
+    mem[ceil32(stor3.length.field_1) + 192 len ceil32(stor3.length.field_1)] = mem[128 len ceil32(stor3.length.field_1)]
+    if ceil32(stor3.length.field_1) > stor3.length.field_1:
+        mem[ceil32(stor3.length.field_1) + stor3.length.field_1 + 192] = 0
+    return Array(len=stor3.length % 128, data=mem[128 len ceil32(stor3.length.field_1)], mem[(2 * ceil32(stor3.length.field_1)) + 192 len 2 * ceil32(stor3.length.field_1)]), 
+}
+
+function symbol() {
+    if bool(stor4.length):
+        if bool(stor4.length) == stor4.length.field_1 < 32:
+            revert with 'NH{q', 34
+        if bool(stor4.length):
+            if bool(stor4.length) == stor4.length.field_1 < 32:
+                revert with 'NH{q', 34
+            if stor4.length.field_1:
+                if 31 < stor4.length.field_1:
+                    mem[128] = uint256(stor4.field_0)
+                    idx = 128
+                    s = 0
+                    while stor4.length.field_1 + 96 > idx:
+                        mem[idx + 32] = stor4[s].field_256
+                        idx = idx + 32
+                        s = s + 1
+                        continue 
+                    return Array(len=2 * Mask(256, -1, stor4.length.field_1), data=mem[128 len ceil32(stor4.length.field_1)])
+                mem[128] = 256 * stor4.length.field_8
+        else:
+            if bool(stor4.length) == stor4.length.field_1 < 32:
+                revert with 'NH{q', 34
+            if stor4.length.field_1:
+                if 31 < stor4.length.field_1:
+                    mem[128] = uint256(stor4.field_0)
+                    idx = 128
+                    s = 0
+                    while stor4.length.field_1 + 96 > idx:
+                        mem[idx + 32] = stor4[s].field_256
+                        idx = idx + 32
+                        s = s + 1
+                        continue 
+                    return Array(len=2 * Mask(256, -1, stor4.length.field_1), data=mem[128 len ceil32(stor4.length.field_1)])
+                mem[128] = 256 * stor4.length.field_8
+        mem[ceil32(stor4.length.field_1) + 192 len ceil32(stor4.length.field_1)] = mem[128 len ceil32(stor4.length.field_1)]
+        if ceil32(stor4.length.field_1) > stor4.length.field_1:
+            mem[ceil32(stor4.length.field_1) + stor4.length.field_1 + 192] = 0
+        return Array(len=2 * Mask(256, -1, stor4.length.field_1), data=mem[128 len ceil32(stor4.length.field_1)], mem[(2 * ceil32(stor4.length.field_1)) + 192 len 2 * ceil32(stor4.length.field_1)]), 
+    if bool(stor4.length) == stor4.length.field_1 < 32:
+        revert with 'NH{q', 34
+    if bool(stor4.length):
+        if bool(stor4.length) == stor4.length.field_1 < 32:
+            revert with 'NH{q', 34
+        if stor4.length.field_1:
+            if 31 < stor4.length.field_1:
+                mem[128] = uint256(stor4.field_0)
+                idx = 128
+                s = 0
+                while stor4.length.field_1 + 96 > idx:
+                    mem[idx + 32] = stor4[s].field_256
+                    idx = idx + 32
+                    s = s + 1
+                    continue 
+                return Array(len=stor4.length % 128, data=mem[128 len ceil32(stor4.length.field_1)])
+            mem[128] = 256 * stor4.length.field_8
+    else:
+        if bool(stor4.length) == stor4.length.field_1 < 32:
+            revert with 'NH{q', 34
+        if stor4.length.field_1:
+            if 31 < stor4.length.field_1:
+                mem[128] = uint256(stor4.field_0)
+                idx = 128
+                s = 0
+                while stor4.length.field_1 + 96 > idx:
+                    mem[idx + 32] = stor4[s].field_256
+                    idx = idx + 32
+                    s = s + 1
+                    continue 
+                return Array(len=stor4.length % 128, data=mem[128 len ceil32(stor4.length.field_1)])
+            mem[128] = 256 * stor4.length.field_8
+    mem[ceil32(stor4.length.field_1) + 192 len ceil32(stor4.length.field_1)] = mem[128 len ceil32(stor4.length.field_1)]
+    if ceil32(stor4.length.field_1) > stor4.length.field_1:
+        mem[ceil32(stor4.length.field_1) + stor4.length.field_1 + 192] = 0
+    return Array(len=stor4.length % 128, data=mem[128 len ceil32(stor4.length.field_1)], mem[(2 * ceil32(stor4.length.field_1)) + 192 len 2 * ceil32(stor4.length.field_1)]), 
+}
+
+function release(address arg1, address arg2) {
+    require calldata.size - 4 >= 64
+    require arg1 == arg1
+    require arg2 == arg2
+    if shares[address(arg2)] <= 0:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'PaymentSplitter: account has no shares'
+    mem[100] = this.address
+    require ext_code.size(arg1)
+    staticcall arg1.0x70a08231 with:
+            gas gas_remaining wei
+           args this.address
+    mem[96] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    if ext_call.return_data[0] > -totalReleased[address(arg1)] - 1:
+        revert with 'NH{q', 17
+    if ext_call.return_data[0] + totalReleased[address(arg1)] and shares[address(arg2)] > -1 / ext_call.return_data[0] + totalReleased[address(arg1)]:
+        revert with 'NH{q', 17
+    if not totalShares:
+        revert with 'NH{q', 18
+    if (ext_call.return_data[0] * shares[address(arg2)]) + (totalReleased[address(arg1)] * shares[address(arg2)]) / totalShares < released[address(arg1)][address(arg2)]:
+        revert with 'NH{q', 17
+    if not ((ext_call.return_data[0] * shares[address(arg2)]) + (totalReleased[address(arg1)] * shares[address(arg2)]) / totalShares) - released[address(arg1)][address(arg2)]:
+        revert with 0, 'PaymentSplitter: account is not due payment'
+    if released[address(arg1)][address(arg2)] > -((ext_call.return_data[0] * shares[address(arg2)]) + (totalReleased[address(arg1)] * shares[address(arg2)]) / totalShares) + released[address(arg1)][address(arg2)] - 1:
+        revert with 'NH{q', 17
+    released[address(arg1)][address(arg2)] = (ext_call.return_data[0] * shares[address(arg2)]) + (totalReleased[address(arg1)] * shares[address(arg2)]) / totalShares
+    if totalReleased[address(arg1)] > -((ext_call.return_data[0] * shares[address(arg2)]) + (totalReleased[address(arg1)] * shares[address(arg2)]) / totalShares) + released[address(arg1)][address(arg2)] - 1:
+        revert with 'NH{q', 17
+    totalReleased[address(arg1)] = totalReleased[address(arg1)] + ((ext_call.return_data[0] * shares[address(arg2)]) + (totalReleased[address(arg1)] * shares[address(arg2)]) / totalShares) - released[address(arg1)][address(arg2)]
+    mem[ceil32(return_data.size) + 132] = arg2
+    mem[ceil32(return_data.size) + 164] = ((ext_call.return_data[0] * shares[address(arg2)]) + (totalReleased[address(arg1)] * shares[address(arg2)]) / totalShares) - released[address(arg1)][address(arg2)]
+    mem[ceil32(return_data.size) + 96] = 68
+    mem[ceil32(return_data.size) + 132 len 28] = address(arg2) << 64
+    mem[ceil32(return_data.size) + 128 len 4] = unknown_0xa9059cbb(?????)
+    mem[ceil32(return_data.size) + 196] = 32
+    mem[ceil32(return_data.size) + 228] = 'SafeERC20: low-level call failed'
+    if eth.balance(this.address) < 0:
+        revert with 0, 'Address: insufficient balance for call'
+    if ext_code.size(arg1) <= 0:
+        revert with 0, 'Address: call to non-contract'
+    mem[ceil32(return_data.size) + 260 len 96] = unknown_0xa9059cbb(?????), address(arg2) << 64, 0, ((ext_call.return_data[0] * shares[address(arg2)]) + (totalReleased[address(arg1)] * shares[address(arg2)]) / totalShares) - released[address(arg1)][address(arg2)], 0
+    mem[ceil32(return_data.size) + 328] = 0
+    call arg1 with:
+       funct Mask(32, 224, unknown_0xa9059cbb(?????), address(arg2) << 64, 0, ((ext_call.return_data[0] * shares[address(arg2)]) + (totalReleased[address(arg1)] * shares[address(arg2)]) / totalShares) - released[address(arg1)][address(arg2)], 0) >> 224
+         gas gas_remaining wei
+        args (Mask(512, -288, unknown_0xa9059cbb(?????), address(arg2) << 64, 0, ((ext_call.return_data[0] * shares[address(arg2)]) + (totalReleased[address(arg1)] * shares[address(arg2)]) / totalShares) - released[address(arg1)][address(arg2)], 0) << 288)
+    if not return_data.size:
+        if not ext_call.success:
+            if ext_call.return_data[0] > 0:
+                revert with memory
+                  from 128
+                   len ext_call.return_data[0]
+            revert with 0, 'SafeERC20: low-level call failed'
+        if ext_call.return_data[0] > 0:
+            require ext_call.return_data[0] >= 32
+            require 0, mem[132 len 28] == bool(0, mem[132 len 28])
+            if not 0, mem[132 len 28]:
+                revert with 0, 'SafeERC20: ERC20 operation did not succeed'
+    else:
+        mem[ceil32(return_data.size) + 292 len return_data.size] = ext_call.return_data[0 len return_data.size]
+        if not ext_call.success:
+            if return_data.size > 0:
+                revert with ext_call.return_data[0 len return_data.size]
+            revert with 0, 'SafeERC20: low-level call failed'
+        if return_data.size > 0:
+            require return_data.size >= 32
+            require mem[ceil32(return_data.size) + 292] == bool(mem[ceil32(return_data.size) + 292])
+            if not mem[ceil32(return_data.size) + 292]:
+                revert with 0, 'SafeERC20: ERC20 operation did not succeed'
+    emit ERC20PaymentReleased(address(arg2), ((ext_call.return_data[0] * shares[address(arg2)]) + (totalReleased[address(arg1)] * shares[address(arg2)]) / totalShares) - released[address(arg1)][address(arg2)], arg1);
+}
+
+function cashoutAll() {
+    if not msg.sender:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'MANIA CSHT:  creation from the zero address'
+    if stor27[address(msg.sender)]:
+        revert with 0, 'MANIA CSHT: Blacklisted address'
+    if msg.sender == futurUsePoolAddress:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    'MANIA CSHT: futur and rewardsPool cannot cashout rewards'
+    if msg.sender == distributionPoolAddress:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 
+                    'MANIA CSHT: futur and rewardsPool cannot cashout rewards'
+    mem[100] = msg.sender
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._getRewardAmountOf(address arg1) with:
+            gas gas_remaining wei
+           args msg.sender
+    mem[96] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    if ext_call.return_data[0] <= 0:
+        revert with 0, 'MANIA CSHT: You don't have enough reward to cash out'
+    if not uint8(stor25.field_8):
+        if not distributionPoolAddress:
+            revert with 0, 'ERC20: transfer from the zero address'
+        if not msg.sender:
+            revert with 0, 'ERC20: transfer to the zero address'
+        if ext_call.return_data[0] > balanceOf[stor17]:
+            revert with 0, 
+                        32,
+                        38,
+                        0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[ceil32(return_data.size) + 166 len 26] >> 48,
+                        0
+        if balanceOf[stor17] < ext_call.return_data[0]:
+            revert with 'NH{q', 17
+        balanceOf[stor17] -= ext_call.return_data[0]
+        if balanceOf[address(msg.sender)] > -ext_call.return_data[0] - 1:
+            revert with 'NH{q', 17
+        if balanceOf[address(msg.sender)] + ext_call.return_data[0] < balanceOf[address(msg.sender)]:
+            revert with 0, 'SafeMath: addition overflow'
+        balanceOf[address(msg.sender)] += ext_call.return_data[0]
+        emit Transfer(ext_call.return_data[0], distributionPoolAddress, msg.sender);
+        require ext_code.size(nodeRewardManagerAddress)
+        call nodeRewardManagerAddress._cashoutAllNodesReward(address arg1) with:
+             gas gas_remaining wei
+            args msg.sender
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        require return_data.size >= 32
+        require ext_call.return_data[0] == ext_call.return_data[0]
+    else:
+        if cashoutFee <= 0:
+            if ext_call.return_data[0] < 0:
+                revert with 'NH{q', 17
+            if not distributionPoolAddress:
+                revert with 0, 'ERC20: transfer from the zero address'
+            if not msg.sender:
+                revert with 0, 'ERC20: transfer to the zero address'
+            if ext_call.return_data[0] > balanceOf[stor17]:
+                revert with 0, 
+                            32,
+                            38,
+                            0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[ceil32(return_data.size) + 166 len 26] >> 48,
+                            0
+            if balanceOf[stor17] < ext_call.return_data[0]:
+                revert with 'NH{q', 17
+            balanceOf[stor17] -= ext_call.return_data[0]
+            if balanceOf[address(msg.sender)] > -ext_call.return_data[0] - 1:
+                revert with 'NH{q', 17
+            if balanceOf[address(msg.sender)] + ext_call.return_data[0] < balanceOf[address(msg.sender)]:
+                revert with 0, 'SafeMath: addition overflow'
+            balanceOf[address(msg.sender)] += ext_call.return_data[0]
+            emit Transfer(ext_call.return_data[0], distributionPoolAddress, msg.sender);
+            require ext_code.size(nodeRewardManagerAddress)
+            call nodeRewardManagerAddress._cashoutAllNodesReward(address arg1) with:
+                 gas gas_remaining wei
+                args msg.sender
+            if not ext_call.success:
+                revert with ext_call.return_data[0 len return_data.size]
+            require return_data.size >= 32
+            require ext_call.return_data[0] == ext_call.return_data[0]
+        else:
+            if not ext_call.return_data[0]:
+                mem[ceil32(return_data.size) + 96] = 26
+                mem[ceil32(return_data.size) + 128] = 'SafeMath: division by zero'
+                mem[ceil32(return_data.size) + 160] = 2
+                mem[ceil32(return_data.size) + 192] = this.address
+                require ext_code.size(uniswapV2RouterAddress)
+                staticcall uniswapV2RouterAddress.WAVAX() with:
+                        gas gas_remaining wei
+                mem[ceil32(return_data.size) + 256] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                mem[64] = (2 * ceil32(return_data.size)) + 256
+                require return_data.size >= 32
+                require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                mem[ceil32(return_data.size) + 224] = ext_call.return_data[12 len 20]
+                if not this.address:
+                    mem[(2 * ceil32(return_data.size)) + 256] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                    mem[(2 * ceil32(return_data.size)) + 260] = 32
+                    mem[(2 * ceil32(return_data.size)) + 292] = 36
+                    mem[(2 * ceil32(return_data.size)) + 324] = 'ERC20: approve from the zero add'
+                    mem[(2 * ceil32(return_data.size)) + 356] = 'ress'
+                    revert with memory
+                      from (2 * ceil32(return_data.size)) + 256
+                       len ceil32(return_data.size) + 132
+                if not uniswapV2RouterAddress:
+                    mem[(2 * ceil32(return_data.size)) + 256] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                    mem[(2 * ceil32(return_data.size)) + 260] = 32
+                    mem[(2 * ceil32(return_data.size)) + 292] = 34
+                    mem[(2 * ceil32(return_data.size)) + 324] = 'ERC20: approve to the zero addre'
+                    mem[(2 * ceil32(return_data.size)) + 356] = 'ss'
+                    revert with memory
+                      from (2 * ceil32(return_data.size)) + 256
+                       len ceil32(return_data.size) + 132
+                mem[0] = uniswapV2RouterAddress
+                mem[32] = sha3(address(this.address), 1)
+                allowance[address(this.address)][stor14].field_0 = 0
+                mem[(2 * ceil32(return_data.size)) + 256] = 0
+                emit Approval(mem[(2 * ceil32(return_data.size)) + 256 len ceil32(return_data.size) + 32], this.address, uniswapV2RouterAddress);
+                mem[(2 * ceil32(return_data.size)) + 256] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                mem[(2 * ceil32(return_data.size)) + 260] = 0
+                mem[(2 * ceil32(return_data.size)) + 292] = 0
+                mem[(2 * ceil32(return_data.size)) + 324] = 160
+                mem[(2 * ceil32(return_data.size)) + 420] = 2
+                idx = 0
+                s = ceil32(return_data.size) + 192
+                t = (2 * ceil32(return_data.size)) + 452
+                while idx < mem[ceil32(return_data.size) + 160]:
+                    mem[t] = mem[s + 12 len 20]
+                    idx = idx + 1
+                    s = s + 32
+                    t = t + 32
+                    continue 
+                mem[(2 * ceil32(return_data.size)) + 356] = this.address
+                mem[(2 * ceil32(return_data.size)) + 388] = block.timestamp
+                require ext_code.size(uniswapV2RouterAddress)
+                call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                     gas gas_remaining wei
+                    args mem[mem[64] + 4 len (2 * ceil32(return_data.size)) + -mem[64] + 512]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                _173 = mem[64]
+                mem[64] = mem[64] + 64
+                mem[_173] = 30
+                mem[_173 + 32] = 'SafeMath: subtraction overflow'
+                if eth.balance(this.address) > eth.balance(this.address):
+                    revert with 0, 'SafeMath: subtraction overflow', 0
+                if eth.balance(this.address) < eth.balance(this.address):
+                    revert with 'NH{q', 17
+                call futurUsePoolAddress with:
+                     gas 2300 wei
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                if ext_call.return_data[0] < 0:
+                    revert with 'NH{q', 17
+                if not distributionPoolAddress:
+                    revert with 0, 'ERC20: transfer from the zero address'
+                if not msg.sender:
+                    revert with 0, 'ERC20: transfer to the zero address'
+                _194 = mem[64]
+                mem[64] = mem[64] + 96
+                mem[_194] = 38
+                mem[_194 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                if ext_call.return_data[0] > balanceOf[stor17]:
+                    mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                    mem[mem[64] + 4] = 32
+                    mem[mem[64] + 36] = 38
+                    mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_194 + 70 len 26]
+                    revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                if balanceOf[stor17] < ext_call.return_data[0]:
+                    revert with 'NH{q', 17
+                balanceOf[stor17] -= ext_call.return_data[0]
+                if balanceOf[address(msg.sender)] > -ext_call.return_data[0] - 1:
+                    revert with 'NH{q', 17
+                if balanceOf[address(msg.sender)] + ext_call.return_data[0] < balanceOf[address(msg.sender)]:
+                    revert with 0, 'SafeMath: addition overflow'
+                mem[0] = msg.sender
+                mem[32] = 0
+                balanceOf[address(msg.sender)] += ext_call.return_data[0]
+                emit Transfer(ext_call.return_data[0], distributionPoolAddress, msg.sender);
+                mem[mem[64] + 4] = msg.sender
+                require ext_code.size(nodeRewardManagerAddress)
+                call nodeRewardManagerAddress._cashoutAllNodesReward(address arg1) with:
+                     gas gas_remaining wei
+                    args msg.sender
+                mem[mem[64]] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                _229 = mem[64]
+                mem[64] = mem[64] + ceil32(return_data.size)
+                require return_data.size >= 32
+                require mem[_229] == mem[_229]
+            else:
+                if ext_call.return_data[0] and cashoutFee > -1 / ext_call.return_data[0]:
+                    revert with 'NH{q', 17
+                if not ext_call.return_data[0]:
+                    revert with 'NH{q', 18
+                if ext_call.return_data[0] * cashoutFee / ext_call.return_data[0] != cashoutFee:
+                    revert with 0, 'SafeMath: multiplication overflow'
+                mem[ceil32(return_data.size) + 96] = 26
+                mem[ceil32(return_data.size) + 128] = 'SafeMath: division by zero'
+                mem[ceil32(return_data.size) + 160] = 2
+                mem[ceil32(return_data.size) + 192] = this.address
+                require ext_code.size(uniswapV2RouterAddress)
+                staticcall uniswapV2RouterAddress.WAVAX() with:
+                        gas gas_remaining wei
+                mem[ceil32(return_data.size) + 256] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                mem[64] = (2 * ceil32(return_data.size)) + 256
+                require return_data.size >= 32
+                require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                mem[ceil32(return_data.size) + 224] = ext_call.return_data[12 len 20]
+                if not this.address:
+                    mem[(2 * ceil32(return_data.size)) + 256] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                    mem[(2 * ceil32(return_data.size)) + 260] = 32
+                    mem[(2 * ceil32(return_data.size)) + 292] = 36
+                    mem[(2 * ceil32(return_data.size)) + 324] = 'ERC20: approve from the zero add'
+                    mem[(2 * ceil32(return_data.size)) + 356] = 'ress'
+                    revert with memory
+                      from (2 * ceil32(return_data.size)) + 256
+                       len ceil32(return_data.size) + 132
+                if not uniswapV2RouterAddress:
+                    mem[(2 * ceil32(return_data.size)) + 256] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                    mem[(2 * ceil32(return_data.size)) + 260] = 32
+                    mem[(2 * ceil32(return_data.size)) + 292] = 34
+                    mem[(2 * ceil32(return_data.size)) + 324] = 'ERC20: approve to the zero addre'
+                    mem[(2 * ceil32(return_data.size)) + 356] = 'ss'
+                    revert with memory
+                      from (2 * ceil32(return_data.size)) + 256
+                       len ceil32(return_data.size) + 132
+                mem[0] = uniswapV2RouterAddress
+                mem[32] = sha3(address(this.address), 1)
+                allowance[address(this.address)][stor14].field_0 = ext_call.return_data[0] * cashoutFee / 100
+                mem[(2 * ceil32(return_data.size)) + 256] = ext_call.return_data[0] * cashoutFee / 100
+                emit Approval(mem[(2 * ceil32(return_data.size)) + 256 len ceil32(return_data.size) + 32], this.address, uniswapV2RouterAddress);
+                mem[(2 * ceil32(return_data.size)) + 256] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                mem[(2 * ceil32(return_data.size)) + 260] = ext_call.return_data[0] * cashoutFee / 100
+                mem[(2 * ceil32(return_data.size)) + 292] = 0
+                mem[(2 * ceil32(return_data.size)) + 324] = 160
+                mem[(2 * ceil32(return_data.size)) + 420] = 2
+                idx = 0
+                s = ceil32(return_data.size) + 192
+                t = (2 * ceil32(return_data.size)) + 452
+                while idx < mem[ceil32(return_data.size) + 160]:
+                    mem[t] = mem[s + 12 len 20]
+                    idx = idx + 1
+                    s = s + 32
+                    t = t + 32
+                    continue 
+                mem[(2 * ceil32(return_data.size)) + 356] = this.address
+                mem[(2 * ceil32(return_data.size)) + 388] = block.timestamp
+                require ext_code.size(uniswapV2RouterAddress)
+                call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                     gas gas_remaining wei
+                    args mem[mem[64] + 4 len (2 * ceil32(return_data.size)) + -mem[64] + 512]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                _172 = mem[64]
+                mem[64] = mem[64] + 64
+                mem[_172] = 30
+                mem[_172 + 32] = 'SafeMath: subtraction overflow'
+                if eth.balance(this.address) > eth.balance(this.address):
+                    revert with 0, 'SafeMath: subtraction overflow', 0
+                if eth.balance(this.address) < eth.balance(this.address):
+                    revert with 'NH{q', 17
+                call futurUsePoolAddress with:
+                     gas 2300 wei
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                if ext_call.return_data[0] < ext_call.return_data[0] * cashoutFee / 100:
+                    revert with 'NH{q', 17
+                if not distributionPoolAddress:
+                    revert with 0, 'ERC20: transfer from the zero address'
+                if not msg.sender:
+                    revert with 0, 'ERC20: transfer to the zero address'
+                _192 = mem[64]
+                mem[64] = mem[64] + 96
+                mem[_192] = 38
+                mem[_192 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                if ext_call.return_data[0] - (ext_call.return_data[0] * cashoutFee / 100) > balanceOf[stor17]:
+                    mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                    mem[mem[64] + 4] = 32
+                    mem[mem[64] + 36] = 38
+                    mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_192 + 70 len 26]
+                    revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                if balanceOf[stor17] < ext_call.return_data[0] - (ext_call.return_data[0] * cashoutFee / 100):
+                    revert with 'NH{q', 17
+                balanceOf[stor17] = balanceOf[stor17] - ext_call.return_data[0] + (ext_call.return_data[0] * cashoutFee / 100)
+                if balanceOf[address(msg.sender)] > -ext_call.return_data[0] + (ext_call.return_data[0] * cashoutFee / 100) - 1:
+                    revert with 'NH{q', 17
+                if balanceOf[address(msg.sender)] + ext_call.return_data[0] - (ext_call.return_data[0] * cashoutFee / 100) < balanceOf[address(msg.sender)]:
+                    revert with 0, 'SafeMath: addition overflow'
+                mem[0] = msg.sender
+                mem[32] = 0
+                balanceOf[address(msg.sender)] = balanceOf[address(msg.sender)] + ext_call.return_data[0] - (ext_call.return_data[0] * cashoutFee / 100)
+                emit Transfer((ext_call.return_data[0] - (ext_call.return_data[0] * cashoutFee / 100)), distributionPoolAddress, msg.sender);
+                mem[mem[64] + 4] = msg.sender
+                require ext_code.size(nodeRewardManagerAddress)
+                call nodeRewardManagerAddress._cashoutAllNodesReward(address arg1) with:
+                     gas gas_remaining wei
+                    args msg.sender
+                mem[mem[64]] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                _228 = mem[64]
+                mem[64] = mem[64] + ceil32(return_data.size)
+                require return_data.size >= 32
+                require mem[_228] == mem[_228]
+}
+
+function cashoutReward(uint256 arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if not msg.sender:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'CSHT:  creation from the zero address'
+    if stor27[address(msg.sender)]:
+        revert with 0, 'MANIA CSHT: Blacklisted address'
+    if msg.sender == futurUsePoolAddress:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'CSHT: futur and rewardsPool cannot cashout rewards'
+    if msg.sender == distributionPoolAddress:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'CSHT: futur and rewardsPool cannot cashout rewards'
+    mem[100] = msg.sender
+    mem[132] = arg1
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress._getRewardAmountOf(address arg1, uint256 arg2) with:
+            gas gas_remaining wei
+           args msg.sender, arg1
+    mem[96] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    if ext_call.return_data[0] <= 0:
+        revert with 0, 'CSHT: You don't have enough reward to cash out'
+    if not uint8(stor25.field_8):
+        if not distributionPoolAddress:
+            revert with 0, 'ERC20: transfer from the zero address'
+        if not msg.sender:
+            revert with 0, 'ERC20: transfer to the zero address'
+        if ext_call.return_data[0] > balanceOf[stor17]:
+            revert with 0, 
+                        32,
+                        38,
+                        0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[ceil32(return_data.size) + 166 len 26] >> 48,
+                        0
+        if balanceOf[stor17] < ext_call.return_data[0]:
+            revert with 'NH{q', 17
+        balanceOf[stor17] -= ext_call.return_data[0]
+        if balanceOf[address(msg.sender)] > -ext_call.return_data[0] - 1:
+            revert with 'NH{q', 17
+        if balanceOf[address(msg.sender)] + ext_call.return_data[0] < balanceOf[address(msg.sender)]:
+            revert with 0, 'SafeMath: addition overflow'
+        balanceOf[address(msg.sender)] += ext_call.return_data[0]
+        emit Transfer(ext_call.return_data[0], distributionPoolAddress, msg.sender);
+        require ext_code.size(nodeRewardManagerAddress)
+        call nodeRewardManagerAddress._cashoutNodeReward(address arg1, uint256 arg2) with:
+             gas gas_remaining wei
+            args msg.sender, arg1
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        require return_data.size >= 32
+        require ext_call.return_data[0] == ext_call.return_data[0]
+    else:
+        if cashoutFee <= 0:
+            if ext_call.return_data[0] < 0:
+                revert with 'NH{q', 17
+            if not distributionPoolAddress:
+                revert with 0, 'ERC20: transfer from the zero address'
+            if not msg.sender:
+                revert with 0, 'ERC20: transfer to the zero address'
+            if ext_call.return_data[0] > balanceOf[stor17]:
+                revert with 0, 
+                            32,
+                            38,
+                            0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[ceil32(return_data.size) + 166 len 26] >> 48,
+                            0
+            if balanceOf[stor17] < ext_call.return_data[0]:
+                revert with 'NH{q', 17
+            balanceOf[stor17] -= ext_call.return_data[0]
+            if balanceOf[address(msg.sender)] > -ext_call.return_data[0] - 1:
+                revert with 'NH{q', 17
+            if balanceOf[address(msg.sender)] + ext_call.return_data[0] < balanceOf[address(msg.sender)]:
+                revert with 0, 'SafeMath: addition overflow'
+            balanceOf[address(msg.sender)] += ext_call.return_data[0]
+            emit Transfer(ext_call.return_data[0], distributionPoolAddress, msg.sender);
+            require ext_code.size(nodeRewardManagerAddress)
+            call nodeRewardManagerAddress._cashoutNodeReward(address arg1, uint256 arg2) with:
+                 gas gas_remaining wei
+                args msg.sender, arg1
+            if not ext_call.success:
+                revert with ext_call.return_data[0 len return_data.size]
+            require return_data.size >= 32
+            require ext_call.return_data[0] == ext_call.return_data[0]
+        else:
+            if not ext_call.return_data[0]:
+                mem[ceil32(return_data.size) + 96] = 26
+                mem[ceil32(return_data.size) + 128] = 'SafeMath: division by zero'
+                mem[ceil32(return_data.size) + 160] = 2
+                mem[ceil32(return_data.size) + 192] = this.address
+                require ext_code.size(uniswapV2RouterAddress)
+                staticcall uniswapV2RouterAddress.WAVAX() with:
+                        gas gas_remaining wei
+                mem[ceil32(return_data.size) + 256] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                mem[64] = (2 * ceil32(return_data.size)) + 256
+                require return_data.size >= 32
+                require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                mem[ceil32(return_data.size) + 224] = ext_call.return_data[12 len 20]
+                if not this.address:
+                    mem[(2 * ceil32(return_data.size)) + 256] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                    mem[(2 * ceil32(return_data.size)) + 260] = 32
+                    mem[(2 * ceil32(return_data.size)) + 292] = 36
+                    mem[(2 * ceil32(return_data.size)) + 324] = 'ERC20: approve from the zero add'
+                    mem[(2 * ceil32(return_data.size)) + 356] = 'ress'
+                    revert with memory
+                      from (2 * ceil32(return_data.size)) + 256
+                       len ceil32(return_data.size) + 132
+                if not uniswapV2RouterAddress:
+                    mem[(2 * ceil32(return_data.size)) + 256] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                    mem[(2 * ceil32(return_data.size)) + 260] = 32
+                    mem[(2 * ceil32(return_data.size)) + 292] = 34
+                    mem[(2 * ceil32(return_data.size)) + 324] = 'ERC20: approve to the zero addre'
+                    mem[(2 * ceil32(return_data.size)) + 356] = 'ss'
+                    revert with memory
+                      from (2 * ceil32(return_data.size)) + 256
+                       len ceil32(return_data.size) + 132
+                mem[0] = uniswapV2RouterAddress
+                mem[32] = sha3(address(this.address), 1)
+                allowance[address(this.address)][stor14].field_0 = 0
+                mem[(2 * ceil32(return_data.size)) + 256] = 0
+                emit Approval(mem[(2 * ceil32(return_data.size)) + 256 len ceil32(return_data.size) + 32], this.address, uniswapV2RouterAddress);
+                mem[(2 * ceil32(return_data.size)) + 256] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                mem[(2 * ceil32(return_data.size)) + 260] = 0
+                mem[(2 * ceil32(return_data.size)) + 292] = 0
+                mem[(2 * ceil32(return_data.size)) + 324] = 160
+                mem[(2 * ceil32(return_data.size)) + 420] = 2
+                idx = 0
+                s = ceil32(return_data.size) + 192
+                t = (2 * ceil32(return_data.size)) + 452
+                while idx < mem[ceil32(return_data.size) + 160]:
+                    mem[t] = mem[s + 12 len 20]
+                    idx = idx + 1
+                    s = s + 32
+                    t = t + 32
+                    continue 
+                mem[(2 * ceil32(return_data.size)) + 356] = this.address
+                mem[(2 * ceil32(return_data.size)) + 388] = block.timestamp
+                require ext_code.size(uniswapV2RouterAddress)
+                call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                     gas gas_remaining wei
+                    args mem[mem[64] + 4 len (2 * ceil32(return_data.size)) + -mem[64] + 512]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                _169 = mem[64]
+                mem[64] = mem[64] + 64
+                mem[_169] = 30
+                mem[_169 + 32] = 'SafeMath: subtraction overflow'
+                if eth.balance(this.address) > eth.balance(this.address):
+                    revert with 0, 'SafeMath: subtraction overflow', 0
+                if eth.balance(this.address) < eth.balance(this.address):
+                    revert with 'NH{q', 17
+                call futurUsePoolAddress with:
+                     gas 2300 wei
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                if ext_call.return_data[0] < 0:
+                    revert with 'NH{q', 17
+                if not distributionPoolAddress:
+                    revert with 0, 'ERC20: transfer from the zero address'
+                if not msg.sender:
+                    revert with 0, 'ERC20: transfer to the zero address'
+                _190 = mem[64]
+                mem[64] = mem[64] + 96
+                mem[_190] = 38
+                mem[_190 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                if ext_call.return_data[0] > balanceOf[stor17]:
+                    mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                    mem[mem[64] + 4] = 32
+                    mem[mem[64] + 36] = 38
+                    mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_190 + 70 len 26]
+                    revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                if balanceOf[stor17] < ext_call.return_data[0]:
+                    revert with 'NH{q', 17
+                balanceOf[stor17] -= ext_call.return_data[0]
+                if balanceOf[address(msg.sender)] > -ext_call.return_data[0] - 1:
+                    revert with 'NH{q', 17
+                if balanceOf[address(msg.sender)] + ext_call.return_data[0] < balanceOf[address(msg.sender)]:
+                    revert with 0, 'SafeMath: addition overflow'
+                mem[0] = msg.sender
+                mem[32] = 0
+                balanceOf[address(msg.sender)] += ext_call.return_data[0]
+                emit Transfer(ext_call.return_data[0], distributionPoolAddress, msg.sender);
+                mem[mem[64] + 4] = msg.sender
+                mem[mem[64] + 36] = arg1
+                require ext_code.size(nodeRewardManagerAddress)
+                call nodeRewardManagerAddress._cashoutNodeReward(address arg1, uint256 arg2) with:
+                     gas gas_remaining wei
+                    args msg.sender, arg1
+                mem[mem[64]] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                _225 = mem[64]
+                mem[64] = mem[64] + ceil32(return_data.size)
+                require return_data.size >= 32
+                require mem[_225] == mem[_225]
+            else:
+                if ext_call.return_data[0] and cashoutFee > -1 / ext_call.return_data[0]:
+                    revert with 'NH{q', 17
+                if not ext_call.return_data[0]:
+                    revert with 'NH{q', 18
+                if ext_call.return_data[0] * cashoutFee / ext_call.return_data[0] != cashoutFee:
+                    revert with 0, 'SafeMath: multiplication overflow'
+                mem[ceil32(return_data.size) + 96] = 26
+                mem[ceil32(return_data.size) + 128] = 'SafeMath: division by zero'
+                mem[ceil32(return_data.size) + 160] = 2
+                mem[ceil32(return_data.size) + 192] = this.address
+                require ext_code.size(uniswapV2RouterAddress)
+                staticcall uniswapV2RouterAddress.WAVAX() with:
+                        gas gas_remaining wei
+                mem[ceil32(return_data.size) + 256] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                mem[64] = (2 * ceil32(return_data.size)) + 256
+                require return_data.size >= 32
+                require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                mem[ceil32(return_data.size) + 224] = ext_call.return_data[12 len 20]
+                if not this.address:
+                    mem[(2 * ceil32(return_data.size)) + 256] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                    mem[(2 * ceil32(return_data.size)) + 260] = 32
+                    mem[(2 * ceil32(return_data.size)) + 292] = 36
+                    mem[(2 * ceil32(return_data.size)) + 324] = 'ERC20: approve from the zero add'
+                    mem[(2 * ceil32(return_data.size)) + 356] = 'ress'
+                    revert with memory
+                      from (2 * ceil32(return_data.size)) + 256
+                       len ceil32(return_data.size) + 132
+                if not uniswapV2RouterAddress:
+                    mem[(2 * ceil32(return_data.size)) + 256] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                    mem[(2 * ceil32(return_data.size)) + 260] = 32
+                    mem[(2 * ceil32(return_data.size)) + 292] = 34
+                    mem[(2 * ceil32(return_data.size)) + 324] = 'ERC20: approve to the zero addre'
+                    mem[(2 * ceil32(return_data.size)) + 356] = 'ss'
+                    revert with memory
+                      from (2 * ceil32(return_data.size)) + 256
+                       len ceil32(return_data.size) + 132
+                mem[0] = uniswapV2RouterAddress
+                mem[32] = sha3(address(this.address), 1)
+                allowance[address(this.address)][stor14].field_0 = ext_call.return_data[0] * cashoutFee / 100
+                mem[(2 * ceil32(return_data.size)) + 256] = ext_call.return_data[0] * cashoutFee / 100
+                emit Approval(mem[(2 * ceil32(return_data.size)) + 256 len ceil32(return_data.size) + 32], this.address, uniswapV2RouterAddress);
+                mem[(2 * ceil32(return_data.size)) + 256] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                mem[(2 * ceil32(return_data.size)) + 260] = ext_call.return_data[0] * cashoutFee / 100
+                mem[(2 * ceil32(return_data.size)) + 292] = 0
+                mem[(2 * ceil32(return_data.size)) + 324] = 160
+                mem[(2 * ceil32(return_data.size)) + 420] = 2
+                idx = 0
+                s = ceil32(return_data.size) + 192
+                t = (2 * ceil32(return_data.size)) + 452
+                while idx < mem[ceil32(return_data.size) + 160]:
+                    mem[t] = mem[s + 12 len 20]
+                    idx = idx + 1
+                    s = s + 32
+                    t = t + 32
+                    continue 
+                mem[(2 * ceil32(return_data.size)) + 356] = this.address
+                mem[(2 * ceil32(return_data.size)) + 388] = block.timestamp
+                require ext_code.size(uniswapV2RouterAddress)
+                call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                     gas gas_remaining wei
+                    args mem[mem[64] + 4 len (2 * ceil32(return_data.size)) + -mem[64] + 512]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                _168 = mem[64]
+                mem[64] = mem[64] + 64
+                mem[_168] = 30
+                mem[_168 + 32] = 'SafeMath: subtraction overflow'
+                if eth.balance(this.address) > eth.balance(this.address):
+                    revert with 0, 'SafeMath: subtraction overflow', 0
+                if eth.balance(this.address) < eth.balance(this.address):
+                    revert with 'NH{q', 17
+                call futurUsePoolAddress with:
+                     gas 2300 wei
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                if ext_call.return_data[0] < ext_call.return_data[0] * cashoutFee / 100:
+                    revert with 'NH{q', 17
+                if not distributionPoolAddress:
+                    revert with 0, 'ERC20: transfer from the zero address'
+                if not msg.sender:
+                    revert with 0, 'ERC20: transfer to the zero address'
+                _188 = mem[64]
+                mem[64] = mem[64] + 96
+                mem[_188] = 38
+                mem[_188 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                if ext_call.return_data[0] - (ext_call.return_data[0] * cashoutFee / 100) > balanceOf[stor17]:
+                    mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                    mem[mem[64] + 4] = 32
+                    mem[mem[64] + 36] = 38
+                    mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_188 + 70 len 26]
+                    revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                if balanceOf[stor17] < ext_call.return_data[0] - (ext_call.return_data[0] * cashoutFee / 100):
+                    revert with 'NH{q', 17
+                balanceOf[stor17] = balanceOf[stor17] - ext_call.return_data[0] + (ext_call.return_data[0] * cashoutFee / 100)
+                if balanceOf[address(msg.sender)] > -ext_call.return_data[0] + (ext_call.return_data[0] * cashoutFee / 100) - 1:
+                    revert with 'NH{q', 17
+                if balanceOf[address(msg.sender)] + ext_call.return_data[0] - (ext_call.return_data[0] * cashoutFee / 100) < balanceOf[address(msg.sender)]:
+                    revert with 0, 'SafeMath: addition overflow'
+                mem[0] = msg.sender
+                mem[32] = 0
+                balanceOf[address(msg.sender)] = balanceOf[address(msg.sender)] + ext_call.return_data[0] - (ext_call.return_data[0] * cashoutFee / 100)
+                emit Transfer((ext_call.return_data[0] - (ext_call.return_data[0] * cashoutFee / 100)), distributionPoolAddress, msg.sender);
+                mem[mem[64] + 4] = msg.sender
+                mem[mem[64] + 36] = arg1
+                require ext_code.size(nodeRewardManagerAddress)
+                call nodeRewardManagerAddress._cashoutNodeReward(address arg1, uint256 arg2) with:
+                     gas gas_remaining wei
+                    args msg.sender, arg1
+                mem[mem[64]] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                _224 = mem[64]
+                mem[64] = mem[64] + ceil32(return_data.size)
+                require return_data.size >= 32
+                require mem[_224] == mem[_224]
+}
+
+function createNodeWithTokens(string arg1) {
+    require calldata.size - 4 >= 32
+    require arg1 <= test266151307()
+    require arg1 + 35 < calldata.size
+    if arg1.length > test266151307():
+        revert with 'NH{q', 65
+    if ceil32(ceil32(arg1.length)) + 97 > test266151307() or ceil32(ceil32(arg1.length)) + 97 < 96:
+        revert with 'NH{q', 65
+    mem[96] = arg1.length
+    require arg1 + arg1.length + 36 <= calldata.size
+    mem[128 len arg1.length] = arg1[all]
+    mem[arg1.length + 128] = 0
+    if arg1.length <= 3:
+        revert with 0, 'NODE CREATION: NAME SIZE INVALID'
+    if arg1.length >= 32:
+        revert with 0, 'NODE CREATION: NAME SIZE INVALID'
+    if not msg.sender:
+        revert with 0, 'NODE CREATION:  creation from the zero address'
+    if stor27[address(msg.sender)]:
+        revert with 0, 'NODE CREATION: Blacklisted address'
+    if msg.sender == futurUsePoolAddress:
+        revert with 0, 'NODE CREATION: futur and rewardsPool cannot create node'
+    if msg.sender == distributionPoolAddress:
+        revert with 0, 'NODE CREATION: futur and rewardsPool cannot create node'
+    require ext_code.size(nodeRewardManagerAddress)
+    staticcall nodeRewardManagerAddress.nodePrice() with:
+            gas gas_remaining wei
+    mem[ceil32(ceil32(arg1.length)) + 97] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+        revert with 0, 'NODE CREATION: Balance too low for creation.'
+    if balanceOf[address(this.address)] < swapTokensAmount:
+        if not msg.sender:
+            revert with 0, 'ERC20: transfer from the zero address'
+        if not this.address:
+            revert with 0, 'ERC20: transfer to the zero address'
+        if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+            revert with 0, 
+                        32,
+                        38,
+                        0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 167 len 26] >> 48,
+                        0
+        if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+            revert with 'NH{q', 17
+        balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+        if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+            revert with 'NH{q', 17
+        if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+            revert with 0, 'SafeMath: addition overflow'
+        balanceOf[address(this.address)] += ext_call.return_data[0]
+        emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+        require ext_code.size(nodeRewardManagerAddress)
+        call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+             gas gas_remaining wei
+            args msg.sender, Array(len=arg1.length, data=arg1[all])
+    else:
+        if not uint8(stor25.field_8):
+            if not msg.sender:
+                revert with 0, 'ERC20: transfer from the zero address'
+            if not this.address:
+                revert with 0, 'ERC20: transfer to the zero address'
+            if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                revert with 0, 
+                            32,
+                            38,
+                            0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 167 len 26] >> 48,
+                            0
+            if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+                revert with 'NH{q', 17
+            balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+            if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+                revert with 'NH{q', 17
+            if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+                revert with 0, 'SafeMath: addition overflow'
+            balanceOf[address(this.address)] += ext_call.return_data[0]
+            emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+            require ext_code.size(nodeRewardManagerAddress)
+            call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+                 gas gas_remaining wei
+                args msg.sender, Array(len=arg1.length, data=arg1[all])
+        else:
+            if uint8(stor25.field_0):
+                if not msg.sender:
+                    revert with 0, 'ERC20: transfer from the zero address'
+                if not this.address:
+                    revert with 0, 'ERC20: transfer to the zero address'
+                if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                    revert with 0, 
+                                32,
+                                38,
+                                0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 167 len 26] >> 48,
+                                0
+                if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+                    revert with 'NH{q', 17
+                balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+                if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+                    revert with 'NH{q', 17
+                if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+                    revert with 0, 'SafeMath: addition overflow'
+                balanceOf[address(this.address)] += ext_call.return_data[0]
+                emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+                require ext_code.size(nodeRewardManagerAddress)
+                call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+                     gas gas_remaining wei
+                    args msg.sender, Array(len=arg1.length, data=arg1[all])
+            else:
+                if msg.sender == owner:
+                    if not msg.sender:
+                        revert with 0, 'ERC20: transfer from the zero address'
+                    if not this.address:
+                        revert with 0, 'ERC20: transfer to the zero address'
+                    if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                        revert with 0, 
+                                    32,
+                                    38,
+                                    0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 167 len 26] >> 48,
+                                    0
+                    if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+                        revert with 'NH{q', 17
+                    balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+                    if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+                        revert with 'NH{q', 17
+                    if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+                        revert with 0, 'SafeMath: addition overflow'
+                    balanceOf[address(this.address)] += ext_call.return_data[0]
+                    emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+                    require ext_code.size(nodeRewardManagerAddress)
+                    call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+                         gas gas_remaining wei
+                        args msg.sender, Array(len=arg1.length, data=arg1[all])
+                else:
+                    if stor28[address(msg.sender)]:
+                        if not msg.sender:
+                            revert with 0, 'ERC20: transfer from the zero address'
+                        if not this.address:
+                            revert with 0, 'ERC20: transfer to the zero address'
+                        if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                            revert with 0, 
+                                        32,
+                                        38,
+                                        0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 167 len 26] >> 48,
+                                        0
+                        if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+                            revert with 'NH{q', 17
+                        balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+                        if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+                            revert with 'NH{q', 17
+                        if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+                            revert with 0, 'SafeMath: addition overflow'
+                        balanceOf[address(this.address)] += ext_call.return_data[0]
+                        emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+                        require ext_code.size(nodeRewardManagerAddress)
+                        call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+                             gas gas_remaining wei
+                            args msg.sender, Array(len=arg1.length, data=arg1[all])
+                    else:
+                        uint8(stor25.field_0) = 1
+                        if balanceOf[address(this.address)]:
+                            if balanceOf[address(this.address)] and futurFee > -1 / balanceOf[address(this.address)]:
+                                revert with 'NH{q', 17
+                            if not balanceOf[address(this.address)]:
+                                revert with 'NH{q', 18
+                            if balanceOf[address(this.address)] * futurFee / balanceOf[address(this.address)] != futurFee:
+                                revert with 0, 'SafeMath: multiplication overflow'
+                            mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 97] = 26
+                            mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 129] = 'SafeMath: division by zero'
+                            mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 161] = 2
+                            mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 193] = this.address
+                            require ext_code.size(uniswapV2RouterAddress)
+                            staticcall uniswapV2RouterAddress.WAVAX() with:
+                                    gas gas_remaining wei
+                            mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 257] = ext_call.return_data[0]
+                            if not ext_call.success:
+                                revert with ext_call.return_data[0 len return_data.size]
+                            mem[64] = ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257
+                            require return_data.size >= 32
+                            require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                            mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 225] = ext_call.return_data[12 len 20]
+                            if not this.address:
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 261] = 32
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 293] = 36
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 325] = 'ERC20: approve from the zero add'
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 357] = 'ress'
+                                revert with memory
+                                  from ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257
+                                   len ceil32(return_data.size) + 132
+                            if not uniswapV2RouterAddress:
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 261] = 32
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 293] = 34
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 325] = 'ERC20: approve to the zero addre'
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 357] = 'ss'
+                                revert with memory
+                                  from ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257
+                                   len ceil32(return_data.size) + 132
+                            mem[0] = uniswapV2RouterAddress
+                            mem[32] = sha3(address(this.address), 1)
+                            allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)] * futurFee / 100
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257] = balanceOf[address(this.address)] * futurFee / 100
+                            emit Approval(mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257 len ceil32(return_data.size) + 32], this.address, uniswapV2RouterAddress);
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 261] = balanceOf[address(this.address)] * futurFee / 100
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 293] = 0
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 325] = 160
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 421] = 2
+                            idx = 0
+                            s = ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 193
+                            t = ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 453
+                            while idx < mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 161]:
+                                mem[t] = mem[s + 12 len 20]
+                                idx = idx + 1
+                                s = s + 32
+                                t = t + 32
+                                continue 
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 357] = this.address
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 389] = block.timestamp
+                            require ext_code.size(uniswapV2RouterAddress)
+                            call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                 gas gas_remaining wei
+                                args mem[mem[64] + 4 len ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + -mem[64] + 513]
+                            if not ext_call.success:
+                                revert with ext_call.return_data[0 len return_data.size]
+                            _245 = mem[64]
+                            mem[64] = mem[64] + 64
+                            mem[_245] = 30
+                            mem[_245 + 32] = 'SafeMath: subtraction overflow'
+                            if eth.balance(this.address) > eth.balance(this.address):
+                                revert with 0, 'SafeMath: subtraction overflow', 0
+                            if eth.balance(this.address) < eth.balance(this.address):
+                                revert with 'NH{q', 17
+                            call futurUsePoolAddress with:
+                                 gas 2300 wei
+                            if not ext_call.success:
+                                revert with ext_call.return_data[0 len return_data.size]
+                            if balanceOf[address(this.address)]:
+                                if balanceOf[address(this.address)] and rewardsFee > -1 / balanceOf[address(this.address)]:
+                                    revert with 'NH{q', 17
+                                if not balanceOf[address(this.address)]:
+                                    revert with 'NH{q', 18
+                                if balanceOf[address(this.address)] * rewardsFee / balanceOf[address(this.address)] != rewardsFee:
+                                    revert with 0, 'SafeMath: multiplication overflow'
+                                _265 = mem[64]
+                                mem[64] = mem[64] + 64
+                                mem[_265] = 26
+                                mem[_265 + 32] = 'SafeMath: division by zero'
+                                if not balanceOf[address(this.address)] * rewardsFee / 100:
+                                    _273 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_273] = 26
+                                    mem[_273 + 32] = 'SafeMath: division by zero'
+                                    _287 = mem[64]
+                                    mem[mem[64]] = 2
+                                    mem[64] = mem[64] + 96
+                                    mem[_287 + 32 len 64] = call.data[calldata.size len 64]
+                                    if 0 >= mem[_287]:
+                                        revert with 'NH{q', 50
+                                    mem[_287 + 32] = this.address
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    staticcall uniswapV2RouterAddress.WAVAX() with:
+                                            gas gas_remaining wei
+                                    mem[_287 + 96] = ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[64] = _287 + ceil32(return_data.size) + 96
+                                    require return_data.size >= 32
+                                    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                    if 1 >= mem[_287]:
+                                        revert with 'NH{q', 50
+                                    mem[_287 + 64] = ext_call.return_data[12 len 20]
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    mem[0] = uniswapV2RouterAddress
+                                    mem[32] = sha3(address(this.address), 1)
+                                    allowance[address(this.address)][stor14].field_0 = 0
+                                    emit Approval(0, this.address, uniswapV2RouterAddress);
+                                    mem[_287 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                    mem[_287 + ceil32(return_data.size) + 100] = 0
+                                    mem[_287 + ceil32(return_data.size) + 132] = 0
+                                    mem[_287 + ceil32(return_data.size) + 164] = 160
+                                    mem[_287 + ceil32(return_data.size) + 260] = mem[_287]
+                                    idx = 0
+                                    s = _287 + 32
+                                    t = _287 + ceil32(return_data.size) + 292
+                                    while idx < mem[_287]:
+                                        mem[t] = mem[s + 12 len 20]
+                                        idx = idx + 1
+                                        s = s + 32
+                                        t = t + 32
+                                        continue 
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                         gas gas_remaining wei
+                                        args 0, 0, 160, address(this.address), block.timestamp, mem[_287 + ceil32(return_data.size) + 260 len (32 * mem[_287]) + 32]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[_287 + ceil32(return_data.size) + 96] = 30
+                                    mem[_287 + ceil32(return_data.size) + 128] = 'SafeMath: subtraction overflow'
+                                    if eth.balance(this.address) > eth.balance(this.address):
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if eth.balance(this.address) < eth.balance(this.address):
+                                        revert with 'NH{q', 17
+                                    call distributionPoolAddress with:
+                                         gas 2300 wei
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[_287 + ceil32(return_data.size) + 160] = 30
+                                    mem[_287 + ceil32(return_data.size) + 192] = 'SafeMath: subtraction overflow'
+                                    if 0 > balanceOf[address(this.address)] * rewardsFee / 100:
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if balanceOf[address(this.address)] * rewardsFee / 100 < 0:
+                                        revert with 'NH{q', 17
+                                    if not this.address:
+                                        revert with 0, 'ERC20: transfer from the zero address'
+                                    if not distributionPoolAddress:
+                                        revert with 0, 'ERC20: transfer to the zero address'
+                                    mem[_287 + ceil32(return_data.size) + 224] = 38
+                                    mem[_287 + ceil32(return_data.size) + 256 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                    if balanceOf[address(this.address)] * rewardsFee / 100 > balanceOf[address(this.address)]:
+                                        revert with 0, 
+                                                    32,
+                                                    38,
+                                                    0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_287 + ceil32(return_data.size) + 294 len 26] >> 48,
+                                                    0
+                                    if balanceOf[address(this.address)] < balanceOf[address(this.address)] * rewardsFee / 100:
+                                        revert with 'NH{q', 17
+                                    balanceOf[address(this.address)] -= balanceOf[address(this.address)] * rewardsFee / 100
+                                    if balanceOf[stor17] > -(balanceOf[address(this.address)] * rewardsFee / 100) - 1:
+                                        revert with 'NH{q', 17
+                                    if balanceOf[stor17] + (balanceOf[address(this.address)] * rewardsFee / 100) < balanceOf[stor17]:
+                                        revert with 0, 'SafeMath: addition overflow'
+                                    balanceOf[stor17] += balanceOf[address(this.address)] * rewardsFee / 100
+                                    emit Transfer((balanceOf[address(this.address)] * rewardsFee / 100), this.address, distributionPoolAddress);
+                                    if not balanceOf[address(this.address)]:
+                                        mem[_287 + ceil32(return_data.size) + 320] = 26
+                                        mem[_287 + ceil32(return_data.size) + 352] = 'SafeMath: division by zero'
+                                        mem[_287 + ceil32(return_data.size) + 384] = 26
+                                        mem[_287 + ceil32(return_data.size) + 416] = 'SafeMath: division by zero'
+                                        mem[_287 + ceil32(return_data.size) + 448] = 30
+                                        mem[_287 + ceil32(return_data.size) + 480] = 'SafeMath: subtraction overflow'
+                                        mem[_287 + ceil32(return_data.size) + 512] = 2
+                                        mem[_287 + ceil32(return_data.size) + 544] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_287 + ceil32(return_data.size) + 608] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _287 + (2 * ceil32(return_data.size)) + 608
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        mem[_287 + ceil32(return_data.size) + 576] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = 0
+                                        emit Approval(0, this.address, uniswapV2RouterAddress);
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 608] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 612] = 0
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 644] = 0
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 676] = 160
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 772] = 2
+                                        idx = 0
+                                        s = _287 + ceil32(return_data.size) + 544
+                                        t = _287 + (2 * ceil32(return_data.size)) + 804
+                                        while idx < mem[_287 + ceil32(return_data.size) + 512]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 708] = this.address
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 740] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                             gas gas_remaining wei
+                                            args mem[mem[64] + 4 len _287 + (2 * ceil32(return_data.size)) + (32 * mem[_287 + ceil32(return_data.size) + 512]) + -mem[64] + 800]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        _1234 = mem[64]
+                                        mem[64] = mem[64] + 64
+                                        mem[_1234] = 30
+                                        mem[_1234 + 32] = 'SafeMath: subtraction overflow'
+                                        if eth.balance(this.address) > eth.balance(this.address):
+                                            revert with 0, 'SafeMath: subtraction overflow', 0
+                                        if eth.balance(this.address) < eth.balance(this.address):
+                                            revert with 'NH{q', 17
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = 0
+                                        emit Approval(0, this.address, uniswapV2RouterAddress);
+                                        mem[mem[64] + 68] = 0
+                                        mem[mem[64] + 100] = 0
+                                        mem[mem[64] + 132] = 0
+                                        mem[mem[64] + 164] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.addLiquidityAVAX(address arg1, uint256 arg2, uint256 arg3, uint256 arg4, address arg5, uint256 arg6) with:
+                                             gas gas_remaining wei
+                                            args address(this.address), 0, 0, 0, 0, block.timestamp
+                                        mem[mem[64] len 96] = ext_call.return_data[0 len 96]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        _1426 = mem[64]
+                                        mem[64] = mem[64] + ceil32(return_data.size)
+                                        require return_data.size >= 96
+                                        require mem[_1426] == mem[_1426]
+                                        require mem[_1426 + 32] == mem[_1426 + 32]
+                                        require mem[_1426 + 64] == mem[_1426 + 64]
+                                        mem[mem[64] + 32] = 0
+                                        mem[mem[64] + 64] = 0
+                                        emit SwapAndLiquify(uint256 arg1, uint256 arg2, uint256 arg3):
+                                                            0,
+                                        mem[0] = this.address
+                                        mem[32] = 0
+                                        _1510 = mem[64]
+                                        mem[mem[64]] = 2
+                                        mem[64] = mem[64] + 96
+                                        mem[_1510 + 32 len 64] = call.data[calldata.size len 64]
+                                        if 0 >= mem[_1510]:
+                                            revert with 'NH{q', 50
+                                        mem[_1510 + 32] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_1510 + 96] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _1510 + ceil32(return_data.size) + 96
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        if 1 >= mem[_1510]:
+                                            revert with 'NH{q', 50
+                                        mem[_1510 + 64] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)]
+                                        emit Approval(balanceOf[address(this.address)], this.address, uniswapV2RouterAddress);
+                                        mem[_1510 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_1510 + ceil32(return_data.size) + 100] = balanceOf[address(this.address)]
+                                        mem[_1510 + ceil32(return_data.size) + 132] = 0
+                                        mem[_1510 + ceil32(return_data.size) + 164] = 160
+                                        mem[_1510 + ceil32(return_data.size) + 260] = mem[_1510]
+                                        idx = 0
+                                        s = _1510 + 32
+                                        t = _1510 + ceil32(return_data.size) + 292
+                                        while idx < mem[_1510]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                             gas gas_remaining wei
+                                            args balanceOf[address(this.address)], 0, 160, address(this.address), block.timestamp, mem[_1510 + ceil32(return_data.size) + 260 len (32 * mem[_1510]) + 32]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        uint8(stor25.field_0) = 0
+                                        if not msg.sender:
+                                            revert with 0, 'ERC20: transfer from the zero address'
+                                        if not this.address:
+                                            revert with 0, 'ERC20: transfer to the zero address'
+                                        mem[_1510 + ceil32(return_data.size) + 96] = 38
+                                        mem[_1510 + ceil32(return_data.size) + 128 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                        if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                                            revert with 0, 32, 38, 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, 0 >> 48, 0
+                                        if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+                                            revert with 'NH{q', 17
+                                        balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+                                        if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+                                            revert with 'NH{q', 17
+                                        if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+                                            revert with 0, 'SafeMath: addition overflow'
+                                        balanceOf[address(this.address)] += ext_call.return_data[0]
+                                        emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+                                        mem[_1510 + ceil32(return_data.size) + 192] = 0x12b8603f00000000000000000000000000000000000000000000000000000000
+                                        mem[_1510 + ceil32(return_data.size) + 196] = msg.sender
+                                        mem[_1510 + ceil32(return_data.size) + 228] = 64
+                                        mem[_1510 + ceil32(return_data.size) + 260] = mem[96]
+                                        mem[_1510 + ceil32(return_data.size) + 292 len ceil32(mem[96])] = mem[128 len ceil32(mem[96])]
+                                        if ceil32(mem[96]) > mem[96]:
+                                            mem[_1510 + ceil32(return_data.size) + mem[96] + 292] = 0
+                                        require ext_code.size(nodeRewardManagerAddress)
+                                        call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+                                             gas gas_remaining wei
+                                            args msg.sender, Array(len=mem[96], data=mem[_1510 + ceil32(return_data.size) + 292 len ceil32(mem[96])])
+                                    else:
+                                        if balanceOf[address(this.address)] and liquidityPoolFee > -1 / balanceOf[address(this.address)]:
+                                            revert with 'NH{q', 17
+                                        if not balanceOf[address(this.address)]:
+                                            revert with 'NH{q', 18
+                                        if balanceOf[address(this.address)] * liquidityPoolFee / balanceOf[address(this.address)] != liquidityPoolFee:
+                                            revert with 0, 'SafeMath: multiplication overflow'
+                                        mem[_287 + ceil32(return_data.size) + 320] = 26
+                                        mem[_287 + ceil32(return_data.size) + 352] = 'SafeMath: division by zero'
+                                        mem[_287 + ceil32(return_data.size) + 384] = 26
+                                        mem[_287 + ceil32(return_data.size) + 416] = 'SafeMath: division by zero'
+                                        mem[_287 + ceil32(return_data.size) + 448] = 30
+                                        mem[_287 + ceil32(return_data.size) + 480] = 'SafeMath: subtraction overflow'
+                                        if balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2 > balanceOf[address(this.address)] * liquidityPoolFee / 100:
+                                            revert with 0, 'SafeMath: subtraction overflow', 0
+                                        if balanceOf[address(this.address)] * liquidityPoolFee / 100 < balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2:
+                                            revert with 'NH{q', 17
+                                        mem[_287 + ceil32(return_data.size) + 512] = 2
+                                        mem[_287 + ceil32(return_data.size) + 544] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_287 + ceil32(return_data.size) + 608] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _287 + (2 * ceil32(return_data.size)) + 608
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        mem[_287 + ceil32(return_data.size) + 576] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2
+                                        allowance[address(this.address)][stor14].field_255 = 0
+                                        emit Approval((balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2), this.address, uniswapV2RouterAddress);
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 608] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 612] = balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 644] = 0
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 676] = 160
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 772] = 2
+                                        idx = 0
+                                        s = _287 + ceil32(return_data.size) + 544
+                                        t = _287 + (2 * ceil32(return_data.size)) + 804
+                                        while idx < mem[_287 + ceil32(return_data.size) + 512]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 708] = this.address
+                                        mem[_287 + (2 * ceil32(return_data.size)) + 740] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                             gas gas_remaining wei
+                                            args mem[mem[64] + 4 len _287 + (2 * ceil32(return_data.size)) + (32 * mem[_287 + ceil32(return_data.size) + 512]) + -mem[64] + 800]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        _1233 = mem[64]
+                                        mem[64] = mem[64] + 64
+                                        mem[_1233] = 30
+                                        mem[_1233 + 32] = 'SafeMath: subtraction overflow'
+                                        if eth.balance(this.address) > eth.balance(this.address):
+                                            revert with 0, 'SafeMath: subtraction overflow', 0
+                                        if eth.balance(this.address) < eth.balance(this.address):
+                                            revert with 'NH{q', 17
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)
+                                        emit Approval(((balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)), this.address, uniswapV2RouterAddress);
+                                        mem[mem[64] + 68] = 0
+                                        mem[mem[64] + 100] = 0
+                                        mem[mem[64] + 132] = 0
+                                        mem[mem[64] + 164] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.addLiquidityAVAX(address arg1, uint256 arg2, uint256 arg3, uint256 arg4, address arg5, uint256 arg6) with:
+                                             gas gas_remaining wei
+                                            args address(this.address), (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2), 0, 0, 0, block.timestamp
+                                        mem[mem[64] len 96] = ext_call.return_data[0 len 96]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        _1425 = mem[64]
+                                        mem[64] = mem[64] + ceil32(return_data.size)
+                                        require return_data.size >= 96
+                                        require mem[_1425] == mem[_1425]
+                                        require mem[_1425 + 32] == mem[_1425 + 32]
+                                        require mem[_1425 + 64] == mem[_1425 + 64]
+                                        mem[mem[64] + 32] = 0
+                                        mem[mem[64] + 64] = (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)
+                                        emit SwapAndLiquify(Mask(255, 1, balanceOf[address(this.address)] * liquidityPoolFee / 100), 0, (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2));
+                                        mem[0] = this.address
+                                        mem[32] = 0
+                                        _1509 = mem[64]
+                                        mem[mem[64]] = 2
+                                        mem[64] = mem[64] + 96
+                                        mem[_1509 + 32 len 64] = call.data[calldata.size len 64]
+                                        if 0 >= mem[_1509]:
+                                            revert with 'NH{q', 50
+                                        mem[_1509 + 32] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_1509 + 96] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _1509 + ceil32(return_data.size) + 96
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        if 1 >= mem[_1509]:
+                                            revert with 'NH{q', 50
+                                        mem[_1509 + 64] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)]
+                                        emit Approval(balanceOf[address(this.address)], this.address, uniswapV2RouterAddress);
+                                        mem[_1509 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_1509 + ceil32(return_data.size) + 100] = balanceOf[address(this.address)]
+                                        mem[_1509 + ceil32(return_data.size) + 132] = 0
+                                        mem[_1509 + ceil32(return_data.size) + 164] = 160
+                                        mem[_1509 + ceil32(return_data.size) + 260] = mem[_1509]
+                                        idx = 0
+                                        s = _1509 + 32
+                                        t = _1509 + ceil32(return_data.size) + 292
+                                        while idx < mem[_1509]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_1509 + ceil32(return_data.size) + 196] = this.address
+                                        mem[_1509 + ceil32(return_data.size) + 228] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                             gas gas_remaining wei
+                                            args mem[mem[64] + 4 len _1509 + ceil32(return_data.size) + (32 * mem[_1509]) + -mem[64] + 288]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        uint8(stor25.field_0) = 0
+                                        if not msg.sender:
+                                            revert with 0, 'ERC20: transfer from the zero address'
+                                        if not this.address:
+                                            revert with 0, 'ERC20: transfer to the zero address'
+                                        _1955 = mem[64]
+                                        mem[64] = mem[64] + 96
+                                        mem[_1955] = 38
+                                        mem[_1955 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                        if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                                            mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                            mem[mem[64] + 4] = 32
+                                            mem[mem[64] + 36] = 38
+                                            mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_1955 + 70 len 26]
+                                            revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                                        if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+                                            revert with 'NH{q', 17
+                                        balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+                                        if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+                                            revert with 'NH{q', 17
+                                        if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+                                            revert with 0, 'SafeMath: addition overflow'
+                                        balanceOf[address(this.address)] += ext_call.return_data[0]
+                                        emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+                                        mem[mem[64]] = 0x12b8603f00000000000000000000000000000000000000000000000000000000
+                                        mem[mem[64] + 4] = msg.sender
+                                        mem[mem[64] + 36] = 64
+                                        mem[mem[64] + 68] = mem[96]
+                                        mem[mem[64] + 100 len ceil32(mem[96])] = mem[128 len ceil32(mem[96])]
+                                        if ceil32(mem[96]) > mem[96]:
+                                            mem[mem[64] + mem[96] + 100] = 0
+                                        require ext_code.size(nodeRewardManagerAddress)
+                                        call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+                                             gas gas_remaining wei
+                                            args msg.sender, Array(len=mem[96], data=mem[mem[64] + 100 len ceil32(mem[96])])
+                                else:
+                                    if balanceOf[address(this.address)] * rewardsFee / 100 and stor24 > -1 / balanceOf[address(this.address)] * rewardsFee / 100:
+                                        revert with 'NH{q', 17
+                                    if not balanceOf[address(this.address)] * rewardsFee / 100:
+                                        revert with 'NH{q', 18
+                                    if balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / balanceOf[address(this.address)] * rewardsFee / 100 != stor24:
+                                        revert with 0, 'SafeMath: multiplication overflow'
+                                    _289 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_289] = 26
+                                    mem[_289 + 32] = 'SafeMath: division by zero'
+                                    _323 = mem[64]
+                                    mem[mem[64]] = 2
+                                    mem[64] = mem[64] + 96
+                                    mem[_323 + 32 len 64] = call.data[calldata.size len 64]
+                                    if 0 >= mem[_323]:
+                                        revert with 'NH{q', 50
+                                    mem[_323 + 32] = this.address
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    staticcall uniswapV2RouterAddress.WAVAX() with:
+                                            gas gas_remaining wei
+                                    mem[_323 + 96] = ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[64] = _323 + ceil32(return_data.size) + 96
+                                    require return_data.size >= 32
+                                    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                    if 1 >= mem[_323]:
+                                        revert with 'NH{q', 50
+                                    mem[_323 + 64] = ext_call.return_data[12 len 20]
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    mem[0] = uniswapV2RouterAddress
+                                    mem[32] = sha3(address(this.address), 1)
+                                    allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100
+                                    emit Approval((balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100), this.address, uniswapV2RouterAddress);
+                                    mem[_323 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                    mem[_323 + ceil32(return_data.size) + 100] = balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100
+                                    mem[_323 + ceil32(return_data.size) + 132] = 0
+                                    mem[_323 + ceil32(return_data.size) + 164] = 160
+                                    mem[_323 + ceil32(return_data.size) + 260] = mem[_323]
+                                    idx = 0
+                                    s = _323 + 32
+                                    t = _323 + ceil32(return_data.size) + 292
+                                    while idx < mem[_323]:
+                                        mem[t] = mem[s + 12 len 20]
+                                        idx = idx + 1
+                                        s = s + 32
+                                        t = t + 32
+                                        continue 
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                         gas gas_remaining wei
+                                        args balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100, 0, 160, address(this.address), block.timestamp, mem[_323 + ceil32(return_data.size) + 260 len (32 * mem[_323]) + 32]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[_323 + ceil32(return_data.size) + 96] = 30
+                                    mem[_323 + ceil32(return_data.size) + 128] = 'SafeMath: subtraction overflow'
+                                    if eth.balance(this.address) > eth.balance(this.address):
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if eth.balance(this.address) < eth.balance(this.address):
+                                        revert with 'NH{q', 17
+                                    call distributionPoolAddress with:
+                                         gas 2300 wei
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[_323 + ceil32(return_data.size) + 160] = 30
+                                    mem[_323 + ceil32(return_data.size) + 192] = 'SafeMath: subtraction overflow'
+                                    if balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100 > balanceOf[address(this.address)] * rewardsFee / 100:
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if balanceOf[address(this.address)] * rewardsFee / 100 < balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100:
+                                        revert with 'NH{q', 17
+                                    if not this.address:
+                                        revert with 0, 'ERC20: transfer from the zero address'
+                                    if not distributionPoolAddress:
+                                        revert with 0, 'ERC20: transfer to the zero address'
+                                    mem[_323 + ceil32(return_data.size) + 224] = 38
+                                    mem[_323 + ceil32(return_data.size) + 256 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                    if (balanceOf[address(this.address)] * rewardsFee / 100) - (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100) > balanceOf[address(this.address)]:
+                                        revert with 0, 
+                                                    32,
+                                                    38,
+                                                    0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_323 + ceil32(return_data.size) + 294 len 26] >> 48,
+                                                    0
+                                    if balanceOf[address(this.address)] < (balanceOf[address(this.address)] * rewardsFee / 100) - (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100):
+                                        revert with 'NH{q', 17
+                                    balanceOf[address(this.address)] = balanceOf[address(this.address)] - (balanceOf[address(this.address)] * rewardsFee / 100) + (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100)
+                                    if balanceOf[stor17] > -(balanceOf[address(this.address)] * rewardsFee / 100) + (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100) - 1:
+                                        revert with 'NH{q', 17
+                                    if balanceOf[stor17] + (balanceOf[address(this.address)] * rewardsFee / 100) - (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100) < balanceOf[stor17]:
+                                        revert with 0, 'SafeMath: addition overflow'
+                                    balanceOf[stor17] = balanceOf[stor17] + (balanceOf[address(this.address)] * rewardsFee / 100) - (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100)
+                                    emit Transfer(((balanceOf[address(this.address)] * rewardsFee / 100) - (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100)), this.address, distributionPoolAddress);
+                                    if not balanceOf[address(this.address)]:
+                                        mem[_323 + ceil32(return_data.size) + 320] = 26
+                                        mem[_323 + ceil32(return_data.size) + 352] = 'SafeMath: division by zero'
+                                        mem[_323 + ceil32(return_data.size) + 384] = 26
+                                        mem[_323 + ceil32(return_data.size) + 416] = 'SafeMath: division by zero'
+                                        mem[_323 + ceil32(return_data.size) + 448] = 30
+                                        mem[_323 + ceil32(return_data.size) + 480] = 'SafeMath: subtraction overflow'
+                                        mem[_323 + ceil32(return_data.size) + 512] = 2
+                                        mem[_323 + ceil32(return_data.size) + 544] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_323 + ceil32(return_data.size) + 608] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _323 + (2 * ceil32(return_data.size)) + 608
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        mem[_323 + ceil32(return_data.size) + 576] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = 0
+                                        emit Approval(0, this.address, uniswapV2RouterAddress);
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 608] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 612] = 0
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 644] = 0
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 676] = 160
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 772] = 2
+                                        idx = 0
+                                        s = _323 + ceil32(return_data.size) + 544
+                                        t = _323 + (2 * ceil32(return_data.size)) + 804
+                                        while idx < mem[_323 + ceil32(return_data.size) + 512]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 708] = this.address
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 740] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                             gas gas_remaining wei
+                                            args 0, 0, 160, address(this.address), block.timestamp, mem[_323 + (2 * ceil32(return_data.size)) + 772 len (32 * mem[_323 + ceil32(return_data.size) + 512]) + 32]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 608] = 30
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 640] = 'SafeMath: subtraction overflow'
+                                        if eth.balance(this.address) > eth.balance(this.address):
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 672] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 676] = 32
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 708] = 30
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 740] = 'SafeMath: subtraction overflow'
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 770] = 0
+                                            revert with memory
+                                              from _323 + (2 * ceil32(return_data.size)) + 672
+                                               len ceil32(return_data.size) + 100
+                                        if eth.balance(this.address) < eth.balance(this.address):
+                                            revert with 'NH{q', 17
+                                        if not this.address:
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 672] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 676] = 32
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 708] = 36
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 740] = 'ERC20: approve from the zero add'
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 772] = 'ress'
+                                            revert with memory
+                                              from _323 + (2 * ceil32(return_data.size)) + 672
+                                               len ceil32(return_data.size) + 132
+                                        if not uniswapV2RouterAddress:
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 672] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 676] = 32
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 708] = 34
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 740] = 'ERC20: approve to the zero addre'
+                                            mem[_323 + (2 * ceil32(return_data.size)) + 772] = 'ss'
+                                            revert with memory
+                                              from _323 + (2 * ceil32(return_data.size)) + 672
+                                               len ceil32(return_data.size) + 132
+                                        allowance[address(this.address)][stor14].field_0 = 0
+                                        emit Approval(0, this.address, uniswapV2RouterAddress);
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 676] = this.address
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 708] = 0
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 740] = 0
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 772] = 0
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 804] = 0
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 836] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.addLiquidityAVAX(address arg1, uint256 arg2, uint256 arg3, uint256 arg4, address arg5, uint256 arg6) with:
+                                             gas gas_remaining wei
+                                            args mem[_323 + (2 * ceil32(return_data.size)) + 676 len ceil32(return_data.size) + 192]
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 672 len 96] = ext_call.return_data[0 len 96]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        require return_data.size >= 96
+                                        require ext_call.return_data[0] == ext_call.return_data[0]
+                                        require ext_call.return_data[32] == ext_call.return_data[32]
+                                        require ext_call.return_data[64] == ext_call.return_data[64]
+                                        mem[_323 + (4 * ceil32(return_data.size)) + 672] = 0
+                                        mem[_323 + (4 * ceil32(return_data.size)) + 704] = 0
+                                        mem[_323 + (4 * ceil32(return_data.size)) + 736] = 0
+                                        emit SwapAndLiquify(uint256 arg1, uint256 arg2, uint256 arg3):
+                                                            mem[_323 + (4 * ceil32(return_data.size)) + 672 len (5 * ceil32(return_data.size)) + 96],
+                                        mem[_323 + (4 * ceil32(return_data.size)) + 672] = 2
+                                        mem[_323 + (4 * ceil32(return_data.size)) + 704] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_323 + (4 * ceil32(return_data.size)) + 768] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _323 + (6 * ceil32(return_data.size)) + 768
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        mem[_323 + (4 * ceil32(return_data.size)) + 736] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)]
+                                        emit Approval(balanceOf[address(this.address)], this.address, uniswapV2RouterAddress);
+                                        mem[_323 + (6 * ceil32(return_data.size)) + 768] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_323 + (6 * ceil32(return_data.size)) + 772] = balanceOf[address(this.address)]
+                                        mem[_323 + (6 * ceil32(return_data.size)) + 804] = 0
+                                        mem[_323 + (6 * ceil32(return_data.size)) + 836] = 160
+                                        mem[_323 + (6 * ceil32(return_data.size)) + 932] = 2
+                                        idx = 0
+                                        s = _323 + (4 * ceil32(return_data.size)) + 704
+                                        t = _323 + (6 * ceil32(return_data.size)) + 964
+                                        while idx < mem[_323 + (4 * ceil32(return_data.size)) + 672]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_323 + (6 * ceil32(return_data.size)) + 900] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                             gas gas_remaining wei
+                                            args balanceOf[address(this.address)], 0, 160, address(this.address), block.timestamp, mem[_323 + (6 * ceil32(return_data.size)) + 932 len (32 * mem[_323 + (4 * ceil32(return_data.size)) + 672]) + 32]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        uint8(stor25.field_0) = 0
+                                        if not msg.sender:
+                                            revert with 0, 
+                                                        'ERC20: transfer from the zero address',
+                                                        mem[_323 + (6 * ceil32(return_data.size)) + 900 len 9 * ceil32(return_data.size)]
+                                        if not this.address:
+                                            revert with 0, 
+                                                        'ERC20: transfer to the zero address',
+                                                        mem[_323 + (6 * ceil32(return_data.size)) + 900 len 9 * ceil32(return_data.size)]
+                                        mem[_323 + (6 * ceil32(return_data.size)) + 768] = 38
+                                        mem[_323 + (6 * ceil32(return_data.size)) + 800 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                        if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                                            mem[_323 + (6 * ceil32(return_data.size)) + 970] = 0
+                                            revert with 0, 
+                                                        32,
+                                                        38,
+                                                        0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, 0 >> 48,
+                                                        mem[_323 + (6 * ceil32(return_data.size)) + 970 len (9 * ceil32(return_data.size)) + 26]
+                                        if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+                                            revert with 'NH{q', 17
+                                        balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+                                        if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+                                            revert with 'NH{q', 17
+                                        if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+                                            revert with 0, 'SafeMath: addition overflow', mem[_323 + (6 * ceil32(return_data.size)) + 964 len 9 * ceil32(return_data.size)]
+                                        balanceOf[address(this.address)] += ext_call.return_data[0]
+                                        emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+                                        mem[_323 + (6 * ceil32(return_data.size)) + 864] = 0x12b8603f00000000000000000000000000000000000000000000000000000000
+                                        mem[_323 + (6 * ceil32(return_data.size)) + 868] = msg.sender
+                                        mem[_323 + (6 * ceil32(return_data.size)) + 900] = 64
+                                        mem[_323 + (6 * ceil32(return_data.size)) + 932] = mem[96]
+                                        mem[_323 + (6 * ceil32(return_data.size)) + 964 len ceil32(mem[96])] = mem[128 len ceil32(mem[96])]
+                                        if ceil32(mem[96]) > mem[96]:
+                                            mem[_323 + (6 * ceil32(return_data.size)) + mem[96] + 964] = 0
+                                        require ext_code.size(nodeRewardManagerAddress)
+                                        call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+                                             gas gas_remaining wei
+                                            args msg.sender, Array(len=mem[96], data=mem[_323 + (6 * ceil32(return_data.size)) + 964 len (9 * ceil32(return_data.size)) + ceil32(mem[96])])
+                                    else:
+                                        if balanceOf[address(this.address)] and liquidityPoolFee > -1 / balanceOf[address(this.address)]:
+                                            revert with 'NH{q', 17
+                                        if not balanceOf[address(this.address)]:
+                                            revert with 'NH{q', 18
+                                        if balanceOf[address(this.address)] * liquidityPoolFee / balanceOf[address(this.address)] != liquidityPoolFee:
+                                            revert with 0, 'SafeMath: multiplication overflow'
+                                        mem[_323 + ceil32(return_data.size) + 320] = 26
+                                        mem[_323 + ceil32(return_data.size) + 352] = 'SafeMath: division by zero'
+                                        mem[_323 + ceil32(return_data.size) + 384] = 26
+                                        mem[_323 + ceil32(return_data.size) + 416] = 'SafeMath: division by zero'
+                                        mem[_323 + ceil32(return_data.size) + 448] = 30
+                                        mem[_323 + ceil32(return_data.size) + 480] = 'SafeMath: subtraction overflow'
+                                        if balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2 > balanceOf[address(this.address)] * liquidityPoolFee / 100:
+                                            revert with 0, 'SafeMath: subtraction overflow', 0
+                                        if balanceOf[address(this.address)] * liquidityPoolFee / 100 < balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2:
+                                            revert with 'NH{q', 17
+                                        mem[_323 + ceil32(return_data.size) + 512] = 2
+                                        mem[_323 + ceil32(return_data.size) + 544] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_323 + ceil32(return_data.size) + 608] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _323 + (2 * ceil32(return_data.size)) + 608
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        mem[_323 + ceil32(return_data.size) + 576] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2
+                                        allowance[address(this.address)][stor14].field_255 = 0
+                                        emit Approval((balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2), this.address, uniswapV2RouterAddress);
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 608] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 612] = balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 644] = 0
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 676] = 160
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 772] = 2
+                                        idx = 0
+                                        s = _323 + ceil32(return_data.size) + 544
+                                        t = _323 + (2 * ceil32(return_data.size)) + 804
+                                        while idx < mem[_323 + ceil32(return_data.size) + 512]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 708] = this.address
+                                        mem[_323 + (2 * ceil32(return_data.size)) + 740] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                             gas gas_remaining wei
+                                            args mem[mem[64] + 4 len _323 + (2 * ceil32(return_data.size)) + (32 * mem[_323 + ceil32(return_data.size) + 512]) + -mem[64] + 800]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        _1231 = mem[64]
+                                        mem[64] = mem[64] + 64
+                                        mem[_1231] = 30
+                                        mem[_1231 + 32] = 'SafeMath: subtraction overflow'
+                                        if eth.balance(this.address) > eth.balance(this.address):
+                                            revert with 0, 'SafeMath: subtraction overflow', 0
+                                        if eth.balance(this.address) < eth.balance(this.address):
+                                            revert with 'NH{q', 17
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)
+                                        emit Approval(((balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)), this.address, uniswapV2RouterAddress);
+                                        mem[mem[64] + 68] = 0
+                                        mem[mem[64] + 100] = 0
+                                        mem[mem[64] + 132] = 0
+                                        mem[mem[64] + 164] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.addLiquidityAVAX(address arg1, uint256 arg2, uint256 arg3, uint256 arg4, address arg5, uint256 arg6) with:
+                                             gas gas_remaining wei
+                                            args address(this.address), (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2), 0, 0, 0, block.timestamp
+                                        mem[mem[64] len 96] = ext_call.return_data[0 len 96]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        _1423 = mem[64]
+                                        mem[64] = mem[64] + ceil32(return_data.size)
+                                        require return_data.size >= 96
+                                        require mem[_1423] == mem[_1423]
+                                        require mem[_1423 + 32] == mem[_1423 + 32]
+                                        require mem[_1423 + 64] == mem[_1423 + 64]
+                                        mem[mem[64] + 32] = 0
+                                        mem[mem[64] + 64] = (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)
+                                        emit SwapAndLiquify(Mask(255, 1, balanceOf[address(this.address)] * liquidityPoolFee / 100), 0, (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2));
+                                        mem[0] = this.address
+                                        mem[32] = 0
+                                        _1507 = mem[64]
+                                        mem[mem[64]] = 2
+                                        mem[64] = mem[64] + 96
+                                        mem[_1507 + 32 len 64] = call.data[calldata.size len 64]
+                                        if 0 >= mem[_1507]:
+                                            revert with 'NH{q', 50
+                                        mem[_1507 + 32] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_1507 + 96] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _1507 + ceil32(return_data.size) + 96
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        if 1 >= mem[_1507]:
+                                            revert with 'NH{q', 50
+                                        mem[_1507 + 64] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)]
+                                        emit Approval(balanceOf[address(this.address)], this.address, uniswapV2RouterAddress);
+                                        mem[_1507 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_1507 + ceil32(return_data.size) + 100] = balanceOf[address(this.address)]
+                                        mem[_1507 + ceil32(return_data.size) + 132] = 0
+                                        mem[_1507 + ceil32(return_data.size) + 164] = 160
+                                        mem[_1507 + ceil32(return_data.size) + 260] = mem[_1507]
+                                        idx = 0
+                                        s = _1507 + 32
+                                        t = _1507 + ceil32(return_data.size) + 292
+                                        while idx < mem[_1507]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_1507 + ceil32(return_data.size) + 196] = this.address
+                                        mem[_1507 + ceil32(return_data.size) + 228] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                             gas gas_remaining wei
+                                            args mem[mem[64] + 4 len _1507 + ceil32(return_data.size) + (32 * mem[_1507]) + -mem[64] + 288]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        uint8(stor25.field_0) = 0
+                                        if not msg.sender:
+                                            revert with 0, 'ERC20: transfer from the zero address'
+                                        if not this.address:
+                                            revert with 0, 'ERC20: transfer to the zero address'
+                                        _1951 = mem[64]
+                                        mem[64] = mem[64] + 96
+                                        mem[_1951] = 38
+                                        mem[_1951 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                        if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                                            mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                            mem[mem[64] + 4] = 32
+                                            mem[mem[64] + 36] = 38
+                                            mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_1951 + 70 len 26]
+                                            revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                                        if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+                                            revert with 'NH{q', 17
+                                        balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+                                        if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+                                            revert with 'NH{q', 17
+                                        if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+                                            revert with 0, 'SafeMath: addition overflow'
+                                        balanceOf[address(this.address)] += ext_call.return_data[0]
+                                        emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+                                        mem[mem[64]] = 0x12b8603f00000000000000000000000000000000000000000000000000000000
+                                        mem[mem[64] + 4] = msg.sender
+                                        mem[mem[64] + 36] = 64
+                                        mem[mem[64] + 68] = mem[96]
+                                        mem[mem[64] + 100 len ceil32(mem[96])] = mem[128 len ceil32(mem[96])]
+                                        if ceil32(mem[96]) > mem[96]:
+                                            mem[mem[64] + mem[96] + 100] = 0
+                                        require ext_code.size(nodeRewardManagerAddress)
+                                        call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+                                             gas gas_remaining wei
+                                            args msg.sender, Array(len=mem[96], data=mem[mem[64] + 100 len ceil32(mem[96])])
+                            else:
+                                _259 = mem[64]
+                                mem[64] = mem[64] + 64
+                                mem[_259] = 26
+                                mem[_259 + 32] = 'SafeMath: division by zero'
+                                _267 = mem[64]
+                                mem[64] = mem[64] + 64
+                                mem[_267] = 26
+                                mem[_267 + 32] = 'SafeMath: division by zero'
+                                _271 = mem[64]
+                                mem[mem[64]] = 2
+                                mem[64] = mem[64] + 96
+                                mem[_271 + 32 len 64] = call.data[calldata.size len 64]
+                                if 0 >= mem[_271]:
+                                    revert with 'NH{q', 50
+                                mem[_271 + 32] = this.address
+                                require ext_code.size(uniswapV2RouterAddress)
+                                staticcall uniswapV2RouterAddress.WAVAX() with:
+                                        gas gas_remaining wei
+                                mem[_271 + 96] = ext_call.return_data[0]
+                                if not ext_call.success:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                mem[64] = _271 + ceil32(return_data.size) + 96
+                                require return_data.size >= 32
+                                require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                if 1 >= mem[_271]:
+                                    revert with 'NH{q', 50
+                                mem[_271 + 64] = ext_call.return_data[12 len 20]
+                                if not this.address:
+                                    revert with 0, 'ERC20: approve from the zero address'
+                                if not uniswapV2RouterAddress:
+                                    revert with 0, 'ERC20: approve to the zero address'
+                                mem[0] = uniswapV2RouterAddress
+                                mem[32] = sha3(address(this.address), 1)
+                                allowance[address(this.address)][stor14].field_0 = 0
+                                emit Approval(0, this.address, uniswapV2RouterAddress);
+                                mem[_271 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                mem[_271 + ceil32(return_data.size) + 100] = 0
+                                mem[_271 + ceil32(return_data.size) + 132] = 0
+                                mem[_271 + ceil32(return_data.size) + 164] = 160
+                                mem[_271 + ceil32(return_data.size) + 260] = mem[_271]
+                                idx = 0
+                                s = _271 + 32
+                                t = _271 + ceil32(return_data.size) + 292
+                                while idx < mem[_271]:
+                                    mem[t] = mem[s + 12 len 20]
+                                    idx = idx + 1
+                                    s = s + 32
+                                    t = t + 32
+                                    continue 
+                                mem[_271 + ceil32(return_data.size) + 196] = this.address
+                                mem[_271 + ceil32(return_data.size) + 228] = block.timestamp
+                                require ext_code.size(uniswapV2RouterAddress)
+                                call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                     gas gas_remaining wei
+                                    args mem[mem[64] + 4 len _271 + ceil32(return_data.size) + (32 * mem[_271]) + -mem[64] + 288]
+                                if not ext_call.success:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                _577 = mem[64]
+                                mem[64] = mem[64] + 64
+                                mem[_577] = 30
+                                mem[_577 + 32] = 'SafeMath: subtraction overflow'
+                                if eth.balance(this.address) > eth.balance(this.address):
+                                    revert with 0, 'SafeMath: subtraction overflow', 0
+                                if eth.balance(this.address) < eth.balance(this.address):
+                                    revert with 'NH{q', 17
+                                call distributionPoolAddress with:
+                                     gas 2300 wei
+                                if not ext_call.success:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                _613 = mem[64]
+                                mem[64] = mem[64] + 64
+                                mem[_613] = 30
+                                mem[_613 + 32] = 'SafeMath: subtraction overflow'
+                                if not this.address:
+                                    revert with 0, 'ERC20: transfer from the zero address'
+                                if not distributionPoolAddress:
+                                    revert with 0, 'ERC20: transfer to the zero address'
+                                _657 = mem[64]
+                                mem[64] = mem[64] + 96
+                                mem[_657] = 38
+                                mem[_657 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                if 0 > balanceOf[address(this.address)]:
+                                    mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                    mem[mem[64] + 4] = 32
+                                    mem[mem[64] + 36] = 38
+                                    mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_657 + 70 len 26]
+                                    revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                                if balanceOf[address(this.address)] < 0:
+                                    revert with 'NH{q', 17
+                                if balanceOf[stor17] > -1:
+                                    revert with 'NH{q', 17
+                                if balanceOf[stor17] < balanceOf[stor17]:
+                                    revert with 0, 'SafeMath: addition overflow'
+                                mem[0] = distributionPoolAddress
+                                mem[32] = 0
+                                emit Transfer(0, this.address, distributionPoolAddress);
+                                if not balanceOf[address(this.address)]:
+                                    _759 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_759] = 26
+                                    mem[_759 + 32] = 'SafeMath: division by zero'
+                                    _771 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_771] = 26
+                                    mem[_771 + 32] = 'SafeMath: division by zero'
+                                    _789 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_789] = 30
+                                    mem[_789 + 32] = 'SafeMath: subtraction overflow'
+                                    _801 = mem[64]
+                                    mem[mem[64]] = 2
+                                    mem[64] = mem[64] + 96
+                                    mem[_801 + 32 len 64] = call.data[calldata.size len 64]
+                                    if 0 >= mem[_801]:
+                                        revert with 'NH{q', 50
+                                    mem[_801 + 32] = this.address
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    staticcall uniswapV2RouterAddress.WAVAX() with:
+                                            gas gas_remaining wei
+                                    mem[_801 + 96] = ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[64] = _801 + ceil32(return_data.size) + 96
+                                    require return_data.size >= 32
+                                    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                    if 1 >= mem[_801]:
+                                        revert with 'NH{q', 50
+                                    mem[_801 + 64] = ext_call.return_data[12 len 20]
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    mem[0] = uniswapV2RouterAddress
+                                    mem[32] = sha3(address(this.address), 1)
+                                    allowance[address(this.address)][stor14].field_0 = 0
+                                    emit Approval(0, this.address, uniswapV2RouterAddress);
+                                    mem[_801 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                    mem[_801 + ceil32(return_data.size) + 100] = 0
+                                    mem[_801 + ceil32(return_data.size) + 132] = 0
+                                    mem[_801 + ceil32(return_data.size) + 164] = 160
+                                    mem[_801 + ceil32(return_data.size) + 260] = mem[_801]
+                                    idx = 0
+                                    s = _801 + 32
+                                    t = _801 + ceil32(return_data.size) + 292
+                                    while idx < mem[_801]:
+                                        mem[t] = mem[s + 12 len 20]
+                                        idx = idx + 1
+                                        s = s + 32
+                                        t = t + 32
+                                        continue 
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                         gas gas_remaining wei
+                                        args 0, 0, 160, address(this.address), block.timestamp, mem[_801 + ceil32(return_data.size) + 260 len (32 * mem[_801]) + 32]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[_801 + ceil32(return_data.size) + 96] = 30
+                                    mem[_801 + ceil32(return_data.size) + 128] = 'SafeMath: subtraction overflow'
+                                    if eth.balance(this.address) > eth.balance(this.address):
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if eth.balance(this.address) < eth.balance(this.address):
+                                        revert with 'NH{q', 17
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    allowance[address(this.address)][stor14].field_0 = 0
+                                    emit Approval(0, this.address, uniswapV2RouterAddress);
+                                    mem[_801 + ceil32(return_data.size) + 228] = 0
+                                    mem[_801 + ceil32(return_data.size) + 260] = 0
+                                    mem[_801 + ceil32(return_data.size) + 292] = 0
+                                    mem[_801 + ceil32(return_data.size) + 324] = block.timestamp
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.addLiquidityAVAX(address arg1, uint256 arg2, uint256 arg3, uint256 arg4, address arg5, uint256 arg6) with:
+                                         gas gas_remaining wei
+                                        args address(this.address), 0, 0, 0, 0, block.timestamp
+                                    mem[_801 + ceil32(return_data.size) + 160 len 96] = ext_call.return_data[0 len 96]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 96
+                                    require ext_call.return_data[0] == ext_call.return_data[0]
+                                    require ext_call.return_data[32] == ext_call.return_data[32]
+                                    require ext_call.return_data[64] == ext_call.return_data[64]
+                                    emit SwapAndLiquify(uint256 arg1, uint256 arg2, uint256 arg3):
+                                                        0,
+                                    mem[_801 + (2 * ceil32(return_data.size)) + 160] = 2
+                                    mem[_801 + (2 * ceil32(return_data.size)) + 192] = this.address
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    staticcall uniswapV2RouterAddress.WAVAX() with:
+                                            gas gas_remaining wei
+                                    mem[_801 + (2 * ceil32(return_data.size)) + 256] = ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[64] = _801 + (4 * ceil32(return_data.size)) + 256
+                                    require return_data.size >= 32
+                                    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                    mem[_801 + (2 * ceil32(return_data.size)) + 224] = ext_call.return_data[12 len 20]
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    mem[0] = uniswapV2RouterAddress
+                                    mem[32] = sha3(address(this.address), 1)
+                                    allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)]
+                                    emit Approval(balanceOf[address(this.address)], this.address, uniswapV2RouterAddress);
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 256] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 260] = balanceOf[address(this.address)]
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 292] = 0
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 324] = 160
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 420] = 2
+                                    idx = 0
+                                    s = _801 + (2 * ceil32(return_data.size)) + 192
+                                    t = _801 + (4 * ceil32(return_data.size)) + 452
+                                    while idx < mem[_801 + (2 * ceil32(return_data.size)) + 160]:
+                                        mem[t] = mem[s + 12 len 20]
+                                        idx = idx + 1
+                                        s = s + 32
+                                        t = t + 32
+                                        continue 
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 356] = this.address
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 388] = block.timestamp
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                         gas gas_remaining wei
+                                        args balanceOf[address(this.address)], 0, 160, address(this.address), block.timestamp, mem[_801 + (4 * ceil32(return_data.size)) + 420 len (32 * mem[_801 + (2 * ceil32(return_data.size)) + 160]) + 32]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    uint8(stor25.field_0) = 0
+                                    if not msg.sender:
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 256] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 260] = 32
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 292] = 37
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 324] = 'ERC20: transfer from the zero ad'
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 356] = 'dress'
+                                        revert with memory
+                                          from _801 + (4 * ceil32(return_data.size)) + 256
+                                           len (5 * ceil32(return_data.size)) + 132
+                                    if not this.address:
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 256] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 260] = 32
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 292] = 35
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 324] = 'ERC20: transfer to the zero addr'
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 356] = 'ess'
+                                        revert with memory
+                                          from _801 + (4 * ceil32(return_data.size)) + 256
+                                           len (5 * ceil32(return_data.size)) + 132
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 256] = 38
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 288 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                    if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 352] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 356] = 32
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 388] = 38
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 420 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, 0
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 458] = 0
+                                        revert with memory
+                                          from _801 + (4 * ceil32(return_data.size)) + 352
+                                           len (5 * ceil32(return_data.size)) + 132
+                                    if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+                                        revert with 'NH{q', 17
+                                    balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+                                    if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+                                        revert with 'NH{q', 17
+                                    if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 352] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 356] = 32
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 388] = 27
+                                        mem[_801 + (4 * ceil32(return_data.size)) + 420] = 'SafeMath: addition overflow'
+                                        revert with memory
+                                          from _801 + (4 * ceil32(return_data.size)) + 352
+                                           len (5 * ceil32(return_data.size)) + 100
+                                    balanceOf[address(this.address)] += ext_call.return_data[0]
+                                    emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 352] = 0x12b8603f00000000000000000000000000000000000000000000000000000000
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 356] = msg.sender
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 388] = 64
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 420] = mem[96]
+                                    mem[_801 + (4 * ceil32(return_data.size)) + 452 len ceil32(mem[96])] = mem[128 len ceil32(mem[96])]
+                                    if ceil32(mem[96]) > mem[96]:
+                                        mem[_801 + (4 * ceil32(return_data.size)) + mem[96] + 452] = 0
+                                    require ext_code.size(nodeRewardManagerAddress)
+                                    call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+                                         gas gas_remaining wei
+                                        args mem[_801 + (4 * ceil32(return_data.size)) + 356 len (5 * ceil32(return_data.size)) + ceil32(mem[96]) + 96]
+                                else:
+                                    if balanceOf[address(this.address)] and liquidityPoolFee > -1 / balanceOf[address(this.address)]:
+                                        revert with 'NH{q', 17
+                                    if not balanceOf[address(this.address)]:
+                                        revert with 'NH{q', 18
+                                    if balanceOf[address(this.address)] * liquidityPoolFee / balanceOf[address(this.address)] != liquidityPoolFee:
+                                        revert with 0, 'SafeMath: multiplication overflow'
+                                    _777 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_777] = 26
+                                    mem[_777 + 32] = 'SafeMath: division by zero'
+                                    _795 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_795] = 26
+                                    mem[_795 + 32] = 'SafeMath: division by zero'
+                                    _809 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_809] = 30
+                                    mem[_809 + 32] = 'SafeMath: subtraction overflow'
+                                    if balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2 > balanceOf[address(this.address)] * liquidityPoolFee / 100:
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if balanceOf[address(this.address)] * liquidityPoolFee / 100 < balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2:
+                                        revert with 'NH{q', 17
+                                    _861 = mem[64]
+                                    mem[mem[64]] = 2
+                                    mem[64] = mem[64] + 96
+                                    mem[_861 + 32 len 64] = call.data[calldata.size len 64]
+                                    if 0 >= mem[_861]:
+                                        revert with 'NH{q', 50
+                                    mem[_861 + 32] = this.address
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    staticcall uniswapV2RouterAddress.WAVAX() with:
+                                            gas gas_remaining wei
+                                    mem[_861 + 96] = ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[64] = _861 + ceil32(return_data.size) + 96
+                                    require return_data.size >= 32
+                                    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                    if 1 >= mem[_861]:
+                                        revert with 'NH{q', 50
+                                    mem[_861 + 64] = ext_call.return_data[12 len 20]
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    mem[0] = uniswapV2RouterAddress
+                                    mem[32] = sha3(address(this.address), 1)
+                                    allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2
+                                    allowance[address(this.address)][stor14].field_255 = 0
+                                    emit Approval((balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2), this.address, uniswapV2RouterAddress);
+                                    mem[_861 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                    mem[_861 + ceil32(return_data.size) + 100] = balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2
+                                    mem[_861 + ceil32(return_data.size) + 132] = 0
+                                    mem[_861 + ceil32(return_data.size) + 164] = 160
+                                    mem[_861 + ceil32(return_data.size) + 260] = mem[_861]
+                                    idx = 0
+                                    s = _861 + 32
+                                    t = _861 + ceil32(return_data.size) + 292
+                                    while idx < mem[_861]:
+                                        mem[t] = mem[s + 12 len 20]
+                                        idx = idx + 1
+                                        s = s + 32
+                                        t = t + 32
+                                        continue 
+                                    mem[_861 + ceil32(return_data.size) + 196] = this.address
+                                    mem[_861 + ceil32(return_data.size) + 228] = block.timestamp
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                         gas gas_remaining wei
+                                        args mem[mem[64] + 4 len _861 + ceil32(return_data.size) + (32 * mem[_861]) + -mem[64] + 288]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    _1235 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_1235] = 30
+                                    mem[_1235 + 32] = 'SafeMath: subtraction overflow'
+                                    if eth.balance(this.address) > eth.balance(this.address):
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if eth.balance(this.address) < eth.balance(this.address):
+                                        revert with 'NH{q', 17
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    mem[0] = uniswapV2RouterAddress
+                                    mem[32] = sha3(address(this.address), 1)
+                                    allowance[address(this.address)][stor14].field_0 = (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)
+                                    emit Approval(((balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)), this.address, uniswapV2RouterAddress);
+                                    mem[mem[64] + 68] = 0
+                                    mem[mem[64] + 100] = 0
+                                    mem[mem[64] + 132] = 0
+                                    mem[mem[64] + 164] = block.timestamp
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.addLiquidityAVAX(address arg1, uint256 arg2, uint256 arg3, uint256 arg4, address arg5, uint256 arg6) with:
+                                         gas gas_remaining wei
+                                        args address(this.address), (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2), 0, 0, 0, block.timestamp
+                                    mem[mem[64] len 96] = ext_call.return_data[0 len 96]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    _1427 = mem[64]
+                                    mem[64] = mem[64] + ceil32(return_data.size)
+                                    require return_data.size >= 96
+                                    require mem[_1427] == mem[_1427]
+                                    require mem[_1427 + 32] == mem[_1427 + 32]
+                                    require mem[_1427 + 64] == mem[_1427 + 64]
+                                    mem[mem[64] + 32] = 0
+                                    mem[mem[64] + 64] = (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)
+                                    emit SwapAndLiquify(Mask(255, 1, balanceOf[address(this.address)] * liquidityPoolFee / 100), 0, (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2));
+                                    mem[0] = this.address
+                                    mem[32] = 0
+                                    _1511 = mem[64]
+                                    mem[mem[64]] = 2
+                                    mem[64] = mem[64] + 96
+                                    mem[_1511 + 32 len 64] = call.data[calldata.size len 64]
+                                    if 0 >= mem[_1511]:
+                                        revert with 'NH{q', 50
+                                    mem[_1511 + 32] = this.address
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    staticcall uniswapV2RouterAddress.WAVAX() with:
+                                            gas gas_remaining wei
+                                    mem[_1511 + 96] = ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[64] = _1511 + ceil32(return_data.size) + 96
+                                    require return_data.size >= 32
+                                    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                    if 1 >= mem[_1511]:
+                                        revert with 'NH{q', 50
+                                    mem[_1511 + 64] = ext_call.return_data[12 len 20]
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    mem[0] = uniswapV2RouterAddress
+                                    mem[32] = sha3(address(this.address), 1)
+                                    allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)]
+                                    emit Approval(balanceOf[address(this.address)], this.address, uniswapV2RouterAddress);
+                                    mem[_1511 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                    mem[_1511 + ceil32(return_data.size) + 100] = balanceOf[address(this.address)]
+                                    mem[_1511 + ceil32(return_data.size) + 132] = 0
+                                    mem[_1511 + ceil32(return_data.size) + 164] = 160
+                                    mem[_1511 + ceil32(return_data.size) + 260] = mem[_1511]
+                                    idx = 0
+                                    s = _1511 + 32
+                                    t = _1511 + ceil32(return_data.size) + 292
+                                    while idx < mem[_1511]:
+                                        mem[t] = mem[s + 12 len 20]
+                                        idx = idx + 1
+                                        s = s + 32
+                                        t = t + 32
+                                        continue 
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                         gas gas_remaining wei
+                                        args balanceOf[address(this.address)], 0, 160, address(this.address), block.timestamp, mem[_1511 + ceil32(return_data.size) + 260 len (32 * mem[_1511]) + 32]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    uint8(stor25.field_0) = 0
+                                    if not msg.sender:
+                                        revert with 0, 'ERC20: transfer from the zero address'
+                                    if not this.address:
+                                        revert with 0, 'ERC20: transfer to the zero address'
+                                    mem[_1511 + ceil32(return_data.size) + 96] = 38
+                                    mem[_1511 + ceil32(return_data.size) + 128 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                    if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                                        revert with 0, 32, 38, 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, 0 >> 48, 0
+                                    if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+                                        revert with 'NH{q', 17
+                                    balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+                                    if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+                                        revert with 'NH{q', 17
+                                    if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+                                        revert with 0, 'SafeMath: addition overflow'
+                                    balanceOf[address(this.address)] += ext_call.return_data[0]
+                                    emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+                                    mem[_1511 + ceil32(return_data.size) + 192] = 0x12b8603f00000000000000000000000000000000000000000000000000000000
+                                    mem[_1511 + ceil32(return_data.size) + 196] = msg.sender
+                                    mem[_1511 + ceil32(return_data.size) + 228] = 64
+                                    mem[_1511 + ceil32(return_data.size) + 260] = mem[96]
+                                    mem[_1511 + ceil32(return_data.size) + 292 len ceil32(mem[96])] = mem[128 len ceil32(mem[96])]
+                                    if ceil32(mem[96]) > mem[96]:
+                                        mem[_1511 + ceil32(return_data.size) + mem[96] + 292] = 0
+                                    require ext_code.size(nodeRewardManagerAddress)
+                                    call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+                                         gas gas_remaining wei
+                                        args msg.sender, Array(len=mem[96], data=mem[_1511 + ceil32(return_data.size) + 292 len ceil32(mem[96])])
+                        else:
+                            mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 97] = 26
+                            mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 129] = 'SafeMath: division by zero'
+                            mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 161] = 2
+                            mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 193] = this.address
+                            require ext_code.size(uniswapV2RouterAddress)
+                            staticcall uniswapV2RouterAddress.WAVAX() with:
+                                    gas gas_remaining wei
+                            mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 257] = ext_call.return_data[0]
+                            if not ext_call.success:
+                                revert with ext_call.return_data[0 len return_data.size]
+                            mem[64] = ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257
+                            require return_data.size >= 32
+                            require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                            mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 225] = ext_call.return_data[12 len 20]
+                            if not this.address:
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 261] = 32
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 293] = 36
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 325] = 'ERC20: approve from the zero add'
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 357] = 'ress'
+                                revert with memory
+                                  from ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257
+                                   len ceil32(return_data.size) + 132
+                            if not uniswapV2RouterAddress:
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 261] = 32
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 293] = 34
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 325] = 'ERC20: approve to the zero addre'
+                                mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 357] = 'ss'
+                                revert with memory
+                                  from ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257
+                                   len ceil32(return_data.size) + 132
+                            mem[0] = uniswapV2RouterAddress
+                            mem[32] = sha3(address(this.address), 1)
+                            allowance[address(this.address)][stor14].field_0 = 0
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257] = 0
+                            emit Approval(mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257 len ceil32(return_data.size) + 32], this.address, uniswapV2RouterAddress);
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 257] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 261] = 0
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 293] = 0
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 325] = 160
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 421] = 2
+                            idx = 0
+                            s = ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 193
+                            t = ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 453
+                            while idx < mem[ceil32(ceil32(arg1.length)) + ceil32(return_data.size) + 161]:
+                                mem[t] = mem[s + 12 len 20]
+                                idx = idx + 1
+                                s = s + 32
+                                t = t + 32
+                                continue 
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 357] = this.address
+                            mem[ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + 389] = block.timestamp
+                            require ext_code.size(uniswapV2RouterAddress)
+                            call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                 gas gas_remaining wei
+                                args mem[mem[64] + 4 len ceil32(ceil32(arg1.length)) + (2 * ceil32(return_data.size)) + -mem[64] + 513]
+                            if not ext_call.success:
+                                revert with ext_call.return_data[0 len return_data.size]
+                            _246 = mem[64]
+                            mem[64] = mem[64] + 64
+                            mem[_246] = 30
+                            mem[_246 + 32] = 'SafeMath: subtraction overflow'
+                            if eth.balance(this.address) > eth.balance(this.address):
+                                revert with 0, 'SafeMath: subtraction overflow', 0
+                            if eth.balance(this.address) < eth.balance(this.address):
+                                revert with 'NH{q', 17
+                            call futurUsePoolAddress with:
+                                 gas 2300 wei
+                            if not ext_call.success:
+                                revert with ext_call.return_data[0 len return_data.size]
+                            if not balanceOf[address(this.address)]:
+                                _261 = mem[64]
+                                mem[64] = mem[64] + 64
+                                mem[_261] = 26
+                                mem[_261 + 32] = 'SafeMath: division by zero'
+                                _268 = mem[64]
+                                mem[64] = mem[64] + 64
+                                mem[_268] = 26
+                                mem[_268 + 32] = 'SafeMath: division by zero'
+                                _272 = mem[64]
+                                mem[mem[64]] = 2
+                                mem[64] = mem[64] + 96
+                                mem[_272 + 32 len 64] = call.data[calldata.size len 64]
+                                if 0 >= mem[_272]:
+                                    revert with 'NH{q', 50
+                                mem[_272 + 32] = this.address
+                                require ext_code.size(uniswapV2RouterAddress)
+                                staticcall uniswapV2RouterAddress.WAVAX() with:
+                                        gas gas_remaining wei
+                                mem[_272 + 96] = ext_call.return_data[0]
+                                if not ext_call.success:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                mem[64] = _272 + ceil32(return_data.size) + 96
+                                require return_data.size >= 32
+                                require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                if 1 >= mem[_272]:
+                                    revert with 'NH{q', 50
+                                mem[_272 + 64] = ext_call.return_data[12 len 20]
+                                if not this.address:
+                                    revert with 0, 'ERC20: approve from the zero address'
+                                if not uniswapV2RouterAddress:
+                                    revert with 0, 'ERC20: approve to the zero address'
+                                mem[0] = uniswapV2RouterAddress
+                                mem[32] = sha3(address(this.address), 1)
+                                allowance[address(this.address)][stor14].field_0 = 0
+                                emit Approval(0, this.address, uniswapV2RouterAddress);
+                                mem[_272 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                mem[_272 + ceil32(return_data.size) + 100] = 0
+                                mem[_272 + ceil32(return_data.size) + 132] = 0
+                                mem[_272 + ceil32(return_data.size) + 164] = 160
+                                mem[_272 + ceil32(return_data.size) + 260] = mem[_272]
+                                idx = 0
+                                s = _272 + 32
+                                t = _272 + ceil32(return_data.size) + 292
+                                while idx < mem[_272]:
+                                    mem[t] = mem[s + 12 len 20]
+                                    idx = idx + 1
+                                    s = s + 32
+                                    t = t + 32
+                                    continue 
+                                mem[_272 + ceil32(return_data.size) + 196] = this.address
+                                mem[_272 + ceil32(return_data.size) + 228] = block.timestamp
+                                require ext_code.size(uniswapV2RouterAddress)
+                                call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                     gas gas_remaining wei
+                                    args mem[mem[64] + 4 len _272 + ceil32(return_data.size) + (32 * mem[_272]) + -mem[64] + 288]
+                                if not ext_call.success:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                _580 = mem[64]
+                                mem[64] = mem[64] + 64
+                                mem[_580] = 30
+                                mem[_580 + 32] = 'SafeMath: subtraction overflow'
+                                if eth.balance(this.address) > eth.balance(this.address):
+                                    revert with 0, 'SafeMath: subtraction overflow', 0
+                                if eth.balance(this.address) < eth.balance(this.address):
+                                    revert with 'NH{q', 17
+                                call distributionPoolAddress with:
+                                     gas 2300 wei
+                                if not ext_call.success:
+                                    revert with ext_call.return_data[0 len return_data.size]
+                                _616 = mem[64]
+                                mem[64] = mem[64] + 64
+                                mem[_616] = 30
+                                mem[_616 + 32] = 'SafeMath: subtraction overflow'
+                                if not this.address:
+                                    revert with 0, 'ERC20: transfer from the zero address'
+                                if not distributionPoolAddress:
+                                    revert with 0, 'ERC20: transfer to the zero address'
+                                _663 = mem[64]
+                                mem[64] = mem[64] + 96
+                                mem[_663] = 38
+                                mem[_663 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                if 0 > balanceOf[address(this.address)]:
+                                    mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                    mem[mem[64] + 4] = 32
+                                    mem[mem[64] + 36] = 38
+                                    mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_663 + 70 len 26]
+                                    revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                                if balanceOf[address(this.address)] < 0:
+                                    revert with 'NH{q', 17
+                                if balanceOf[stor17] > -1:
+                                    revert with 'NH{q', 17
+                                if balanceOf[stor17] < balanceOf[stor17]:
+                                    revert with 0, 'SafeMath: addition overflow'
+                                mem[0] = distributionPoolAddress
+                                mem[32] = 0
+                                emit Transfer(0, this.address, distributionPoolAddress);
+                                if not balanceOf[address(this.address)]:
+                                    _762 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_762] = 26
+                                    mem[_762 + 32] = 'SafeMath: division by zero'
+                                    _774 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_774] = 26
+                                    mem[_774 + 32] = 'SafeMath: division by zero'
+                                    _792 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_792] = 30
+                                    mem[_792 + 32] = 'SafeMath: subtraction overflow'
+                                    _804 = mem[64]
+                                    mem[mem[64]] = 2
+                                    mem[64] = mem[64] + 96
+                                    mem[_804 + 32 len 64] = call.data[calldata.size len 64]
+                                    if 0 >= mem[_804]:
+                                        revert with 'NH{q', 50
+                                    mem[_804 + 32] = this.address
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    staticcall uniswapV2RouterAddress.WAVAX() with:
+                                            gas gas_remaining wei
+                                    mem[_804 + 96] = ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[64] = _804 + ceil32(return_data.size) + 96
+                                    require return_data.size >= 32
+                                    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                    if 1 >= mem[_804]:
+                                        revert with 'NH{q', 50
+                                    mem[_804 + 64] = ext_call.return_data[12 len 20]
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    mem[0] = uniswapV2RouterAddress
+                                    mem[32] = sha3(address(this.address), 1)
+                                    allowance[address(this.address)][stor14].field_0 = 0
+                                    emit Approval(0, this.address, uniswapV2RouterAddress);
+                                    mem[_804 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                    mem[_804 + ceil32(return_data.size) + 100] = 0
+                                    mem[_804 + ceil32(return_data.size) + 132] = 0
+                                    mem[_804 + ceil32(return_data.size) + 164] = 160
+                                    mem[_804 + ceil32(return_data.size) + 260] = mem[_804]
+                                    idx = 0
+                                    s = _804 + 32
+                                    t = _804 + ceil32(return_data.size) + 292
+                                    while idx < mem[_804]:
+                                        mem[t] = mem[s + 12 len 20]
+                                        idx = idx + 1
+                                        s = s + 32
+                                        t = t + 32
+                                        continue 
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                         gas gas_remaining wei
+                                        args 0, 0, 160, address(this.address), block.timestamp, mem[_804 + ceil32(return_data.size) + 260 len (32 * mem[_804]) + 32]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[_804 + ceil32(return_data.size) + 96] = 30
+                                    mem[_804 + ceil32(return_data.size) + 128] = 'SafeMath: subtraction overflow'
+                                    if eth.balance(this.address) > eth.balance(this.address):
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if eth.balance(this.address) < eth.balance(this.address):
+                                        revert with 'NH{q', 17
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    allowance[address(this.address)][stor14].field_0 = 0
+                                    emit Approval(0, this.address, uniswapV2RouterAddress);
+                                    mem[_804 + ceil32(return_data.size) + 228] = 0
+                                    mem[_804 + ceil32(return_data.size) + 260] = 0
+                                    mem[_804 + ceil32(return_data.size) + 292] = 0
+                                    mem[_804 + ceil32(return_data.size) + 324] = block.timestamp
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.addLiquidityAVAX(address arg1, uint256 arg2, uint256 arg3, uint256 arg4, address arg5, uint256 arg6) with:
+                                         gas gas_remaining wei
+                                        args address(this.address), 0, 0, 0, 0, block.timestamp
+                                    mem[_804 + ceil32(return_data.size) + 160 len 96] = ext_call.return_data[0 len 96]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 96
+                                    require ext_call.return_data[0] == ext_call.return_data[0]
+                                    require ext_call.return_data[32] == ext_call.return_data[32]
+                                    require ext_call.return_data[64] == ext_call.return_data[64]
+                                    emit SwapAndLiquify(uint256 arg1, uint256 arg2, uint256 arg3):
+                                                        0,
+                                    mem[_804 + (2 * ceil32(return_data.size)) + 160] = 2
+                                    mem[_804 + (2 * ceil32(return_data.size)) + 192] = this.address
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    staticcall uniswapV2RouterAddress.WAVAX() with:
+                                            gas gas_remaining wei
+                                    mem[_804 + (2 * ceil32(return_data.size)) + 256] = ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[64] = _804 + (4 * ceil32(return_data.size)) + 256
+                                    require return_data.size >= 32
+                                    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                    mem[_804 + (2 * ceil32(return_data.size)) + 224] = ext_call.return_data[12 len 20]
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    mem[0] = uniswapV2RouterAddress
+                                    mem[32] = sha3(address(this.address), 1)
+                                    allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)]
+                                    emit Approval(balanceOf[address(this.address)], this.address, uniswapV2RouterAddress);
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 256] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 260] = balanceOf[address(this.address)]
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 292] = 0
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 324] = 160
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 420] = 2
+                                    idx = 0
+                                    s = _804 + (2 * ceil32(return_data.size)) + 192
+                                    t = _804 + (4 * ceil32(return_data.size)) + 452
+                                    while idx < mem[_804 + (2 * ceil32(return_data.size)) + 160]:
+                                        mem[t] = mem[s + 12 len 20]
+                                        idx = idx + 1
+                                        s = s + 32
+                                        t = t + 32
+                                        continue 
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 356] = this.address
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 388] = block.timestamp
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                         gas gas_remaining wei
+                                        args balanceOf[address(this.address)], 0, 160, address(this.address), block.timestamp, mem[_804 + (4 * ceil32(return_data.size)) + 420 len (32 * mem[_804 + (2 * ceil32(return_data.size)) + 160]) + 32]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    uint8(stor25.field_0) = 0
+                                    if not msg.sender:
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 256] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 260] = 32
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 292] = 37
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 324] = 'ERC20: transfer from the zero ad'
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 356] = 'dress'
+                                        revert with memory
+                                          from _804 + (4 * ceil32(return_data.size)) + 256
+                                           len (5 * ceil32(return_data.size)) + 132
+                                    if not this.address:
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 256] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 260] = 32
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 292] = 35
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 324] = 'ERC20: transfer to the zero addr'
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 356] = 'ess'
+                                        revert with memory
+                                          from _804 + (4 * ceil32(return_data.size)) + 256
+                                           len (5 * ceil32(return_data.size)) + 132
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 256] = 38
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 288 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                    if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 352] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 356] = 32
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 388] = 38
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 420 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, 0
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 458] = 0
+                                        revert with memory
+                                          from _804 + (4 * ceil32(return_data.size)) + 352
+                                           len (5 * ceil32(return_data.size)) + 132
+                                    if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+                                        revert with 'NH{q', 17
+                                    balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+                                    if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+                                        revert with 'NH{q', 17
+                                    if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 352] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 356] = 32
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 388] = 27
+                                        mem[_804 + (4 * ceil32(return_data.size)) + 420] = 'SafeMath: addition overflow'
+                                        revert with memory
+                                          from _804 + (4 * ceil32(return_data.size)) + 352
+                                           len (5 * ceil32(return_data.size)) + 100
+                                    balanceOf[address(this.address)] += ext_call.return_data[0]
+                                    emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 352] = 0x12b8603f00000000000000000000000000000000000000000000000000000000
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 356] = msg.sender
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 388] = 64
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 420] = mem[96]
+                                    mem[_804 + (4 * ceil32(return_data.size)) + 452 len ceil32(mem[96])] = mem[128 len ceil32(mem[96])]
+                                    if ceil32(mem[96]) > mem[96]:
+                                        mem[_804 + (4 * ceil32(return_data.size)) + mem[96] + 452] = 0
+                                    require ext_code.size(nodeRewardManagerAddress)
+                                    call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+                                         gas gas_remaining wei
+                                        args mem[_804 + (4 * ceil32(return_data.size)) + 356 len (5 * ceil32(return_data.size)) + ceil32(mem[96]) + 96]
+                                else:
+                                    if balanceOf[address(this.address)] and liquidityPoolFee > -1 / balanceOf[address(this.address)]:
+                                        revert with 'NH{q', 17
+                                    if not balanceOf[address(this.address)]:
+                                        revert with 'NH{q', 18
+                                    if balanceOf[address(this.address)] * liquidityPoolFee / balanceOf[address(this.address)] != liquidityPoolFee:
+                                        revert with 0, 'SafeMath: multiplication overflow'
+                                    _780 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_780] = 26
+                                    mem[_780 + 32] = 'SafeMath: division by zero'
+                                    _798 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_798] = 26
+                                    mem[_798 + 32] = 'SafeMath: division by zero'
+                                    _815 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_815] = 30
+                                    mem[_815 + 32] = 'SafeMath: subtraction overflow'
+                                    if balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2 > balanceOf[address(this.address)] * liquidityPoolFee / 100:
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if balanceOf[address(this.address)] * liquidityPoolFee / 100 < balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2:
+                                        revert with 'NH{q', 17
+                                    _864 = mem[64]
+                                    mem[mem[64]] = 2
+                                    mem[64] = mem[64] + 96
+                                    mem[_864 + 32 len 64] = call.data[calldata.size len 64]
+                                    if 0 >= mem[_864]:
+                                        revert with 'NH{q', 50
+                                    mem[_864 + 32] = this.address
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    staticcall uniswapV2RouterAddress.WAVAX() with:
+                                            gas gas_remaining wei
+                                    mem[_864 + 96] = ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[64] = _864 + ceil32(return_data.size) + 96
+                                    require return_data.size >= 32
+                                    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                    if 1 >= mem[_864]:
+                                        revert with 'NH{q', 50
+                                    mem[_864 + 64] = ext_call.return_data[12 len 20]
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    mem[0] = uniswapV2RouterAddress
+                                    mem[32] = sha3(address(this.address), 1)
+                                    allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2
+                                    allowance[address(this.address)][stor14].field_255 = 0
+                                    emit Approval((balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2), this.address, uniswapV2RouterAddress);
+                                    mem[_864 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                    mem[_864 + ceil32(return_data.size) + 100] = balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2
+                                    mem[_864 + ceil32(return_data.size) + 132] = 0
+                                    mem[_864 + ceil32(return_data.size) + 164] = 160
+                                    mem[_864 + ceil32(return_data.size) + 260] = mem[_864]
+                                    idx = 0
+                                    s = _864 + 32
+                                    t = _864 + ceil32(return_data.size) + 292
+                                    while idx < mem[_864]:
+                                        mem[t] = mem[s + 12 len 20]
+                                        idx = idx + 1
+                                        s = s + 32
+                                        t = t + 32
+                                        continue 
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                         gas gas_remaining wei
+                                        args Mask(255, 1, balanceOf[address(this.address)] * liquidityPoolFee / 100), 0, 160, address(this.address), block.timestamp, mem[_864 + ceil32(return_data.size) + 260 len (32 * mem[_864]) + 32]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[_864 + ceil32(return_data.size) + 96] = 30
+                                    mem[_864 + ceil32(return_data.size) + 128] = 'SafeMath: subtraction overflow'
+                                    if eth.balance(this.address) > eth.balance(this.address):
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if eth.balance(this.address) < eth.balance(this.address):
+                                        revert with 'NH{q', 17
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    allowance[address(this.address)][stor14].field_0 = (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)
+                                    emit Approval(((balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)), this.address, uniswapV2RouterAddress);
+                                    mem[_864 + ceil32(return_data.size) + 228] = 0
+                                    mem[_864 + ceil32(return_data.size) + 260] = 0
+                                    mem[_864 + ceil32(return_data.size) + 292] = 0
+                                    mem[_864 + ceil32(return_data.size) + 324] = block.timestamp
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.addLiquidityAVAX(address arg1, uint256 arg2, uint256 arg3, uint256 arg4, address arg5, uint256 arg6) with:
+                                         gas gas_remaining wei
+                                        args address(this.address), (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2), 0, 0, 0, block.timestamp
+                                    mem[_864 + ceil32(return_data.size) + 160 len 96] = ext_call.return_data[0 len 96]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    require return_data.size >= 96
+                                    require ext_call.return_data[0] == ext_call.return_data[0]
+                                    require ext_call.return_data[32] == ext_call.return_data[32]
+                                    require ext_call.return_data[64] == ext_call.return_data[64]
+                                    emit SwapAndLiquify(Mask(255, 1, balanceOf[address(this.address)] * liquidityPoolFee / 100), 0, (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2));
+                                    mem[_864 + (2 * ceil32(return_data.size)) + 160] = 2
+                                    mem[_864 + (2 * ceil32(return_data.size)) + 192] = this.address
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    staticcall uniswapV2RouterAddress.WAVAX() with:
+                                            gas gas_remaining wei
+                                    mem[_864 + (2 * ceil32(return_data.size)) + 256] = ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[64] = _864 + (4 * ceil32(return_data.size)) + 256
+                                    require return_data.size >= 32
+                                    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                    mem[_864 + (2 * ceil32(return_data.size)) + 224] = ext_call.return_data[12 len 20]
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    mem[0] = uniswapV2RouterAddress
+                                    mem[32] = sha3(address(this.address), 1)
+                                    allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)]
+                                    emit Approval(balanceOf[address(this.address)], this.address, uniswapV2RouterAddress);
+                                    mem[_864 + (4 * ceil32(return_data.size)) + 256] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                    mem[_864 + (4 * ceil32(return_data.size)) + 260] = balanceOf[address(this.address)]
+                                    mem[_864 + (4 * ceil32(return_data.size)) + 292] = 0
+                                    mem[_864 + (4 * ceil32(return_data.size)) + 324] = 160
+                                    mem[_864 + (4 * ceil32(return_data.size)) + 420] = 2
+                                    idx = 0
+                                    s = _864 + (2 * ceil32(return_data.size)) + 192
+                                    t = _864 + (4 * ceil32(return_data.size)) + 452
+                                    while idx < mem[_864 + (2 * ceil32(return_data.size)) + 160]:
+                                        mem[t] = mem[s + 12 len 20]
+                                        idx = idx + 1
+                                        s = s + 32
+                                        t = t + 32
+                                        continue 
+                                    mem[_864 + (4 * ceil32(return_data.size)) + 356] = this.address
+                                    mem[_864 + (4 * ceil32(return_data.size)) + 388] = block.timestamp
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                         gas gas_remaining wei
+                                        args mem[mem[64] + 4 len _864 + (4 * ceil32(return_data.size)) + (32 * mem[_864 + (2 * ceil32(return_data.size)) + 160]) + -mem[64] + 448]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    uint8(stor25.field_0) = 0
+                                    if not msg.sender:
+                                        revert with 0, 'ERC20: transfer from the zero address'
+                                    if not this.address:
+                                        revert with 0, 'ERC20: transfer to the zero address'
+                                    _1971 = mem[64]
+                                    mem[64] = mem[64] + 96
+                                    mem[_1971] = 38
+                                    mem[_1971 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                    if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                                        mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                        mem[mem[64] + 4] = 32
+                                        mem[mem[64] + 36] = 38
+                                        mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_1971 + 70 len 26]
+                                        revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                                    if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+                                        revert with 'NH{q', 17
+                                    balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+                                    if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+                                        revert with 'NH{q', 17
+                                    if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+                                        revert with 0, 'SafeMath: addition overflow'
+                                    balanceOf[address(this.address)] += ext_call.return_data[0]
+                                    emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+                                    mem[mem[64]] = 0x12b8603f00000000000000000000000000000000000000000000000000000000
+                                    mem[mem[64] + 4] = msg.sender
+                                    mem[mem[64] + 36] = 64
+                                    mem[mem[64] + 68] = mem[96]
+                                    mem[mem[64] + 100 len ceil32(mem[96])] = mem[128 len ceil32(mem[96])]
+                                    if ceil32(mem[96]) > mem[96]:
+                                        mem[mem[64] + mem[96] + 100] = 0
+                                    require ext_code.size(nodeRewardManagerAddress)
+                                    call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+                                         gas gas_remaining wei
+                                        args msg.sender, Array(len=mem[96], data=mem[mem[64] + 100 len ceil32(mem[96])])
+                            else:
+                                if balanceOf[address(this.address)] and rewardsFee > -1 / balanceOf[address(this.address)]:
+                                    revert with 'NH{q', 17
+                                if not balanceOf[address(this.address)]:
+                                    revert with 'NH{q', 18
+                                if balanceOf[address(this.address)] * rewardsFee / balanceOf[address(this.address)] != rewardsFee:
+                                    revert with 0, 'SafeMath: multiplication overflow'
+                                _266 = mem[64]
+                                mem[64] = mem[64] + 64
+                                mem[_266] = 26
+                                mem[_266 + 32] = 'SafeMath: division by zero'
+                                if not balanceOf[address(this.address)] * rewardsFee / 100:
+                                    _274 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_274] = 26
+                                    mem[_274 + 32] = 'SafeMath: division by zero'
+                                    _288 = mem[64]
+                                    mem[mem[64]] = 2
+                                    mem[64] = mem[64] + 96
+                                    mem[_288 + 32 len 64] = call.data[calldata.size len 64]
+                                    if 0 >= mem[_288]:
+                                        revert with 'NH{q', 50
+                                    mem[_288 + 32] = this.address
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    staticcall uniswapV2RouterAddress.WAVAX() with:
+                                            gas gas_remaining wei
+                                    mem[_288 + 96] = ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[64] = _288 + ceil32(return_data.size) + 96
+                                    require return_data.size >= 32
+                                    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                    if 1 >= mem[_288]:
+                                        revert with 'NH{q', 50
+                                    mem[_288 + 64] = ext_call.return_data[12 len 20]
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    mem[0] = uniswapV2RouterAddress
+                                    mem[32] = sha3(address(this.address), 1)
+                                    allowance[address(this.address)][stor14].field_0 = 0
+                                    emit Approval(0, this.address, uniswapV2RouterAddress);
+                                    mem[_288 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                    mem[_288 + ceil32(return_data.size) + 100] = 0
+                                    mem[_288 + ceil32(return_data.size) + 132] = 0
+                                    mem[_288 + ceil32(return_data.size) + 164] = 160
+                                    mem[_288 + ceil32(return_data.size) + 260] = mem[_288]
+                                    idx = 0
+                                    s = _288 + 32
+                                    t = _288 + ceil32(return_data.size) + 292
+                                    while idx < mem[_288]:
+                                        mem[t] = mem[s + 12 len 20]
+                                        idx = idx + 1
+                                        s = s + 32
+                                        t = t + 32
+                                        continue 
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                         gas gas_remaining wei
+                                        args 0, 0, 160, address(this.address), block.timestamp, mem[_288 + ceil32(return_data.size) + 260 len (32 * mem[_288]) + 32]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[_288 + ceil32(return_data.size) + 96] = 30
+                                    mem[_288 + ceil32(return_data.size) + 128] = 'SafeMath: subtraction overflow'
+                                    if eth.balance(this.address) > eth.balance(this.address):
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if eth.balance(this.address) < eth.balance(this.address):
+                                        revert with 'NH{q', 17
+                                    call distributionPoolAddress with:
+                                         gas 2300 wei
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[_288 + ceil32(return_data.size) + 160] = 30
+                                    mem[_288 + ceil32(return_data.size) + 192] = 'SafeMath: subtraction overflow'
+                                    if 0 > balanceOf[address(this.address)] * rewardsFee / 100:
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if balanceOf[address(this.address)] * rewardsFee / 100 < 0:
+                                        revert with 'NH{q', 17
+                                    if not this.address:
+                                        revert with 0, 'ERC20: transfer from the zero address'
+                                    if not distributionPoolAddress:
+                                        revert with 0, 'ERC20: transfer to the zero address'
+                                    mem[_288 + ceil32(return_data.size) + 224] = 38
+                                    mem[_288 + ceil32(return_data.size) + 256 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                    if balanceOf[address(this.address)] * rewardsFee / 100 > balanceOf[address(this.address)]:
+                                        revert with 0, 
+                                                    32,
+                                                    38,
+                                                    0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_288 + ceil32(return_data.size) + 294 len 26] >> 48,
+                                                    0
+                                    if balanceOf[address(this.address)] < balanceOf[address(this.address)] * rewardsFee / 100:
+                                        revert with 'NH{q', 17
+                                    balanceOf[address(this.address)] -= balanceOf[address(this.address)] * rewardsFee / 100
+                                    if balanceOf[stor17] > -(balanceOf[address(this.address)] * rewardsFee / 100) - 1:
+                                        revert with 'NH{q', 17
+                                    if balanceOf[stor17] + (balanceOf[address(this.address)] * rewardsFee / 100) < balanceOf[stor17]:
+                                        revert with 0, 'SafeMath: addition overflow'
+                                    balanceOf[stor17] += balanceOf[address(this.address)] * rewardsFee / 100
+                                    emit Transfer((balanceOf[address(this.address)] * rewardsFee / 100), this.address, distributionPoolAddress);
+                                    if balanceOf[address(this.address)]:
+                                        if balanceOf[address(this.address)] and liquidityPoolFee > -1 / balanceOf[address(this.address)]:
+                                            revert with 'NH{q', 17
+                                        if not balanceOf[address(this.address)]:
+                                            revert with 'NH{q', 18
+                                        if balanceOf[address(this.address)] * liquidityPoolFee / balanceOf[address(this.address)] != liquidityPoolFee:
+                                            revert with 0, 'SafeMath: multiplication overflow'
+                                        mem[_288 + ceil32(return_data.size) + 320] = 26
+                                        mem[_288 + ceil32(return_data.size) + 352] = 'SafeMath: division by zero'
+                                        mem[_288 + ceil32(return_data.size) + 384] = 26
+                                        mem[_288 + ceil32(return_data.size) + 416] = 'SafeMath: division by zero'
+                                        mem[_288 + ceil32(return_data.size) + 448] = 30
+                                        mem[_288 + ceil32(return_data.size) + 480] = 'SafeMath: subtraction overflow'
+                                        if balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2 > balanceOf[address(this.address)] * liquidityPoolFee / 100:
+                                            revert with 0, 'SafeMath: subtraction overflow', 0
+                                        if balanceOf[address(this.address)] * liquidityPoolFee / 100 < balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2:
+                                            revert with 'NH{q', 17
+                                        mem[_288 + ceil32(return_data.size) + 512] = 2
+                                        mem[_288 + ceil32(return_data.size) + 544] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_288 + ceil32(return_data.size) + 608] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _288 + (2 * ceil32(return_data.size)) + 608
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        mem[_288 + ceil32(return_data.size) + 576] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2
+                                        allowance[address(this.address)][stor14].field_255 = 0
+                                        emit Approval((balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2), this.address, uniswapV2RouterAddress);
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 608] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 612] = balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 644] = 0
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 676] = 160
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 772] = 2
+                                        idx = 0
+                                        s = _288 + ceil32(return_data.size) + 544
+                                        t = _288 + (2 * ceil32(return_data.size)) + 804
+                                        while idx < mem[_288 + ceil32(return_data.size) + 512]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 708] = this.address
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 740] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                             gas gas_remaining wei
+                                            args Mask(255, 1, balanceOf[address(this.address)] * liquidityPoolFee / 100), 0, 160, address(this.address), block.timestamp, mem[_288 + (2 * ceil32(return_data.size)) + 772 len (32 * mem[_288 + ceil32(return_data.size) + 512]) + 32]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 608] = 30
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 640] = 'SafeMath: subtraction overflow'
+                                        if eth.balance(this.address) > eth.balance(this.address):
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 672] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 676] = 32
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 708] = 30
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 740] = 'SafeMath: subtraction overflow'
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 770] = 0
+                                            revert with memory
+                                              from _288 + (2 * ceil32(return_data.size)) + 672
+                                               len ceil32(return_data.size) + 100
+                                        if eth.balance(this.address) < eth.balance(this.address):
+                                            revert with 'NH{q', 17
+                                        if not this.address:
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 672] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 676] = 32
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 708] = 36
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 740] = 'ERC20: approve from the zero add'
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 772] = 'ress'
+                                            revert with memory
+                                              from _288 + (2 * ceil32(return_data.size)) + 672
+                                               len ceil32(return_data.size) + 132
+                                        if not uniswapV2RouterAddress:
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 672] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 676] = 32
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 708] = 34
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 740] = 'ERC20: approve to the zero addre'
+                                            mem[_288 + (2 * ceil32(return_data.size)) + 772] = 'ss'
+                                            revert with memory
+                                              from _288 + (2 * ceil32(return_data.size)) + 672
+                                               len ceil32(return_data.size) + 132
+                                        allowance[address(this.address)][stor14].field_0 = (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)
+                                        emit Approval(((balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)), this.address, uniswapV2RouterAddress);
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 676] = this.address
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 708] = (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 740] = 0
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 772] = 0
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 804] = 0
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 836] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.addLiquidityAVAX(address arg1, uint256 arg2, uint256 arg3, uint256 arg4, address arg5, uint256 arg6) with:
+                                             gas gas_remaining wei
+                                            args mem[_288 + (2 * ceil32(return_data.size)) + 676 len ceil32(return_data.size) + 192]
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 672 len 96] = ext_call.return_data[0 len 96]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        require return_data.size >= 96
+                                        require ext_call.return_data[0] == ext_call.return_data[0]
+                                        require ext_call.return_data[32] == ext_call.return_data[32]
+                                        require ext_call.return_data[64] == ext_call.return_data[64]
+                                        mem[_288 + (4 * ceil32(return_data.size)) + 672] = balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2
+                                        mem[_288 + (4 * ceil32(return_data.size)) + 704] = 0
+                                        mem[_288 + (4 * ceil32(return_data.size)) + 736] = (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)
+                                        emit SwapAndLiquify(uint256 arg1, uint256 arg2, uint256 arg3):
+                                                            mem[_288 + (4 * ceil32(return_data.size)) + 672 len (5 * ceil32(return_data.size)) + 96],
+                                        mem[_288 + (4 * ceil32(return_data.size)) + 672] = 2
+                                        mem[_288 + (4 * ceil32(return_data.size)) + 704] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_288 + (4 * ceil32(return_data.size)) + 768] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _288 + (6 * ceil32(return_data.size)) + 768
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        mem[_288 + (4 * ceil32(return_data.size)) + 736] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)]
+                                        emit Approval(balanceOf[address(this.address)], this.address, uniswapV2RouterAddress);
+                                        mem[_288 + (6 * ceil32(return_data.size)) + 768] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_288 + (6 * ceil32(return_data.size)) + 772] = balanceOf[address(this.address)]
+                                        mem[_288 + (6 * ceil32(return_data.size)) + 804] = 0
+                                        mem[_288 + (6 * ceil32(return_data.size)) + 836] = 160
+                                        mem[_288 + (6 * ceil32(return_data.size)) + 932] = 2
+                                        idx = 0
+                                        s = _288 + (4 * ceil32(return_data.size)) + 704
+                                        t = _288 + (6 * ceil32(return_data.size)) + 964
+                                        while idx < mem[_288 + (4 * ceil32(return_data.size)) + 672]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_288 + (6 * ceil32(return_data.size)) + 868] = this.address
+                                        mem[_288 + (6 * ceil32(return_data.size)) + 900] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                             gas gas_remaining wei
+                                            args mem[mem[64] + 4 len _288 + (6 * ceil32(return_data.size)) + (32 * mem[_288 + (4 * ceil32(return_data.size)) + 672]) + -mem[64] + 960]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        uint8(stor25.field_0) = 0
+                                        if not msg.sender:
+                                            revert with 0, 'ERC20: transfer from the zero address'
+                                        if not this.address:
+                                            revert with 0, 'ERC20: transfer to the zero address'
+                                        _1967 = mem[64]
+                                        mem[64] = mem[64] + 96
+                                        mem[_1967] = 38
+                                        mem[_1967 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                        if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                                            mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                            mem[mem[64] + 4] = 32
+                                            mem[mem[64] + 36] = 38
+                                            mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_1967 + 70 len 26]
+                                            revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                                    else:
+                                        mem[_288 + ceil32(return_data.size) + 320] = 26
+                                        mem[_288 + ceil32(return_data.size) + 352] = 'SafeMath: division by zero'
+                                        mem[_288 + ceil32(return_data.size) + 384] = 26
+                                        mem[_288 + ceil32(return_data.size) + 416] = 'SafeMath: division by zero'
+                                        mem[_288 + ceil32(return_data.size) + 448] = 30
+                                        mem[_288 + ceil32(return_data.size) + 480] = 'SafeMath: subtraction overflow'
+                                        mem[_288 + ceil32(return_data.size) + 512] = 2
+                                        mem[_288 + ceil32(return_data.size) + 544] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_288 + ceil32(return_data.size) + 608] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _288 + (2 * ceil32(return_data.size)) + 608
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        mem[_288 + ceil32(return_data.size) + 576] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = 0
+                                        emit Approval(0, this.address, uniswapV2RouterAddress);
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 608] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 612] = 0
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 644] = 0
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 676] = 160
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 772] = 2
+                                        idx = 0
+                                        s = _288 + ceil32(return_data.size) + 544
+                                        t = _288 + (2 * ceil32(return_data.size)) + 804
+                                        while idx < mem[_288 + ceil32(return_data.size) + 512]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 708] = this.address
+                                        mem[_288 + (2 * ceil32(return_data.size)) + 740] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                             gas gas_remaining wei
+                                            args mem[mem[64] + 4 len _288 + (2 * ceil32(return_data.size)) + (32 * mem[_288 + ceil32(return_data.size) + 512]) + -mem[64] + 800]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        _1240 = mem[64]
+                                        mem[64] = mem[64] + 64
+                                        mem[_1240] = 30
+                                        mem[_1240 + 32] = 'SafeMath: subtraction overflow'
+                                        if eth.balance(this.address) > eth.balance(this.address):
+                                            revert with 0, 'SafeMath: subtraction overflow', 0
+                                        if eth.balance(this.address) < eth.balance(this.address):
+                                            revert with 'NH{q', 17
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = 0
+                                        emit Approval(0, this.address, uniswapV2RouterAddress);
+                                        mem[mem[64] + 68] = 0
+                                        mem[mem[64] + 100] = 0
+                                        mem[mem[64] + 132] = 0
+                                        mem[mem[64] + 164] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.addLiquidityAVAX(address arg1, uint256 arg2, uint256 arg3, uint256 arg4, address arg5, uint256 arg6) with:
+                                             gas gas_remaining wei
+                                            args address(this.address), 0, 0, 0, 0, block.timestamp
+                                        mem[mem[64] len 96] = ext_call.return_data[0 len 96]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        _1432 = mem[64]
+                                        mem[64] = mem[64] + ceil32(return_data.size)
+                                        require return_data.size >= 96
+                                        require mem[_1432] == mem[_1432]
+                                        require mem[_1432 + 32] == mem[_1432 + 32]
+                                        require mem[_1432 + 64] == mem[_1432 + 64]
+                                        mem[mem[64] + 32] = 0
+                                        mem[mem[64] + 64] = 0
+                                        emit SwapAndLiquify(uint256 arg1, uint256 arg2, uint256 arg3):
+                                                            0,
+                                        mem[0] = this.address
+                                        mem[32] = 0
+                                        _1516 = mem[64]
+                                        mem[mem[64]] = 2
+                                        mem[64] = mem[64] + 96
+                                        mem[_1516 + 32 len 64] = call.data[calldata.size len 64]
+                                        if 0 >= mem[_1516]:
+                                            revert with 'NH{q', 50
+                                        mem[_1516 + 32] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_1516 + 96] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _1516 + ceil32(return_data.size) + 96
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        if 1 >= mem[_1516]:
+                                            revert with 'NH{q', 50
+                                        mem[_1516 + 64] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)]
+                                        emit Approval(balanceOf[address(this.address)], this.address, uniswapV2RouterAddress);
+                                        mem[_1516 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_1516 + ceil32(return_data.size) + 100] = balanceOf[address(this.address)]
+                                        mem[_1516 + ceil32(return_data.size) + 132] = 0
+                                        mem[_1516 + ceil32(return_data.size) + 164] = 160
+                                        mem[_1516 + ceil32(return_data.size) + 260] = mem[_1516]
+                                        idx = 0
+                                        s = _1516 + 32
+                                        t = _1516 + ceil32(return_data.size) + 292
+                                        while idx < mem[_1516]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_1516 + ceil32(return_data.size) + 196] = this.address
+                                        mem[_1516 + ceil32(return_data.size) + 228] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                             gas gas_remaining wei
+                                            args mem[mem[64] + 4 len _1516 + ceil32(return_data.size) + (32 * mem[_1516]) + -mem[64] + 288]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        uint8(stor25.field_0) = 0
+                                        if not msg.sender:
+                                            revert with 0, 'ERC20: transfer from the zero address'
+                                        if not this.address:
+                                            revert with 0, 'ERC20: transfer to the zero address'
+                                        _1969 = mem[64]
+                                        mem[64] = mem[64] + 96
+                                        mem[_1969] = 38
+                                        mem[_1969 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                        if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                                            mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                            mem[mem[64] + 4] = 32
+                                            mem[mem[64] + 36] = 38
+                                            mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_1969 + 70 len 26]
+                                            revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                                else:
+                                    if balanceOf[address(this.address)] * rewardsFee / 100 and stor24 > -1 / balanceOf[address(this.address)] * rewardsFee / 100:
+                                        revert with 'NH{q', 17
+                                    if not balanceOf[address(this.address)] * rewardsFee / 100:
+                                        revert with 'NH{q', 18
+                                    if balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / balanceOf[address(this.address)] * rewardsFee / 100 != stor24:
+                                        revert with 0, 'SafeMath: multiplication overflow'
+                                    _290 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_290] = 26
+                                    mem[_290 + 32] = 'SafeMath: division by zero'
+                                    _324 = mem[64]
+                                    mem[mem[64]] = 2
+                                    mem[64] = mem[64] + 96
+                                    mem[_324 + 32 len 64] = call.data[calldata.size len 64]
+                                    if 0 >= mem[_324]:
+                                        revert with 'NH{q', 50
+                                    mem[_324 + 32] = this.address
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    staticcall uniswapV2RouterAddress.WAVAX() with:
+                                            gas gas_remaining wei
+                                    mem[_324 + 96] = ext_call.return_data[0]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    mem[64] = _324 + ceil32(return_data.size) + 96
+                                    require return_data.size >= 32
+                                    require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                    if 1 >= mem[_324]:
+                                        revert with 'NH{q', 50
+                                    mem[_324 + 64] = ext_call.return_data[12 len 20]
+                                    if not this.address:
+                                        revert with 0, 'ERC20: approve from the zero address'
+                                    if not uniswapV2RouterAddress:
+                                        revert with 0, 'ERC20: approve to the zero address'
+                                    mem[0] = uniswapV2RouterAddress
+                                    mem[32] = sha3(address(this.address), 1)
+                                    allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100
+                                    emit Approval((balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100), this.address, uniswapV2RouterAddress);
+                                    mem[_324 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                    mem[_324 + ceil32(return_data.size) + 100] = balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100
+                                    mem[_324 + ceil32(return_data.size) + 132] = 0
+                                    mem[_324 + ceil32(return_data.size) + 164] = 160
+                                    mem[_324 + ceil32(return_data.size) + 260] = mem[_324]
+                                    idx = 0
+                                    s = _324 + 32
+                                    t = _324 + ceil32(return_data.size) + 292
+                                    while idx < mem[_324]:
+                                        mem[t] = mem[s + 12 len 20]
+                                        idx = idx + 1
+                                        s = s + 32
+                                        t = t + 32
+                                        continue 
+                                    mem[_324 + ceil32(return_data.size) + 196] = this.address
+                                    mem[_324 + ceil32(return_data.size) + 228] = block.timestamp
+                                    require ext_code.size(uniswapV2RouterAddress)
+                                    call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                         gas gas_remaining wei
+                                        args mem[mem[64] + 4 len _324 + ceil32(return_data.size) + (32 * mem[_324]) + -mem[64] + 288]
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    _578 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_578] = 30
+                                    mem[_578 + 32] = 'SafeMath: subtraction overflow'
+                                    if eth.balance(this.address) > eth.balance(this.address):
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if eth.balance(this.address) < eth.balance(this.address):
+                                        revert with 'NH{q', 17
+                                    call distributionPoolAddress with:
+                                         gas 2300 wei
+                                    if not ext_call.success:
+                                        revert with ext_call.return_data[0 len return_data.size]
+                                    _614 = mem[64]
+                                    mem[64] = mem[64] + 64
+                                    mem[_614] = 30
+                                    mem[_614 + 32] = 'SafeMath: subtraction overflow'
+                                    if balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100 > balanceOf[address(this.address)] * rewardsFee / 100:
+                                        revert with 0, 'SafeMath: subtraction overflow', 0
+                                    if balanceOf[address(this.address)] * rewardsFee / 100 < balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100:
+                                        revert with 'NH{q', 17
+                                    if not this.address:
+                                        revert with 0, 'ERC20: transfer from the zero address'
+                                    if not distributionPoolAddress:
+                                        revert with 0, 'ERC20: transfer to the zero address'
+                                    _659 = mem[64]
+                                    mem[64] = mem[64] + 96
+                                    mem[_659] = 38
+                                    mem[_659 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                    if (balanceOf[address(this.address)] * rewardsFee / 100) - (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100) > balanceOf[address(this.address)]:
+                                        mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                        mem[mem[64] + 4] = 32
+                                        mem[mem[64] + 36] = 38
+                                        mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_659 + 70 len 26]
+                                        revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                                    if balanceOf[address(this.address)] < (balanceOf[address(this.address)] * rewardsFee / 100) - (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100):
+                                        revert with 'NH{q', 17
+                                    balanceOf[address(this.address)] = balanceOf[address(this.address)] - (balanceOf[address(this.address)] * rewardsFee / 100) + (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100)
+                                    if balanceOf[stor17] > -(balanceOf[address(this.address)] * rewardsFee / 100) + (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100) - 1:
+                                        revert with 'NH{q', 17
+                                    if balanceOf[stor17] + (balanceOf[address(this.address)] * rewardsFee / 100) - (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100) < balanceOf[stor17]:
+                                        revert with 0, 'SafeMath: addition overflow'
+                                    mem[0] = distributionPoolAddress
+                                    mem[32] = 0
+                                    balanceOf[stor17] = balanceOf[stor17] + (balanceOf[address(this.address)] * rewardsFee / 100) - (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100)
+                                    emit Transfer(((balanceOf[address(this.address)] * rewardsFee / 100) - (balanceOf[address(this.address)] * rewardsFee / 100 * stor24 / 100)), this.address, distributionPoolAddress);
+                                    if balanceOf[address(this.address)]:
+                                        if balanceOf[address(this.address)] and liquidityPoolFee > -1 / balanceOf[address(this.address)]:
+                                            revert with 'NH{q', 17
+                                        if not balanceOf[address(this.address)]:
+                                            revert with 'NH{q', 18
+                                        if balanceOf[address(this.address)] * liquidityPoolFee / balanceOf[address(this.address)] != liquidityPoolFee:
+                                            revert with 0, 'SafeMath: multiplication overflow'
+                                        _778 = mem[64]
+                                        mem[64] = mem[64] + 64
+                                        mem[_778] = 26
+                                        mem[_778 + 32] = 'SafeMath: division by zero'
+                                        _796 = mem[64]
+                                        mem[64] = mem[64] + 64
+                                        mem[_796] = 26
+                                        mem[_796 + 32] = 'SafeMath: division by zero'
+                                        _811 = mem[64]
+                                        mem[64] = mem[64] + 64
+                                        mem[_811] = 30
+                                        mem[_811 + 32] = 'SafeMath: subtraction overflow'
+                                        if balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2 > balanceOf[address(this.address)] * liquidityPoolFee / 100:
+                                            revert with 0, 'SafeMath: subtraction overflow', 0
+                                        if balanceOf[address(this.address)] * liquidityPoolFee / 100 < balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2:
+                                            revert with 'NH{q', 17
+                                        _862 = mem[64]
+                                        mem[mem[64]] = 2
+                                        mem[64] = mem[64] + 96
+                                        mem[_862 + 32 len 64] = call.data[calldata.size len 64]
+                                        if 0 >= mem[_862]:
+                                            revert with 'NH{q', 50
+                                        mem[_862 + 32] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_862 + 96] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _862 + ceil32(return_data.size) + 96
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        if 1 >= mem[_862]:
+                                            revert with 'NH{q', 50
+                                        mem[_862 + 64] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2
+                                        allowance[address(this.address)][stor14].field_255 = 0
+                                        emit Approval((balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2), this.address, uniswapV2RouterAddress);
+                                        mem[_862 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_862 + ceil32(return_data.size) + 100] = balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2
+                                        mem[_862 + ceil32(return_data.size) + 132] = 0
+                                        mem[_862 + ceil32(return_data.size) + 164] = 160
+                                        mem[_862 + ceil32(return_data.size) + 260] = mem[_862]
+                                        idx = 0
+                                        s = _862 + 32
+                                        t = _862 + ceil32(return_data.size) + 292
+                                        while idx < mem[_862]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.swapExactTokensForAVAXSupportingFeeOnTransferTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+                                             gas gas_remaining wei
+                                            args Mask(255, 1, balanceOf[address(this.address)] * liquidityPoolFee / 100), 0, 160, address(this.address), block.timestamp, mem[_862 + ceil32(return_data.size) + 260 len (32 * mem[_862]) + 32]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[_862 + ceil32(return_data.size) + 96] = 30
+                                        mem[_862 + ceil32(return_data.size) + 128] = 'SafeMath: subtraction overflow'
+                                        if eth.balance(this.address) > eth.balance(this.address):
+                                            revert with 0, 'SafeMath: subtraction overflow', 0
+                                        if eth.balance(this.address) < eth.balance(this.address):
+                                            revert with 'NH{q', 17
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        allowance[address(this.address)][stor14].field_0 = (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)
+                                        emit Approval(((balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2)), this.address, uniswapV2RouterAddress);
+                                        mem[_862 + ceil32(return_data.size) + 228] = 0
+                                        mem[_862 + ceil32(return_data.size) + 260] = 0
+                                        mem[_862 + ceil32(return_data.size) + 292] = 0
+                                        mem[_862 + ceil32(return_data.size) + 324] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.addLiquidityAVAX(address arg1, uint256 arg2, uint256 arg3, uint256 arg4, address arg5, uint256 arg6) with:
+                                             gas gas_remaining wei
+                                            args address(this.address), (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2), 0, 0, 0, block.timestamp
+                                        mem[_862 + ceil32(return_data.size) + 160 len 96] = ext_call.return_data[0 len 96]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        require return_data.size >= 96
+                                        require ext_call.return_data[0] == ext_call.return_data[0]
+                                        require ext_call.return_data[32] == ext_call.return_data[32]
+                                        require ext_call.return_data[64] == ext_call.return_data[64]
+                                        emit SwapAndLiquify(Mask(255, 1, balanceOf[address(this.address)] * liquidityPoolFee / 100), 0, (balanceOf[address(this.address)] * liquidityPoolFee / 100) - (balanceOf[address(this.address)] * liquidityPoolFee / 100 / 2));
+                                        mem[_862 + (2 * ceil32(return_data.size)) + 160] = 2
+                                        mem[_862 + (2 * ceil32(return_data.size)) + 192] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_862 + (2 * ceil32(return_data.size)) + 256] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _862 + (4 * ceil32(return_data.size)) + 256
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        mem[_862 + (2 * ceil32(return_data.size)) + 224] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)]
+                                        emit Approval(balanceOf[address(this.address)], this.address, uniswapV2RouterAddress);
+                                        mem[_862 + (4 * ceil32(return_data.size)) + 256] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_862 + (4 * ceil32(return_data.size)) + 260] = balanceOf[address(this.address)]
+                                        mem[_862 + (4 * ceil32(return_data.size)) + 292] = 0
+                                        mem[_862 + (4 * ceil32(return_data.size)) + 324] = 160
+                                        mem[_862 + (4 * ceil32(return_data.size)) + 420] = 2
+                                        idx = 0
+                                        s = _862 + (2 * ceil32(return_data.size)) + 192
+                                        t = _862 + (4 * ceil32(return_data.size)) + 452
+                                        while idx < mem[_862 + (2 * ceil32(return_data.size)) + 160]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_862 + (4 * ceil32(return_data.size)) + 356] = this.address
+                                        mem[_862 + (4 * ceil32(return_data.size)) + 388] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                             gas gas_remaining wei
+                                            args mem[mem[64] + 4 len _862 + (4 * ceil32(return_data.size)) + (32 * mem[_862 + (2 * ceil32(return_data.size)) + 160]) + -mem[64] + 448]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        uint8(stor25.field_0) = 0
+                                        if not msg.sender:
+                                            revert with 0, 'ERC20: transfer from the zero address'
+                                        if not this.address:
+                                            revert with 0, 'ERC20: transfer to the zero address'
+                                        _1963 = mem[64]
+                                        mem[64] = mem[64] + 96
+                                        mem[_1963] = 38
+                                        mem[_1963 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                        if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                                            mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                            mem[mem[64] + 4] = 32
+                                            mem[mem[64] + 36] = 38
+                                            mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_1963 + 70 len 26]
+                                            revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                                    else:
+                                        _760 = mem[64]
+                                        mem[64] = mem[64] + 64
+                                        mem[_760] = 26
+                                        mem[_760 + 32] = 'SafeMath: division by zero'
+                                        _772 = mem[64]
+                                        mem[64] = mem[64] + 64
+                                        mem[_772] = 26
+                                        mem[_772 + 32] = 'SafeMath: division by zero'
+                                        _790 = mem[64]
+                                        mem[64] = mem[64] + 64
+                                        mem[_790] = 30
+                                        mem[_790 + 32] = 'SafeMath: subtraction overflow'
+                                        _802 = mem[64]
+                                        mem[mem[64]] = 2
+                                        mem[64] = mem[64] + 96
+                                        mem[_802 + 32 len 64] = call.data[calldata.size len 64]
+                                        if 0 >= mem[_802]:
+                                            revert with 'NH{q', 50
+                                        mem[_802 + 32] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_802 + 96] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _802 + ceil32(return_data.size) + 96
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        if 1 >= mem[_802]:
+                                            revert with 'NH{q', 50
+                                        mem[_802 + 64] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = 0
+                                        emit Approval(0, this.address, uniswapV2RouterAddress);
+                                        mem[_802 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_802 + ceil32(return_data.size) + 100] = 0
+                                        mem[_802 + ceil32(return_data.size) + 132] = 0
+                                        mem[_802 + ceil32(return_data.size) + 164] = 160
+                                        mem[_802 + ceil32(return_data.size) + 260] = mem[_802]
+                                        idx = 0
+                                        s = _802 + 32
+                                        t = _802 + ceil32(return_data.size) + 292
+                                        while idx < mem[_802]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_802 + ceil32(return_data.size) + 196] = this.address
+                                        mem[_802 + ceil32(return_data.size) + 228] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                             gas gas_remaining wei
+                                            args mem[mem[64] + 4 len _802 + ceil32(return_data.size) + (32 * mem[_802]) + -mem[64] + 288]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        _1238 = mem[64]
+                                        mem[64] = mem[64] + 64
+                                        mem[_1238] = 30
+                                        mem[_1238 + 32] = 'SafeMath: subtraction overflow'
+                                        if eth.balance(this.address) > eth.balance(this.address):
+                                            revert with 0, 'SafeMath: subtraction overflow', 0
+                                        if eth.balance(this.address) < eth.balance(this.address):
+                                            revert with 'NH{q', 17
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = 0
+                                        emit Approval(0, this.address, uniswapV2RouterAddress);
+                                        mem[mem[64] + 68] = 0
+                                        mem[mem[64] + 100] = 0
+                                        mem[mem[64] + 132] = 0
+                                        mem[mem[64] + 164] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.addLiquidityAVAX(address arg1, uint256 arg2, uint256 arg3, uint256 arg4, address arg5, uint256 arg6) with:
+                                             gas gas_remaining wei
+                                            args address(this.address), 0, 0, 0, 0, block.timestamp
+                                        mem[mem[64] len 96] = ext_call.return_data[0 len 96]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        _1430 = mem[64]
+                                        mem[64] = mem[64] + ceil32(return_data.size)
+                                        require return_data.size >= 96
+                                        require mem[_1430] == mem[_1430]
+                                        require mem[_1430 + 32] == mem[_1430 + 32]
+                                        require mem[_1430 + 64] == mem[_1430 + 64]
+                                        mem[mem[64] + 32] = 0
+                                        mem[mem[64] + 64] = 0
+                                        emit SwapAndLiquify(uint256 arg1, uint256 arg2, uint256 arg3):
+                                                            0,
+                                        mem[0] = this.address
+                                        mem[32] = 0
+                                        _1514 = mem[64]
+                                        mem[mem[64]] = 2
+                                        mem[64] = mem[64] + 96
+                                        mem[_1514 + 32 len 64] = call.data[calldata.size len 64]
+                                        if 0 >= mem[_1514]:
+                                            revert with 'NH{q', 50
+                                        mem[_1514 + 32] = this.address
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        staticcall uniswapV2RouterAddress.WAVAX() with:
+                                                gas gas_remaining wei
+                                        mem[_1514 + 96] = ext_call.return_data[0]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        mem[64] = _1514 + ceil32(return_data.size) + 96
+                                        require return_data.size >= 32
+                                        require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                                        if 1 >= mem[_1514]:
+                                            revert with 'NH{q', 50
+                                        mem[_1514 + 64] = ext_call.return_data[12 len 20]
+                                        if not this.address:
+                                            revert with 0, 'ERC20: approve from the zero address'
+                                        if not uniswapV2RouterAddress:
+                                            revert with 0, 'ERC20: approve to the zero address'
+                                        mem[0] = uniswapV2RouterAddress
+                                        mem[32] = sha3(address(this.address), 1)
+                                        allowance[address(this.address)][stor14].field_0 = balanceOf[address(this.address)]
+                                        emit Approval(balanceOf[address(this.address)], this.address, uniswapV2RouterAddress);
+                                        mem[_1514 + ceil32(return_data.size) + 96] = 0x762b156200000000000000000000000000000000000000000000000000000000
+                                        mem[_1514 + ceil32(return_data.size) + 100] = balanceOf[address(this.address)]
+                                        mem[_1514 + ceil32(return_data.size) + 132] = 0
+                                        mem[_1514 + ceil32(return_data.size) + 164] = 160
+                                        mem[_1514 + ceil32(return_data.size) + 260] = mem[_1514]
+                                        idx = 0
+                                        s = _1514 + 32
+                                        t = _1514 + ceil32(return_data.size) + 292
+                                        while idx < mem[_1514]:
+                                            mem[t] = mem[s + 12 len 20]
+                                            idx = idx + 1
+                                            s = s + 32
+                                            t = t + 32
+                                            continue 
+                                        mem[_1514 + ceil32(return_data.size) + 196] = this.address
+                                        mem[_1514 + ceil32(return_data.size) + 228] = block.timestamp
+                                        require ext_code.size(uniswapV2RouterAddress)
+                                        call uniswapV2RouterAddress.mem[mem[64] len 4] with:
+                                             gas gas_remaining wei
+                                            args mem[mem[64] + 4 len _1514 + ceil32(return_data.size) + (32 * mem[_1514]) + -mem[64] + 288]
+                                        if not ext_call.success:
+                                            revert with ext_call.return_data[0 len return_data.size]
+                                        uint8(stor25.field_0) = 0
+                                        if not msg.sender:
+                                            revert with 0, 'ERC20: transfer from the zero address'
+                                        if not this.address:
+                                            revert with 0, 'ERC20: transfer to the zero address'
+                                        _1965 = mem[64]
+                                        mem[64] = mem[64] + 96
+                                        mem[_1965] = 38
+                                        mem[_1965 + 32 len 38] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63
+                                        if ext_call.return_data[0] > balanceOf[address(msg.sender)]:
+                                            mem[mem[64]] = 0x8c379a000000000000000000000000000000000000000000000000000000000
+                                            mem[mem[64] + 4] = 32
+                                            mem[mem[64] + 36] = 38
+                                            mem[mem[64] + 68 len 64] = 0xfe45524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e63, mem[_1965 + 70 len 26]
+                                            revert with 0, 32, 38, mem[mem[64] + 68 len 38], 0
+                                ('le', ('ext_call.return_data', 0, 32), ('stor', ('map', ('mask_shl', 160, 0, 0, 'msg.sender'), ('name', 'balanceOf', 0))))
+                                if balanceOf[address(msg.sender)] < ext_call.return_data[0]:
+                                    revert with 'NH{q', 17
+                                balanceOf[address(msg.sender)] -= ext_call.return_data[0]
+                                if balanceOf[address(this.address)] > -ext_call.return_data[0] - 1:
+                                    revert with 'NH{q', 17
+                                if balanceOf[address(this.address)] + ext_call.return_data[0] < balanceOf[address(this.address)]:
+                                    revert with 0, 'SafeMath: addition overflow'
+                                balanceOf[address(this.address)] += ext_call.return_data[0]
+                                emit Transfer(ext_call.return_data[0], msg.sender, this.address);
+                                mem[mem[64]] = 0x12b8603f00000000000000000000000000000000000000000000000000000000
+                                mem[mem[64] + 4] = msg.sender
+                                mem[mem[64] + 36] = 64
+                                mem[mem[64] + 68] = mem[96]
+                                mem[mem[64] + 100 len ceil32(mem[96])] = mem[128 len ceil32(mem[96])]
+                                if ceil32(mem[96]) > mem[96]:
+                                    mem[mem[64] + mem[96] + 100] = 0
+                                require ext_code.size(nodeRewardManagerAddress)
+                                call nodeRewardManagerAddress.createNode(address arg1, string arg2) with:
+                                     gas gas_remaining wei
+                                    args msg.sender, Array(len=mem[96], data=mem[mem[64] + 100 len ceil32(mem[96])])
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+}
+
+
+
+}
