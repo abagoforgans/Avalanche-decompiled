@@ -1,0 +1,119 @@
+contract main {
+
+
+
+
+// =====================  Runtime code  =====================
+
+
+const sub_674bcebe(?) = 0xff579d6259dedcc80488c9b89d2820bcb5609160
+
+const sub_ea64e592(?) = 0x3cf1dff7cce2b7291456bc2089b4bcb2ab5f311a
+
+
+address owner;
+mapping of uint8 stor1;
+
+function blackList(address arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    return bool(stor1[arg1])
+}
+
+function owner() payable {
+    return owner
+}
+
+function _fallback() payable {
+    revert
+}
+
+function renounceOwnership() payable {
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    emit OwnershipTransferred(owner, 0);
+    owner = 0
+}
+
+function transferOwnership(address arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'Ownable: new owner is the zero address'
+    emit OwnershipTransferred(owner, arg1);
+    owner = arg1
+}
+
+function sub_ffcf4c57(?) payable {
+    require calldata.size - 4 >= 64
+    require cd[4] <= test266151307()
+    require cd[4] + 35 < calldata.size
+    if ('cd', 4).length > test266151307():
+        revert with 0, 65
+    if (32 * ('cd', 4).length) + 128 > test266151307() or (32 * ('cd', 4).length) + 128 < 96:
+        revert with 0, 65
+    require calldata.size >= cd[4] + (32 * ('cd', 4).length) + 36
+    s = cd[4] + 36
+    t = 128
+    idx = 0
+    while idx < ('cd', 4).length:
+        require cd[s] == address(cd[s])
+        mem[t] = cd[s]
+        s = s + 32
+        t = t + 32
+        idx = idx + 1
+        continue 
+    require cd[36] == bool(cd[36])
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ('cd', 4).length > 0
+    idx = 0
+    while idx < ('cd', 4).length:
+        if idx >= ('cd', 4).length:
+            revert with 0, 50
+        mem[0] = mem[(32 * idx) + 140 len 20]
+        mem[32] = 1
+        stor1[mem[(32 * idx) + 140 len 20]] = uint8(bool(cd[36]))
+        if idx == -1:
+            revert with 0, 17
+        idx = idx + 1
+        continue 
+}
+
+function getAmount(address arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    require arg1
+    require ext_code.size(0xff579d6259dedcc80488c9b89d2820bcb5609160)
+    staticcall 0xff579d6259dedcc80488c9b89d2820bcb5609160._isBlacklisted(address arg1) with:
+            gas gas_remaining wei
+           args arg1
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+    if not ext_call.return_data[0]:
+        if not stor1[address(arg1)]:
+            require ext_code.size(0x3cf1dff7cce2b7291456bc2089b4bcb2ab5f311a)
+            staticcall 0x3cf1dff7cce2b7291456bc2089b4bcb2ab5f311a._isNodeOwner(address arg1) with:
+                    gas gas_remaining wei
+                   args arg1
+            if not ext_call.success:
+                revert with ext_call.return_data[0 len return_data.size]
+            require return_data.size >= 32
+            require ext_call.return_data[0] == bool(ext_call.return_data[0])
+            if ext_call.return_data[0]:
+                return 10^18
+            else:
+                return 0
+        else:
+            return 0
+    else:
+        return 0
+}
+
+
+
+}
