@@ -1,0 +1,748 @@
+contract main {
+
+
+
+
+// =====================  Runtime code  =====================
+
+
+address owner;
+uint256 stor1;
+uint256 stor2;
+uint256 stor3;
+uint256 stor4;
+address stor5;
+uint256 stor6;
+uint256 stor7;
+uint256 stor8;
+uint256 stor9;
+uint256 sub_ceeca984;
+uint256 numContracts;
+uint256 totalSupply;
+uint256 stor13;
+mapping of address stor14;
+mapping of uint8 stor15;
+array of struct stor16;
+mapping of uint8 stor17;
+mapping of struct sub_84231261;
+mapping of struct sub_edac4a84;
+address storFEA7;
+
+function sub_84231261(?) payable {
+    require calldata.size - 4 >= 32
+    return sub_84231261[arg1].field_0, sub_84231261[arg1].field_256, sub_84231261[arg1].field_512, sub_84231261[arg1].field_768
+}
+
+function owner() payable {
+    return owner
+}
+
+function getTotalSupply() payable {
+    return totalSupply
+}
+
+function sub_ceeca984(?) payable {
+    return sub_ceeca984
+}
+
+function getNumContracts() payable {
+    return numContracts
+}
+
+function sub_edac4a84(?) payable {
+    require calldata.size - 4 >= 32
+    return sub_edac4a84[arg1].field_0, 
+           sub_edac4a84[arg1].field_256,
+           sub_edac4a84[arg1].field_512,
+           sub_edac4a84[arg1].field_768,
+           sub_edac4a84[arg1].field_1024
+}
+
+function _fallback() payable {
+    revert
+}
+
+function renounceOwnership() payable {
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    owner = 0
+    emit OwnershipTransferred(owner, 0);
+}
+
+function sub_eee57bb9(?) payable {
+    require calldata.size - 4 >= 64
+    require arg2 == address(arg2)
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    stor14[arg1] = address(arg2)
+}
+
+function sub_4067f75d(?) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == address(arg1)
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if stor17[address(arg1)]:
+        revert with 0, 'address already added'
+    stor17[address(arg1)] = 1
+}
+
+function transferOwnership(address arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'Ownable: new owner is the zero address'
+    owner = arg1
+    emit OwnershipTransferred(owner, arg1);
+}
+
+function sub_120496ec(?) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == address(arg1)
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if stor15[address(arg1)]:
+        revert with 0, 'contract already added'
+    if 1 > !numContracts:
+        revert with 0, 17
+    numContracts++
+    stor14[stor11 + 1] = address(arg1)
+    stor15[address(arg1)] = 1
+}
+
+function sub_0f8dd5c9(?) payable {
+    require calldata.size - 4 >= 64
+    if numContracts <= 0:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'Total Number of Bears must be greater than 0'
+    if not stor17[msg.sender]:
+        revert with 0, 'you are not admin!'
+    if 1 > !stor13:
+        revert with 0, 17
+    stor13++
+    stor6 = stor13 + 1
+    stor7 = totalSupply
+    stor8 = arg1
+    stor9 = arg2
+    sub_84231261[stor13 + 1].field_0 = stor13 + 1
+    sub_84231261[stor13 + 1].field_256 = stor7
+    sub_84231261[stor13 + 1].field_512 = stor8
+    sub_84231261[stor13 + 1].field_768 = stor9
+}
+
+function sub_806d2c37(?) payable {
+    require calldata.size - 4 >= 32
+    if sub_84231261[arg1].field_768 > test266151307():
+        revert with 0, 65
+    if stor16[arg1].field_0:
+        mem[(32 * sub_84231261[arg1].field_768) + 288] = stor16[arg1].field_0
+        idx = (32 * sub_84231261[arg1].field_768) + 288
+        s = 0
+        while (32 * sub_84231261[arg1].field_768) + (32 * stor16[arg1].field_0) + 256 > idx:
+            mem[idx + 32] = stor16[arg1][s].field_256
+            idx = idx + 32
+            s = s + 1
+            continue 
+        return Array(len=stor16[arg1].field_0, data=mem[(32 * sub_84231261[arg1].field_768) + 288 len 32 * stor16[arg1].field_0])
+    mem[(32 * sub_84231261[arg1].field_768) + (32 * stor16[arg1].field_0) + 288] = 32
+    mem[(32 * sub_84231261[arg1].field_768) + (32 * stor16[arg1].field_0) + 320] = stor16[arg1].field_0
+    mem[(32 * sub_84231261[arg1].field_768) + (32 * stor16[arg1].field_0) + 352 len 32 * stor16[arg1].field_0] = mem[(32 * sub_84231261[arg1].field_768) + 288 len 32 * stor16[arg1].field_0]
+    return memory
+      from (32 * sub_84231261[arg1].field_768) + (32 * stor16[arg1].field_0) + 288
+       len (96 * stor16[arg1].field_0) + 64
+}
+
+function setTotalSupply() payable {
+    mem[64] = 96
+    if numContracts <= 0:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'No contracts, please addToContract()'
+    mem[0] = msg.sender
+    mem[32] = 17
+    if not stor17[msg.sender]:
+        revert with 0, 'you are not admin!'
+    idx = 1
+    s = 0
+    while idx <= numContracts:
+        mem[0] = idx
+        mem[32] = 14
+        require ext_code.size(stor14[idx])
+        staticcall stor14[idx].0x18160ddd with:
+                gas gas_remaining wei
+        mem[mem[64]] = ext_call.return_data[0]
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        _14 = mem[64]
+        mem[64] = mem[64] + ceil32(return_data.size)
+        require return_data.size >= 32
+        if s > !mem[_14]:
+            revert with 0, 17
+        if idx == -1:
+            revert with 0, 17
+        idx = idx + 1
+        s = s + mem[_14]
+        continue 
+    totalSupply = s * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts * numContracts
+}
+
+function sub_22bfcb96(?) payable {
+    require calldata.size - 4 >= 96
+    if arg2 > test266151307():
+        revert with 0, 65
+    mem[96] = arg2
+    if not arg2:
+        mem[32] = 14
+        mem[0] = 1
+        require ext_code.size(storFEA7)
+        staticcall storFEA7.0x18160ddd with:
+                gas gas_remaining wei
+        mem[(32 * arg2) + 128] = ext_call.return_data[0]
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        mem[64] = (32 * arg2) + ceil32(return_data.size) + 128
+        require return_data.size >= 32
+        idx = 0
+        while idx < arg2:
+            _64 = mem[64]
+            mem[mem[64] + 32] = arg1
+            mem[mem[64] + 64] = idx
+            _67 = mem[64]
+            mem[mem[64]] = 64
+            mem[64] = mem[64] + 96
+            _69 = sha3(mem[_67 + 32 len mem[_67]])
+            if not arg3:
+                revert with 0, 18
+            if sha3(mem[_67 + 32 len mem[_67]]) % arg3 >= ext_call.return_data[0]:
+                s = 2
+                t = ext_call.return_data[0]
+                while s <= numContracts:
+                    mem[0] = s
+                    mem[32] = 14
+                    require ext_code.size(stor14[s])
+                    staticcall stor14[s].0x18160ddd with:
+                            gas gas_remaining wei
+                    mem[mem[64]] = ext_call.return_data[0]
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    _124 = mem[64]
+                    mem[64] = mem[64] + ceil32(return_data.size)
+                    require return_data.size >= 32
+                    if t > !mem[_124]:
+                        revert with 0, 17
+                    if _69 % arg3 > t + mem[_124]:
+                        if s == -1:
+                            revert with 0, 17
+                        s = s + 1
+                        t = t + mem[_124]
+                        continue 
+                    if t + mem[_124] < _69 % arg3:
+                        revert with 0, 17
+                    if idx >= mem[96]:
+                        revert with 0, 50
+                    mem[(32 * idx) + 128] = t + mem[_124] - (_69 % arg3)
+                    if idx == -1:
+                        revert with 0, 17
+                    idx = idx + 1
+                    continue 
+            else:
+                mem[32] = 14
+                mem[0] = 1
+                mem[_64 + 128] = arg1
+                mem[_64 + 160] = idx
+                mem[_64 + 96] = 64
+                if not arg3:
+                    revert with 0, 18
+                mem[_64 + 196] = sha3(arg1, idx) % arg3
+                require ext_code.size(storFEA7)
+                staticcall storFEA7.0x4f6ccce7 with:
+                        gas gas_remaining wei
+                       args (sha3(arg1, idx) % arg3)
+                mem[_64 + 192] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                mem[64] = _64 + ceil32(return_data.size) + 192
+                require return_data.size >= 32
+                if idx >= mem[96]:
+                    revert with 0, 50
+                mem[(32 * idx) + 128] = ext_call.return_data[0]
+            if idx == -1:
+                revert with 0, 17
+            idx = idx + 1
+            continue 
+    else:
+        mem[128 len 32 * arg2] = call.data[calldata.size len 32 * arg2]
+        mem[32] = 14
+        mem[0] = 1
+        require ext_code.size(storFEA7)
+        staticcall storFEA7.0x18160ddd with:
+                gas gas_remaining wei
+        mem[(32 * arg2) + 128] = ext_call.return_data[0]
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        mem[64] = (32 * arg2) + ceil32(return_data.size) + 128
+        require return_data.size >= 32
+        idx = 0
+        while idx < arg2:
+            _65 = mem[64]
+            mem[mem[64] + 32] = arg1
+            mem[mem[64] + 64] = idx
+            _71 = mem[64]
+            mem[mem[64]] = 64
+            mem[64] = mem[64] + 96
+            _73 = sha3(mem[_71 + 32 len mem[_71]])
+            if not arg3:
+                revert with 0, 18
+            if sha3(mem[_71 + 32 len mem[_71]]) % arg3 >= ext_call.return_data[0]:
+                s = 2
+                t = ext_call.return_data[0]
+                while s <= numContracts:
+                    mem[0] = s
+                    mem[32] = 14
+                    require ext_code.size(stor14[s])
+                    staticcall stor14[s].0x18160ddd with:
+                            gas gas_remaining wei
+                    mem[mem[64]] = ext_call.return_data[0]
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    _125 = mem[64]
+                    mem[64] = mem[64] + ceil32(return_data.size)
+                    require return_data.size >= 32
+                    if t > !mem[_125]:
+                        revert with 0, 17
+                    if _73 % arg3 > t + mem[_125]:
+                        if s == -1:
+                            revert with 0, 17
+                        s = s + 1
+                        t = t + mem[_125]
+                        continue 
+                    if t + mem[_125] < _73 % arg3:
+                        revert with 0, 17
+                    if idx >= mem[96]:
+                        revert with 0, 50
+                    mem[(32 * idx) + 128] = t + mem[_125] - (_73 % arg3)
+                    if idx == -1:
+                        revert with 0, 17
+                    idx = idx + 1
+                    continue 
+            else:
+                mem[32] = 14
+                mem[0] = 1
+                mem[_65 + 128] = arg1
+                mem[_65 + 160] = idx
+                mem[_65 + 96] = 64
+                if not arg3:
+                    revert with 0, 18
+                mem[_65 + 196] = sha3(arg1, idx) % arg3
+                require ext_code.size(storFEA7)
+                staticcall storFEA7.0x4f6ccce7 with:
+                        gas gas_remaining wei
+                       args (sha3(arg1, idx) % arg3)
+                mem[_65 + 192] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                mem[64] = _65 + ceil32(return_data.size) + 192
+                require return_data.size >= 32
+                if idx >= mem[96]:
+                    revert with 0, 50
+                mem[(32 * idx) + 128] = ext_call.return_data[0]
+            if idx == -1:
+                revert with 0, 17
+            idx = idx + 1
+            continue 
+    mem[mem[64]] = 32
+    mem[mem[64] + 32] = mem[96]
+    mem[mem[64] + 64 len 32 * mem[96]] = mem[128 len 32 * mem[96]]
+    return 32, mem[mem[64] + 32 len (32 * mem[96]) + 32]
+}
+
+function sub_30a27228(?) payable {
+    if not stor17[msg.sender]:
+        revert with 0, 'you are not admin!'
+    stor6 = sub_84231261[stor13].field_0
+    stor7 = sub_84231261[stor13].field_256
+    stor8 = sub_84231261[stor13].field_512
+    stor9 = sub_84231261[stor13].field_768
+    if sub_84231261[stor13].field_768 > test266151307():
+        revert with 0, 65
+    mem[96] = sub_84231261[stor13].field_768
+    if not sub_84231261[stor13].field_768:
+        mem[32] = 14
+        mem[0] = 1
+        require ext_code.size(storFEA7)
+        staticcall storFEA7.0x18160ddd with:
+                gas gas_remaining wei
+        mem[(32 * sub_84231261[stor13].field_768) + 128] = ext_call.return_data[0]
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        mem[64] = (32 * sub_84231261[stor13].field_768) + ceil32(return_data.size) + 128
+        require return_data.size >= 32
+        idx = 0
+        while idx < stor9:
+            _140 = mem[64]
+            mem[mem[64] + 32] = stor8
+            mem[mem[64] + 64] = idx
+            _145 = mem[64]
+            mem[mem[64]] = 64
+            mem[64] = mem[64] + 96
+            _147 = sha3(mem[_145 + 32 len mem[_145]])
+            if not totalSupply:
+                revert with 0, 18
+            if sha3(mem[_145 + 32 len mem[_145]]) % totalSupply >= ext_call.return_data[0]:
+                s = 2
+                t = ext_call.return_data[0]
+                while s <= numContracts:
+                    mem[0] = s
+                    mem[32] = 14
+                    require ext_code.size(stor14[s])
+                    staticcall stor14[s].0x18160ddd with:
+                            gas gas_remaining wei
+                    mem[mem[64]] = ext_call.return_data[0]
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    _269 = mem[64]
+                    mem[64] = mem[64] + ceil32(return_data.size)
+                    require return_data.size >= 32
+                    if t > !mem[_269]:
+                        revert with 0, 17
+                    if _147 % totalSupply >= t + mem[_269]:
+                        if s == -1:
+                            revert with 0, 17
+                        s = s + 1
+                        t = t + mem[_269]
+                        continue 
+                    if t + mem[_269] < _147 % totalSupply:
+                        revert with 0, 17
+                    if idx >= mem[96]:
+                        revert with 0, 50
+                    mem[(32 * idx) + 128] = t + mem[_269] - (_147 % totalSupply)
+                    mem[0] = s
+                    mem[32] = 14
+                    if idx >= mem[96]:
+                        revert with 0, 50
+                    _300 = mem[(32 * idx) + 128]
+                    mem[mem[64] + 4] = mem[(32 * idx) + 128]
+                    require ext_code.size(stor14[s])
+                    staticcall stor14[s].0x6352211e with:
+                            gas gas_remaining wei
+                           args _300
+                    mem[mem[64]] = ext_call.return_data[0]
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    _306 = mem[64]
+                    mem[64] = mem[64] + ceil32(return_data.size)
+                    require return_data.size >= 32
+                    _308 = mem[_306]
+                    require mem[_306] == mem[_306 + 12 len 20]
+                    if idx >= mem[96]:
+                        revert with 0, 50
+                    _312 = mem[(32 * idx) + 128]
+                    if 1 > !sub_ceeca984:
+                        revert with 0, 17
+                    _314 = mem[64]
+                    mem[64] = mem[64] + 160
+                    mem[_314] = sub_ceeca984 + 1
+                    mem[_314 + 32] = s
+                    mem[_314 + 64] = stor6
+                    mem[_314 + 96] = _312
+                    mem[_314 + 128] = address(_308)
+                    stor1 = sub_ceeca984 + 1
+                    stor2 = s
+                    stor3 = stor6
+                    stor4 = _312
+                    stor5 = address(_308)
+                    mem[0] = sub_ceeca984 + 1
+                    mem[32] = 19
+                    sub_edac4a84[stor10 + 1].field_0 = sub_ceeca984 + 1
+                    sub_edac4a84[stor10 + 1].field_256 = stor2
+                    sub_edac4a84[stor10 + 1].field_512 = stor3
+                    sub_edac4a84[stor10 + 1].field_768 = stor4
+                    sub_edac4a84[stor10 + 1].field_1024 = stor5
+                    if sub_ceeca984 == -1:
+                        revert with 0, 17
+                    sub_ceeca984++
+                    if idx == -1:
+                        revert with 0, 17
+                    idx = idx + 1
+                    continue 
+                if idx >= mem[96]:
+                    revert with 0, 50
+                _268 = mem[(32 * idx) + 128]
+                if 1 > !sub_ceeca984:
+                    revert with 0, 17
+                _280 = mem[64]
+                mem[64] = mem[64] + 160
+                mem[_280] = sub_ceeca984 + 1
+                mem[_280 + 32] = 0
+                mem[_280 + 64] = stor6
+                mem[_280 + 96] = _268
+                mem[_280 + 128] = 0
+                stor1 = sub_ceeca984 + 1
+                stor2 = 0
+                stor3 = stor6
+                stor4 = _268
+                stor5 = 0
+            else:
+                mem[_140 + 128] = stor8
+                mem[_140 + 160] = idx
+                mem[_140 + 96] = 64
+                if not stor7:
+                    revert with 0, 18
+                mem[_140 + 196] = sha3(stor8, idx) % stor7
+                require ext_code.size(storFEA7)
+                staticcall storFEA7.0x4f6ccce7 with:
+                        gas gas_remaining wei
+                       args (sha3(stor8, idx) % stor7)
+                mem[_140 + 192] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                require return_data.size >= 32
+                if idx >= mem[96]:
+                    revert with 0, 50
+                mem[(32 * idx) + 128] = ext_call.return_data[0]
+                if idx >= mem[96]:
+                    revert with 0, 50
+                mem[_140 + ceil32(return_data.size) + 196] = ext_call.return_data[0]
+                require ext_code.size(storFEA7)
+                staticcall storFEA7.0x6352211e with:
+                        gas gas_remaining wei
+                       args ext_call.return_data[0]
+                mem[_140 + ceil32(return_data.size) + 192] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                require return_data.size >= 32
+                require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                if idx >= mem[96]:
+                    revert with 0, 50
+                if 1 > !sub_ceeca984:
+                    revert with 0, 17
+                mem[64] = _140 + (2 * ceil32(return_data.size)) + 352
+                mem[_140 + (2 * ceil32(return_data.size)) + 192] = sub_ceeca984 + 1
+                mem[_140 + (2 * ceil32(return_data.size)) + 224] = 1
+                mem[_140 + (2 * ceil32(return_data.size)) + 256] = stor6
+                mem[_140 + (2 * ceil32(return_data.size)) + 288] = ext_call.return_data[0]
+                mem[_140 + (2 * ceil32(return_data.size)) + 320] = address(ext_call.return_data[0])
+                stor1 = sub_ceeca984 + 1
+                stor2 = 1
+                stor3 = stor6
+                stor4 = ext_call.return_data[0]
+                stor5 = address(ext_call.return_data[0])
+            mem[0] = sub_ceeca984 + 1
+            mem[32] = 19
+            sub_edac4a84[stor10 + 1].field_0 = sub_ceeca984 + 1
+            sub_edac4a84[stor10 + 1].field_256 = stor2
+            sub_edac4a84[stor10 + 1].field_512 = stor3
+            sub_edac4a84[stor10 + 1].field_768 = stor4
+            sub_edac4a84[stor10 + 1].field_1024 = stor5
+            if sub_ceeca984 == -1:
+                revert with 0, 17
+            sub_ceeca984++
+            if idx == -1:
+                revert with 0, 17
+            idx = idx + 1
+            continue 
+    else:
+        mem[128 len 32 * sub_84231261[stor13].field_768] = call.data[calldata.size len 32 * sub_84231261[stor13].field_768]
+        mem[32] = 14
+        mem[0] = 1
+        require ext_code.size(storFEA7)
+        staticcall storFEA7.0x18160ddd with:
+                gas gas_remaining wei
+        mem[(32 * sub_84231261[stor13].field_768) + 128] = ext_call.return_data[0]
+        if not ext_call.success:
+            revert with ext_call.return_data[0 len return_data.size]
+        mem[64] = (32 * sub_84231261[stor13].field_768) + ceil32(return_data.size) + 128
+        require return_data.size >= 32
+        idx = 0
+        while idx < stor9:
+            _143 = mem[64]
+            mem[mem[64] + 32] = stor8
+            mem[mem[64] + 64] = idx
+            _149 = mem[64]
+            mem[mem[64]] = 64
+            mem[64] = mem[64] + 96
+            _151 = sha3(mem[_149 + 32 len mem[_149]])
+            if not totalSupply:
+                revert with 0, 18
+            if sha3(mem[_149 + 32 len mem[_149]]) % totalSupply >= ext_call.return_data[0]:
+                s = 2
+                t = ext_call.return_data[0]
+                while s <= numContracts:
+                    mem[0] = s
+                    mem[32] = 14
+                    require ext_code.size(stor14[s])
+                    staticcall stor14[s].0x18160ddd with:
+                            gas gas_remaining wei
+                    mem[mem[64]] = ext_call.return_data[0]
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    _271 = mem[64]
+                    mem[64] = mem[64] + ceil32(return_data.size)
+                    require return_data.size >= 32
+                    if t > !mem[_271]:
+                        revert with 0, 17
+                    if _151 % totalSupply >= t + mem[_271]:
+                        if s == -1:
+                            revert with 0, 17
+                        s = s + 1
+                        t = t + mem[_271]
+                        continue 
+                    if t + mem[_271] < _151 % totalSupply:
+                        revert with 0, 17
+                    if idx >= mem[96]:
+                        revert with 0, 50
+                    mem[(32 * idx) + 128] = t + mem[_271] - (_151 % totalSupply)
+                    mem[0] = s
+                    mem[32] = 14
+                    if idx >= mem[96]:
+                        revert with 0, 50
+                    _302 = mem[(32 * idx) + 128]
+                    mem[mem[64] + 4] = mem[(32 * idx) + 128]
+                    require ext_code.size(stor14[s])
+                    staticcall stor14[s].0x6352211e with:
+                            gas gas_remaining wei
+                           args _302
+                    mem[mem[64]] = ext_call.return_data[0]
+                    if not ext_call.success:
+                        revert with ext_call.return_data[0 len return_data.size]
+                    _307 = mem[64]
+                    mem[64] = mem[64] + ceil32(return_data.size)
+                    require return_data.size >= 32
+                    _309 = mem[_307]
+                    require mem[_307] == mem[_307 + 12 len 20]
+                    if idx >= mem[96]:
+                        revert with 0, 50
+                    _313 = mem[(32 * idx) + 128]
+                    if 1 > !sub_ceeca984:
+                        revert with 0, 17
+                    _316 = mem[64]
+                    mem[64] = mem[64] + 160
+                    mem[_316] = sub_ceeca984 + 1
+                    mem[_316 + 32] = s
+                    mem[_316 + 64] = stor6
+                    mem[_316 + 96] = _313
+                    mem[_316 + 128] = address(_309)
+                    stor1 = sub_ceeca984 + 1
+                    stor2 = s
+                    stor3 = stor6
+                    stor4 = _313
+                    stor5 = address(_309)
+                    mem[0] = sub_ceeca984 + 1
+                    mem[32] = 19
+                    sub_edac4a84[stor10 + 1].field_0 = sub_ceeca984 + 1
+                    sub_edac4a84[stor10 + 1].field_256 = stor2
+                    sub_edac4a84[stor10 + 1].field_512 = stor3
+                    sub_edac4a84[stor10 + 1].field_768 = stor4
+                    sub_edac4a84[stor10 + 1].field_1024 = stor5
+                    if sub_ceeca984 == -1:
+                        revert with 0, 17
+                    sub_ceeca984++
+                    if idx == -1:
+                        revert with 0, 17
+                    idx = idx + 1
+                    continue 
+                if idx >= mem[96]:
+                    revert with 0, 50
+                _270 = mem[(32 * idx) + 128]
+                if 1 > !sub_ceeca984:
+                    revert with 0, 17
+                _284 = mem[64]
+                mem[64] = mem[64] + 160
+                mem[_284] = sub_ceeca984 + 1
+                mem[_284 + 32] = 0
+                mem[_284 + 64] = stor6
+                mem[_284 + 96] = _270
+                mem[_284 + 128] = 0
+                stor1 = sub_ceeca984 + 1
+                stor2 = 0
+                stor3 = stor6
+                stor4 = _270
+                stor5 = 0
+            else:
+                mem[_143 + 128] = stor8
+                mem[_143 + 160] = idx
+                mem[_143 + 96] = 64
+                if not stor7:
+                    revert with 0, 18
+                mem[_143 + 196] = sha3(stor8, idx) % stor7
+                require ext_code.size(storFEA7)
+                staticcall storFEA7.0x4f6ccce7 with:
+                        gas gas_remaining wei
+                       args (sha3(stor8, idx) % stor7)
+                mem[_143 + 192] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                require return_data.size >= 32
+                if idx >= mem[96]:
+                    revert with 0, 50
+                mem[(32 * idx) + 128] = ext_call.return_data[0]
+                if idx >= mem[96]:
+                    revert with 0, 50
+                mem[_143 + ceil32(return_data.size) + 196] = ext_call.return_data[0]
+                require ext_code.size(storFEA7)
+                staticcall storFEA7.0x6352211e with:
+                        gas gas_remaining wei
+                       args ext_call.return_data[0]
+                mem[_143 + ceil32(return_data.size) + 192] = ext_call.return_data[0]
+                if not ext_call.success:
+                    revert with ext_call.return_data[0 len return_data.size]
+                require return_data.size >= 32
+                require ext_call.return_data[0] == ext_call.return_data[12 len 20]
+                if idx >= mem[96]:
+                    revert with 0, 50
+                if 1 > !sub_ceeca984:
+                    revert with 0, 17
+                mem[64] = _143 + (2 * ceil32(return_data.size)) + 352
+                mem[_143 + (2 * ceil32(return_data.size)) + 192] = sub_ceeca984 + 1
+                mem[_143 + (2 * ceil32(return_data.size)) + 224] = 1
+                mem[_143 + (2 * ceil32(return_data.size)) + 256] = stor6
+                mem[_143 + (2 * ceil32(return_data.size)) + 288] = ext_call.return_data[0]
+                mem[_143 + (2 * ceil32(return_data.size)) + 320] = address(ext_call.return_data[0])
+                stor1 = sub_ceeca984 + 1
+                stor2 = 1
+                stor3 = stor6
+                stor4 = ext_call.return_data[0]
+                stor5 = address(ext_call.return_data[0])
+            mem[0] = sub_ceeca984 + 1
+            mem[32] = 19
+            sub_edac4a84[stor10 + 1].field_0 = sub_ceeca984 + 1
+            sub_edac4a84[stor10 + 1].field_256 = stor2
+            sub_edac4a84[stor10 + 1].field_512 = stor3
+            sub_edac4a84[stor10 + 1].field_768 = stor4
+            sub_edac4a84[stor10 + 1].field_1024 = stor5
+            if sub_ceeca984 == -1:
+                revert with 0, 17
+            sub_ceeca984++
+            if idx == -1:
+                revert with 0, 17
+            idx = idx + 1
+            continue 
+    stor16[stor6].field_0 = mem[96]
+    mem[0] = sha3(stor6, 16)
+    if not mem[96]:
+        idx = 0
+        while stor16[stor6].field_0 > idx:
+            stor16[stor6][idx].field_0 = 0
+            idx = idx + 1
+            continue 
+    else:
+        s = 0
+        idx = 128
+        while (32 * mem[96]) + 128 > idx:
+            stor16[stor6][s].field_0 = mem[idx]
+            s = s + 1
+            idx = idx + 32
+            continue 
+        idx = Mask(251, 0, (32 * mem[96]) + 31) >> 5
+        while stor16[stor6].field_0 > idx:
+            stor16[stor6][idx].field_0 = 0
+            idx = idx + 1
+            continue 
+    mem[mem[64]] = 32
+    mem[mem[64] + 32] = mem[96]
+    mem[mem[64] + 64 len 32 * mem[96]] = mem[128 len 32 * mem[96]]
+    return 32, mem[mem[64] + 32 len (32 * mem[96]) + 32]
+}
+
+
+
+}
