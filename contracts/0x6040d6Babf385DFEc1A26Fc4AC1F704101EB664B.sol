@@ -1,0 +1,384 @@
+contract main {
+
+
+
+
+// =====================  Runtime code  =====================
+
+
+address owner;
+
+function owner() payable {
+    return owner
+}
+
+function _fallback() payable {
+    revert
+}
+
+function renounceOwnership() payable {
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    owner = 0
+    emit OwnershipTransferred(owner, 0);
+}
+
+function transferOwnership(address arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    if not arg1:
+        revert with 0x8c379a000000000000000000000000000000000000000000000000000000000, 'Ownable: new owner is the zero address'
+    owner = arg1
+    emit OwnershipTransferred(owner, arg1);
+}
+
+function recoverTokens(address arg1) payable {
+    require calldata.size - 4 >= 32
+    require arg1 == arg1
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    require ext_code.size(arg1)
+    staticcall arg1.0x70a08231 with:
+            gas gas_remaining wei
+           args this.address
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    require ext_code.size(arg1)
+    call arg1.0xa9059cbb with:
+         gas gas_remaining wei
+        args msg.sender, ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+}
+
+function getAmountOutMin(address arg1, address arg2, address arg3, uint256 arg4) payable {
+    require calldata.size - 4 >= 128
+    require arg1 == arg1
+    require arg2 == arg2
+    require arg3 == arg3
+    require arg4 == arg4
+    mem[96] = 2
+    mem[128] = arg2
+    mem[160] = arg3
+    mem[192] = 0xd06ca61f00000000000000000000000000000000000000000000000000000000
+    mem[196] = arg4
+    mem[228] = 64
+    mem[260] = 2
+    idx = 0
+    s = 128
+    t = 292
+    while idx < 2:
+        mem[t] = mem[s + 12 len 20]
+        idx = idx + 1
+        s = s + 32
+        t = t + 32
+        continue 
+    require ext_code.size(arg1)
+    staticcall arg1.getAmountsOut(uint256 arg1, address[] arg2) with:
+            gas gas_remaining wei
+           args arg4, Array(len=2, data=mem[292 len 64])
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    mem[192 len return_data.size] = ext_call.return_data[0 len return_data.size]
+    mem[64] = ceil32(return_data.size) + 192
+    require return_data.size >= 32
+    _21 = mem[192 len 4], Mask(224, 32, arg4) >> 32
+    require mem[192 len 4], Mask(224, 32, arg4) >> 32 <= test266151307()
+    require mem[192 len 4], Mask(224, 32, arg4) >> 32 + 223 < return_data.size + 192
+    _22 = mem[mem[192 len 4], Mask(224, 32, arg4) >> 32 + 192]
+    if mem[mem[192 len 4], Mask(224, 32, arg4) >> 32 + 192] > test266151307():
+        revert with 'NH{q', 65
+    if ceil32(return_data.size) + floor32(mem[mem[192 len 4], Mask(224, 32, arg4) >> 32 + 192]) + 193 > test266151307() or floor32(mem[mem[192 len 4], Mask(224, 32, arg4) >> 32 + 192]) + 1 < 0:
+        revert with 'NH{q', 65
+    mem[64] = ceil32(return_data.size) + floor32(mem[mem[192 len 4], Mask(224, 32, arg4) >> 32 + 192]) + 193
+    mem[ceil32(return_data.size) + 192] = mem[mem[192 len 4], Mask(224, 32, arg4) >> 32 + 192]
+    require _21 + (32 * _22) + 32 <= return_data.size
+    idx = 0
+    s = _21 + 224
+    t = ceil32(return_data.size) + 224
+    while idx < _22:
+        require mem[s] == mem[s]
+        mem[t] = mem[s]
+        idx = idx + 1
+        s = s + 32
+        t = t + 32
+        continue 
+    if 1 >= _22:
+        revert with 'NH{q', 50
+    mem[mem[64]] = mem[ceil32(return_data.size) + 256]
+    return memory
+      from mem[64]
+       len 32
+}
+
+function sub_8a1cf738(?) payable {
+    require calldata.size - 4 >= 128
+    require arg1 == address(arg1)
+    require arg2 == address(arg2)
+    require arg3 == address(arg3)
+    require arg4 == arg4
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    mem[132] = arg4
+    require ext_code.size(address(arg2))
+    call address(arg2).approve(address arg1, uint256 arg2) with:
+         gas gas_remaining wei
+        args address(arg1), arg4
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+    mem[ceil32(return_data.size) + 128] = address(arg2)
+    mem[ceil32(return_data.size) + 160] = address(arg3)
+    if block.timestamp > -301:
+        revert with 'NH{q', 17
+    mem[ceil32(return_data.size) + 192] = 0x38ed173900000000000000000000000000000000000000000000000000000000
+    mem[ceil32(return_data.size) + 196] = arg4
+    mem[ceil32(return_data.size) + 228] = 1
+    mem[ceil32(return_data.size) + 260] = 160
+    mem[ceil32(return_data.size) + 356] = 2
+    idx = 0
+    s = ceil32(return_data.size) + 128
+    t = ceil32(return_data.size) + 388
+    while idx < 2:
+        mem[t] = mem[s + 12 len 20]
+        idx = idx + 1
+        s = s + 32
+        t = t + 32
+        continue 
+    mem[ceil32(return_data.size) + 292] = this.address
+    mem[ceil32(return_data.size) + 324] = block.timestamp + 300
+    require ext_code.size(address(arg1))
+    call address(arg1).swapExactTokensForTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+         gas gas_remaining wei
+        args arg4, 1, Array(len=2, data=mem[ceil32(return_data.size) + 388 len 64]), address(this.address), block.timestamp + 300
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    mem[ceil32(return_data.size) + 192 len return_data.size] = ext_call.return_data[0 len return_data.size]
+    mem[64] = (2 * ceil32(return_data.size)) + 192
+    require return_data.size >= 32
+    _22 = mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, arg4) >> 32
+    require mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, arg4) >> 32 <= test266151307()
+    require ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, arg4) >> 32 + 223 < ceil32(return_data.size) + return_data.size + 192
+    _23 = mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, arg4) >> 32 + 192]
+    if mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, arg4) >> 32 + 192] > test266151307():
+        revert with 'NH{q', 65
+    if (2 * ceil32(return_data.size)) + floor32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, arg4) >> 32 + 192]) + 193 > test266151307() or floor32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, arg4) >> 32 + 192]) + 1 < 0:
+        revert with 'NH{q', 65
+    mem[64] = (2 * ceil32(return_data.size)) + floor32(mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, arg4) >> 32 + 192]) + 193
+    mem[(2 * ceil32(return_data.size)) + 192] = mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, arg4) >> 32 + 192]
+    require _22 + (32 * _23) + 32 <= return_data.size
+    idx = 0
+    s = ceil32(return_data.size) + _22 + 224
+    t = (2 * ceil32(return_data.size)) + 224
+    while idx < _23:
+        require mem[s] == mem[s]
+        mem[t] = mem[s]
+        idx = idx + 1
+        s = s + 32
+        t = t + 32
+        continue 
+}
+
+function sub_1aa51318(?) payable {
+    require calldata.size - 4 >= 160
+    require arg1 == address(arg1)
+    require arg2 == address(arg2)
+    require arg3 == address(arg3)
+    require arg4 == address(arg4)
+    require arg5 == arg5
+    if owner != msg.sender:
+        revert with 0, 'Ownable: caller is not the owner'
+    mem[100] = this.address
+    require ext_code.size(address(arg3))
+    staticcall address(arg3).0x70a08231 with:
+            gas gas_remaining wei
+           args this.address
+    mem[96] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    mem[ceil32(return_data.size) + 100] = this.address
+    require ext_code.size(address(arg4))
+    staticcall address(arg4).0x70a08231 with:
+            gas gas_remaining wei
+           args this.address
+    mem[ceil32(return_data.size) + 96] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == ext_call.return_data[0]
+    mem[(2 * ceil32(return_data.size)) + 100] = address(arg1)
+    mem[(2 * ceil32(return_data.size)) + 132] = arg5
+    require ext_code.size(address(arg3))
+    call address(arg3).approve(address arg1, uint256 arg2) with:
+         gas gas_remaining wei
+        args address(arg1), arg5
+    mem[(2 * ceil32(return_data.size)) + 96] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    require return_data.size >= 32
+    require ext_call.return_data[0] == bool(ext_call.return_data[0])
+    mem[(4 * ceil32(return_data.size)) + 96] = 2
+    mem[(4 * ceil32(return_data.size)) + 128] = address(arg3)
+    mem[(4 * ceil32(return_data.size)) + 160] = address(arg4)
+    if block.timestamp > -301:
+        revert with 'NH{q', 17
+    mem[(4 * ceil32(return_data.size)) + 192] = 0x38ed173900000000000000000000000000000000000000000000000000000000
+    mem[(4 * ceil32(return_data.size)) + 196] = arg5
+    mem[(4 * ceil32(return_data.size)) + 228] = 1
+    mem[(4 * ceil32(return_data.size)) + 260] = 160
+    mem[(4 * ceil32(return_data.size)) + 356] = 2
+    idx = 0
+    s = (4 * ceil32(return_data.size)) + 128
+    t = (4 * ceil32(return_data.size)) + 388
+    while idx < 2:
+        mem[t] = mem[s + 12 len 20]
+        idx = idx + 1
+        s = s + 32
+        t = t + 32
+        continue 
+    mem[(4 * ceil32(return_data.size)) + 292] = this.address
+    mem[(4 * ceil32(return_data.size)) + 324] = block.timestamp + 300
+    require ext_code.size(address(arg1))
+    call address(arg1).swapExactTokensForTokens(uint256 arg1, uint256 arg2, address[] arg3, address arg4, uint256 arg5) with:
+         gas gas_remaining wei
+        args arg5, 1, Array(len=2, data=mem[(4 * ceil32(return_data.size)) + 388 len 64]), address(this.address), block.timestamp + 300
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    mem[(4 * ceil32(return_data.size)) + 192 len return_data.size] = ext_call.return_data[0 len return_data.size]
+    mem[64] = (6 * ceil32(return_data.size)) + 192
+    require return_data.size >= 32
+    _33 = mem[(4 * ceil32(return_data.size)) + 192 len 4], Mask(224, 32, arg5) >> 32
+    require mem[(4 * ceil32(return_data.size)) + 192 len 4], Mask(224, 32, arg5) >> 32 <= test266151307()
+    require (4 * ceil32(return_data.size)) + mem[(4 * ceil32(return_data.size)) + 192 len 4], Mask(224, 32, arg5) >> 32 + 223 < (4 * ceil32(return_data.size)) + return_data.size + 192
+    _34 = mem[(4 * ceil32(return_data.size)) + mem[(4 * ceil32(return_data.size)) + 192 len 4], Mask(224, 32, arg5) >> 32 + 192]
+    if mem[(4 * ceil32(return_data.size)) + mem[(4 * ceil32(return_data.size)) + 192 len 4], Mask(224, 32, arg5) >> 32 + 192] > test266151307():
+        revert with 'NH{q', 65
+    if (6 * ceil32(return_data.size)) + floor32(mem[(4 * ceil32(return_data.size)) + mem[(4 * ceil32(return_data.size)) + 192 len 4], Mask(224, 32, arg5) >> 32 + 192]) + 193 > test266151307() or floor32(mem[(4 * ceil32(return_data.size)) + mem[(4 * ceil32(return_data.size)) + 192 len 4], Mask(224, 32, arg5) >> 32 + 192]) + 1 < 0:
+        revert with 'NH{q', 65
+    mem[64] = (6 * ceil32(return_data.size)) + floor32(mem[(4 * ceil32(return_data.size)) + mem[(4 * ceil32(return_data.size)) + 192 len 4], Mask(224, 32, arg5) >> 32 + 192]) + 193
+    mem[(6 * ceil32(return_data.size)) + 192] = mem[(4 * ceil32(return_data.size)) + mem[(4 * ceil32(return_data.size)) + 192 len 4], Mask(224, 32, arg5) >> 32 + 192]
+    require _33 + (32 * _34) + 32 <= return_data.size
+    idx = 0
+    s = (4 * ceil32(return_data.size)) + _33 + 224
+    t = (6 * ceil32(return_data.size)) + 224
+    while idx < _34:
+        require mem[s] == mem[s]
+        mem[t] = mem[s]
+        idx = idx + 1
+        s = s + 32
+        t = t + 32
+        continue 
+    mem[mem[64] + 4] = this.address
+    require ext_code.size(address(arg4))
+    staticcall address(arg4).0x70a08231 with:
+            gas gas_remaining wei
+           args address(this.address)
+    mem[mem[64]] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    _66 = mem[64]
+    mem[64] = mem[64] + ceil32(return_data.size)
+    require return_data.size >= 32
+    _67 = mem[_66]
+    require mem[_66] == mem[_66]
+    if mem[_66] < ext_call.return_data[0]:
+        revert with 'NH{q', 17
+    mem[mem[64] + 4] = address(arg2)
+    mem[mem[64] + 36] = _67 - ext_call.return_data[0]
+    require ext_code.size(address(arg4))
+    call address(arg4).approve(address arg1, uint256 arg2) with:
+         gas gas_remaining wei
+        args address(arg2), _67 - ext_call.return_data[0]
+    mem[mem[64]] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    _70 = mem[64]
+    mem[64] = mem[64] + ceil32(return_data.size)
+    require return_data.size >= 32
+    require mem[_70] == bool(mem[_70])
+    _72 = mem[64]
+    mem[mem[64]] = 2
+    mem[64] = mem[64] + 96
+    if 0 >= mem[_72]:
+        revert with 'NH{q', 50
+    mem[_72 + 32] = address(arg4)
+    if 1 >= mem[_72]:
+        revert with 'NH{q', 50
+    mem[_72 + 64] = address(arg3)
+    if block.timestamp > -301:
+        revert with 'NH{q', 17
+    mem[_72 + 96] = 0x38ed173900000000000000000000000000000000000000000000000000000000
+    mem[_72 + 100] = _67 - ext_call.return_data[0]
+    mem[_72 + 132] = 1
+    mem[_72 + 164] = 160
+    mem[_72 + 260] = mem[_72]
+    idx = 0
+    s = _72 + 32
+    t = _72 + 292
+    while idx < mem[_72]:
+        mem[t] = mem[s + 12 len 20]
+        idx = idx + 1
+        s = s + 32
+        t = t + 32
+        continue 
+    mem[_72 + 196] = this.address
+    mem[_72 + 228] = block.timestamp + 300
+    require ext_code.size(address(arg2))
+    call address(arg2).mem[mem[64] len 4] with:
+         gas gas_remaining wei
+        args mem[mem[64] + 4 len _72 + (32 * mem[_72]) + -mem[64] + 288]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    _92 = mem[64]
+    mem[mem[64] len return_data.size] = ext_call.return_data[0 len return_data.size]
+    mem[64] = mem[64] + ceil32(return_data.size)
+    require return_data.size >= 32
+    _93 = mem[_92]
+    require mem[_92] <= test266151307()
+    require _92 + mem[_92] + 31 < _92 + return_data.size
+    _94 = mem[_92 + mem[_92]]
+    if mem[_92 + mem[_92]] > test266151307():
+        revert with 'NH{q', 65
+    if _92 + ceil32(return_data.size) + floor32(mem[_92 + mem[_92]]) + 1 > test266151307() or floor32(mem[_92 + mem[_92]]) + 1 < 0:
+        revert with 'NH{q', 65
+    mem[64] = _92 + ceil32(return_data.size) + floor32(mem[_92 + mem[_92]]) + 1
+    mem[_92 + ceil32(return_data.size)] = _94
+    require _93 + (32 * _94) + 32 <= return_data.size
+    idx = 0
+    s = _92 + _93 + 32
+    t = _92 + ceil32(return_data.size) + 32
+    while idx < _94:
+        require mem[s] == mem[s]
+        mem[t] = mem[s]
+        idx = idx + 1
+        s = s + 32
+        t = t + 32
+        continue 
+    mem[mem[64] + 4] = this.address
+    require ext_code.size(address(arg3))
+    staticcall address(arg3).0x70a08231 with:
+            gas gas_remaining wei
+           args address(this.address)
+    mem[mem[64]] = ext_call.return_data[0]
+    if not ext_call.success:
+        revert with ext_call.return_data[0 len return_data.size]
+    _106 = mem[64]
+    mem[64] = mem[64] + ceil32(return_data.size)
+    require return_data.size >= 32
+    require mem[_106] == mem[_106]
+    if mem[_106] <= ext_call.return_data[0]:
+        revert with 0, 'Trade Reverted, No Profit Made'
+}
+
+
+
+}
